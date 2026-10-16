@@ -373,7 +373,7 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\item \textbf{相同方式共享}：基于本作品的改编作品须以相同协议发布。
 		\end{itemize}
 		
-		建议署名格式：《高等代数讲义》，卢米埃尔，版本 0.9。
+		建议署名格式：《高等代数讲义》，卢米埃尔，版本 \noteversion。
 		
 		书中引用或改编自其他文献的例题、习题、图片及引文，已在相应位置注明出处，其著作权归原作者所有，不适用上述许可协议。
 		
@@ -5521,7 +5521,7 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\ExInnerProduct
 	
-	\chapter{矩阵分解}
+	\chapter{矩阵分解}\label{ch:decomposition}
 	% =====================================================================
 	\paragraph*{本章地位}
 
@@ -6815,15 +6815,21 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			% 落款（姓名、日期）留空，由编者自行填写
 		\end{flushright}
 	
-	\nocite{*}
-	
-	\printbibliography[heading=bibintoc, title=\ebibname]
+	% 附录
 	\appendix
 	\input{appendix-prelim}  % 附录 A　预备知识：求和号、数学归纳法、映射
 	\input{appendix-or}		 % 附录 B 运筹学初步
 	\input{answers}          % 附录 C　习题答案与提示
 	\input{glossary}         % 附录 D　中英术语对照
 	
+	% 参考文献
+	\nocite{*}
+	\printbibliography[heading=bibintoc, title=\ebibname]
+	
+	% 索引
+	\printindex
+	
+	% 致谢
 	\chapter*{致谢}
 	\addcontentsline{toc}{chapter}{致谢}
 	\markboth{致谢}{致谢}
@@ -6836,5 +6842,5 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	最后，谨以此书献给每一位曾经对数学感到困惑、厌倦，却仍愿意重新理解它的读者。希望数学不只是一门需要通过考试的课程，也能成为一种认识世界、组织思想与发现联系的方式。
 	
-	\printindex
+
 \end{document}
