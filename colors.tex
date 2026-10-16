@@ -1,0 +1,74 @@
+% =====================================================================
+% colors.tex　语义化颜色层（全书颜色的唯一来源）
+%
+% 规则
+%   1. 正文、栏目框和图中只使用本文件定义的颜色名，以及中性色 black、white、gray!N；
+%      不要在别处直接写 red!4、orange!65!black 这样的具体颜色.
+%   2. 需要浅色或深色变体时，在语义色上调配，例如 accent!8、secondary!6、series1!25.
+%   3. 改配色只改本文件；印刷黑白版（\notemode = printbw）的灰度映射也只在这里处理.
+%
+% 依赖：xcolor（elegantbook 已加载）、tcolorbox（document.tex 导言区加载）.
+% 由 document.tex 在“全书统一记号”之前 \input.
+% =====================================================================
+
+% ---------- 1. 基础色 ----------
+% 主色：封面色带、标题页色带、课程结构图、题词框
+\definecolor{customcolor}{RGB}{104,200,240}   % 旧名，模板与封面仍在用，勿删
+\colorlet{accent}{customcolor}
+\colorlet{accentdark}{accent!75!black}
+\colorlet{coverlinecolor}{accent}             % 模板：标题页的色带
+
+% 辅助色：只作为调配的“原料”，正文中优先用下面的具体角色名
+\colorlet{secondary}{orange}   % 第二部分底色、专业连线、映射的到达集合
+\colorlet{tertiary}{violet}    % 第三部分底色、建模实验
+\colorlet{alert}{red}          % 常见误区
+\colorlet{success}{green}      % 计算实践
+
+% ---------- 2. 图中的类别色 ----------
+% 用来区分图中不同的对象（向量、线路、曲线……），本身没有先后或褒贬含义.
+% 黑白印刷时颜色会失效，因此图中必须同时用线型、形状或文字区分（见 ROADMAP v0.14）.
+\colorlet{series1}{accentdark}
+\colorlet{series2}{secondary!85!black}
+\colorlet{series3}{alert!70!black}
+\colorlet{series4}{success!45!black}
+\colorlet{series5}{tertiary!70!black}
+% 旧名：正文中已大量使用，保留为别名，换用线型样式时再逐步替换
+\colorlet{figblue}{series1}
+\colorlet{figorange}{series2}
+\colorlet{figred}{series3}
+\colorlet{figgreen}{series4}
+\colorlet{figviolet}{series5}
+
+% ---------- 3. 贯穿全书的四个建模案例（课程结构图中的标记） ----------
+\colorlet{caseA}{series1}   % 投入产出
+\colorlet{caseB}{series2}   % 物流网络
+\colorlet{caseC}{series3}   % 判例引证与法条检索
+\colorlet{caseD}{series4}   % 金融
+
+% ---------- 4. 栏目框 ----------
+% 每类栏目一对颜色：<名>back 底色，<名>frame 边框与标题栏
+\colorlet{motiveback}{accent!6}          \colorlet{motiveframe}{accent!70!black}      % 思维动机
+\colorlet{linkback}{secondary!5}         \colorlet{linkframe}{secondary!65!black}     % 专业连线
+\colorlet{historyback}{gray!5}           \colorlet{historyframe}{gray!60!black}       % 历史回响
+\colorlet{pitfallback}{alert!4}          \colorlet{pitfallframe}{alert!55!black}      % 常见误区
+\colorlet{codeback}{success!3}           \colorlet{codeframe}{success!45!black}       % 计算实践
+\colorlet{modelback}{tertiary!4}         \colorlet{modelframe}{tertiary!60!black}     % 建模实验
+% 章首题词框（sidefig.tex）
+\definecolor{quotebg}{RGB}{235,243,251}
+\colorlet{epigraphframe}{accent}
+
+% 六类栏目共用的基础样式：ln box={<颜色前缀>}{<标题>}
+\tcbset{
+	ln box/.style 2 args={
+		breakable, enhanced,
+		colback=#1back, colframe=#1frame,
+		fonttitle=\bfseries\sffamily, title={#2},
+	},
+}
+
+% ---------- 5. 输出模式 ----------
+% printbw：全部颜色按亮度转为灰度（xcolor 的目标颜色模型）.
+% 这里只搭框架：灰阶层次、栏目区分、图片处理留到 v0.14、v0.15 细化.
+\ifbwversion
+	\selectcolormodel{gray}
+\fi

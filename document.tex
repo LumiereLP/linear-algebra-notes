@@ -1,4 +1,13 @@
 % =====================================================================
+% 输出模式（全书唯一开关）
+%   screen   屏幕彩色（默认，CI 发布的版本）
+%   print    印刷彩色：含出血的画布
+%   printbw  印刷黑白：同 print，全部颜色转为灰度
+% 命令行切换：bash build.sh printbw，或 xelatex "\def\notemode{printbw}\input{document}"
+% =====================================================================
+\providecommand{\notemode}{screen}
+
+% =====================================================================
 % 文档类选项（ElegantBook 4.7）
 %   lang=cn          中文环境      scheme=chinese  章号用中文数字
 %   toc=twocol       双栏目录      section         定理类环境按节编号（thmcnt=section）
@@ -27,8 +36,11 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 
 \cover{cover.png}
 
-\newif\ifprintversion
-\printversionfalse   % 交印厂：true；电子版：改成 \printversionfalse
+% 由 \notemode 派生，不要手动修改
+\newif\ifprintversion   % print、printbw：含出血的印刷版式
+\newif\ifbwversion      % printbw：黑白
+\ifdefstring{\notemode}{print}{\printversiontrue}{}
+\ifdefstring{\notemode}{printbw}{\printversiontrue\bwversiontrue}{}
 
 \ifprintversion
 \geometry{
@@ -71,23 +83,17 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \newfontfamily\coverlatinfont{Montserrat-Regular.otf}
 \newCJKfontfamily\covercjkfont{NotoSansCJKsc-Regular.otf}
 \newcommand*{\coverinfofont}{\coverlatinfont\covercjkfont\fontsize{10.2pt}{12pt}\selectfont}
-% 修改标题页的橙色带
-\definecolor{customcolor}{RGB}{104,200,240}
-\colorlet{coverlinecolor}{customcolor}
 \usepackage{cprotect}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,calc,angles,quotes,decorations.pathreplacing}
-\colorlet{figblue}{customcolor!75!black}
-\colorlet{figorange}{orange!85!black}
-\colorlet{figred}{red!70!black}
-\colorlet{figgreen}{green!45!black}
-\colorlet{figviolet}{violet!70!black}
+% 全书颜色（主色、类别色、栏目框、输出模式）统一在 colors.tex 中定义
+\input{colors}
 \tikzset{
 	>={Stealth[length=2mm]},
 	vec/.style={->,thick},
 	axis/.style={->,gray!70,thin},
 	dot/.style={circle,fill,inner sep=1.2pt},
-	station/.style={circle,draw=figblue,fill=customcolor!15,thick,
+	station/.style={circle,draw=figblue,fill=accent!15,thick,
 		minimum size=7mm,inner sep=1pt},
 	sub/.style={font=\small,align=center},
 	iso/.style={x={(-0.55cm,-0.42cm)},y={(1cm,0cm)},z={(0cm,1cm)}},
@@ -133,18 +139,13 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 % ---------- 特色栏目 ----------
 \usepackage{tcolorbox}
 \tcbuselibrary{breakable,skins}
-\newtcolorbox{motivebox}{breakable,enhanced,colback=customcolor!6,colframe=customcolor!70!black,
-	fonttitle=\bfseries\sffamily,title={思维动机}}
-\newtcolorbox{linkbox}[1]{breakable,enhanced,colback=orange!5,colframe=orange!65!black,
-	fonttitle=\bfseries\sffamily,title={专业连线：#1}}
-\newtcolorbox{historybox}[1]{breakable,enhanced,colback=gray!5,colframe=gray!60!black,
-	fonttitle=\bfseries\sffamily,title={历史回响：#1}}
-\newtcolorbox{pitfallbox}{breakable,enhanced,colback=red!4,colframe=red!55!black,
-	fonttitle=\bfseries\sffamily,title={常见误区}}
-\newtcolorbox{codebox}[1]{breakable,enhanced,colback=green!3,colframe=green!45!black,
-	fonttitle=\bfseries\sffamily,title={计算实践：#1}}
-\newtcolorbox{modelbox}[1]{breakable,enhanced,colback=violet!4,colframe=violet!60!black,
-	fonttitle=\bfseries\sffamily,title={建模实验：#1}}
+% 颜色与共用样式 ln box 见 colors.tex
+\newtcolorbox{motivebox}{ln box={motive}{思维动机}}
+\newtcolorbox{linkbox}[1]{ln box={link}{专业连线：#1}}
+\newtcolorbox{historybox}[1]{ln box={history}{历史回响：#1}}
+\newtcolorbox{pitfallbox}{ln box={pitfall}{常见误区}}
+\newtcolorbox{codebox}[1]{ln box={code}{计算实践：#1}}
+\newtcolorbox{modelbox}[1]{ln box={model}{建模实验：#1}}
 \newcommand{\mstep}[1]{\par\smallskip\noindent\textbf{【#1】}\ }
 \usepackage{caption}
 \usepackage{listings}
@@ -153,7 +154,6 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \input{exercises}
 \addbibresource[location=local]{reference.bib} % 参考文献，不要删除
 \usepackage{mathrsfs}
-\definecolor{quotebg}{RGB}{235,243,251}   % 浅蓝背景，可自行微调
 \input{sidefig}
 \usepackage{pdfpages}
 % PDF 书签层级控制：\bookmarksetup{startatroot} 让其后的书签回到顶层（不再挂在最后一个 \part 下）
@@ -193,9 +193,9 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\begin{tikzpicture}[
 			x=1cm,y=1.24cm,
 			>={Stealth[length=2.2mm]},
-			ch/.style={draw=figblue,thick,fill=customcolor!14,rounded corners=3pt,
+			ch/.style={draw=figblue,thick,fill=accent!14,rounded corners=3pt,
 				text width=27mm,minimum height=17mm,align=center,inner sep=2pt},
-			opt48/.style={ch,dashed,fill=customcolor!4},
+			opt48/.style={ch,dashed,fill=accent!4},
 			sel/.style={ch,densely dotted,draw=gray!70,fill=gray!6},
 			app/.style={ch,draw=gray!70,fill=white},
 			num/.style={font=\sffamily\bfseries\small,text=figblue},
@@ -207,9 +207,9 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			cs/.style={circle,inner sep=0pt,minimum size=2mm,fill=#1},
 			]
 			% ---------- 三个部分的底色带 ----------
-			\fill[band=customcolor!7] (-1.75,1.55) rectangle (12.85,-4.0);
-			\fill[band=orange!6]      (-1.75,-4.6) rectangle (12.85,-10.0);
-			\fill[band=violet!6]      (-1.75,-10.6) rectangle (12.85,-13.25);
+			\fill[band=accent!7] (-1.75,1.55) rectangle (12.85,-4.0);
+			\fill[band=secondary!6]   (-1.75,-4.6) rectangle (12.85,-10.0);
+			\fill[band=tertiary!6]    (-1.75,-10.6) rectangle (12.85,-13.25);
 			\node[bandlab] at (-1.65,1.5)   {第一部分\quad 线性方程组与线性空间};
 			\node[bandlab] at (-1.65,-4.65) {第二部分\quad 特征理论与矩阵分解};
 			\node[bandlab] at (-1.65,-10.65){第三部分\quad 二次型};
@@ -242,17 +242,17 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\newcommand{\casedots}[2]{%
 				\foreach \c [count=\k] in {#2}{%
 					\node[cs=\c] at ([xshift=0.24cm,yshift={-0.26cm-0.3cm*(\k-1)}]#1.north west) {};}}
-			\casedots{c1}{figblue,figorange}
-			\casedots{c2}{figgreen}
-			\casedots{c3}{figblue,figred}
-			\casedots{c5}{figblue}
-			\casedots{c6}{figblue,figorange,figgreen}
-			\casedots{c7}{figgreen}
-			\casedots{c8}{figred}
-			\casedots{c9}{figred}
-			\casedots{c10}{figred}
-			\casedots{c11}{figgreen}
-			\casedots{pb}{figorange}
+			\casedots{c1}{caseA,caseB}
+			\casedots{c2}{caseD}
+			\casedots{c3}{caseA,caseC}
+			\casedots{c5}{caseA}
+			\casedots{c6}{caseA,caseB,caseD}
+			\casedots{c7}{caseD}
+			\casedots{c8}{caseC}
+			\casedots{c9}{caseC}
+			\casedots{c10}{caseC}
+			\casedots{c11}{caseD}
+			\casedots{pb}{caseB}
 			
 			% ---------- 依赖关系 ----------
 			\draw[dep] (c1) -- (c2);
@@ -281,10 +281,10 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 				\node[sel,text width=6mm,minimum height=4mm] at (6.5,0) {};
 				\node[anchor=west] at (6.95,0) {选读};
 				\node[anchor=west,hrs] at (8.4,0) {3·3·3 = 48·64·72 学时方案的建议学时};
-				\node[cs=figblue] at (0.3,-0.55) {};   \node[anchor=west] at (0.45,-0.55) {投入产出};
-				\node[cs=figorange] at (2.4,-0.55) {}; \node[anchor=west] at (2.55,-0.55) {物流网络};
-				\node[cs=figred] at (4.5,-0.55) {};    \node[anchor=west] at (4.65,-0.55) {判例引证与法条检索};
-				\node[cs=figgreen] at (7.6,-0.55) {};  \node[anchor=west] at (7.75,-0.55) {金融（复制组合、一价定律、IRR、投资组合）};
+				\node[cs=caseA] at (0.3,-0.55) {};   \node[anchor=west] at (0.45,-0.55) {投入产出};
+				\node[cs=caseB] at (2.4,-0.55) {}; \node[anchor=west] at (2.55,-0.55) {物流网络};
+				\node[cs=caseC] at (4.5,-0.55) {};    \node[anchor=west] at (4.65,-0.55) {判例引证与法条检索};
+				\node[cs=caseD] at (7.6,-0.55) {};  \node[anchor=west] at (7.75,-0.55) {金融（复制组合、一价定律、IRR、投资组合）};
 			\end{scope}
 		\end{tikzpicture}
 		\caption*{课程结构. 箭头表示``读后一章需要前一章''；虚线箭头表示 48 学时方案用附录 A 代替第七章. 方框左上角的色点标出贯穿全书的建模案例在哪些章出现.}
@@ -2093,7 +2093,7 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\begin{tikzpicture}
 				\node[station,minimum size=13mm] (A) at (0,0) {农业};
 				\node[station,minimum size=13mm] (M) at (5,0) {制造业};
-				\node[draw=figorange,thick,rounded corners,fill=orange!8,inner sep=5pt] (D) at (2.5,-2.4) {最终需求};
+				\node[draw=figorange,thick,rounded corners,fill=secondary!8,inner sep=5pt] (D) at (2.5,-2.4) {最终需求};
 				\draw[vec,figblue] (A) to[bend left=20] node[above]{$0.3$} (M);
 				\draw[vec,figblue] (M) to[bend left=20] node[below]{$0.4$} (A);
 				\draw[vec,figblue] (A) to[out=150,in=210,looseness=6] node[left]{$0.2$} (A);
@@ -2447,8 +2447,8 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{figure}[htbp]
 		\centering
 		\begin{tikzpicture}
-			\draw[thick,fill=customcolor!8] (0,0) ellipse (1.9 and 1.4);
-			\draw[thick,fill=orange!6] (6.2,0) ellipse (1.9 and 1.4);
+			\draw[thick,fill=accent!8] (0,0) ellipse (1.9 and 1.4);
+			\draw[thick,fill=secondary!6] (6.2,0) ellipse (1.9 and 1.4);
 			\node at (-1.3,1.45) {$V$};
 			\node at (7.5,1.45) {$W$};
 			% 核：移到 V 的上半部
@@ -4582,7 +4582,7 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\begin{center}
 			\begin{tikzpicture}
 				\foreach \i/\x/\s in {1/0/0.128,2/2.4/0.183,3/4.8/0.261,4/7.2/0.428}{
-					\node[circle,draw=figblue,thick,fill=customcolor!30,minimum size={22mm*sqrt(\s)},inner sep=0pt] (n\i) at (\x,0) {$\i$};
+					\node[circle,draw=figblue,thick,fill=accent!30,minimum size={22mm*sqrt(\s)},inner sep=0pt] (n\i) at (\x,0) {$\i$};
 					\node[font=\small] at (\x,-2.3) {$\s$};
 				}
 				\draw[vec,figblue] (n1) -- (n2);
