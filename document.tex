@@ -175,7 +175,9 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	% 封面：cover.pdf 由 Illustrator 导出，不含版本信息；这里把「版本 / 编译日期」叠加到右下角蓝色色块上。
 	% 坐标取自原封面文字的位置（单位 pt，相对页面中心，指基线左端），字体字号与原设计一致；
 	% 以中心为基准，印刷版（含出血、封面居中）时位置也不会偏。
+	% pagecommand 会覆盖 pdfpages 默认的 \thispagestyle{empty}，需手动保留，否则封面会带上页眉分割线
 	\includepdf[pages=1,pagecommand={%
+		\thispagestyle{empty}%
 		\begin{tikzpicture}[remember picture,overlay,
 			every node/.style={anchor=base west,inner sep=0pt,text=white,font=\coverinfofont}]
 			\coordinate (O) at (current page.center);
