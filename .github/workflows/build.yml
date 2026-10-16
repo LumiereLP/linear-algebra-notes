@@ -32,9 +32,11 @@ jobs:
 
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
+        # 不用 latexmk，按 build.sh 中的固定流程编译：XeLaTeX -> biber -> makeindex -> XeLaTeX ×2
         with:
-          root_file: document.tex
-          latexmk_use_xelatex: true
+          root_file: build.sh
+          compiler: bash
+          args: -e
 
       - name: Prepare site
         run: |

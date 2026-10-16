@@ -6,7 +6,8 @@
 
 ## 自动编译
 
-推送后，GitHub Actions 用 XeLaTeX 编译 `document.tex`（模板 ElegantBook）：
+推送后，GitHub Actions 运行 `build.sh` 编译 `document.tex`（模板 ElegantBook），
+流程为 XeLaTeX → biber → makeindex → XeLaTeX ×2：
 
 - 任意分支：编译结果在该次 Actions 运行的 Artifacts 里，可下载检查。
 - `main` 分支：同时发布到 GitHub Pages，主页讲义页自动更新。
@@ -24,5 +25,5 @@
 ## 本地编译
 
 ```bash
-latexmk -xelatex document.tex
+bash build.sh     # 或在编辑器中按同样顺序编译
 ```
