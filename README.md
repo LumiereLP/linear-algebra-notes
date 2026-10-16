@@ -24,5 +24,15 @@
 ## 本地编译
 
 ```bash
-bash build.sh     # 或在编辑器中按同样顺序编译
+bash build.sh            # 屏幕彩色（默认）-> document.pdf
+bash build.sh print      # 印刷彩色（含出血）-> document-print.pdf
+bash build.sh printbw    # 印刷黑白 -> document-bw.pdf
 ```
+
+在编辑器中编译时，默认得到屏幕彩色版；要切换模式，可在 `document.tex` 第一行之前临时写 `\def\notemode{printbw}`。
+
+## 颜色
+
+全书颜色统一在 `colors.tex` 中定义（主色、图中的类别色、建模案例标记、六类栏目框）。
+正文和图中只使用其中的语义色名以及中性色 `black`、`white`、`gray!N`，不要直接写 `red!4` 之类的具体颜色；
+改配色、调整黑白版的灰度，都只改 `colors.tex`。

@@ -51,26 +51,22 @@
 ### v0.11　清理与语义化（打地基，读者几乎感觉不到变化）
 
 **内容**
-- [ ] 修复版权页：`/href` → `\href`；署名格式中的版本改为 `\noteversion`。
-- [ ] 补第十章 `\label{ch:decomposition}`；清理标题中的多余空格；统一 `\section` 中 `\hB / \hC / *` 标记的写法。
-- [ ] 后置部分调整为：跋 → 附录 A–D（习题答案仍为附录 C，保持不变）→ 参考文献 → 索引 → 致谢。
+- [x] 修复版权页：`/href` → `\href`；署名格式中的版本改为 `\noteversion`。
+- [x] 补第十章 `\label{ch:decomposition}`。
+- [ ] 清理标题中的多余空格（如 `\section{ 矩阵方程与秩不等式}`）；统一 `\section` 中 `\hB / \hC / *` 标记的写法。
+- [x] 后置部分调整为：跋 → 附录 A–D（习题答案仍为附录 C，保持不变）→ 参考文献 → 索引 → 致谢。
 
 **呈现**
-- [ ] **语义化颜色层**：在导言区集中定义一套语义色，所有地方只用语义名：
-  ```latex
-  \colorlet{accent}{customcolor}          % 全书主色
-  \colorlet{accentdark}{customcolor!75!black}
-  \colorlet{boxmotive}{...}  \colorlet{boxlink}{...}  ...   % 六类栏目
-  \colorlet{caseA}{...} ... \colorlet{caseD}{...}           % 四个贯穿案例
-  \colorlet{hl1}{...} \colorlet{hl2}{...} \colorlet{hl3}{...} % 公式/图中的强调
-  ```
-  `fig*` 改为对应语义色的别名，逐步替换正文中的 `red!4`、`orange!65!black` 等直接写法。
-- [ ] 把六个栏目改为共用一个 tcolorbox 基础样式（`ln box/.style`），各栏目只传入颜色、图标、标题，便于后面统一调整。
-- [ ] 增加输出模式开关（替代、扩展现有 `\printversion`）：
-  ```latex
-  % \notemode = screen | print | printbw   （CI 可用 -jobname 或 \def 传入）
-  ```
-  本版只搭框架：`printbw` 时把语义色映射为灰阶，暂不追求美观。
+- [x] **语义化颜色层**：新建 `colors.tex`，作为全书颜色的唯一来源：
+  - 基础色 `accent`（主色）、`accentdark`，以及作为调配原料的 `secondary`、`tertiary`、`alert`、`success`；
+  - 图中的类别色 `series1`–`series5`，旧名 `figblue` 等保留为别名；
+  - 四个贯穿案例 `caseA`–`caseD`（课程结构图已改用）；
+  - 六类栏目各一对 `<名>back` / `<名>frame`，题词框 `quotebg` / `epigraphframe`。
+  正文中的 `customcolor!N`、`orange!N`、`violet!N` 等直接写法已全部换成语义色。
+- [x] 六个栏目改为共用 tcolorbox 基础样式 `ln box={<颜色前缀>}{<标题>}`，各栏目只传入颜色前缀和标题；图标留到 v0.14 加入。
+- [x] 输出模式开关 `\notemode = screen | print | printbw`，替代原来的 `\printversion`：
+  - `bash build.sh [screen|print|printbw]`，分别输出 `document.pdf`、`document-print.pdf`、`document-bw.pdf`；
+  - `print`、`printbw` 使用含出血的印刷版式；`printbw` 用 xcolor 的 `\selectcolormodel{gray}` 把全部颜色按亮度转为灰度（只搭框架，灰阶层次留到 v0.14、v0.15）。
 
 **验收**：三种模式都能编译；`screen` 模式与 v0.10 的视觉差异可忽略。
 
