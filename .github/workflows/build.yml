@@ -1,0 +1,71 @@
+# 每次推送都用 XeLaTeX 编译讲义；main 分支上的结果发布到本仓库的 GitHub Pages：
+#   https://lumierelp.github.io/linear-algebra-notes/linear-algebra.pdf
+# 首次使用：Settings → Pages → Source 选 "GitHub Actions"
+name: Build PDF
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate version date
+        # 讲义日期 = 最后一次提交的日期（北京时间），而不是编译当天
+        run: |
+          d=$(TZ=Asia/Shanghai git log -1 --date=format-local:'%Y年%-m月%-d日' --format=%cd)
+          echo "\\newcommand{\\notedate}{$d}" > version.tex
+          cat version.tex
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        # 不用 latexmk，按 build.sh 中的固定流程编译：XeLaTeX -> biber -> makeindex -> XeLaTeX ×2
+        with:
+          root_file: build.sh
+          compiler: bash
+          args: -e
+
+      - name: Prepare site
+        run: |
+          mkdir -p public
+          cp document.pdf public/linear-algebra.pdf
+          printf '{"updated":"%s","commit":"%s"}\n' \
+            "$(git log -1 --format=%cI)" "${GITHUB_SHA::7}" > public/meta.json
+          printf '<meta http-equiv="refresh" content="0; url=linear-algebra.pdf">\n' > public/index.html
+
+      - name: Upload PDF (for every branch)
+        uses: actions/upload-artifact@v4
+        with:
+          name: linear-algebra-pdf
+          path: public/linear-algebra.pdf
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

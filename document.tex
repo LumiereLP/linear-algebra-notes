@@ -12,8 +12,13 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \subtitle{非数学专业“线性代数”课程选用}
 
 \author{卢米埃尔 // Lumiere}
-\date{\zhtoday}
-\version{0.10}
+% ---------- 版本与日期（全书唯一来源） ----------
+% 版本号发布新版时手动修改；日期由 CI 写入 version.tex（= 最后一次提交的日期），
+% 本地编译没有该文件时退回当天日期。封面、标题页、版权页都只用这两个命令。
+\newcommand{\noteversion}{0.10}
+\InputIfFileExists{version}{}{\newcommand{\notedate}{\zhtoday}}
+\date{\notedate}
+\version{\noteversion}
 \bioinfo{作者主页}{lumierelp.github.io}
 
 \extrainfo{攀登山顶的拼搏本身足以充实一颗人心。我们应当想象西西弗斯是幸福的。}
@@ -46,7 +51,7 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \usepackage{array}
 \usepackage{nicematrix}
 \newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
-\setCJKmainfont[BoldFont={NotoSerifCJKsc-Bold.otf},ItalicFont={FZKTK.ttf},BoldItalicFont={NotoSerifCJKsc-Bold.otf}]{FZSSK.ttf}
+\setCJKmainfont[BoldFont={NotoSerifCJKsc-Bold.otf},ItalicFont={FZKTK.TTF},BoldItalicFont={NotoSerifCJKsc-Bold.otf}]{FZSSK.TTF}
 % ---------- 字体 ----------
 \setmainfont{cmunrm.otf}[BoldFont=cmunbx.otf, ItalicFont=cmunti.otf, BoldItalicFont=cmunbi.otf]
 \setsansfont{cmunss.otf}[BoldFont=cmunsx.otf, ItalicFont=cmunsi.otf]
@@ -55,12 +60,15 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \setCJKmonofont[BoldFont={NotoSansMonoCJKsc-Regular.otf}]{NotoSansMonoCJKsc-Regular.otf}
 \setCJKfamilyfont{zhsong}{NotoSerifCJKsc-Regular.otf}
 \setCJKfamilyfont{zhhei}{NotoSansCJKsc-Regular.otf}
-\setCJKfamilyfont{zhkai}[BoldFont={NotoSansCJKsc-Regular.otf}]{FZKTK.ttf}
-\setCJKfamilyfont{zhfs}[BoldFont={NotoSansCJKsc-Regular.otf}]{FZFSK.ttf}
+\setCJKfamilyfont{zhkai}[BoldFont={NotoSansCJKsc-Regular.otf}]{FZKTK.TTF}
+\setCJKfamilyfont{zhfs}[BoldFont={NotoSansCJKsc-Regular.otf}]{FZFSK.TTF}
 \newcommand*{\songti}{\CJKfamily{zhsong}}
 \newcommand*{\heiti}{\CJKfamily{zhhei}}
 \newcommand*{\kaishu}{\CJKfamily{zhkai}}
 \newcommand*{\fangsong}{\CJKfamily{zhfs}}
+% 封面叠加文字用的字体（与 Illustrator 中的思源黑体同字形）
+\newfontfamily\coverinfofontfamily{NotoSansCJKsc-Regular.otf}
+\newcommand*{\coverinfofont}{\coverinfofontfamily\fontsize{10.2pt}{12pt}\selectfont}
 % 修改标题页的橙色带
 \definecolor{customcolor}{RGB}{104,200,240}
 \colorlet{coverlinecolor}{customcolor}
@@ -160,7 +168,18 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 
 \begin{document}
 	\pdfbookmark[0]{封面}{cover}
-	\includepdf[pages=1]{cover.pdf}
+	% 封面：cover.pdf 由 Illustrator 导出，不含版本信息；这里把「版本 / 编译日期」叠加到右下角蓝色色块上。
+	% 坐标取自原封面文字的位置（单位 pt，相对页面中心，指基线左端），字体字号与原设计一致；
+	% 以中心为基准，印刷版（含出血、封面居中）时位置也不会偏。
+	\includepdf[pages=1,pagecommand={%
+		\begin{tikzpicture}[remember picture,overlay,
+			every node/.style={anchor=base west,inner sep=0pt,text=white,font=\coverinfofont}]
+			\coordinate (O) at (current page.center);
+			\node at ([xshift=166.75pt,yshift=-286.5pt]O) {版本};
+			\node at ([xshift=166.75pt,yshift=-299.0pt]O) {\noteversion};
+			\node at ([xshift=166.75pt,yshift=-317.3pt]O) {编译日期};
+			\node at ([xshift=166.75pt,yshift=-329.8pt]O) {\notedate};
+		\end{tikzpicture}}]{cover.pdf}
 	\maketitle
 	\newpage
 	\begin{figure}[p]
@@ -332,7 +351,7 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\setlength{\parskip}{0.6em}
 		
 		{\large\bfseries 高等代数讲义}\par
-		版本 0.10\quad 编译日期：\zhtoday \par
+		版本 \noteversion\quad 编译日期：\notedate \par
 		
 		\copyright\ 2026\ 卢米埃尔\par
 		
