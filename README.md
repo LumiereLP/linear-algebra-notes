@@ -18,9 +18,8 @@
 
 - 版本号：改 `document.tex` 顶部的 `\noteversion`。
 - 日期：`\notedate`，由 CI 设为**最后一次提交的日期**，不需要手写；本地编译时为当天日期。
-- 封面：在 Illustrator 中把「0.10」和日期两处数值隐藏后，导出为 `cover-blank.pdf` 放在根目录，
-  LaTeX 会把 `\noteversion`、`\notedate` 叠加到原位置（坐标在 `document.tex` 的封面部分微调）。
-  没有 `cover-blank.pdf` 时直接使用 `cover.pdf`。
+- 封面：`cover.pdf`（Illustrator 导出）不写版本和日期；编译时由 LaTeX 把「版本 \noteversion / 编译日期 \notedate」
+  叠加到右下角蓝色色块上，位置在 `document.tex` 封面部分的坐标里微调。
 
 ## 本地编译
 

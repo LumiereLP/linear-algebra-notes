@@ -168,19 +168,18 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 
 \begin{document}
 	\pdfbookmark[0]{封面}{cover}
-	% 封面：若有 cover-blank.pdf（Illustrator 导出时隐藏「0.10」和日期两处数值），
-	% 则在其上叠加 \noteversion 与 \notedate；否则直接使用 cover.pdf。
-	% 坐标取自 cover.pdf 原文字位置（单位 pt，左上角为原点），可按需微调。
-	\IfFileExists{cover-blank.pdf}{%
-		\includepdf[pages=1,pagecommand={%
-			\begin{tikzpicture}[remember picture,overlay,
-				every node/.style={anchor=north west,inner sep=0pt,text=white,font=\coverinfofont}]
-				\node at ([xshift=429.25pt,yshift=-659pt]current page.north west) {\noteversion};
-				\node at ([xshift=429.25pt,yshift=-689.6pt]current page.north west) {\notedate};
-			\end{tikzpicture}}]{cover-blank.pdf}%
-	}{%
-		\includepdf[pages=1]{cover.pdf}%
-	}
+	% 封面：cover.pdf 由 Illustrator 导出，不含版本信息；这里把「版本 / 编译日期」叠加到右下角蓝色色块上。
+	% 坐标取自原封面文字的位置（单位 pt，相对页面中心，指基线左端），字体字号与原设计一致；
+	% 以中心为基准，印刷版（含出血、封面居中）时位置也不会偏。
+	\includepdf[pages=1,pagecommand={%
+		\begin{tikzpicture}[remember picture,overlay,
+			every node/.style={anchor=base west,inner sep=0pt,text=white,font=\coverinfofont}]
+			\coordinate (O) at (current page.center);
+			\node at ([xshift=166.75pt,yshift=-286.5pt]O) {版本};
+			\node at ([xshift=166.75pt,yshift=-299.0pt]O) {\noteversion};
+			\node at ([xshift=166.75pt,yshift=-317.3pt]O) {编译日期};
+			\node at ([xshift=166.75pt,yshift=-329.8pt]O) {\notedate};
+		\end{tikzpicture}}]{cover.pdf}
 	\maketitle
 	\newpage
 	\begin{figure}[p]
