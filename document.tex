@@ -156,6 +156,8 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \definecolor{quotebg}{RGB}{235,243,251}   % 浅蓝背景，可自行微调
 \input{sidefig}
 \usepackage{pdfpages}
+% PDF 书签层级控制：\bookmarksetup{startatroot} 让其后的书签回到顶层（不再挂在最后一个 \part 下）
+\usepackage{bookmark}
 \usepackage[type={CC},modifier={by-nc-sa},version={4.0}]{doclicense}
 \usepackage{hyperxmp}
 \hypersetup{
@@ -173,7 +175,9 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	% 封面：cover.pdf 由 Illustrator 导出，不含版本信息；这里把「版本 / 编译日期」叠加到右下角蓝色色块上。
 	% 坐标取自原封面文字的位置（单位 pt，相对页面中心，指基线左端），字体字号与原设计一致；
 	% 以中心为基准，印刷版（含出血、封面居中）时位置也不会偏。
+	% pagecommand 会覆盖 pdfpages 默认的 \thispagestyle{empty}，需手动保留，否则封面会带上页眉分割线
 	\includepdf[pages=1,pagecommand={%
+		\thispagestyle{empty}%
 		\begin{tikzpicture}[remember picture,overlay,
 			every node/.style={anchor=base west,inner sep=0pt,text=white,font=\coverinfofont}]
 			\coordinate (O) at (current page.center);
@@ -6734,6 +6738,8 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{note}
 		使用公开数据时，请遵守数据来源网站的使用条款，并在报告中注明来源. 项目一、二仅为课程练习，其结果不构成任何投资建议.
 	\end{note}
+	% 以下（跋、参考文献、附录、致谢、索引）不属于任何部分：书签回到顶层，与序、目录并列
+	\bookmarksetup{startatroot}
 	\chapter*{跋：当公式被遗忘之后}
 	\addcontentsline{toc}{chapter}{跋：当公式被遗忘之后}
 	\markboth{跋：当公式被遗忘之后}{跋：当公式被遗忘之后}
