@@ -66,9 +66,11 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \newcommand*{\heiti}{\CJKfamily{zhhei}}
 \newcommand*{\kaishu}{\CJKfamily{zhkai}}
 \newcommand*{\fangsong}{\CJKfamily{zhfs}}
-% 封面叠加文字用的字体（与 Illustrator 中的思源黑体同字形）
-\newfontfamily\coverinfofontfamily{NotoSansCJKsc-Regular.otf}
-\newcommand*{\coverinfofont}{\coverinfofontfamily\fontsize{10.2pt}{12pt}\selectfont}
+% 封面叠加文字用的字体：数字等西文用 Montserrat Regular（TeX Live 自带 montserrat 宏包），
+% 中文用思源黑体同字形的 Noto Sans CJK
+\newfontfamily\coverlatinfont{Montserrat-Regular.otf}
+\newCJKfontfamily\covercjkfont{NotoSansCJKsc-Regular.otf}
+\newcommand*{\coverinfofont}{\coverlatinfont\covercjkfont\fontsize{10.2pt}{12pt}\selectfont}
 % 修改标题页的橙色带
 \definecolor{customcolor}{RGB}{104,200,240}
 \colorlet{coverlinecolor}{customcolor}
