@@ -1,0 +1,85 @@
+% =====================================================================
+% 靠右环绕的带注图片（正文、栏目框、章首引文框通用）
+% 依赖：graphicx、caption（已加载）、tcolorbox（已加载）、wrapstuff
+% =====================================================================
+\usepackage{wrapstuff}
+\makeatletter
+% 侧图图注的局部样式（不影响全书其他 figure）
+\newcommand{\sidefig@capstyle}{\captionsetup{font=small,skip=4pt,justification=centering}}
+
+% ---------- 1、2：正文与栏目框中的靠右环绕图 ----------
+% \sidefig[宽度]{图片文件}{图注}[标签]      带编号的图注，可 \ref
+% \sidefig*[宽度]{图片文件}{图注}           不编号的图注（只是一句说明）
+% 宽度默认 0.35\linewidth；在栏目框里 \linewidth 自动取框内宽度.
+% 用法：写在某一段的\textbf{开头}（前面空一行），图片从这一段起靠右，文字从左侧绕过.
+% 可选的环绕行数：\sidefig[0.3\linewidth][8]{...}{...} 表示只绕 8 行（一般不必给）.
+\NewDocumentCommand{\sidefig}{s O{0.35\linewidth} o m m o}{%
+	\IfValueTF{#3}
+	{\def\sidefig@opts{r,width=#2,lines=#3,abovesep=0.2\baselineskip,belowsep=0.2\baselineskip,leftsep=1em}}
+	{\def\sidefig@opts{r,width=#2,abovesep=0.2\baselineskip,belowsep=0.2\baselineskip,leftsep=1em}}%
+	\expandafter\sidefig@wrap\expandafter{\sidefig@opts}%
+	\centering\sidefig@capstyle
+	\includegraphics[width=\linewidth]{#4}%
+	\IfBooleanTF{#1}
+	{\captionof*{figure}{#5}}
+	{\captionof{figure}{#5}\IfValueT{#6}{\label{#6}}}%
+\end{wrapstuff}%
+\global\sidefig@usedtrue
+\ignorespaces}
+\newcommand{\sidefig@wrap}[1]{\begin{wrapstuff}[#1]}
+% 图比文字高时：把后续内容推到图（含图注）下方.
+% 所有 tcolorbox 栏目框结束时自动调用；正文里如有需要（如紧接 \section、列表、公式之前）可手动写 \sidefigclear.
+\newif\ifsidefig@used
+\newcommand{\sidefigclear}{%
+	\ifsidefig@used
+	\par\wrapstuffclear
+	\nointerlineskip\hrule\@height\z@\relax  % 防止框尾的竖直空白被吞掉
+	\global\sidefig@usedfalse
+	\fi}
+\tcbset{every box/.style={after upper=\sidefigclear}}
+
+% ---------- 3：章首引文框 epigraph，右侧配图 ----------
+% 不配图：\begin{tcolorbox}[epigraph] ... \end{tcolorbox}
+% 配图：  \begin{tcolorbox}[epigraph, epigraph image={宽度}{图片文件}{图注}] ... \end{tcolorbox}
+%        框整体变窄并靠左，右侧留出 宽度+1.2em 放图；框至少与图（含图注）一样高.
+%        图注不编号；若要编号，用 epigraph image*（第四个参数可选为标签，见下）.
+\newsavebox{\epigraphimgbox}
+\newlength{\epigraphimgwd}
+\newlength{\epigraphimght}
+\newlength{\epigraphimgsep}
+\setlength{\epigraphimgsep}{1.2em}   % 框与图之间的距离
+% #1 宽度  #2 文件  #3 图注命令（\caption*{...} 或 \captionof{figure}{...}）
+\newcommand{\epigraph@setimg}[3]{%
+	\setlength{\epigraphimgwd}{#1}%
+	\sbox{\epigraphimgbox}{\parbox[t]{\epigraphimgwd}{\centering\sidefig@capstyle
+			\includegraphics[width=\linewidth]{#2}\par #3}}%
+	\setlength{\epigraphimght}{\dimexpr\ht\epigraphimgbox+\dp\epigraphimgbox\relax}}
+\newcommand{\epigraph@label}[1]{\if\relax\detokenize{#1}\relax\else\label{#1}\fi}
+\tcbset{
+	epigraph/.style={
+		enhanced, breakable=false,
+		width=0.7\linewidth, center,
+		colback=quotebg, colframe=customcolor,
+		boxrule=0pt, leftrule=2.5pt, arc=0pt, outer arc=0pt,
+		left=10pt, right=8pt, top=6pt, bottom=6pt,
+		fontupper=\kaishu,
+		before skip=\bigskipamount, after skip=\bigskipamount,
+	},
+	epigraph@img/.style={
+		width=\linewidth-\epigraphimgwd-\epigraphimgsep, enlarge left by=0pt, flush left,
+		height from={\epigraphimght} to {\maxdimen},
+		overlay unbroken={\node[anchor=north west,inner sep=0pt]
+			at ([xshift=\epigraphimgsep]frame.north east) {\usebox{\epigraphimgbox}};},
+	},
+	% 不编号：#1 宽度，#2 文件，#3 图注
+	epigraph image/.style n args={3}{
+		/utils/exec={\epigraph@setimg{#1}{#2}{\captionsetup{type=figure}\caption*{#3}}},
+		epigraph@img,
+	},
+	% 编号：#1 宽度，#2 文件，#3 图注，#4 标签（不要标签就写 {}）
+	epigraph image*/.style n args={4}{
+		/utils/exec={\epigraph@setimg{#1}{#2}{\captionof{figure}{#3}\epigraph@label{#4}}},
+		epigraph@img,
+	},
+}
+\makeatother

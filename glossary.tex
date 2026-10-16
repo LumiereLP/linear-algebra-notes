@@ -1,0 +1,389 @@
+%% =====================================================================
+%% glossary.tex　附录：中英术语对照
+%% 用法：在 document.tex 的 \appendix 之后 \input{glossary}. 需要 longtable（导言区已加载）.
+%% 排序规则：逐个音节比较拼音字母，同一音节再按声调；西文人名开头的条目按人名拼写参与排序.
+%%           与书末索引（makeindex -l，字母排序）的规则一致. 新增条目请按同一规则插入.
+%% =====================================================================
+
+\chapter{中英术语对照}\label{app:glossary}
+
+下表收录正文与附录中以黑体给出定义的术语，以及主要定理和方法的名称. 条目按汉语拼音排序：逐个音节比较字母，同一音节再按声调先后；以西文人名开头的条目按人名的拼写参与排序. 这与书末索引的排序规则相同. 同一个中文术语在不同语境下若有不同的英文说法，只列出本书采用的一种. 术语出现的页码请查书末的索引.
+
+{\small
+	\begin{longtable}{p{0.42\linewidth}p{0.52\linewidth}}
+		\toprule
+		中文 & English \\
+		\midrule
+		\endfirsthead
+		\toprule
+		中文 & English \\
+		\midrule
+		\endhead
+		\bottomrule
+		\endfoot
+		\multicolumn{2}{l}{\textbf{\sffamily B}} \\
+		伴随矩阵 & adjugate matrix \\
+		伴随式（校正子） & syndrome \\
+		半正定 & positive semidefinite \\
+		Bézout 等式（贝祖等式） & Bézout's identity \\
+		比较静态分析 & comparative statics \\
+		标准单位向量 & standard unit vector \\
+		标准分解式 & standard factorization \\
+		标准基 & standard basis \\
+		标准内积 & standard inner product \\
+		标准形（二次型的） & diagonal form \\
+		标准正交基 & orthonormal basis \\
+		病态（方程组） & ill-conditioned \\
+		补空间 & complementary subspace \\
+		不变子空间 & invariant subspace \\
+		不定 & indefinite \\
+		不可约多项式 & irreducible polynomial \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily C}} \\
+		残差 & residual \\
+		Cauchy–Schwarz 不等式（柯西-施瓦茨不等式） & Cauchy–Schwarz inequality \\
+		Cayley–Hamilton 定理（凯莱-哈密顿定理） & Cayley–Hamilton theorem \\
+		产出乘数 & output multiplier \\
+		Cholesky 分解（楚列斯基分解） & Cholesky decomposition \\
+		重根 & multiple root \\
+		初等对称多项式 & elementary symmetric polynomial \\
+		初等行变换 & elementary row operation \\
+		初等矩阵 & elementary matrix \\
+		词项—文档矩阵 & term-document matrix \\
+		词元 & token \\
+		次数（多项式的） & degree \\
+		Cramer 法则（克拉默法则） & Cramer's rule \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily D}} \\
+		大语言模型 & large language model \\
+		代数重数 & algebraic multiplicity \\
+		代数基本定理 & fundamental theorem of algebra \\
+		代数余子式 & cofactor \\
+		带余除法 & division algorithm \\
+		单纯形法 & simplex method \\
+		单射 & injection \\
+		单位根 & root of unity \\
+		单位矩阵 & identity matrix \\
+		单位下三角矩阵 & unit lower triangular matrix \\
+		单位向量 & unit vector \\
+		单元格抑制 & cell suppression \\
+		等价（向量组的） & equivalent (families of vectors) \\
+		等价关系 & equivalence relation \\
+		低秩微调 & low-rank adaptation (LoRA) \\
+		第二数学归纳法 & strong induction \\
+		独立反应数 & number of independent reactions \\
+		度量矩阵 & matrix of a bilinear form \\
+		对称多项式 & symmetric polynomial \\
+		对称矩阵 & symmetric matrix \\
+		对角矩阵 & diagonal matrix \\
+		对偶基 & dual basis \\
+		对偶空间 & dual space \\
+		对偶问题（线性规划的） & dual problem \\
+		对偶映射 & dual map \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily E}} \\
+		Eckart–Young 定理（埃卡特-扬定理） & Eckart–Young theorem \\
+		二次型 & quadratic form \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily F}} \\
+		反对称矩阵 & skew-symmetric matrix \\
+		反应进度 & extent of reaction \\
+		范数 & norm \\
+		方向子空间 & direction subspace \\
+		方阵 & square matrix \\
+		仿射变换 & affine transformation \\
+		仿射子空间 & affine subspace \\
+		仿射组合 & affine combination \\
+		非齐次线性方程组 & nonhomogeneous system of linear equations \\
+		非奇异矩阵 & nonsingular matrix \\
+		非退化 & nondegenerate \\
+		Frobenius 范数（弗罗贝尼乌斯范数） & Frobenius norm \\
+		符号差 & signature \\
+		辐角 & argument (of a complex number) \\
+		负定 & negative definite \\
+		负惯性指数 & negative index of inertia \\
+		复合（映射的） & composition \\
+		覆盖定理 & covering theorem (no vector space is a finite union of proper subspaces) \\
+		复平面 & complex plane \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily G}} \\
+		根（多项式的） & root \\
+		公因式 & common divisor \\
+		共轭复数 & complex conjugate \\
+		Gram 矩阵（格拉姆矩阵） & Gram matrix \\
+		Gram–Schmidt 正交化（格拉姆-施密特正交化） & Gram–Schmidt orthogonalization \\
+		关联矩阵 & incidence matrix \\
+		规范形 & normal form \\
+		归纳假设 & induction hypothesis \\
+		过渡矩阵 & change-of-basis matrix \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily H}} \\
+		行等价 & row equivalent \\
+		行列式 & determinant \\
+		行满秩 & full row rank \\
+		行向量 & row vector \\
+		行秩 & row rank \\
+		Hamming 距离（汉明距离） & Hamming distance \\
+		Hamming 码（汉明码） & Hamming code \\
+		核 & kernel \\
+		核分解引理 & kernel decomposition lemma \\
+		合同（矩阵） & congruent matrices \\
+		Hessian 矩阵（黑塞矩阵） & Hessian matrix \\
+		Householder 反射（豪斯霍尔德反射） & Householder reflection \\
+		互补松弛条件 & complementary slackness \\
+		互素 & coprime \\
+		化学计量矩阵 & stoichiometric matrix \\
+		环 & ring \\
+		回代 & back substitution \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily J}} \\
+		基 & basis \\
+		基本解 & basic solution \\
+		基本可行解 & basic feasible solution \\
+		基本引理 & fundamental lemma (replacement lemma) \\
+		基础解系 & fundamental system of solutions \\
+		基扩张定理 & basis extension theorem \\
+		奇排列 & odd permutation \\
+		极大线性无关组 & maximal linearly independent subset \\
+		极化恒等式 & polarization identity \\
+		几何重数 & geometric multiplicity \\
+		迹 & trace \\
+		简化阶梯形矩阵 & reduced row echelon form \\
+		交错双线性型 & alternating bilinear form \\
+		交换求和次序 & interchanging the order of summation \\
+		校验矩阵 & parity-check matrix \\
+		阶梯形矩阵 & row echelon form \\
+		解集 & solution set \\
+		解空间 & solution space \\
+		净现值 & net present value \\
+		纠错码 & error-correcting code \\
+		Jordan 标准形（若尔当标准形） & Jordan canonical form \\
+		Jordan 标准形定理（若尔当标准形定理） & Jordan canonical form theorem \\
+		Jordan 块（若尔当块） & Jordan block \\
+		矩阵 & matrix \\
+		决定系数 & coefficient of determination \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily K}} \\
+		可对角化 & diagonalizable \\
+		可交换（矩阵） & commuting matrices \\
+		可逆矩阵 & invertible matrix \\
+		可确定性判据 & determinability criterion \\
+		可行解 & feasible solution \\
+		可行域 & feasible region \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily L}} \\
+		Lagrange 插值（拉格朗日插值） & Lagrange interpolation \\
+		Laplace 展开（拉普拉斯展开） & Laplace expansion \\
+		理想 & ideal \\
+		良定义 & well-defined \\
+		两基金分离定理 & two-fund separation theorem \\
+		列昂惕夫逆矩阵 & Leontief inverse \\
+		列空间 & column space \\
+		列满秩 & full column rank \\
+		列向量 & column vector \\
+		列秩 & column rank \\
+		列主元消元法 & partial pivoting \\
+		邻接矩阵 & adjacency matrix \\
+		零多项式 & zero polynomial \\
+		零化度 & nullity \\
+		零化子 & annihilator \\
+		零矩阵 & zero matrix \\
+		零向量 & zero vector \\
+		岭回归 & ridge regression \\
+		LU 分解 & LU decomposition \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily M}} \\
+		马尔可夫链 & Markov chain \\
+		码字 & codeword \\
+		满射 & surjection \\
+		满秩 & full rank \\
+		蒙特卡罗模拟 & Monte Carlo simulation \\
+		迷向向量 & isotropic vector \\
+		幂等矩阵 & idempotent matrix \\
+		幂零矩阵 & nilpotent matrix \\
+		面板数据 & panel data \\
+		模（复数的） & modulus \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily N}} \\
+		内部收益率 & internal rate of return \\
+		内积 & inner product \\
+		逆变 & contravariant \\
+		逆矩阵 & inverse matrix \\
+		逆序 & inversion \\
+		逆序数 & number of inversions \\
+		逆映射 & inverse map \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily O}} \\
+		欧几里得空间 & Euclidean space \\
+		欧拉旋转定理 & Euler's rotation theorem \\
+		偶排列 & even permutation \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily P}} \\
+		PageRank（网页排名） & PageRank \\
+		排列 & permutation \\
+		Pfaff 式（普法夫式） & Pfaffian \\
+		谱定理 & spectral theorem \\
+		谱范数 & spectral norm \\
+		谱分解 & spectral decomposition \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily Q}} \\
+		齐次线性方程组 & homogeneous system of linear equations \\
+		奇异矩阵 & singular matrix \\
+		奇异值 & singular value \\
+		奇异值分解 & singular value decomposition \\
+		前代 & forward substitution \\
+		潜在语义分析 & latent semantic analysis \\
+		嵌入 & embedding \\
+		强对偶定理 & strong duality theorem \\
+		求和指标 & index of summation \\
+		QR 分解 & QR decomposition \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily R}} \\
+		Rayleigh 商（瑞利商） & Rayleigh quotient \\
+		Rouché–Capelli 定理（鲁歇-卡佩利定理） & Rouché–Capelli theorem \\
+		弱对偶定理 & weak duality theorem \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily S}} \\
+		Schur 补（舒尔补） & Schur complement \\
+		上三角矩阵 & upper triangular matrix \\
+		神经网络 & neural network \\
+		生成 & span (verb) \\
+		生成矩阵 & generator matrix \\
+		实内积空间 & real inner product space \\
+		首项 & leading term \\
+		首一多项式 & monic polynomial \\
+		数学归纳法 & mathematical induction \\
+		数域 & number field \\
+		双射 & bijection \\
+		双线性型 & bilinear form \\
+		顺序主子式 & leading principal minor \\
+		松弛变量 & slack variable \\
+		Sylvester 不等式（西尔维斯特不等式） & Sylvester's rank inequality \\
+		Sylvester 惯性定理（西尔维斯特惯性定理） & Sylvester's law of inertia \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily T}} \\
+		套利 & arbitrage \\
+		特解 & particular solution \\
+		特征多项式 & characteristic polynomial \\
+		特征方程 & characteristic equation \\
+		特征向量 & eigenvector \\
+		特征值 & eigenvalue \\
+		特征子空间 & eigenspace \\
+		条件数 & condition number \\
+		贴现因子 & discount factor \\
+		通解 & general solution \\
+		同构 & isomorphic \\
+		同构映射 & isomorphism \\
+		同解 & equivalent (systems) \\
+		投入产出模型 & input–output model \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily V}} \\
+		Vandermonde 行列式（范德蒙行列式） & Vandermonde determinant \\
+		Vieta 定理（韦达定理） & Vieta's formulas \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily W}} \\
+		外直和 & external direct sum \\
+		完美码 & perfect code \\
+		完全对冲 & perfect hedge \\
+		完全市场 & complete market \\
+		维数 & dimension \\
+		维数公式 & dimension formula \\
+		唯一分解定理 & unique factorization theorem \\
+		未定元 & indeterminate \\
+		稳态分布 & stationary distribution \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily X}} \\
+		系数矩阵 & coefficient matrix \\
+		下三角矩阵 & lower triangular matrix \\
+		线性变换 & linear transformation \\
+		线性表出 & expressible as a linear combination \\
+		线性方程组 & system of linear equations \\
+		线性规划 & linear programming \\
+		线性函数 & linear functional \\
+		线性空间 & linear space \\
+		线性流形 & linear manifold \\
+		线性无关 & linearly independent \\
+		线性相关 & linearly dependent \\
+		线性映射 & linear map \\
+		线性运算 & linear operations \\
+		线性组合 & linear combination \\
+		相抵 & equivalent (matrices) \\
+		相抵标准形 & canonical form under equivalence \\
+		相关系数 & correlation coefficient \\
+		相关系数矩阵 & correlation matrix \\
+		相似（矩阵） & similar matrices \\
+		相似不变量 & similarity invariant \\
+		像 & image \\
+		向量空间 & vector space \\
+		向量组 & family of vectors \\
+		协变 & covariant \\
+		协方差矩阵 & covariance matrix \\
+		旋转轴 & axis of rotation \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily Y}} \\
+		样本协方差矩阵 & sample covariance matrix \\
+		一价定律 & law of one price \\
+		一元多项式 & polynomial in one variable \\
+		一元多项式环 & polynomial ring \\
+		影子价格 & shadow price \\
+		映射 & map \\
+		有限维 & finite-dimensional \\
+		有向面积 & signed area \\
+		有效前沿 & efficient frontier \\
+		右奇异向量 & right singular vector \\
+		余式 & remainder \\
+		余数定理 & remainder theorem \\
+		余弦相似度 & cosine similarity \\
+		余子式 & minor of an entry \\
+		域 & field \\
+		元素组成矩阵 & formula matrix \\
+		运筹学 & operations research \\
+		运输问题 & transportation problem \\
+		\addlinespace
+		\multicolumn{2}{l}{\textbf{\sffamily Z}} \\
+		增广矩阵 & augmented matrix \\
+		辗转相除法 & Euclidean algorithm \\
+		张成 & span \\
+		整除 & divisibility \\
+		正定 & positive definite \\
+		正惯性指数 & positive index of inertia \\
+		正规方程 & normal equations \\
+		正交 & orthogonal \\
+		正交变换 & orthogonal transformation \\
+		正交补 & orthogonal complement \\
+		正交分解定理 & orthogonal decomposition theorem \\
+		正交矩阵 & orthogonal matrix \\
+		正交投影 & orthogonal projection \\
+		正交相似 & orthogonally similar \\
+		直和 & direct sum \\
+		直积 & direct product \\
+		直接消耗系数矩阵 & input coefficient matrix \\
+		秩 & rank \\
+		置换矩阵 & permutation matrix \\
+		真子空间 & proper subspace \\
+		秩—零化度定理 & rank–nullity theorem \\
+		主变量 & basic variable \\
+		主成分 & principal component \\
+		主成分分析 & principal component analysis \\
+		主元 & pivot \\
+		主轴 & principal axes \\
+		主轴定理 & principal axis theorem \\
+		主子式 & principal minor \\
+		注意力机制 & attention mechanism \\
+		转移矩阵 & transition matrix \\
+		转置 & transpose \\
+		状态价格 & state price \\
+		子空间 & subspace \\
+		子式 & minor \\
+		自伴变换 & self-adjoint transformation \\
+		自由变量 & free variable \\
+		阻尼系数 & damping factor \\
+		最大公因式 & greatest common divisor \\
+		最佳逼近定理 & best approximation theorem \\
+		最小多项式 & minimal polynomial \\
+		最小二乘解 & least-squares solution \\
+		最优解 & optimal solution \\
+		左奇异向量 & left singular vector \\
+		坐标 & coordinates \\
+	\end{longtable}
+}

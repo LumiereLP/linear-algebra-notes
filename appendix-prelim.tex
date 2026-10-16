@@ -1,0 +1,404 @@
+%% =====================================================================
+%% appendix-prelim.tex　附录：预备知识（求和号、数学归纳法、映射、复数）
+%% 用法：在 document.tex 的 \appendix 之后 \input{appendix-prelim}.
+%% =====================================================================
+
+\chapter{预备知识}\label{app:prelim}
+
+本附录回顾正文反复使用、但中学课程里未必系统讲过的四样工具和方法. 除第一节外，每节末尾有几道小练习，答案附在本附录最后.
+
+\section{命题与证明}
+
+本书的大部分篇幅是定理及其证明. 高中课程讲过集合、充分条件与必要条件、全称量词与存在量词；本节在此基础上补充读写证明时最常用的几样逻辑工具，其中逆否命题与反证法在正文中出现得尤其频繁.
+
+\subsection{集合记号}
+
+本书用 $\{x\in A\mid P(x)\}$ 表示集合 $A$ 中满足条件 $P(x)$ 的元素全体，读作``$A$ 中使 $P(x)$ 成立的 $x$ 的集合''. 例如齐次方程组的解集写成 $\{\vv x\in\mathbb{F}^n\mid \vv{Ax}=\zero\}$. 竖线左边说明元素``从哪里取''，右边说明``满足什么条件''.
+
+记号 $A\subset B$ 表示 $A$ 的每个元素都属于 $B$，\textbf{允许} $A=B$. 需要强调 $A\ne B$ 时，本书会另外写明，例如``$W$ 是 $V$ 的子空间且 $W\ne V$''. 空集记为 $\varnothing$.
+
+\subsection{命题与逻辑联结词}
+
+能够判断真假的陈述句称为\textbf{命题}\index{ming4ti2@命题}. 由命题 $P,Q$ 可以组成新的命题：
+\begin{itemize}
+	\item $P$ 且 $Q$：两者都真时为真；
+	\item $P$ 或 $Q$：至少一个为真时为真（数学中的``或''不排斥两者同时成立）；
+	\item 非 $P$：$P$ 真时为假，$P$ 假时为真；
+	\item 若 $P$ 则 $Q$，记为 $P\Rightarrow Q$：只有在 $P$ 真而 $Q$ 假时为假.
+\end{itemize}
+
+最后一条需要特别留意. 下表列出了 $P\Rightarrow Q$ 的真假：
+\begin{center}
+	\begin{tabular}{ccc}
+		\toprule
+		$P$ & $Q$ & $P\Rightarrow Q$ \\
+		\midrule
+		真 & 真 & 真 \\
+		真 & 假 & 假 \\
+		假 & 真 & 真 \\
+		假 & 假 & 真 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+条件 $P$ 不成立时，``若 $P$ 则 $Q$''没有作出任何断言，因而不会是假的. 例如``若 $n$ 阶方阵 $\vv A$ 可逆，则 $\det\vv A\ne0$''对不可逆的矩阵不说任何话，它不可能被一个不可逆矩阵推翻. 要推翻一个``若……则……''的命题，必须找到一个条件成立而结论不成立的例子，这样的例子称为\textbf{反例}\index{fan3li4@反例}.
+
+若 $P\Rightarrow Q$ 与 $Q\Rightarrow P$ 都成立，称 $P$ 与 $Q$ \textbf{等价}，记为 $P\Leftrightarrow Q$，读作``$P$ 当且仅当 $Q$''. 用高中的语言说，$P$ 是 $Q$ 的充分必要条件.
+
+\subsection{逆命题、否命题与逆否命题}
+
+对命题``若 $P$ 则 $Q$''，称
+\begin{itemize}
+	\item ``若 $Q$ 则 $P$''为它的\textbf{逆命题}\index{ni4ming4ti2@逆命题}；
+	\item ``若非 $P$ 则非 $Q$''为它的\textbf{否命题}\index{fou3ming4ti2@否命题}；
+	\item ``若非 $Q$ 则非 $P$''为它的\textbf{逆否命题}\index{ni4fou3ming4ti2@逆否命题}.
+\end{itemize}
+
+\begin{theorem}
+	一个命题与它的逆否命题同真同假.
+\end{theorem}
+\begin{proof}
+	``若 $P$ 则 $Q$''为假，当且仅当 $P$ 真而 $Q$ 假. ``若非 $Q$ 则非 $P$''为假，当且仅当非 $Q$ 真而非 $P$ 假，也就是 $Q$ 假而 $P$ 真. 两者在同一种情形下为假，所以同真同假.
+\end{proof}
+
+同理，逆命题与否命题互为逆否命题，因而也同真同假. 但原命题与逆命题之间没有这样的关系.
+
+\begin{example}
+	第二章证明了：``若向量组的一部分线性相关，则整个向量组线性相关''. 它的逆否命题是：``若整个向量组线性无关，则它的每一部分都线性无关''. 两句话说的是同一件事，证明了一句就等于证明了另一句.
+	
+	它的逆命题是``若整个向量组线性相关，则它的某一部分……''——这需要小心. 整个组线性相关时，它的``一部分''可能线性无关：$(1,0)^\trans,(0,1)^\trans,(1,1)^\trans$ 线性相关，但其中任意两个都线性无关.
+\end{example}
+
+\begin{pitfallbox}
+	\begin{enumerate}
+		\item \textbf{原命题成立，逆命题未必成立.} ``若 $\vv A=\vv O$，则 $\vv{AB}=\vv O$''成立，而它的逆命题``若 $\vv{AB}=\vv O$，则 $\vv A=\vv O$''不成立（第三章有反例）. 判据之所以写成``当且仅当''，正是因为两个方向都要单独验证.
+		\item \textbf{``非 $P$''不一定是``$P$ 的反义词''.} ``所有分量都是零''的否定是``至少有一个分量不是零''，而不是``所有分量都不是零''.
+	\end{enumerate}
+\end{pitfallbox}
+
+\subsection{量词与命题的否定}
+
+``对一切 $x$，$P(x)$ 成立''与``存在 $x$，使 $P(x)$ 成立''分别称为全称命题与存在命题，``对一切''与``存在''称为\textbf{量词}\index{liang4ci2@量词}. 否定一个命题时，两种量词互相交换，内部的条件再取否定：
+\[
+\text{非}(\text{对一切 }x,\ P(x))\iff\text{存在 }x,\ \text{非 }P(x);\qquad
+\text{非}(\text{存在 }x,\ P(x))\iff\text{对一切 }x,\ \text{非 }P(x).
+\]
+命题中有多个量词时，从左到右逐个交换，最后否定最里面的条件.
+
+\begin{example}
+	向量组 $\vv\alpha_1,\ldots,\vv\alpha_s$ 线性无关的定义可以写成：
+	\begin{center}
+		\textbf{对一切} $k_1,\ldots,k_s\in\mathbb{F}$，若 $k_1\vv\alpha_1+\cdots+k_s\vv\alpha_s=\zero$，则 $k_1=\cdots=k_s=0$.
+	\end{center}
+	``若……则……''为假，当且仅当条件成立而结论不成立. 于是它的否定是
+	\begin{center}
+		\textbf{存在} $k_1,\ldots,k_s\in\mathbb{F}$，使 $k_1\vv\alpha_1+\cdots+k_s\vv\alpha_s=\zero$，\textbf{并且} $k_1,\ldots,k_s$ 不全为零.
+	\end{center}
+	这正是线性相关的定义. 线性相关与线性无关不是两个独立的概念，而是一个命题和它的否定.
+\end{example}
+
+\begin{pitfallbox}
+	\textbf{量词的顺序不能随意交换.} ``对每个非零数 $a$，存在 $b$ 使 $ab=1$''是真的：$b$ 可以随 $a$ 变化，取 $b=a^{-1}$. ``存在 $b$，使对每个非零数 $a$ 都有 $ab=1$''是假的：一个固定的 $b$ 不可能同时是所有数的倒数. 两句话只是``存在''与``对每个''调换了位置，意思完全不同. 读定义时，要注意哪个量随着哪个量变化.
+\end{pitfallbox}
+
+\subsection{常见的证明方法}
+
+\paragraph*{直接证明.} 从条件出发，每一步都由定义、已证的定理或运算规则得出，最后得到结论. 本书的大部分证明属于这一类.
+
+\paragraph*{证明逆否命题.} 有时``若非 $Q$ 则非 $P$''比原命题更容易证. 由于两者同真同假，证出逆否命题，原命题也就成立了. 正文中``等价地''``逆否形式''等说法，指的就是这种做法.
+
+\paragraph*{反证法.}\index{fan3zheng4fa3@反证法} 假设结论不成立，由此推出矛盾——与已知条件矛盾，与已证的定理矛盾，或者推出一个自相矛盾的命题，从而断定结论成立.
+
+\begin{example}
+	证明：$\sqrt2$ 不是有理数.
+\end{example}
+\begin{proof}
+	假设 $\sqrt2=\frac mn$，其中 $m,n$ 是正整数且没有大于 $1$ 的公因数. 两边平方得 $m^2=2n^2$，所以 $m^2$ 是偶数，从而 $m$ 是偶数. 设 $m=2k$，代入得 $n^2=2k^2$，同理 $n$ 也是偶数. 于是 $m,n$ 有公因数 $2$，与假设矛盾.
+\end{proof}
+
+反证法与证明逆否命题很接近，区别在于：证明逆否命题时目标是明确的``非 $P$''；用反证法时，矛盾可以出现在任何地方.
+
+\paragraph*{证明``当且仅当''.} 要证 $P\Leftrightarrow Q$，必须分别证明 $P\Rightarrow Q$（必要性）与 $Q\Rightarrow P$（充分性）. 正文常用``反之''或``另一方面''标出第二个方向的开始.
+
+若要证明几个条件 (1)(2)(3) 互相等价，不必两两证明六次. 只需证 (1)$\Rightarrow$(2)$\Rightarrow$(3)$\Rightarrow$(1)，沿着这个循环，从任何一个条件出发都能推到其他任何一个条件. 第三章关于可逆矩阵的几个等价条件就是这样证明的.
+
+\paragraph*{证明两个集合相等.} 要证 $A=B$，通常分别证明 $A\subset B$ 与 $B\subset A$：任取 $x\in A$，证明 $x\in B$；再反过来.
+
+\paragraph*{证明存在性与唯一性.} ``存在唯一的 $x$ 满足 $P(x)$''包含两件事. 存在性：找到（或构造出）一个满足 $P$ 的 $x$. 唯一性：设 $x_1,x_2$ 都满足 $P$，证明 $x_1=x_2$. 第二章零向量唯一、第三章逆矩阵唯一，都是这样证明的. 唯一性的证明不需要知道 $x$ 是什么，只需要用到``满足 $P$''这一点. 唯一性还常被反过来使用：若已知满足 $P$ 的对象唯一，要证某个对象 $y$ 就是它，只需验证 $y$ 满足 $P$，这种方法称为\textbf{同一法}——例如要证 $(\vv{AB})^{-1}=\vv B^{-1}\vv A^{-1}$，只需验证 $\vv B^{-1}\vv A^{-1}$ 与 $\vv{AB}$ 相乘得 $\vv I$.
+
+\subsection{证明中的惯用语}
+
+\begin{itemize}
+	\item \textbf{任取}：表示接下来的论证对每一个元素都成立，所以不能对这个元素附加任何额外的假设.
+	\item \textbf{不妨设}：几种情形本质上相同，只写其中一种. 例如``不妨设 $a_{11}\ne0$''，意思是：若 $a_{11}=0$，交换行或重新编号后可以化为这种情形. 读到这里时，应当想一想为什么可以``不妨''.
+	\item \textbf{只需证}：把要证的结论化为另一个更容易的命题，并且后者能推出前者. 注意方向：是``后者 $\Rightarrow$ 前者''.
+	\item \textbf{显然}、\textbf{容易验证}：作者认为这一步不难，但不等于读者可以跳过. 遇到这样的字眼，最好在草稿纸上补全.
+	\item \textbf{证毕}：本书用 $\blacksquare$ 标出证明的结束.
+\end{itemize}
+
+\subsection{怎样读一个证明}
+
+\begin{enumerate}
+	\item \textbf{注意目标.} 读证明之前，先弄清要证明的是什么. 把结论用自己的话复述一遍；若结论是``当且仅当''，分清哪一个方向是必要性、哪一个是充分性；若是几个条件互相等价，看清证明沿着怎样的顺序循环. 读到中途迷失时，回头看一眼目标：当前这一步离它还有多远？
+	\item \textbf{厘清条件.} 找出定理的每个条件在证明的哪一步被用到. 一个条件看起来没有用上，要么是漏看了，要么是它确实可以去掉——后者值得想一想有没有反例. 同时，每一步都要问``凭什么''：依据只能是定义、已证的结论或运算规则，说不出依据则说明此处没有读懂.
+	\item \textbf{把握动机.} 一个证明中通常只有一两步是关键，其余都是顺理成章的推演. 要找出这关键的一步，并问自己：作者为什么会想到这样做？把证明中的一般对象换成一个具体对象，逐步计算一遍，往往能看清这一步在做什么. 正文中的``思维动机''栏目也会辅助你解决这个问题.
+	\item \textbf{独立复现.} 读懂之后合上书，自己把证明写一遍. 不求逐字复述，但求思路完整，依据清晰. 能达到以上要求，才说明真正读懂了；若遇到卡壳，则需继续学习.
+\end{enumerate}
+
+\section{求和号与求积号}\label{app:sum}
+
+\subsection{定义与基本规则}
+
+把 $a_1+a_2+\cdots+a_n$ 简写为
+\[\sum_{i=1}^n a_i,\]
+读作``对 $i$ 从 $1$ 到 $n$ 求 $a_i$ 的和''. $i$ 称为\textbf{求和指标}\index{qiu2he2 zhi3biao1@求和指标}，它只是一个``占位符''，换成别的字母不改变和的值：$\sum_{i=1}^na_i=\sum_{k=1}^na_k$. 约定 $n<1$ 时（例如 $\sum_{i=1}^0a_i$）和为 $0$.
+
+求和号满足下面几条规则，它们都只是加法交换律、结合律和分配律的改写：
+\begin{enumerate}
+	\item （线性）$\displaystyle\sum_{i=1}^n(ca_i+db_i)=c\sum_{i=1}^na_i+d\sum_{i=1}^nb_i$；特别地，$\displaystyle\sum_{i=1}^nc=nc$.
+	\item （拆分）$\displaystyle\sum_{i=1}^na_i=\sum_{i=1}^ma_i+\sum_{i=m+1}^na_i$（$1\le m<n$）.
+	\item （平移指标）$\displaystyle\sum_{i=1}^na_i=\sum_{j=0}^{n-1}a_{j+1}$，即令 $j=i-1$.
+	\item （倒序）$\displaystyle\sum_{i=1}^na_i=\sum_{i=1}^na_{n+1-i}$.
+\end{enumerate}
+
+\begin{pitfallbox}
+	$\displaystyle\sum_{i=1}^na_ib_i$ 一般\textbf{不等于} $\displaystyle\Big(\sum_{i=1}^na_i\Big)\Big(\sum_{i=1}^nb_i\Big)$. 例如 $n=2$ 时，右边展开为 $a_1b_1+a_1b_2+a_2b_1+a_2b_2$，多出了两项``交叉项''. 同样，$\Big(\sum a_i\Big)^2\ne\sum a_i^2$.
+\end{pitfallbox}
+
+\subsection{双重求和}
+
+矩阵乘法、行列式和二次型都离不开双重求和. 把 $mn$ 个数 $a_{ij}$ 排成一张 $m$ 行 $n$ 列的表，它们的总和可以先按行加、再把各行的和加起来，也可以先按列加：
+\[\sum_{i=1}^m\sum_{j=1}^na_{ij}=\sum_{j=1}^n\sum_{i=1}^ma_{ij}.\]
+这就是\textbf{交换求和次序}\index{jiao1huan4 qiu2he2 ci4xu4@交换求和次序}. 例如两个和的乘积可以写成双重求和：
+\[\Big(\sum_{i=1}^ma_i\Big)\Big(\sum_{j=1}^nb_j\Big)=\sum_{i=1}^m\sum_{j=1}^na_ib_j.\]
+注意两个和要用\textbf{不同的}指标，否则会混淆.
+
+当求和范围不是``长方形''时，要小心地写出范围. 例如对 $1\le i<j\le n$ 求和，表示表格对角线以上的部分：
+\[\sum_{1\le i<j\le n}a_{ij}=\sum_{i=1}^{n-1}\sum_{j=i+1}^na_{ij}=\sum_{j=2}^n\sum_{i=1}^{j-1}a_{ij}.\]
+第十一章的二次型 $\sum_{i,j}a_{ij}x_ix_j=\sum_ia_{ii}x_i^2+2\sum_{i<j}a_{ij}x_ix_j$（$a_{ij}=a_{ji}$），就是把这张表拆成对角线和上下两个三角形.
+
+\begin{example}
+	用双重求和证明矩阵乘法的结合律：设 $\vv A,\vv B,\vv C$ 分别为 $m\times n$、$n\times p$、$p\times q$ 矩阵. $(\vv{AB})\vv C$ 的 $(i,l)$ 元为
+	\[\sum_{k=1}^p\Big(\sum_{j=1}^na_{ij}b_{jk}\Big)c_{kl}=\sum_{k=1}^p\sum_{j=1}^na_{ij}b_{jk}c_{kl}=\sum_{j=1}^n\sum_{k=1}^pa_{ij}b_{jk}c_{kl}=\sum_{j=1}^na_{ij}\Big(\sum_{k=1}^pb_{jk}c_{kl}\Big),\]
+	最后一式恰是 $\vv A(\vv{BC})$ 的 $(i,l)$ 元. 中间一步就是交换求和次序.
+\end{example}
+
+\subsection{求积号}
+
+类似地，$\displaystyle\prod_{i=1}^na_i=a_1a_2\cdots a_n$，约定空积为 $1$. 第五章的 Vandermonde 行列式 $\prod_{1\le i<j\le n}(x_j-x_i)$ 就是对所有满足 $i<j$ 的指标对求积. 注意 $\prod(ca_i)=c^n\prod a_i$，而不是 $c\prod a_i$——这正是 $\det(c\vv A)=c^n\det\vv A$ 的来源.
+
+\begin{exercise}\label{exo:prelim-sum}
+	\begin{enumerate}
+		\item 计算 $\displaystyle\sum_{i=1}^{4}(2i-1)$ 与 $\displaystyle\sum_{i=1}^{3}\sum_{j=1}^{2}ij$.
+		\item 设 $\vv A=(a_{ij})$ 为 $n$ 阶方阵. 用求和号写出 $\tr\vv A$，并证明 $\tr(\vv{AB})=\tr(\vv{BA})$.
+		\item 证明 $\displaystyle\Big(\sum_{i=1}^na_i\Big)^2=\sum_{i=1}^na_i^2+2\sum_{1\le i<j\le n}a_ia_j$.
+	\end{enumerate}
+\end{exercise}
+
+\section{数学归纳法}\label{app:induction}
+
+很多结论是关于``一切正整数 $n$''的，例如``$n$ 阶三角矩阵的行列式等于对角元之积''. 我们不可能对每个 $n$ 逐一验证，数学归纳法提供了一种``一次证完''的办法.
+
+\begin{theorem}[数学归纳法]\index{shu4xue2 gui1na4fa3@数学归纳法}
+	设 $P(n)$ 是关于正整数 $n$ 的命题. 若
+	\begin{enumerate}
+		\item （\textbf{奠基}）$P(1)$ 成立；
+		\item （\textbf{归纳步骤}）对任意正整数 $k$，由 $P(k)$ 成立可以推出 $P(k+1)$ 成立，
+	\end{enumerate}
+	则 $P(n)$ 对一切正整数 $n$ 成立.
+\end{theorem}
+
+直观上，奠基推倒了第一块多米诺骨牌，归纳步骤保证每一块倒下都会推倒下一块. 归纳步骤中的``$P(k)$ 成立''称为\textbf{归纳假设}\index{gui1na4 jia3she4@归纳假设}. 起点也可以不是 $1$：若要证明 $n\ge n_0$ 时 $P(n)$ 成立，就从 $P(n_0)$ 奠基.
+
+\begin{example}
+	证明 $\displaystyle\sum_{i=1}^n i=\frac{n(n+1)}2$.
+\end{example}
+\begin{proof}
+	$n=1$ 时两边都是 $1$. 设 $n=k$ 时成立，则
+	\[\sum_{i=1}^{k+1}i=\sum_{i=1}^ki+(k+1)=\frac{k(k+1)}2+(k+1)=\frac{(k+1)(k+2)}2,\]
+	即 $n=k+1$ 时成立.
+\end{proof}
+
+\paragraph*{第二数学归纳法.} 有时证明 $P(k+1)$ 需要用到不止 $P(k)$，而是前面所有的 $P(1),\ldots,P(k)$. 这时把归纳步骤改为``若 $P(1),\ldots,P(k)$ 都成立，则 $P(k+1)$ 成立''，结论不变. 这种形式称为\textbf{第二数学归纳法}\index{di4er4 shu4xue2 gui1na4fa3@第二数学归纳法}（或强归纳法）. 第七章唯一分解定理的存在性部分就是这样证明的：把 $f$ 分解为两个次数更低的多项式之积后，对\textbf{任意}更低的次数都要用到归纳假设.
+
+\begin{example}
+	Fibonacci 数列满足 $F_0=0$，$F_1=1$，$F_{k+1}=F_k+F_{k-1}$. 证明 $F_n<2^n$ 对一切 $n\ge0$ 成立.
+\end{example}
+\begin{proof}
+	$n=0,1$ 时显然. 设 $n\ge2$，且结论对一切小于 $n$ 的非负整数成立，则 $F_n=F_{n-1}+F_{n-2}<2^{n-1}+2^{n-2}<2^{n-1}+2^{n-1}=2^n$.
+\end{proof}
+这里奠基要验证两个值，因为归纳步骤用到了前两项.
+
+\begin{pitfallbox}
+	\begin{enumerate}
+		\item \textbf{只有归纳步骤不够.} 命题``$n=n+1$''满足``若 $k=k+1$ 则 $k+1=k+2$''，但它对任何 $n$ 都不成立——缺的是奠基.
+		\item \textbf{归纳步骤必须对每个 $k$ 都成立.} 一个著名的错误``证明''说``所有的马都是同一种颜色''：$n$ 匹马中去掉第一匹，剩下 $n-1$ 匹同色；去掉最后一匹，剩下 $n-1$ 匹也同色；两组有公共的马，所以 $n$ 匹都同色. 错在 $n=2$ 时两组没有公共的马，归纳步骤从 $k=1$ 到 $k=2$ 断掉了.
+	\end{enumerate}
+\end{pitfallbox}
+
+本书中用归纳法的地方很多：简化阶梯形的存在（第一章）、Gram–Schmidt 正交化（第九章）、谱定理（第十章）都是对维数或向量个数归纳. 读这些证明时，请先找出``对什么归纳''与``归纳假设用在了哪里''.
+
+\begin{exercise}\label{exo:prelim-ind}
+	\begin{enumerate}
+		\item 证明 $\displaystyle\sum_{i=1}^n i^2=\frac{n(n+1)(2n+1)}6$.
+		\item 证明：对一切正整数 $n$，$\begin{pmatrix}1&1\\0&1\end{pmatrix}^n=\begin{pmatrix}1&n\\0&1\end{pmatrix}$.
+		\item 证明：$n$ 个元素的集合恰有 $2^n$ 个子集.
+	\end{enumerate}
+\end{exercise}
+
+\section{映射}\label{app:map}
+
+\begin{definition}
+	设 $A,B$ 是两个非空集合. 若按某种法则 $f$，对 $A$ 中的\textbf{每一个}元素 $x$，都有 $B$ 中\textbf{唯一}的元素 $y$ 与之对应，则称 $f$ 是从 $A$ 到 $B$ 的一个\textbf{映射}\index{ying4she4@映射}，记为 $f:A\to B$，$x\mapsto y=f(x)$. $A$ 称为\textbf{定义域}，$B$ 称为\textbf{陪域}；$y=f(x)$ 称为 $x$ 的\textbf{像}，$x$ 称为 $y$ 的一个\textbf{原像}. 集合 $f(A)=\{f(x)\mid x\in A\}\subset B$ 称为 $f$ 的\textbf{像集}.
+\end{definition}
+
+中学的函数就是 $A,B$ 都是数集的映射. 本书中的映射还有：把向量变成向量（矩阵乘向量）、把多项式变成多项式（求导）、把矩阵变成数（行列式、迹）等等. 两个映射 $f,g:A\to B$ 相等，指对每个 $x\in A$ 都有 $f(x)=g(x)$.
+
+\subsection{单射、满射与双射}
+
+\begin{definition}
+	设 $f:A\to B$.
+	\begin{itemize}
+		\item 若不同的元素有不同的像，即 $f(x_1)=f(x_2)\Rightarrow x_1=x_2$，称 $f$ 为\textbf{单射}\index{dan1she4@单射}；
+		\item 若 $B$ 中每个元素都有原像，即 $f(A)=B$，称 $f$ 为\textbf{满射}\index{man3she4@满射}；
+		\item 既单又满的映射称为\textbf{双射}\index{shuang1she4@双射}（或一一对应）.
+	\end{itemize}
+\end{definition}
+
+\begin{example}
+	\begin{enumerate}
+		\item $f:\mathbb{R}\to\mathbb{R}$，$x\mapsto x^2$ 既不单（$f(1)=f(-1)$）也不满（$-1$ 没有原像）. 把陪域改为 $[0,+\infty)$，它成为满射；再把定义域也改为 $[0,+\infty)$，它成为双射. 可见单、满与否依赖于定义域和陪域.
+		\item $\mathbb{R}^3\to\mathbb{R}^2$，$(x,y,z)^\trans\mapsto(x,y)^\trans$（向 $xy$ 平面投影）是满射，不是单射.
+		\item 第二章的坐标映射 $V\to\mathbb{F}^n$ 是双射.
+	\end{enumerate}
+\end{example}
+
+\subsection{复合与逆映射}
+
+设 $f:A\to B$，$g:B\to C$. 映射 $g\circ f:A\to C$，$x\mapsto g(f(x))$ 称为 $f$ 与 $g$ 的\textbf{复合}\index{fu4he2@复合（映射的）}. 注意写在右边的 $f$ 先作用. 复合满足结合律 $h\circ(g\circ f)=(h\circ g)\circ f$，但一般不满足交换律——这正是矩阵乘法不交换的根源（第四章）.
+
+集合 $A$ 上的\textbf{恒等映射} $\mathrm{id}_A:x\mapsto x$ 满足 $f\circ\mathrm{id}_A=f$，$\mathrm{id}_B\circ f=f$.
+
+\begin{theorem}
+	$f:A\to B$ 是双射，当且仅当存在 $g:B\to A$ 使 $g\circ f=\mathrm{id}_A$ 且 $f\circ g=\mathrm{id}_B$. 这样的 $g$ 是唯一的，称为 $f$ 的\textbf{逆映射}\index{ni4ying4she4@逆映射}，记为 $f^{-1}$.
+\end{theorem}
+\begin{proof}
+	若 $f$ 是双射，对每个 $y\in B$，由满射它有原像，由单射原像唯一，令 $g(y)$ 为这个原像即可. 反之，若这样的 $g$ 存在：由 $f(x_1)=f(x_2)$ 得 $x_1=g(f(x_1))=g(f(x_2))=x_2$，故 $f$ 单；对任意 $y\in B$，$y=f(g(y))$，故 $f$ 满. 唯一性：若 $g,g'$ 都满足条件，则 $g=g\circ\mathrm{id}_B=g\circ(f\circ g')=(g\circ f)\circ g'=g'$.
+\end{proof}
+
+唯一性的证明与第三章``逆矩阵唯一''的证明一字不差——逆矩阵就是可逆线性变换的逆映射在坐标下的样子.
+
+\begin{remark}
+	只有一侧的条件是不够的. 例如在全体实数列构成的集合上，``左移''$S(a_1,a_2,\ldots)=(a_2,a_3,\ldots)$ 与``右移''$R(a_1,a_2,\ldots)=(0,a_1,a_2,\ldots)$ 满足 $S\circ R=\mathrm{id}$，但 $R\circ S\ne\mathrm{id}$：$R$ 单而不满，$S$ 满而不单. 第三章推论~\ref{cor:onesided} 说，对\textbf{有限维}空间上的线性映射（方阵），一侧可逆就够了；这依赖于维数，对一般映射不成立.
+\end{remark}
+
+\begin{exercise}\label{exo:prelim-map}
+	\begin{enumerate}
+		\item 判断下列映射是否单射、满射：(1) $\mathbb{Z}\to\mathbb{Z}$，$n\mapsto2n$；(2) $\mathbb{R}\to\mathbb{R}$，$x\mapsto x^3$；(3) $M_2(\mathbb{R})\to\mathbb{R}$，$\vv A\mapsto\det\vv A$.
+		\item 证明：若 $f$，$g$ 都是单射（满射），则 $g\circ f$ 也是单射（满射）.
+		\item 设 $f:A\to B$，$g:B\to C$. 证明：若 $g\circ f$ 是单射，则 $f$ 是单射；若 $g\circ f$ 是满射，则 $g$ 是满射.
+	\end{enumerate}
+\end{exercise}
+
+\section{复数}\label{app:complex}
+
+第七章以后，多项式的根、矩阵的特征值常常是复数. 本节回顾正文用到的复数知识，并给出 48 学时方案所需的代数基本定理与 Vieta 定理.
+
+\subsection{代数形式}
+
+形如 $z=a+b\mathrm i$（$a,b\in\mathbb{R}$，$\mathrm i^2=-1$）的数称为复数，$a$ 与 $b$ 分别称为它的实部与虚部. 复数按通常的代数法则相加、相乘，遇到 $\mathrm i^2$ 就换成 $-1$：
+\[(a+b\mathrm i)(c+d\mathrm i)=(ac-bd)+(ad+bc)\mathrm i.\]
+
+称 $\bar z=a-b\mathrm i$ 为 $z$ 的\textbf{共轭复数}\index{gong4e4 fu4shu4@共轭复数}，$|z|=\sqrt{a^2+b^2}$ 为 $z$ 的\textbf{模}\index{mo2@模（复数的）}. 它们满足
+\[z\bar z=|z|^2,\qquad \overline{z+w}=\bar z+\bar w,\qquad \overline{zw}=\bar z\,\bar w,\qquad |zw|=|z|\,|w|.\]
+$z$ 是实数当且仅当 $z=\bar z$. 除法靠共轭``有理化''：$z\ne0$ 时，$\dfrac1z=\dfrac{\bar z}{|z|^2}$.
+
+\subsection{复平面与三角形式}
+
+把 $z=a+b\mathrm i$ 对应于平面上的点 $(a,b)$，平面就成了\textbf{复平面}\index{fu4ping2mian4@复平面}；第二章说明了这种对应是 $\mathbb{R}$ 上的同构 $\mathbb{C}\cong\mathbb{R}^2$. 用极坐标写 $a=r\cos\theta$，$b=r\sin\theta$，得到\textbf{三角形式}
+\[z=r(\cos\theta+\mathrm i\sin\theta),\]
+其中 $r=|z|$. 对 $z\ne0$，满足上式的 $\theta$ 称为 $z$ 的一个\textbf{辐角}\index{fu2jiao3@辐角}. 由于正弦、余弦以 $2\pi$ 为周期，$z$ 的辐角有无穷多个，彼此相差 $2\pi$ 的整数倍，它们的全体记为 $\operatorname{Arg}z$. 其中落在 $(-\pi,\pi]$ 内的那一个是唯一的，称为辐角的\textbf{主值}\index{fu2jiao3 zhu3zhi2@辐角主值}，记为 $\arg z$. 于是
+\[\operatorname{Arg}z=\{\arg z+2k\pi\mid k\in\mathbb{Z}\}.\]
+例如 $\arg\mathrm i=\frac\pi2$，$\arg(-1)=\pi$，$\arg(1-\mathrm i)=-\frac\pi4$，而 $\operatorname{Arg}(-1)=\{\pi+2k\pi\mid k\in\mathbb{Z}\}$. 零的模为 $0$，但它的辐角没有定义.
+
+由两角和公式，
+\[r_1(\cos\theta_1+\mathrm i\sin\theta_1)\cdot r_2(\cos\theta_2+\mathrm i\sin\theta_2)=r_1r_2\big(\cos(\theta_1+\theta_2)+\mathrm i\sin(\theta_1+\theta_2)\big),\]
+即\textbf{乘法使模相乘、辐角相加}：若 $\theta_1\in\operatorname{Arg}z_1$，$\theta_2\in\operatorname{Arg}z_2$，则 $\theta_1+\theta_2\in\operatorname{Arg}(z_1z_2)$.
+
+\begin{pitfallbox}
+	``辐角相加''说的是辐角的\textbf{全体}，对主值不一定成立. 取 $z_1=z_2=-1$，则 $\arg z_1+\arg z_2=2\pi$，而 $\arg(z_1z_2)=\arg1=0$. 两者相差 $2\pi$，正好落在同一个 $\operatorname{Arg}$ 中. 一般地，$\arg(z_1z_2)$ 与 $\arg z_1+\arg z_2$ 相差 $2\pi$ 的某个整数倍（$0$ 或 $\pm2\pi$）.
+\end{pitfallbox}
+
+本书采用记号
+\[\mathrm e^{\mathrm i\theta}=\cos\theta+\mathrm i\sin\theta\qquad\text{（Euler 公式）}.\]
+在本书中可以把它只当作一个记号. 它的合理性在于，上面的乘法规则恰好写成``指数相加''：$\mathrm e^{\mathrm i\alpha}\mathrm e^{\mathrm i\beta}=\mathrm e^{\mathrm i(\alpha+\beta)}$，从而 $(\mathrm e^{\mathrm i\theta})^n=\mathrm e^{\mathrm in\theta}$（De Moivre 公式）.
+
+\subsection{单位根}
+
+方程 $z^n=1$ 的复根称为 $n$ 次\textbf{单位根}\index{dan1wei4gen1@单位根}. 由 De Moivre 公式，它们恰为
+\[\omega_k=\mathrm e^{2k\pi\mathrm i/n}\qquad(k=0,1,\ldots,n-1),\]
+是单位圆上把圆周 $n$ 等分的 $n$ 个点. 最常用的是 $n=3$：记 $\omega=\mathrm e^{2\pi\mathrm i/3}=-\frac12+\frac{\sqrt3}2\mathrm i$，则
+\[\omega^3=1,\qquad 1+\omega+\omega^2=0,\qquad \bar\omega=\omega^2.\]
+第二式来自立方差的因式分解且 $\omega\ne1$. 单位根在循环结构中有重要作用. 同样的方法可以对任意非零复数开方：若 $w=\rho(\cos\varphi+\mathrm i\sin\varphi)\ne0$，则
+\[\omega=\sqrt[k]{\rho}\Big(\cos\frac\varphi k+\mathrm i\sin\frac\varphi k\Big)\]
+满足 $\omega^k=w$. 所以\textbf{每个非零复数都有 $k$ 次方根}（事实上恰有 $k$ 个）. 在实数范围内，负数没有平方根；在复数范围内，这个障碍消失了.
+
+\subsection{代数基本定理与根与系数的关系}
+
+\begin{theorem}[代数基本定理]
+	每个次数 $n\ge1$ 的复系数多项式都至少有一个复根. 因此它恰好有 $n$ 个复根（重根按重数计），即可以写成
+	\[f(x)=a_n(x-\lambda_1)(x-\lambda_2)\cdots(x-\lambda_n).\]
+\end{theorem}
+
+下面的证明只用到高等数学中的一个结论：\textbf{有界闭区域上的连续函数能取到最小值}. 证明的想法是：$|f(z)|$ 一定在某处取到最小值；而只要 $f(z_0)\ne0$，在 $z_0$ 附近总能找到使 $|f|$ 更小的点. 所以最小值只能是 $0$.
+
+\begin{proof}
+	设 $f(z)=a_nz^n+\cdots+a_1z+a_0$，$a_n\ne0$，$n\ge1$.
+	
+	\textbf{第一步：$|f|$ 能取到最小值.} 对 $|z|\ge1$，由三角不等式，
+	\[|f(z)|\ge|a_n||z|^n-\sum_{k<n}|a_k||z|^k\ge|z|^n\Big(|a_n|-\frac{1}{|z|}\sum_{k<n}|a_k|\Big).\]
+	取 $R\ge1$ 充分大，使 $\frac1R\sum_{k<n}|a_k|\le\frac12|a_n|$ 且 $\frac12|a_n|R^n\ge|a_0|$. 则当 $|z|\ge R$ 时，$|f(z)|\ge\frac12|a_n||z|^n\ge|a_0|=|f(0)|$.
+	
+	把 $z=x+\mathrm iy$ 看作平面上的点 $(x,y)$，$|f(z)|$ 是 $x,y$ 的连续函数（它是一个关于 $x,y$ 的多项式的算术平方根）. 它在有界闭区域 $\{|z|\le R\}$ 上取到最小值，设在 $z_0$ 处取到. 由于 $0$ 属于这个区域，$|f(z_0)|\le|f(0)|$；而在区域外 $|f(z)|\ge|f(0)|$. 所以 $|f(z_0)|$ 是 $|f|$ 在整个复平面上的最小值.
+	
+	\textbf{第二步：最小值为零.} 假设 $f(z_0)\ne0$. 把 $f(z_0+h)$ 按 $h$ 的幂展开，得到一个关于 $h$ 的 $n$ 次多项式
+	\[f(z_0+h)=b_0+b_kh^k+b_{k+1}h^{k+1}+\cdots+b_nh^n,\]
+	其中 $b_0=f(z_0)\ne0$，$b_k$ 是 $b_0$ 之后第一个不为零的系数（由于 $b_n=a_n\ne0$，这样的 $k$ 存在，且 $1\le k\le n$）. 取复数 $\omega$ 使 $\omega^k=-\dfrac{b_0}{b_k}$（每个非零复数都有 $k$ 次方根），再令 $h=t\omega$，其中 $0<t<1$ 是实数. 则 $b_kh^k=-b_0t^k$，于是
+	\[f(z_0+t\omega)=b_0(1-t^k)+\sum_{j=k+1}^nb_j\omega^jt^j.\]
+	记 $M=\sum_{j>k}|b_j||\omega|^j$. 由于 $0<t<1$ 时 $t^j\le t^{k+1}$，
+	\[|f(z_0+t\omega)|\le|b_0|(1-t^k)+Mt^{k+1}=|b_0|-t^k\big(|b_0|-Mt\big).\]
+	取 $t$ 足够小，使 $Mt<|b_0|$，右边就严格小于 $|b_0|=|f(z_0)|$. 这与 $|f(z_0)|$ 是最小值矛盾. 故 $f(z_0)=0$.
+	
+	\textbf{第三步：分解为一次因式.} 由多项式的带余除法，$f(x)=(x-z_0)g(x)+r$，其中 $r$ 是常数. 代入 $x=z_0$ 得 $r=f(z_0)=0$，所以 $f(x)=(x-z_0)g(x)$，$g$ 的次数为 $n-1$，首项系数仍为 $a_n$. 若 $n-1\ge1$，对 $g$ 重复上述论证；如此进行 $n$ 次，即得所述的分解.
+\end{proof}
+
+第二步的想法要归功于达朗贝尔：在 $f(z_0)\ne0$ 的点附近，沿着适当选取的方向 $\omega$ 前进一小步，$f$ 的值就会``向原点靠近''. 方向 $\omega$ 的存在，依赖于复数可以开任意次方——这正是实数做不到、复数做得到的地方. 第一步依赖实数的完备性（有界闭区域上的连续函数有最小值）. 第七章的历史回响提到，代数基本定理至今没有只用代数的证明，原因就在这里.
+
+\begin{theorem}[Vieta 定理 / 韦达定理]
+	若首一多项式 $x^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ 的 $n$ 个复根为 $\lambda_1,\ldots,\lambda_n$，则
+	\[\lambda_1+\lambda_2+\cdots+\lambda_n=-a_{n-1},\qquad\lambda_1\lambda_2\cdots\lambda_n=(-1)^na_0.\]
+	一般地，从 $n$ 个根中任取 $k$ 个相乘、再对一切取法求和，等于 $(-1)^ka_{n-k}$.
+\end{theorem}
+
+$n=2$ 时就是中学的二次方程情形. 这个定理在第八章会派上用场.
+
+最后，若 $f$ 的系数都是\textbf{实数}且 $f(\lambda)=0$，对 $\sum a_k\lambda^k=0$ 两边取共轭，由 $\bar a_k=a_k$ 得 $f(\bar\lambda)=0$. 所以\textbf{实系数多项式的非实根成对共轭出现}. 实矩阵的特征多项式是实系数的，它的非实特征值因此也成对出现.
+
+\begin{exercise}\label{exo:prelim-complex}
+	\begin{enumerate}
+		\item 计算 $(1+2\mathrm i)(3-\mathrm i)$，$\dfrac1{1+\mathrm i}$，$|3+4\mathrm i|$.
+		\item 把 $1+\mathrm i$ 与 $-1$ 写成三角形式，并计算 $(1+\mathrm i)^8$.
+		\item 不解方程，求 $x^3-3x^2+x+5$ 的三个根之和、两两乘积之和与三根之积.
+	\end{enumerate}
+\end{exercise}
+
+\section*{本附录练习答案}
+\addcontentsline{toc}{section}{本附录练习答案}
+
+\paragraph*{练习~\ref{exo:prelim-sum}.} 1. $16$；$\sum_i\sum_jij=(1+2+3)(1+2)=18$. 2. $\tr\vv A=\sum_ia_{ii}$；$\tr(\vv{AB})=\sum_i\sum_ka_{ik}b_{ki}$，交换求和次序并交换字母即为 $\sum_k\sum_ib_{ki}a_{ik}=\tr(\vv{BA})$. 3. 把 $\big(\sum a_i\big)^2=\sum_i\sum_ja_ia_j$ 的表格拆成对角线（$i=j$）与上、下两个三角形，两个三角形之和相等.
+
+\paragraph*{练习~\ref{exo:prelim-ind}.} 1. 归纳步骤：$\frac{k(k+1)(2k+1)}6+(k+1)^2=\frac{(k+1)(k+2)(2k+3)}6$. 2. $\begin{pmatrix}1&k\\0&1\end{pmatrix}\begin{pmatrix}1&1\\0&1\end{pmatrix}=\begin{pmatrix}1&k+1\\0&1\end{pmatrix}$. 3. 加入第 $k+1$ 个元素后，每个旧子集分别``不含''与``含''新元素，子集个数翻倍.
+
+\paragraph*{练习~\ref{exo:prelim-map}.} 1. (1) 单而不满；(2) 双射；(3) 满而不单（$\diag(t,1)$ 取遍一切实数；$\vv O$ 与 $\diag(1,0)$ 的像都是 $0$）. 2. 单射：$g(f(x_1))=g(f(x_2))\Rightarrow f(x_1)=f(x_2)\Rightarrow x_1=x_2$；满射：$z=g(y)$，$y=f(x)$. 3. 若 $f(x_1)=f(x_2)$，则 $g(f(x_1))=g(f(x_2))$，由 $g\circ f$ 单得 $x_1=x_2$；任意 $z\in C$ 有 $z=g(f(x))$，即 $z$ 是 $g$ 在 $f(x)$ 处的值.
+
+
+\paragraph*{练习~\ref{exo:prelim-complex}.} 1. $5+5\mathrm i$；$\frac12-\frac12\mathrm i$；$5$. 2. $1+\mathrm i=\sqrt2\,\mathrm e^{\mathrm i\pi/4}$，$-1=\mathrm e^{\mathrm i\pi}$；$(1+\mathrm i)^8=(\sqrt2)^8\mathrm e^{2\pi\mathrm i}=16$. 3. 根之和为 $3$，两两乘积之和为 $1$，三根之积为 $-5$.

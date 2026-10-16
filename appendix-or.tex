@@ -1,0 +1,280 @@
+%% =====================================================================
+%% appendix-or.tex　附录：运筹学初步（线性规划）
+%% 用法：在 document.tex 中 \input{appendix-prelim} 之后、\input{answers} 之前
+%%       写 \input{appendix-or}. 此后习题答案顺延为附录 C，术语对照为附录 D.
+%% 依赖：第一、二、三、六章；第~\ref{app:or-dual} 节可对照第六章``一价定律''建模实验
+%%       与第十二章章末习题 C7.
+%% 新增参考文献键：kantorovich1960mathematical  dantzig1951maximization
+%% =====================================================================
+
+\chapter{运筹学初步}\label{app:or}
+
+本书的建模实验多次在``局限''一节提到同一个问题：方程组只告诉我们哪些方案\textbf{可行}，不告诉我们该\textbf{选哪一个}. 物流网络要在可行的流量中找运费最低的一种，生产计划要在有限的工时下找利润最高的一种. 研究这类``在约束下求最优''问题的学科称为\textbf{运筹学}\index{yun4chou2xue2@运筹学}(operations research)，其中最基本的模型是线性规划.
+
+本附录介绍线性规划的基本思想，并说明它怎样建立在本书的线性代数之上：可行方案的集合是方程组解集的一部分，最优方案藏在有限个``基本解''之中，而对偶问题给出了资源的``影子价格''. 读本附录需要第一、二、三、六章的知识；本附录不计入任何学时方案.
+
+\section{线性规划问题}\label{app:or-lp}
+
+\begin{example}\label{eg:or-production}
+	某企业生产甲、乙两种产品，每件利润分别为 $3$ 千元和 $5$ 千元. 生产要经过三个车间，每件产品在各车间所需的工时（小时）与各车间每周可用的工时如下：
+	\begin{center}
+		\begin{tabular}{cccc}
+			\toprule
+			& 甲 & 乙 & 可用工时 \\
+			\midrule
+			车间一 & $1$ & $0$ & $4$ \\
+			车间二 & $0$ & $2$ & $12$ \\
+			车间三 & $3$ & $2$ & $18$ \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	每周应生产甲、乙各多少件，才能使利润最大？
+\end{example}
+
+设每周生产甲 $x_1$ 件、乙 $x_2$ 件，问题写成
+\[
+\max\ z=3x_1+5x_2,\qquad\text{约束}\quad
+\left\{\begin{array}{l}
+	x_1\le4,\\ 2x_2\le12,\\ 3x_1+2x_2\le18,\\ x_1,\ x_2\ge0.
+\end{array}\right.
+\]
+目标函数与约束都是线性的，这样的问题称为\textbf{线性规划}\index{xian4xing4 gui1hua4@线性规划}(linear programming)问题. 用矩阵写，就是
+\[
+\max\ \vv c^\trans\vv x,\qquad\text{约束}\quad \vv A\vv x\le\vv b,\quad \vv x\ge\zero,
+\]
+其中不等号对每个分量成立. 满足全部约束的 $\vv x$ 称为\textbf{可行解}\index{ke3xing2 jie3@可行解}，全体可行解构成\textbf{可行域}\index{ke3xing2 yu4@可行域}，使目标函数取最大值的可行解称为\textbf{最优解}\index{zui4you1 jie3@最优解}.
+
+\subsection{图解法}
+
+只有两个变量时，可以在平面上作图. 每个约束 $a_1x_1+a_2x_2\le b$ 表示一条直线及其一侧的半平面，可行域是这些半平面的公共部分，在本例中是一个五边形（图~\ref{fig:or-feasible}）. 目标函数的等值线 $3x_1+5x_2=k$ 是一族平行直线，$k$ 越大，直线越向右上方平移. 在可行域内让 $k$ 尽量大，直线最后离开可行域时经过的点，就是最优解. 由图可见，它是顶点 $(2,6)$，最大利润为 $z=3\times2+5\times6=36$ 千元.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=0.55]
+		\fill[figblue!15] (0,0) -- (4,0) -- (4,3) -- (2,6) -- (0,6) -- cycle;
+		\draw[gray] (4,-0.4) -- (4,9.6) node[above,font=\small]{$x_1=4$};
+		\draw[gray] (-0.4,6) -- (7.6,6) node[right,font=\small]{$2x_2=12$};
+		\draw[gray] (-0.2,9.3) -- (6.3,-0.45) node[right,font=\small]{$3x_1+2x_2=18$};
+		\draw[dashed,figorange] (0,3) -- (5,0);
+		\draw[dashed,figorange] (0,6) -- (7.5,1.5) node[right,font=\small]{$z=30$};
+		\draw[dashed,figorange] (0,7.2) -- (7.5,2.7) node[right,font=\small]{$z=36$};
+		\node[figorange,font=\small,left] at (0,3) {$z=15$};
+		\draw[thick,figblue] (0,0) -- (4,0) -- (4,3) -- (2,6) -- (0,6) -- cycle;
+		\draw[axis] (-0.6,0) -- (8.6,0) node[right,font=\small]{$x_1$};
+		\draw[axis] (0,-0.6) -- (0,10.2) node[above,font=\small]{$x_2$};
+		\foreach \p/\lab/\pos in {(0,0)/{(0,0)}/below left,(4,0)/{(4,0)}/below right,(4,3)/{(4,3)}/right,(0,6)/{(0,6)}/left}{
+			\node[dot] at \p {};
+			\node[font=\small,\pos] at \p {$\lab$};
+		}
+		\draw[vec,figred] (2,6) -- (2.9,7.5) node[above right,font=\small]{$\vv c$};
+		\node[dot,figred] at (2,6) {};
+		\node[figred,font=\small,above left] at (2,6) {最优解 $(2,6)$};
+	\end{tikzpicture}
+	\caption{例~\ref{eg:or-production} 的可行域（蓝色五边形）与目标函数的等值线（虚线）. 等值线沿 $\vv c=(3,5)^\trans$ 的方向平移，最后离开可行域的点是顶点 $(2,6)$.}
+	\label{fig:or-feasible}
+\end{figure}
+
+图解法提示了一个一般的事实：
+
+\begin{theorem}\label{thm:or-vertex}
+	若线性规划问题有最优解，则可行域的某个顶点是最优解.
+\end{theorem}
+
+这个定理的证明需要凸集的工具，这里从略. 它把在无穷多个可行解中寻找最优解，归结为在有限个顶点中比较. 但三个以上变量时无法作图，``顶点''需要一个代数的刻画——这正是线性代数登场的地方.
+
+\section{顶点与基本可行解}\label{app:or-basic}
+
+\subsection{化为方程组}
+
+对每个不等式约束引入一个非负的\textbf{松弛变量}\index{song1chi2 bian4liang4@松弛变量}(slack variable)，表示该车间剩余的工时：
+\[
+\left\{\begin{array}{rcl}
+	x_1\hphantom{{}+2x_2}+s_1&=&4,\\
+	2x_2+s_2&=&12,\\
+	3x_1+2x_2+s_3&=&18,
+\end{array}\right.
+\qquad x_1,x_2,s_1,s_2,s_3\ge0.
+\]
+记 $\vv y=(x_1,x_2,s_1,s_2,s_3)^\trans$，约束成为 $\tilde{\vv A}\vv y=\vv b$，$\vv y\ge\zero$，其中 $\tilde{\vv A}=(\vv A\mid\vv I_3)$ 是 $3\times5$ 矩阵，秩为 $3$. 由第六章，方程组的解集是 $\mathbb{R}^5$ 中的一个二维线性流形；可行域就是这个线性流形中各分量都非负的那一部分.
+
+\subsection{基本解}
+
+从 $\tilde{\vv A}$ 的 $5$ 列中取 $3$ 个线性无关的列，称这些列对应的变量为\textbf{基变量}，其余变量为\textbf{非基变量}. 令非基变量取 $0$，基变量由一个系数矩阵可逆的方程组唯一确定. 这样得到的解称为\textbf{基本解}\index{ji1ben3 jie3@基本解}(basic solution)；各分量都非负的基本解称为\textbf{基本可行解}\index{ji1ben3 ke3xing2 jie3@基本可行解}.
+
+这与第六章求基础解系时``令自由变量取 $0$''是同一个想法，只是这里每次选哪几个变量当``自由变量''，有许多种选法. 本例中共有 $\binom53=10$ 种选法，结果如下表.
+
+\begin{center}
+	{\small
+		\begin{tabular}{cccc}
+			\toprule
+			基变量 & $(x_1,x_2,s_1,s_2,s_3)$ & 是否可行 & $z=3x_1+5x_2$ \\
+			\midrule
+			$x_1,x_2,s_1$ & $(2,6,2,0,0)$ & 是 & $36$ \\
+			$x_1,x_2,s_2$ & $(4,3,0,6,0)$ & 是 & $27$ \\
+			$x_1,x_2,s_3$ & $(4,6,0,0,-6)$ & 否 & — \\
+			$x_1,s_1,s_2$ & $(6,0,-2,12,0)$ & 否 & — \\
+			$x_1,s_1,s_3$ & \multicolumn{3}{c}{三列线性相关，不构成基本解} \\
+			$x_1,s_2,s_3$ & $(4,0,0,12,6)$ & 是 & $12$ \\
+			$x_2,s_1,s_2$ & $(0,9,4,-6,0)$ & 否 & — \\
+			$x_2,s_1,s_3$ & $(0,6,4,0,6)$ & 是 & $30$ \\
+			$x_2,s_2,s_3$ & \multicolumn{3}{c}{三列线性相关，不构成基本解} \\
+			$s_1,s_2,s_3$ & $(0,0,4,12,18)$ & 是 & $0$ \\
+			\bottomrule
+		\end{tabular}
+	}
+\end{center}
+
+$5$ 个基本可行解的前两个分量，恰好是图~\ref{fig:or-feasible} 中五边形的 $5$ 个顶点；$3$ 个不可行的基本解，是约束直线在可行域之外的交点. 这不是巧合：
+
+\begin{theorem}\label{thm:or-basic}
+	对标准形式的线性规划问题（约束为 $\tilde{\vv A}\vv y=\vv b$，$\vv y\ge\zero$，$\tilde{\vv A}$ 行满秩），可行域的顶点恰好就是基本可行解.
+\end{theorem}
+
+结合定理~\ref{thm:or-vertex}：\textbf{若有最优解，则必有一个基本可行解是最优解}. $m$ 个约束、$n$ 个变量的问题，基本解至多有 $\binom nm$ 个. 线性代数把一个在连续区域上的优化问题，变成了在有限个方程组的解中挑选的问题.
+
+\begin{motivebox}
+	为什么顶点对应``令若干变量为零''？在平面上，顶点是两条边界直线的交点；在 $n$ 维空间中，顶点是 $n$ 个边界``取等号''的交点. 而``$s_i=0$''表示第 $i$ 个约束取等号（车间工时用满），``$x_j=0$''表示边界 $x_j\ge0$ 取等号. 所以``选定哪些变量为零''，就是``选定哪些边界相交''. 系数矩阵可逆，保证了这些边界恰好交于一点.
+\end{motivebox}
+
+\section{单纯形法的思想}\label{app:or-simplex}
+
+变量和约束较多时，$\binom nm$ 是一个天文数字，不能逐一枚举. 1947 年丹齐格（G.~B.~Dantzig）提出的\textbf{单纯形法}\index{dan1chun2xing2 fa3@单纯形法}(simplex method)\cite{dantzig1951maximization} 只沿着可行域的边，从一个顶点走到相邻的、目标函数更大的顶点，直到不能再改进为止. 相邻的两个基本可行解只有一个基变量不同，所以每走一步，就是把一个基变量``换出''、一个非基变量``换入''——这与第二章章末习题中 Steinitz 替换的想法相同.
+
+以例~\ref{eg:or-production} 为例：
+\begin{enumerate}
+	\item 从原点出发，基变量为 $s_1,s_2,s_3$，$z=0$.
+	\item 目标函数中 $x_2$ 的系数最大，让 $x_2$ 从 $0$ 开始增大. 它受两个约束限制：$s_2=12-2x_2\ge0$ 给出 $x_2\le6$，$s_3=18-2x_2\ge0$ 给出 $x_2\le9$. 取较紧的 $x_2=6$，此时 $s_2$ 变为 $0$，换出. 到达顶点 $(0,6)$，$z=30$.
+	\item 再让 $x_1$ 增大. 由 $s_3=18-3x_1-12\ge0$ 得 $x_1\le2$，由 $s_1=4-x_1\ge0$ 得 $x_1\le4$. 取 $x_1=2$，$s_3$ 换出. 到达顶点 $(2,6)$，$z=36$.
+	\item 用当前的非基变量 $s_2,s_3$ 表示目标函数：由 $x_2=6-\frac12s_2$，$x_1=2+\frac13s_2-\frac13s_3$，得
+	\[z=36-\tfrac32s_2-s_3.\]
+	两个系数都是负的，任何一个非基变量增大都会使 $z$ 减小，所以 $(2,6)$ 是最优解.
+\end{enumerate}
+
+最后一步中的系数 $\frac32$ 与 $1$ 并非偶然，下一节会看到它们的经济含义.
+
+\begin{remark}
+	单纯形法在实际问题中通常很快，但可以构造出让它走遍指数多个顶点的例子. 1979 年哈奇扬（L.~Khachiyan）证明了线性规划可以在多项式时间内求解；1984 年卡马卡（N.~Karmarkar）提出的内点法从可行域内部逼近最优解，今天与单纯形法并用. 这些算法的每一步，都要求解若干线性方程组.
+\end{remark}
+
+\section{对偶与影子价格}\label{app:or-dual}
+
+\subsection{对偶问题}
+
+换一个角度看例~\ref{eg:or-production}. 假设另一家企业想租用这三个车间的全部工时，每小时分别出价 $y_1,y_2,y_3$（千元）. 要让本企业愿意出租，租金不能低于自己生产所得的利润：生产一件甲要用车间一 $1$ 小时、车间三 $3$ 小时，能赚 $3$ 千元，所以必须 $y_1+3y_3\ge3$；同理 $2y_2+2y_3\ge5$. 租用方希望总租金最少，于是得到
+\[
+\min\ w=4y_1+12y_2+18y_3,\qquad\text{约束}\quad
+\left\{\begin{array}{l}
+	y_1+3y_3\ge3,\\ 2y_2+2y_3\ge5,\\ y_1,y_2,y_3\ge0.
+\end{array}\right.
+\]
+一般地，问题 $\max\{\vv c^\trans\vv x:\vv A\vv x\le\vv b,\ \vv x\ge\zero\}$ 的\textbf{对偶问题}\index{dui4ou3 wen4ti2@对偶问题}(dual problem)是
+\[
+\min\ \vv b^\trans\vv y,\qquad\text{约束}\quad \vv A^\trans\vv y\ge\vv c,\quad\vv y\ge\zero.
+\]
+原问题的系数矩阵在对偶问题中被\textbf{转置}了.
+
+\begin{theorem}[弱对偶定理]\index{ruo4 dui4ou3 ding4li3@弱对偶定理}
+	若 $\vv x$ 是原问题的可行解，$\vv y$ 是对偶问题的可行解，则 $\vv c^\trans\vv x\le\vv b^\trans\vv y$.
+\end{theorem}
+\begin{proof}
+	由 $\vv x\ge\zero$ 与 $\vv A^\trans\vv y\ge\vv c$ 得 $\vv c^\trans\vv x\le(\vv A^\trans\vv y)^\trans\vv x=\vv y^\trans\vv A\vv x$；再由 $\vv y\ge\zero$ 与 $\vv A\vv x\le\vv b$ 得 $\vv y^\trans\vv A\vv x\le\vv y^\trans\vv b$.
+\end{proof}
+
+于是任何一个对偶可行解都给出原问题最大利润的一个上界. 更深刻的是下面的定理，其证明需要 Farkas 引理（第六章章末习题 C1 是它的二维形式），这里从略.
+
+\begin{theorem}[强对偶定理]\index{qiang2 dui4ou3 ding4li3@强对偶定理}
+	若原问题有最优解，则对偶问题也有最优解，并且两者的最优值相等.
+\end{theorem}
+
+在本例中，对偶问题的最优解是 $\vv y^*=(0,\frac32,1)^\trans$，最优值 $w=12\times\frac32+18\times1=36$，与原问题的最大利润相同. 它的分量恰好是单纯形法最后一步中 $s_2,s_3$ 的系数.
+
+\subsection{影子价格}
+
+$y_i^*$ 有一个直接的经济含义：车间 $i$ 每多一小时工时，最大利润能增加多少. 可以验证：车间二的工时从 $12$ 增加到 $13$，最大利润从 $36$ 变为 $37.5$，恰好增加 $y_2^*=1.5$；车间三的工时增加一小时，最大利润增加 $y_3^*=1$；而车间一的工时增加，最大利润不变，$y_1^*=0$. 因此 $y_i^*$ 称为第 $i$ 种资源的\textbf{影子价格}\index{ying3zi5 jia4ge2@影子价格}(shadow price)：它不是市场上的价格，而是这种资源对本企业的边际价值.
+
+车间一的影子价格为零，是因为在最优方案下它还剩 $s_1=2$ 小时没用完——多给它工时也无济于事. 一般地，最优解满足\textbf{互补松弛条件}\index{hu4bu3 song1chi2@互补松弛条件}：若某个资源在最优方案下没有用完，它的影子价格为零；若某个资源的影子价格为正，它必定被用完.
+
+\begin{linkbox}{影子价格与本书的其他``价格''}
+	本书已经出现过几种``价格'':第二章的价目表、第六章``一价定律''中的状态价格、第十二章所说``价格是数量空间上的线性函数''. 影子价格是它们在优化问题中的对应物：$\vv y^*$ 给出资源空间上的一个线性函数，用它给企业的资源``估值''，总价值恰好等于最大利润. 计划经济与资源配置的研究正是从这里出发的——苏联数学家康托罗维奇（L.~V.~Kantorovich）在 1939 年研究胶合板厂的生产计划时提出了这类问题与``客观评价''的概念\cite{kantorovich1960mathematical}，他与美国经济学家库普曼斯（T.~C.~Koopmans）因资源最优配置理论分享了 1975 年诺贝尔经济学奖.
+\end{linkbox}
+
+\section{运输问题}\label{app:or-transport}
+
+\begin{example}\label{eg:or-transport}
+	两个仓库 $A,B$ 分别存有某商品 $30$ 吨和 $20$ 吨，三家门店分别需要 $15$，$20$，$15$ 吨. 每吨的运费（百元）如下表. 怎样调运运费最低？
+	\begin{center}
+		\begin{tabular}{cccc}
+			\toprule
+			& 门店 1 & 门店 2 & 门店 3 \\
+			\midrule
+			仓库 $A$ & $4$ & $6$ & $9$ \\
+			仓库 $B$ & $5$ & $3$ & $8$ \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{example}
+
+设 $x_{ij}$ 为从仓库 $i$ 运往门店 $j$ 的吨数. 约束是：每个仓库运出的总量等于存量（行和），每家门店收到的总量等于需求（列和）. 这正是第六章``统计公开与隐私''建模实验中``已知行和与列和''的方程组，只是多了 $x_{ij}\ge0$ 与一个要最小化的运费
+\[z=4x_{11}+6x_{12}+9x_{13}+5x_{21}+3x_{22}+8x_{23}.\]
+这样的问题称为\textbf{运输问题}\index{yun4shu1 wen4ti2@运输问题}(transportation problem).
+
+第六章已经算出，$2\times3$ 表格的 $5$ 个行和、列和方程的秩为 $4$（总存量等于总需求，有一个方程是多余的）. 所以基本可行解至多有 $4$ 个非零分量. 求解可得最优方案为
+\[x_{11}=15,\quad x_{13}=15,\quad x_{22}=20,\quad\text{其余为 }0,\qquad z=255,\]
+即最低运费为 $25500$ 元. 这个最优解只有 $3$ 个非零分量，比 $4$ 还少，称为\textbf{退化}的基本可行解.
+
+运输问题还有一个好性质：只要存量和需求都是整数，它的每个基本可行解都是整数解. 这一点依赖于系数矩阵的特殊结构（其每个方阵子式都只能是 $0$ 或 $\pm1$），本书不作证明. 正因为如此，运输问题不必担心``最优方案要运 $7.3$ 车货''.
+
+第一章的物流网络问题，加上非负约束与线路运费，就是运输问题在网络上的推广，称为\textbf{最小费用流问题}.
+
+\section{局限与延伸}
+
+线性规划要求目标与约束都是线性的、数据是确定的、变量可以取任意实数. 现实中这三条常常不满足：
+\begin{itemize}
+	\item 变量必须取整数（工厂的台数、航班的架次），就成了\textbf{整数规划}. 它一般比线性规划难得多，丢掉整数要求再四舍五入，可能得到不可行或很差的方案.
+	\item 目标或约束是非线性的，就成了\textbf{非线性规划}. 第十一章马科维茨的均值—方差模型，目标是二次型，约束是线性的，称为二次规划.
+	\item 数据不确定（需求、价格是随机的），需要随机规划或鲁棒优化.
+\end{itemize}
+这些方向都属于运筹学与最优化课程. 它们的共同出发点，是本附录所讲的线性规划；而线性规划的计算核心，是反复求解线性方程组.
+
+\begin{codebox}{用程序求解线性规划}
+	\mstep{目标} 用现成的求解器验证本附录的例题，并用枚举基本解的方法对照.
+
+	\mstep{准备} \texttt{scipy.optimize.linprog}；\texttt{itertools.combinations}；\texttt{numpy.linalg}.
+
+	\mstep{任务}
+	\begin{enumerate}
+		\item 用 \texttt{linprog} 求解例~\ref{eg:or-production}. 注意它默认求最小值，需要把目标函数取负号.
+		\item 写一个函数，枚举 $(\vv A\mid\vv I)$ 中所有 $3$ 列的组合，对可逆的组合求出基本解，判断是否可行，列出与正文相同的表格.
+		\item 用 \texttt{linprog} 求解对偶问题，验证两个问题的最优值相等.
+		\item 把车间二的可用工时依次改为 $13,14,\ldots,18$，记录最大利润的变化. 影子价格 $1.5$ 在多大范围内保持不变？
+		\item 求解例~\ref{eg:or-transport}.
+	\end{enumerate}
+
+	\mstep{检查点} 最优解 $(2,6)$，最大利润 $36$；有 $8$ 个基本解，其中 $5$ 个可行；对偶最优解 $(0,1.5,1)$；运输问题最低运费 $255$.
+
+	\mstep{思考}
+	\begin{enumerate}
+		\item 任务 4 中，工时增加到某个值以后，最大利润不再按每小时 $1.5$ 增加. 从图~\ref{fig:or-feasible} 上看，这时最优顶点发生了什么变化？
+		\item 求解器返回的运输问题最优解可能是 \texttt{-0.} 这样的值. 它为什么会出现？在报告中应当怎样处理？
+	\end{enumerate}
+\end{codebox}
+
+\begin{exercise}\label{exo:or}
+	\begin{enumerate}
+		\item 用图解法求解：$\max\ x_1+x_2$，约束 $x_1+2x_2\le8$，$3x_1+x_2\le9$，$x_1,x_2\ge0$.
+		\item 对第 1 题引入松弛变量，列出全部基本解，指出哪些是可行的，并与图中的顶点对照.
+		\item 写出第 1 题的对偶问题并求解，验证两者的最优值相等，说明两种资源的影子价格各是多少.
+		\item 在例~\ref{eg:or-production} 中，若车间一的可用工时从 $4$ 增加到 $5$，最大利润会变化吗？用互补松弛条件解释.
+		\item 证明：标准形式中若 $\vv y$ 是基本可行解，则 $\vv y$ 的非零分量对应 $\tilde{\vv A}$ 中线性无关的列.
+	\end{enumerate}
+\end{exercise}
+
+\section*{本附录练习答案}
+\addcontentsline{toc}{section}{本附录练习答案}
+
+\paragraph*{练习~\ref{exo:or}.}
+1. 可行域是以 $(0,0)$，$(3,0)$，$(2,3)$，$(0,4)$ 为顶点的四边形，目标函数在这四点的值依次为 $0,3,5,4$，最优解为 $(2,3)$，最大值为 $5$.
+2. 约束为 $x_1+2x_2+s_1=8$，$3x_1+x_2+s_2=9$. 共 $\binom42=6$ 个基本解：$(x_1,x_2,s_1,s_2)=(2,3,0,0)$，$(3,0,5,0)$，$(0,4,0,5)$，$(0,0,8,9)$ 可行，恰为四个顶点；$(8,0,0,-15)$，$(0,9,-10,0)$ 不可行.
+3. 对偶问题：$\min\ 8y_1+9y_2$，约束 $y_1+3y_2\ge1$，$2y_1+y_2\ge1$，$y_1,y_2\ge0$. 两个约束都取等号，解得 $y^*=(0.4,0.2)$，最优值为 $5$，与原问题相同. 两种资源的影子价格分别为 $0.4$ 与 $0.2$.
+4. 不变，仍为 $36$. 最优方案下车间一还剩 $2$ 小时，影子价格 $y_1^*=0$.
+5. 非零分量都是基变量，而基变量对应的列线性无关；其余分量为零.
