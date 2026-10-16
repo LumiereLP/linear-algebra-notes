@@ -1,0 +1,22 @@
+# LaTeX 中间文件
+*.aux
+*.log
+*.out
+*.toc
+*.xdv
+*.fls
+*.fdb_latexmk
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.synctex.gz
+
+# CI 生成
+version.tex
+public/
