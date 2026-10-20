@@ -53,6 +53,11 @@
 \colorlet{pitfallback}{alert!4}          \colorlet{pitfallframe}{alert!55!black}      % 常见误区
 \colorlet{codeback}{success!3}           \colorlet{codeframe}{success!45!black}       % 计算实践
 \colorlet{modelback}{tertiary!4}         \colorlet{modelframe}{tertiary!60!black}     % 建模实验
+% 定理类环境（document.tex 中的 thmstyle / defstyle / prostyle）：标题与左侧竖线的颜色
+% 黑白印刷时三者主要靠标题前的形状区分：定理类 ▶、定义 ●、命题与性质 ◆
+\definecolor{thmcolor}{RGB}{236,128,0}     % 定理、引理、推论、公设、公理
+\definecolor{defcolor}{RGB}{30,165,225}    % 定义
+\definecolor{propcolor}{RGB}{95,180,55}    % 命题、性质
 % 章首题词框（sidefig.tex）
 \definecolor{quotebg}{RGB}{235,243,251}
 \colorlet{epigraphframe}{accent}

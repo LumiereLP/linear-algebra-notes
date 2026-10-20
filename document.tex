@@ -90,6 +90,8 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\markboth{\xchaptertitle\quad #1}{\xchaptertitle\quad #1}%
 	\fi}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}}
+% 页码：黑色（模板默认为主题色）
+\fancyfoot[C]{\small\color{black}\thepage}
 % 双面版式插入的空白页不带页眉页脚
 \usepackage{emptypage}
 % 换页规则（只在印刷版生效；屏幕版始终 openany，不插空白页）：
@@ -171,6 +173,47 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 % 行列式的性质需要编号和引用，故用模板提供的 \elegantnewtheorem 另建一个。
 % fancy 模式用法：\begin{dprop}{名字}{标签} ... \end{dprop}，引用写 \ref{prop:标签}
 \elegantnewtheorem{dprop}{性质}{prostyle}{prop}
+
+% ---------- 定理类环境的样式 ----------
+% 替换模板 fancy 模式的彩色框：无边框、无底色；
+% 标题一行 = 形状记号 + 非衬线粗体“定理 1.3.4（注释）”，正文左侧一条同色竖线，正文用正常字体（不用楷体）.
+%   thmstyle  定理、引理、推论、公设、公理   thmcolor   ▶
+%   defstyle  定义                           defcolor   ●
+%   prostyle  命题、性质（dprop）            propcolor  ◆
+% 环境的定义与编号仍由模板负责，这里只重设三种样式和标题格式.
+\newsavebox{\lnthmtitlebox}
+\newlength{\lnthmtitleht}
+\newcommand*{\lnthmmarker}{}
+\newcommand*{\lnthmrulex}{0.32em}    % 竖线相对于记号左缘的位置（约为记号中心）
+\tcbset{
+	common/.style={
+		blank, enhanced, breakable,
+		fontupper=\normalfont,
+		left=1.15em, right=0pt, top=0pt, bottom=1pt,
+		before skip=9pt plus 2pt, after skip=9pt plus 2pt,
+		detach title,
+		before upper={%
+			\sbox{\lnthmtitlebox}{\parbox[b]{\linewidth}{%
+				\hspace*{-1.15em}{\sffamily\bfseries\color{tcbcolframe}\lnthmmarker\hspace{0.45em}\tcbtitletext}}}%
+			\global\lnthmtitleht=\dimexpr\ht\lnthmtitlebox+\dp\lnthmtitlebox+4pt\relax
+			\par\noindent\usebox{\lnthmtitlebox}\par\nobreak\vspace{3pt}},
+		overlay unbroken and first={%
+			\draw[tcbcolframe, line width=0.9pt]
+				([xshift=\lnthmrulex, yshift=-\lnthmtitleht]frame.north west) -- ([xshift=\lnthmrulex]frame.south west);},
+		overlay middle and last={%
+			\draw[tcbcolframe, line width=0.9pt]
+				([xshift=\lnthmrulex]frame.north west) -- ([xshift=\lnthmrulex]frame.south west);},
+	},
+	thmstyle/.style={common, colframe=thmcolor,
+		code={\renewcommand*{\lnthmmarker}{\tikz[baseline=-0.36em]\fill (0,-0.36em) -- (0.62em,0) -- (0,0.36em) -- cycle;}}},
+	defstyle/.style={common, colframe=defcolor,
+		code={\renewcommand*{\lnthmmarker}{\tikz[baseline=-0.36em]\fill (0.32em,0) circle (0.32em);}}},
+	prostyle/.style={common, colframe=propcolor,
+		code={\renewcommand*{\lnthmmarker}{\tikz[baseline=-0.36em]\fill (0,0) -- (0.34em,0.4em) -- (0.68em,0) -- (0.34em,-0.4em) -- cycle;}}},
+	% 标题：“定理 1.3.4（注释）”，中文全角括号
+	ELEGANT@title/.code n args={2}{%
+		\tcbset{title={\csname #1name\endcsname\ifdef{\thetcbcounter}{\ \thetcbcounter}{}\ifblank{#2}{}{（#2）}}}},
+}
 
 % ---------- 证毕符号 ----------
 % 模板 v4.5 的 proof 环境注释掉了结束符号，这里统一补上
