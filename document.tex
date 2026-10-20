@@ -129,7 +129,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \newcommand*{\coverinfofont}{\coverlatinfont\covercjkfont\fontsize{10.2pt}{12pt}\selectfont}
 \usepackage{cprotect}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,calc,angles,quotes,decorations.pathreplacing}
+\usetikzlibrary{arrows.meta,calc,angles,quotes,decorations.pathreplacing,svg.path}
 % 全书颜色（主色、类别色、栏目框、输出模式）统一在 colors.tex 中定义
 \input{colors}
 \tikzset{
@@ -248,13 +248,64 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 % ---------- 特色栏目 ----------
 \usepackage{tcolorbox}
 \tcbuselibrary{breakable,skins}
-% 颜色与共用样式 ln box 见 colors.tex
-\newtcolorbox{motivebox}{ln box={motive}{思维动机}}
-\newtcolorbox{linkbox}[1]{ln box={link}{专业连线：#1}}
-\newtcolorbox{historybox}[1]{ln box={history}{历史回响：#1}}
-\newtcolorbox{pitfallbox}{ln box={pitfall}{常见误区}}
-\newtcolorbox{codebox}[1]{ln box={code}{计算实践：#1}}
-\newtcolorbox{modelbox}[1]{ln box={model}{建模实验：#1}}
+% 颜色见 colors.tex（<名>back / <名>frame）；图标由 icon/*.svg 经 tools/svg2tikz.py 生成，见 icons.tex.
+% 各栏目的区分方式（黑白印刷时颜色失效，靠图标与边框区分）：
+%   思维动机  灯泡   无边框，极浅底色
+%   常见误区  !      较粗实线全框，无底色
+%   专业连线  链环   上下细线，无底色
+%   历史回响  无图标 左侧细线，无底色
+%   建模实验  齿轮   实线全框 + 标题栏，无底色
+%   计算实践  >_     无框，无底色
+\input{icons}
+% \lnicon[<高度>]{<名>}：插入图标，颜色为当前颜色，竖直方向与文字居中对齐
+\makeatletter
+\newcommand*{\lnicon}[2][1.15em]{%
+	\begingroup\edef\lnicon@unit{\the\dimexpr#1/\csname lnicon@size@#2\endcsname\relax}%
+	\tikz[x=\lnicon@unit, y=-\lnicon@unit, baseline={([yshift=-0.36em]current bounding box.center)}]
+		{\csname lnicon@#2\endcsname}%
+	\endgroup}
+\makeatother
+% 无标题栏栏目的标题行：图标 + 非衬线粗体标题，均为栏目颜色
+\newcommand*{\lnboxicon}{}
+\tcbset{
+	ln box/.style 2 args={
+		breakable, enhanced,
+		colback=#1back, colframe=#1frame,
+		fonttitle=\bfseries\sffamily, title={#2},
+	},
+	% 标题放在框内第一行（无标题栏）；#1 为图标名，留空则不设图标
+	ln inline title/.style={
+		detach title,
+		code={\renewcommand*{\lnboxicon}{#1}},
+		before upper={%
+			{\noindent\sffamily\bfseries\color{tcbcolframe}%
+			 \ifx\lnboxicon\empty\else\lnicon{\lnboxicon}\hspace{0.4em}\fi\tcbtitletext\par}%
+			\nobreak\smallskip},
+	},
+	ln motive/.style={ln inline title=hint,
+		frame hidden, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt},
+	ln pitfall/.style={ln inline title=pitfall,
+		colback=white, boxrule=1.2pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt},
+	ln link/.style={ln inline title=link,
+		frame hidden, interior hidden, sharp corners,
+		borderline north={0.6pt}{0pt}{linkframe}, borderline south={0.6pt}{0pt}{linkframe},
+		left=2pt, right=2pt, top=6pt, bottom=6pt},
+	ln history/.style={ln inline title=,
+		frame hidden, interior hidden, sharp corners,
+		borderline west={0.8pt}{0pt}{historyframe},
+		left=10pt, right=0pt, top=2pt, bottom=2pt},
+	ln model/.style={
+		colback=white, colbacktitle=modelframe, coltitle=white, boxrule=0.8pt, arc=2pt,
+		title={\lnicon{model}\hspace{0.4em}#1}},
+	ln code/.style={ln inline title=code,
+		frame hidden, interior hidden, left=0pt, right=0pt, top=2pt, bottom=2pt},
+}
+\newtcolorbox{motivebox}{ln box={motive}{思维动机}, ln motive}
+\newtcolorbox{linkbox}[1]{ln box={link}{专业连线：#1}, ln link}
+\newtcolorbox{historybox}[1]{ln box={history}{历史回响：#1}, ln history}
+\newtcolorbox{pitfallbox}{ln box={pitfall}{常见误区}, ln pitfall}
+\newtcolorbox{codebox}[1]{ln box={code}{计算实践：#1}, ln code}
+\newtcolorbox{modelbox}[1]{ln box={model}{}, ln model={建模实验：#1}}
 \newcommand{\mstep}[1]{\par\smallskip\noindent\textbf{【#1】}\ }
 \usepackage{caption}
 \usepackage{listings}

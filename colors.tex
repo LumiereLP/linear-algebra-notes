@@ -62,14 +62,7 @@
 \definecolor{quotebg}{RGB}{235,243,251}
 \colorlet{epigraphframe}{accent}
 
-% 六类栏目共用的基础样式：ln box={<颜色前缀>}{<标题>}
-\tcbset{
-	ln box/.style 2 args={
-		breakable, enhanced,
-		colback=#1back, colframe=#1frame,
-		fonttitle=\bfseries\sffamily, title={#2},
-	},
-}
+% 六类栏目的版式（边框、底纹、图标）见 document.tex 的“特色栏目”一节
 
 % ---------- 5. 输出模式 ----------
 % printbw：全部颜色按亮度转为灰度（xcolor 的目标颜色模型）.
