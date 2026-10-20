@@ -215,6 +215,30 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\tcbset{title={\csname #1name\endcsname\ifdef{\thetcbcounter}{\ \thetcbcounter}{}\ifblank{#2}{}{（#2）}}}},
 }
 
+% ---------- 证明、例、解、注、练习等标签 ----------
+% 与模板定义相同，只把标签改为非衬线粗体、黑色（模板用主题色加衬线粗体）；正文字体不变.
+\newcommand*{\lnlabel}[1]{{\sffamily\bfseries\color{black}#1}}
+\renewenvironment{example}[1][]{%
+	\refstepcounter{exam}%
+	\par\noindent\lnlabel{\examplename\ \theexam\ifblank{#1}{}{\ #1}}\ \rmfamily}{%
+	\par\ignorespacesafterend}
+\renewenvironment{exercise}[1][]{%
+	\refstepcounter{exer}%
+	\par\noindent\makebox[-3pt][r]{\scriptsize\color{black}\HandPencilLeft\quad}%
+	\lnlabel{\exercisename\ \theexer\ifblank{#1}{}{\ #1}}\ \rmfamily}{%
+	\par\ignorespacesafterend}
+\renewenvironment{problem}[1][]{%
+	\refstepcounter{prob}%
+	\par\noindent\lnlabel{\problemname\ \theprob\ifblank{#1}{}{\ #1}}\ \rmfamily}{%
+	\par\ignorespacesafterend}
+\renewenvironment{note}{%
+	\par\noindent\makebox[-3pt][r]{\scriptsize\color{black}\textdbend\quad}%
+	\lnlabel{\notename}\ \citshape}{\par}
+\renewenvironment{proof}{%
+	\par\noindent\lnlabel{\proofname}\;\ \color{black!90}\cfs}{\par}
+\renewenvironment{solution}{\par\noindent\lnlabel{\solutionname}\ \citshape}{\par}
+\renewenvironment{remark}{\noindent\lnlabel{\remarkname}\ }{\par}
+
 % ---------- 证毕符号 ----------
 % 模板 v4.5 的 proof 环境注释掉了结束符号，这里统一补上
 \AtEndEnvironment{proof}{\nobreak\hfill$\blacksquare$}
