@@ -5,7 +5,16 @@
 %   printbw  印刷黑白：同 print，全部颜色转为灰度
 % 命令行切换：bash build.sh printbw，或 xelatex "\def\notemode{printbw}\input{document}"
 % =====================================================================
-\providecommand{\notemode}{screen}
+\providecommand*{\notemode}{screen}   % 带星号：与下方 \ifx 比较时须为非 \long 宏
+
+% 双面版式：三种模式都用 twoside（左右页页眉不同，内外侧边距对称翻转）.
+% 印刷版每章从右页（奇数页）开始；屏幕版不强制，以免出现空白页.
+\def\notemodescreen{screen}
+\ifx\notemode\notemodescreen
+	\def\noteopenoption{openany}
+\else
+	\def\noteopenoption{openright}
+\fi
 
 % =====================================================================
 % 文档类选项（ElegantBook 4.7）
@@ -13,9 +22,11 @@
 %   toc=twocol       双栏目录      section         定理类环境按节编号（thmcnt=section）
 %   chinesefont=nofont  自行设置中文字体（见下方 \setCJK... 命令）
 %   未声明 mode，即默认 fancy 模式；未声明 math，即默认 cm 数学字体（模板推荐）
+%   twoside          双面版式；openright / openany 由输出模式决定（见上方 \noteopenoption）
 % =====================================================================
+\expandafter\PassOptionsToClass\expandafter{\noteopenoption}{book}
 \documentclass[lang=cn,10.5pt,scheme=chinese,toc=twocol,section,chinesefont=nofont,
-citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
+twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 
 \title{高等代数讲义}
 \subtitle{非数学专业“线性代数”课程选用}
@@ -42,22 +53,45 @@ citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \ifdefstring{\notemode}{print}{\printversiontrue}{}
 \ifdefstring{\notemode}{printbw}{\printversiontrue\bwversiontrue}{}
 
+% 双面版式下 inner 为订口一侧，outer 为切口一侧；两种设置的版心宽度相同（149mm），换行不受影响.
 \ifprintversion
 \geometry{
 	paperwidth   = 191mm,  paperheight  = 266mm,   % 含出血的画布
 	layoutwidth  = 185mm,  layoutheight = 260mm,   % 成品尺寸
 	layouthoffset = 3mm,   layoutvoffset = 3mm,    % 居中，四边各留 3mm
-	left = 20mm, right = 18mm, top = 22mm, bottom = 20mm,
+	inner = 22mm, outer = 16mm, top = 22mm, bottom = 20mm,   % 订口留宽，便于装订
 	headsep = 3mm, footskip = 8mm
 }
 \else
 \geometry{
 	paperwidth = 185mm, paperheight = 260mm,
-	left = 20mm, right = 18mm, top = 22mm, bottom = 20mm,
+	inner = 20mm, outer = 18mm, top = 22mm, bottom = 20mm,   % 屏幕阅读：左右接近对称
 	headsep = 3mm, footskip = 8mm
 }
 \fi
 \AtBeginDocument{\setlength{\headwidth}{\textwidth}}
+
+% ---------- 页眉 ----------
+% 无分割线；左页（偶数页）：章号与章标题，如“第二章\quad 向量空间”；
+% 右页（奇数页）：节号与节标题，如“2.1\quad 数域”，本章尚未进入第一节时显示章标题.
+% 非衬线体，黑色.
+\newif\ifnoteappendix
+\appto\appendix{\global\noteappendixtrue}
+\newcommand*{\noteheadfont}{\sffamily\small\color{black}}
+\fancyhead{}
+\fancyhead[EL]{\noteheadfont\leftmark}
+\fancyhead[OR]{\noteheadfont\rightmark}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{}
+\renewcommand{\chaptermark}[1]{%
+	\ifnoteappendix
+		\markboth{附录\,\thechapter\quad #1}{附录\,\thechapter\quad #1}%
+	\else
+		\markboth{\xchaptertitle\quad #1}{\xchaptertitle\quad #1}%
+	\fi}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}}
+% 双面版式插入的空白页不带页眉页脚
+\usepackage{emptypage}
 
 % ==================== 本文档命令 ====================
 \usepackage{array}
