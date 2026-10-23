@@ -5121,34 +5121,6 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		1906 年，俄国数学家马尔可夫（A.~A.~Markov）提出了``下一步只依赖当前状态''的随机过程，用以反驳``大数定律只对独立事件成立''的说法\cite{markov1906rasprostranenie}. 1913 年，他统计了普希金《叶甫盖尼·奥涅金》前两万个字母中元音与辅音的交替规律，这是马尔可夫链的第一次``实证应用''\cite{markov1913onegin,hayes2013first}. 九十年后，斯坦福大学的研究生布林（S.~Brin）与佩奇（L.~Page）在 1998 年的论文\cite{brin1998anatomy}中提出了 PageRank——一个规模达数亿的马尔可夫链的稳态分布.
 	\end{historybox}
 	
-	\section{*Jordan 标准形（选读）}
-	
-	不是每个矩阵都能对角化. 那么，在相似的意义下，一个矩阵最简单能化成什么样子？
-	
-	\begin{definition}
-		形如
-		\[\vv J_k(\lambda)=\begin{pmatrix}\lambda&1&&\\&\lambda&\ddots&\\&&\ddots&1\\&&&\lambda\end{pmatrix}_{k\times k}\]
-		的矩阵称为 $k$ 阶 \textbf{Jordan 块}\index{jordan kuai4@Jordan 块}（主对角线上为 $\lambda$，紧邻其上的一条斜线上为 $1$，其余为 $0$）. 由 Jordan 块组成的分块对角矩阵称为 \textbf{Jordan 矩阵}.
-	\end{definition}
-	
-	\begin{theorem}[Jordan 标准形]\index{jordan biao1zhun3xing2 ding4li3@Jordan 标准形定理}
-		每个复方阵都相似于一个 Jordan 矩阵，并且这个 Jordan 矩阵除了各 Jordan 块的排列顺序外是唯一的，称为它的 \textbf{Jordan 标准形}\index{jordan biao1zhun3xing2@Jordan 标准形}. 此外，对每个特征值 $\lambda_0$：
-		\begin{itemize}
-			\item 以 $\lambda_0$ 为对角元的 Jordan 块的\textbf{个数}，等于 $\lambda_0$ 的几何重数；
-			\item 这些块的\textbf{阶数之和}，等于 $\lambda_0$ 的代数重数；
-			\item 其中\textbf{最大的阶数}，等于 $\lambda_0$ 在最小多项式中的重数.
-		\end{itemize}
-	\end{theorem}
-	
-	完整的证明需要较多准备，留给后续课程. 可对角化恰好是``所有 Jordan 块都是一阶的''情形，与定理~\ref{thm:minpolydiag} 一致.
-	
-	\begin{example}
-		$\vv A=\begin{pmatrix}3&1\\-1&1\end{pmatrix}$ 的特征多项式为 $(\lambda-2)^2$，而 $\vv A-2\vv I=\begin{pmatrix}1&1\\-1&-1\end{pmatrix}$ 的秩为 $1$，几何重数为 $1$，所以 Jordan 标准形为 $\vv J_2(2)$. 取 $\vv v_2=(1,0)^\trans$，$\vv v_1=(\vv A-2\vv I)\vv v_2=(1,-1)^\trans$，则 $\vv A\vv v_1=2\vv v_1$，$\vv A\vv v_2=\vv v_1+2\vv v_2$. 令 $\vv P=(\vv v_1,\vv v_2)$，得 $\vv P^{-1}\vv{AP}=\begin{pmatrix}2&1\\0&2\end{pmatrix}$.
-	\end{example}
-	
-	由 $\vv J_2(\lambda)=\lambda\vv I+\vv N$，$\vv N^2=\vv O$，且 $\lambda\vv I$ 与 $\vv N$ 可交换，用二项式定理得
-	\[\vv J_2(\lambda)^k=\lambda^k\vv I+k\lambda^{k-1}\vv N=\begin{pmatrix}\lambda^k&k\lambda^{k-1}\\0&\lambda^k\end{pmatrix}.\]
-	这解释了一个中学就见过的现象：特征方程有重根 $\lambda$ 时，线性递推的通项中会出现 $k\lambda^k$ 这样的项.
 	\begin{codebox}{判例的 PageRank}
 		\mstep{目标} 从第三章的引证关系出发，编程算出四份判决的 PageRank，并观察阻尼系数的影响.
 		
@@ -5171,8 +5143,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\item 若给否定性引用赋予负权重，$\vv S$ 还是转移矩阵吗？幂迭代还一定收敛吗？
 		\end{enumerate}
 	\end{codebox}
+	
+	\begin{remark}
+		不是每个矩阵都能对角化（例如 $\begin{pmatrix}1&1\\0&1\end{pmatrix}$）. 那么，在相似的意义下，一个矩阵最简单能化成什么样子？第九章将用 $\lambda$-矩阵回答这个问题：每个复方阵都相似于由若干 Jordan 块组成的 Jordan 标准形，可对角化恰好是``所有 Jordan 块都是一阶的''情形，与定理~\ref{thm:minpolydiag} 一致.
+	\end{remark}
 	\newpage
 	\ExEigen
+	
+	\input{chapters/lambda}
 	
 	% =====================================================================
 	
