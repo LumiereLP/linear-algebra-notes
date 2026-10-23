@@ -4103,26 +4103,27 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\paragraph*{本章地位}
 	
-	第八章讨论线性变换的矩阵何时可以化为对角矩阵，这一问题最终归结为多项式的根与因式分解. 本章为此提供所需的工具：带余除法、最大公因式与 Bézout 等式、不可约多项式与唯一分解定理、多项式的根与代数基本定理. 本章的内容与整数的整除理论平行，二者的论证方法基本相同. 48 学时方案不讲本章，第八章所需的结论见附录~A.
+	多项式是继数域、线性空间之后，又一个``只看运算规则''的代数对象. 本章把整数的整除理论——带余除法、最大公约数、素数分解、同余——逐一平移到多项式上，二者的论证方法基本相同. 最后一节把矩阵代入多项式，引入最小多项式，这是多项式与矩阵的第一次会合. 第八章讨论线性变换的矩阵何时可以化为对角矩阵，第九章讨论不能对角化时矩阵能化成的最简形式，所用的工具都来自本章. 48 学时方案不讲本章，第八章所需的结论见附录~A.
 	
 	\chapterhours{—}{3}{4}
 	
 	\begin{introduction}[学习目标]
 		\item 进行多项式的带余除法，用余数定理判断根并讨论重根
 		\item 说明代数基本定理的含义，以及实系数多项式的不可约因式至多为二次
-		\item 把方阵代入多项式进行计算
+		\item 把方阵代入多项式进行计算，求矩阵的最小多项式，并用它计算矩阵的高次幂与逆矩阵
 		\item 用辗转相除法求最大公因式，写出 Bézout 等式（72 学时方案）
-		\item 说明唯一分解定理的内容，在不同数域上分解多项式（72 学时方案）
+		\item 说明唯一分解定理的内容，在不同数域上分解多项式，判断多项式有无重因式（72 学时方案）
+		\item 用中国剩余定理与 Lagrange 插值构造满足给定余式的多项式（72 学时方案）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
 	
-	中学的多项式运算与一元二次方程；附录~A 中的复数.
+	中学的多项式运算与一元二次方程；第三章（矩阵的运算）；第四章（线性空间的维数）；附录~A 中的复数.
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
-		\item 学习本章时，可以把每个结论与整数的对应结论并列比较，包括带余除法、最大公因数、素数与算术基本定理.
-		\item 本章有三个结论在后面直接使用：带余除法用于最小多项式，Bézout 等式用于空间的直和分解，实系数多项式的不可约因式至多二次用于正交变换的结构. 应掌握它们的内容.
+		\item 学习本章时，可以把每个结论与整数的对应结论并列比较，包括带余除法、最大公因数、素数与算术基本定理、同余与``物不知数''问题.
+		\item 本章有几个结论在后面直接使用：带余除法用于最小多项式，Bézout 等式用于空间的直和分解，实系数多项式的不可约因式至多二次用于正交变换的结构，最小多项式用于判断矩阵能否对角化. 应掌握它们的内容.
 		\item 多项式是否可约依赖于所在的数域. 讨论因式分解与根时，应先明确在哪个数域上考虑.
 	\end{itemize}
 	
@@ -4136,7 +4137,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{tcolorbox}
 	\footnotetext{埃米·诺特（1882—1935），德国数学家，抽象代数的奠基人. 引文出自她 1931 年 11 月 12 日写给数学家哈塞（H.~Hasse）的信. 她的生平见本章第二节的``历史回响''.}
 	
-	\section{\hB 一元多项式环}
+	\section{\hB 一元多项式环}\label{sec:polyring}
 	
 	\begin{definition}
 		设 $\mathbb{F}$ 是数域，$x$ 是一个符号（称为\textbf{未定元}\index{wei4ding4yuan2@未定元}）. 形如
@@ -4163,13 +4164,13 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\[f(\vv A)=a_n\vv A^n+\cdots+a_1\vv A+a_0\vv I.\]
 	注意常数项要乘上单位矩阵. 同样，对线性变换 $\mathscr T$ 可以定义 $f(\mathscr T)$. 由于 $\vv A$ 的各次幂彼此可交换，容易验证
 	\[(f+g)(\vv A)=f(\vv A)+g(\vv A),\qquad (fg)(\vv A)=f(\vv A)g(\vv A)=g(\vv A)f(\vv A).\]
-	也就是说，凡是多项式之间成立的等式，代入同一个矩阵后依然成立. 例如由 $x^2-1=(x-1)(x+1)$ 得 $\vv A^2-\vv I=(\vv A-\vv I)(\vv A+\vv I)$. 这个看似平凡的事实，是第八章把多项式工具用于矩阵的桥梁.
+	也就是说，凡是多项式之间成立的等式，代入同一个矩阵后依然成立. 例如由 $x^2-1=(x-1)(x+1)$ 得 $\vv A^2-\vv I=(\vv A-\vv I)(\vv A+\vv I)$. 这个看似平凡的事实，是把多项式工具用于矩阵的桥梁，第~\ref{sec:minpoly} 节和第八章都要用到它.
 	
 	\begin{pitfallbox}
 		代入两个\textbf{不同}的矩阵时要小心. 例如 $(x+y)^2=x^2+2xy+y^2$ 代入 $\vv A,\vv B$ 后一般不成立，除非 $\vv{AB}=\vv{BA}$. 本章只代入同一个矩阵，所以不会出问题.
 	\end{pitfallbox}
 	
-	\section{\hB 带余除法与最大公因式}
+	\section{\hB 整除、带余除法与最大公因式}
 	
 	\subsection{带余除法}
 	
@@ -4227,6 +4228,29 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		辗转相除只用到 $f,g$ 系数所在数域中的四则运算. 所以\textbf{最大公因式不随数域的扩大而改变}：$f,g\in\mathbb{Q}[x]$ 在 $\mathbb{Q}[x]$ 中互素，在 $\mathbb{C}[x]$ 中也互素. 后面判断``两个多项式有没有公共复根''时，这一点让我们可以只在小的数域中计算.
 	\end{remark}
 	
+	互素的多项式有下面几条常用的性质，它们都是 Bézout 等式的直接推论.
+	
+	\begin{proposition}\label{prop:coprime}
+		设 $f,g$ 互素.
+		\begin{enumerate}
+			\item 若 $f\mid gh$，则 $f\mid h$；
+			\item 若 $f\mid h$ 且 $g\mid h$，则 $fg\mid h$；
+			\item 若 $f$ 与 $h$ 也互素，则 $f$ 与 $gh$ 互素.
+		\end{enumerate}
+	\end{proposition}
+	\begin{proof}
+		由 Bézout 等式，有 $u,v$ 使 $uf+vg=1$.
+		
+		(1) 两边乘以 $h$：$h=ufh+v(gh)$，右边两项都被 $f$ 整除，故 $f\mid h$.
+		
+		(2) 设 $h=gh_1$. 由 $f\mid gh_1$ 及 (1) 得 $f\mid h_1$，于是 $fg\mid gh_1=h$.
+		
+		(3) 又有 $u',v'$ 使 $u'f+v'h=1$. 两式相乘：$f\,(uu'f+uv'h+u'vg)+(vv')\,gh=1$，所以 $f$ 与 $gh$ 互素.
+	\end{proof}
+	
+	与最大公因式相对，若 $f\mid l$，$g\mid l$，并且 $f,g$ 的任一公倍式都是 $l$ 的倍式，则称 $l$ 是 $f,g$ 的一个\textbf{最小公倍式}\index{zui4xiao3 gong1bei4shi4@最小公倍式}. 首一的最小公倍式唯一，记为 $\operatorname{lcm}(f,g)$. 由命题~\ref{prop:coprime}(2)，互素的首一多项式 $f,g$ 有 $\operatorname{lcm}(f,g)=fg$.
+	
+	
 	\begin{motivebox}
 		Bézout 等式的威力在于：它把``没有公因式''这样一个\textbf{否定性}的性质，变成了``能凑出 $1$''这样一个\textbf{构造性}的等式. 而 $1$ 是可以``拆开''的：$1=uf+vg$ 意味着任何东西都可以拆成``$f$ 管的一部分''加上``$g$ 管的一部分''. 第八章会用它把整个空间拆成几个不变子空间的直和——那时请回来看这一段.
 	\end{motivebox}
@@ -4241,7 +4265,29 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		1933 年，纳粹政府以她是犹太人为由解除了她的教职. 她移居美国，在布林莫尔学院任教，并在普林斯顿高等研究院讲学. 1935 年 4 月，她在一次手术后意外去世，年仅 53 岁. 爱因斯坦随即在《纽约时报》发表公开信，称她是自女性接受高等教育以来最具创造力的数学天才\cite{einstein1935noether}；数学家外尔（H.~Weyl）在追悼会上致辞\cite{weyl1935noether}. 她留下的不是某一个公式，而是一种看数学的方式——正如章首那句话所说，它已``不具名地''渗透在每一本代数教科书里，包括你手中的这一本.
 	\end{historybox}
 	
-	\section{\hB 因式分解与根}
+	\begin{codebox}{辗转相除法}
+		\mstep{目标} 用系数列表表示多项式，实现带余除法和扩展的辗转相除法，自动写出 Bézout 等式.
+		
+		\mstep{准备} \texttt{fractions.Fraction}；用于对照的 \texttt{sympy} 中的 \texttt{div} 与 \texttt{gcdex}. 约定 $[a_0,a_1,\ldots,a_n]$ 表示 $a_0+a_1x+\cdots+a_nx^n$.
+		
+		\mstep{任务}
+		\begin{enumerate}
+			\item 按定理~\ref{thm:divalg} 证明中``逐次消去首项''的步骤，写函数 \texttt{poly\_divmod(f, g)}，返回商与余式.
+			\item 写多项式乘法 \texttt{poly\_mul(f, g)}，用它检验 $f=qg+r$.
+			\item 写函数 \texttt{ext\_gcd(f, g)}，返回首一的 $\gcd(f,g)$ 以及 $u,v$，并用 \texttt{poly\_mul} 验证 $uf+vg=\gcd(f,g)$.
+			\item 用书中的两个例子检验，再用它完成本章章末习题~\ref{ex:poly:A1} 与 \ref{ex:poly:A4}，并与 \texttt{sympy} 的结果对照.
+		\end{enumerate}
+		
+		\mstep{检查点} $x^4+2x^3+x+3$ 除以 $x^2+1$，商为 $x^2+2x-1$，余式为 $-x+4$；$\gcd(x^3-1,x^2-1)=x-1$，$u=1$，$v=-x$.
+		
+		\mstep{思考}
+		\begin{enumerate}
+			\item 你的程序只用到了加、减、乘、除. 这与``最大公因式不随数域扩大而改变''有什么关系？
+			\item 把 \texttt{Fraction} 换成浮点数，再对 $(x-1)^3(x+2)$ 与它的导数求最大公因式. 余式还能``恰好为零''吗？程序该怎样判断辗转相除何时结束？
+		\end{enumerate}
+	\end{codebox}
+	
+	\section{\hB 因式分解与多项式的根}
 	
 	\subsection{\hC 不可约多项式与唯一分解}
 	
@@ -4270,6 +4316,27 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	把相同的不可约因式合并，可写成 $f=c\,p_1^{k_1}\cdots p_m^{k_m}$，称为 $f$ 的\textbf{标准分解式}\index{biao1zhun3 fen1jie3shi4@标准分解式}.
+	
+	\subsection{\hC 重因式}
+	
+	在标准分解式 $f=c\,p_1^{k_1}\cdots p_m^{k_m}$ 中，若 $k_i\ge2$，称 $p_i$ 是 $f$ 的\textbf{重因式}\index{chong2yin1shi4@重因式}（$k_i$ 重因式）. 判断一个多项式有没有重因式，不必先把它分解——分解往往很难——只需借助导数.
+	
+	对 $f=\sum_k a_kx^k$，定义它的\textbf{导数}\index{dao3shu4@导数（多项式的）} $f'=\sum_k ka_kx^{k-1}$. 这是一个纯代数的定义，不涉及极限；但容易逐项验证，微积分中熟悉的法则依然成立：
+	\[(f+g)'=f'+g',\qquad(cf)'=cf',\qquad(fg)'=f'g+fg',\qquad(f^k)'=kf^{k-1}f'.\]
+	
+	\begin{theorem}\label{thm:multfactor}
+		设 $p$ 是不可约多项式. 若 $p$ 是 $f$ 的 $k$ 重因式（$k\ge1$），则 $p$ 是 $f'$ 的 $k-1$ 重因式. 因此，$f$ 没有重因式当且仅当 $\gcd(f,f')=1$.
+	\end{theorem}
+	\begin{proof}
+		设 $f=p^kg$，$p\nmid g$. 则
+		\[f'=kp^{k-1}p'g+p^kg'=p^{k-1}\,(kp'g+pg').\]
+		$p'$ 的次数比 $p$ 低且不为零，$p\nmid g$，数 $k\ne0$，由引理~\ref{lem:primediv}，$p\nmid kp'g$，从而 $p\nmid kp'g+pg'$. 故 $p$ 恰是 $f'$ 的 $k-1$ 重因式.
+		
+		于是 $f$ 的每个 $k$ 重不可约因式恰以 $k-1$ 重出现在 $\gcd(f,f')$ 中. $\gcd(f,f')=1$ 当且仅当每个 $k-1=0$，即没有重因式.
+	\end{proof}
+	
+	由证明还可以看出：$f/\gcd(f,f')$ 与 $f$ 含有完全相同的不可约因式，但每个都只出现一次. 这给出了一个不用分解就能``去掉重因式''的办法. 又因为最大公因式不随数域的扩大而改变，$f$ 在 $\mathbb{Q}$ 上有没有重因式，与它在 $\mathbb{C}$ 上有没有重根，是同一个问题.
+	
 	
 	\subsection{根}
 	
@@ -4324,6 +4391,29 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		请记住这个结论的形状：\textbf{实数世界里，不可约的东西至多是``二维''的.} 一个实系数多项式，最多只能被拆到一次因式和二次因式为止，再也拆不动. 第九章的选读节会遇到它的一个``几何分身''：实空间上的正交变换，也总能被拆成一维块和二维块，二维块就是平面上的旋转. 那里的``$2$''，正是这里的``$2$''.
 	\end{motivebox}
 	
+	
+	\subsection{\hC 有理系数多项式}
+	
+	在 $\mathbb{C}$ 上，不可约多项式只有一次的；在 $\mathbb{R}$ 上，至多是二次的. $\mathbb{Q}$ 上的情形完全不同. 有理系数多项式乘以系数分母的公倍数，就成为整系数多项式，而根与可约性都不变，所以只需讨论整系数多项式.
+	
+	\begin{proposition}\label{prop:ratroot}
+		设整系数多项式 $f=a_nx^n+\cdots+a_1x+a_0$（$a_n\ne0$）有有理根 $\dfrac pq$，其中 $p,q$ 是互素的整数，则 $p\mid a_0$，$q\mid a_n$.
+	\end{proposition}
+	\begin{proof}
+		代入并乘以 $q^n$：$a_np^n+a_{n-1}p^{n-1}q+\cdots+a_1pq^{n-1}+a_0q^n=0$. 除最后一项外每项都含因子 $p$，故 $p\mid a_0q^n$；$p,q$ 互素，所以 $p\mid a_0$. 同理，除第一项外每项都含因子 $q$，得 $q\mid a_n$.
+	\end{proof}
+	
+	于是整系数多项式的有理根只有有限个候选，可以逐一检验. 例如 $x^3-3x+1$ 的有理根只可能是 $\pm1$，而 $f(1)=-1$，$f(-1)=3$，所以它没有有理根；三次多项式若可约，必有一次因式，即有有理根，故 $x^3-3x+1$ 在 $\mathbb{Q}$ 上不可约.
+	
+	对更高次的多项式，没有有理根并不说明不可约（例如 $(x^2+1)^2$）. 下面两个结论是判断 $\mathbb{Q}$ 上不可约性的基本工具，这里只叙述，证明可参看参考文献中的高等代数教材.
+	
+	\begin{itemize}
+		\item \textbf{Gauss 引理.}\index{gauss yin3li3@Gauss 引理} 整系数多项式若能分解为两个次数更低的有理系数多项式之积，就能分解为两个次数更低的\textbf{整系数}多项式之积.
+		\item \textbf{Eisenstein 判别法.}\index{eisenstein pan4bie2fa3@Eisenstein 判别法} 设 $f=a_nx^n+\cdots+a_0$ 是整系数多项式. 若存在素数 $p$，使 $p\nmid a_n$，$p$ 整除其余各系数 $a_{n-1},\ldots,a_0$，且 $p^2\nmid a_0$，则 $f$ 在 $\mathbb{Q}$ 上不可约.
+	\end{itemize}
+	
+	取 $p=2$，Eisenstein 判别法说明 $x^n-2$ 对每个 $n\ge1$ 都在 $\mathbb{Q}$ 上不可约. 所以 $\mathbb{Q}$ 上有任意次数的不可约多项式——``不可约多项式有多少种''，完全取决于数域.
+	
 	\begin{modelbox}{内部收益率：一个多项式方程的根}
 		\mstep{问题} 一个项目现在投入 $100$ 万元，此后三年末分别回收 $30$，$40$，$50$ 万元. 它的``年化收益率''是多少？另一个项目现在投入 $100$ 万元，一年末回收 $230$ 万元，两年末还要追加支出 $132$ 万元（例如环境修复费用），它的收益率又是多少？
 		
@@ -4363,6 +4453,201 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		十七、十八世纪，吉拉尔、笛卡儿、达朗贝尔、欧拉、拉格朗日等人都相信或试图证明``$n$ 次方程有 $n$ 个根''. 1799 年，22 岁的高斯在博士论文\cite{gauss1799demonstratio}中给出了一个证明，并批评了前人证明中的漏洞——尽管今天看来，他自己的证明也依赖一个当时尚未严格证明的拓扑事实. 高斯一生给出了四个不同的证明. 有趣的是，这个``代数''基本定理，至今没有一个只用代数的证明：每个证明都要用到实数的完备性.
 	\end{historybox}
 	
+	\section{\hC 多项式的同余}\label{sec:polycong}
+	
+	整数中，``被 $7$ 除余 $3$''的数有无穷多个：$3,10,17,\ldots$，它们彼此相差 $7$ 的倍数. 中学里我们说它们``模 $7$ 同余''. 多项式有完全平行的概念.
+	
+	\begin{definition}
+		设 $m\in\mathbb{F}[x]$，$\deg m\ge1$. 若 $m\mid f-g$，即 $f,g$ 被 $m$ 除的余式相同，则称 $f$ 与 $g$ \textbf{模 $m$ 同余}\index{tong2yu2@同余（多项式的）}，记为 $f\equiv g\pmod m$.
+	\end{definition}
+	
+	由带余除法，每个多项式都与它被 $m$ 除的余式模 $m$ 同余，而次数低于 $\deg m$ 的两个不同多项式互不同余. 所以``模 $m$ 的同余类''与``次数低于 $\deg m$ 的多项式''一一对应. 同余关系与运算相容：若 $f\equiv f_1$，$g\equiv g_1\pmod m$，则
+	\[f+g\equiv f_1+g_1,\qquad fg\equiv f_1g_1\pmod m.\]
+	后一式是因为 $fg-f_1g_1=f(g-g_1)+(f-f_1)g_1$. 因此计算一个复杂的多项式模 $m$ 的余式时，可以随时把中间结果换成它的余式，不必先算出整个乘积.
+	
+	\begin{example}
+		求 $x^{100}$ 被 $x^2+1$ 除的余式. 由于 $x^2\equiv-1\pmod{x^2+1}$，有 $x^{100}=(x^2)^{50}\equiv(-1)^{50}=1$，余式为 $1$. 同理 $x^{101}\equiv x$.
+	\end{example}
+	
+	\begin{motivebox}
+		在模 $x^2+1$ 的同余类中计算两个实系数一次多项式的乘积：
+		\[(a+bx)(c+dx)=ac+(ad+bc)x+bd\,x^2\equiv(ac-bd)+(ad+bc)x\pmod{x^2+1}.\]
+		把 $x$ 换成 $\mathrm i$，这正是复数的乘法法则. 换句话说，复数可以看作``模 $x^2+1$ 的实系数多项式''，$\mathrm i$ 就是``满足 $x^2=-1$ 的那个 $x$''. 用同余构造新的数系，是代数学中最常用的手法之一.
+	\end{motivebox}
+	
+	在整数中，$3$ 模 $7$ 有``倒数''：$3\cdot5=15\equiv1\pmod 7$. 多项式也是如此.
+	
+	\begin{proposition}\label{prop:polyinv}
+		存在 $u$ 使 $uf\equiv1\pmod m$，当且仅当 $f$ 与 $m$ 互素.
+	\end{proposition}
+	\begin{proof}
+		$uf\equiv1\pmod m$ 意味着存在 $v$ 使 $uf+vm=1$. 由 Bézout 等式，这样的 $u,v$ 存在当且仅当 $\gcd(f,m)=1$.
+	\end{proof}
+	
+	下面是本节的主要定理.
+	
+	\begin{theorem}[中国剩余定理]\label{thm:crt}\index{zhong1guo2 sheng4yu2 ding4li3@中国剩余定理}
+		设 $m_1,\ldots,m_k\in\mathbb{F}[x]$ 两两互素，$r_1,\ldots,r_k\in\mathbb{F}[x]$ 任意. 则同余方程组
+		\[f\equiv r_1\pmod{m_1},\quad f\equiv r_2\pmod{m_2},\quad\ldots,\quad f\equiv r_k\pmod{m_k}\]
+		有解，并且在次数低于 $\deg(m_1m_2\cdots m_k)$ 的多项式中，解唯一. 全部解是这个解加上 $m_1m_2\cdots m_k$ 的任意倍式.
+	\end{theorem}
+	\begin{proof}
+		\textbf{两个方程的情形.} 由 Bézout 等式，有 $u,v$ 使 $um_1+vm_2=1$. 令
+		\[f=r_1\,vm_2+r_2\,um_1.\]
+		由于 $vm_2=1-um_1\equiv1\pmod{m_1}$，有 $f\equiv r_1\pmod{m_1}$；同理 $f\equiv r_2\pmod{m_2}$.
+		
+		\textbf{一般情形.} 对 $k$ 归纳. 由命题~\ref{prop:coprime}(3)，$m_1\cdots m_{k-1}$ 与 $m_k$ 互素. 先由归纳假设求出满足前 $k-1$ 个方程的 $g$；前 $k-1$ 个方程等价于 $f\equiv g\pmod{m_1\cdots m_{k-1}}$（由命题~\ref{prop:coprime}(2)），再与第 $k$ 个方程联立，归结为两个方程的情形.
+		
+		\textbf{唯一性.} 若 $f,f_1$ 都是解，则 $f-f_1$ 被每个 $m_i$ 整除. $m_i$ 两两互素，反复用命题~\ref{prop:coprime}(2)，得 $m_1\cdots m_k\mid f-f_1$. 若两者次数都低于 $\deg(m_1\cdots m_k)$，则 $f-f_1=0$. 把任一解换成它被 $m_1\cdots m_k$ 除的余式，就得到次数低于 $\deg(m_1\cdots m_k)$ 的解.
+	\end{proof}
+	
+	\begin{example}
+		求次数最低的多项式 $f$，使 $f$ 被 $x-1$ 除余 $2$，被 $x^2+1$ 除余 $x$.
+	\end{example}
+	\begin{solution}
+		$x-1$ 与 $x^2+1$ 互素，由定理~\ref{thm:crt}，存在唯一的次数低于 $3$ 的解. 第二个条件说明 $f=x+c\,(x^2+1)$，其中 $c$ 是常数（因为 $\deg f<3$）. 由余数定理，第一个条件即 $f(1)=2$，于是 $1+2c=2$，$c=\frac12$. 所以
+		\[f=\tfrac12x^2+x+\tfrac12.\]
+	\end{solution}
+	
+	\paragraph*{Lagrange 插值是中国剩余定理的特例.} 取 $m_i=x-x_i$，$x_1,\ldots,x_n$ 互不相同，它们两两互素. 由余数定理，$f\equiv y_i\pmod{x-x_i}$ 就是 $f(x_i)=y_i$. 于是定理~\ref{thm:crt} 说：存在唯一的次数低于 $n$ 的多项式在 $n$ 个点上取给定的值——这正是例~\ref{eg:interp}. 若把模换成 $(x-x_i)^{k_i}$，条件就变成在 $x_i$ 处 $f$ 与给定多项式的前 $k_i$ 个 Taylor 系数相同，即函数值与前 $k_i-1$ 阶导数都给定，得到的是 \textbf{Hermite 插值}\index{hermite cha1zhi2@Hermite 插值}. 一个定理统一了两种插值.
+	
+	\begin{historybox}{物不知数}
+		\sidefig[0.3\linewidth]{image/suanchou.jpg}{算筹}[fig:suanchou]
+		《孙子算经》卷下有一道题：``今有物不知其数，三三数之剩二，五五数之剩三，七七数之剩二，问物几何？''答案是二十三. 用今天的话说，就是解同余方程组 $x\equiv2\pmod3$，$x\equiv3\pmod5$，$x\equiv2\pmod7$. 书中给出的解法，实质上就是定理~\ref{thm:crt} 证明中的构造：先找出``被 $5,7$ 整除而被 $3$ 除余 $1$''的数（$70$），以及另外两个类似的数（$21$ 与 $15$），再按余数加权求和.
+		
+		南宋数学家秦九韶在《数书九章》（1247）中把这一方法推广为一般的``大衍求一术''，其中求``被 $3$ 除余 $1$''的那一步，正是用辗转相除法求模逆. 十九世纪这一方法传入欧洲后，被称为``中国剩余定理''. 从整数到多项式，同一个论证原封不动地成立——这是本章``整数与多项式平行''的又一个例证.
+	\end{historybox}
+	
+	\begin{linkbox}{门限秘密共享}
+		一份遗嘱、一枚公司公章或一个数据库的密钥，有时要求``任意 $k$ 位受托人到场才能启用，少于 $k$ 位则得不到任何信息''. 1979 年，沙米尔（A.~Shamir）用插值多项式给出了一个方案：把秘密 $s$ 作为常数项，随机选一个 $k-1$ 次多项式 $f(x)=s+c_1x+\cdots+c_{k-1}x^{k-1}$，发给第 $i$ 位受托人一个``份额'' $\big(i,f(i)\big)$.
+		
+		任意 $k$ 位受托人凑在一起，有 $k$ 个点，由插值的唯一性恰好确定 $f$，从而得到 $s=f(0)$. 少于 $k$ 位时，对每一个可能的秘密 $s'$，都有一个 $k-1$ 次多项式经过已知的点且常数项为 $s'$——已知的份额与任何秘密都相容，没有泄露任何信息. 实际系统在有限``数系''上运算（类似第六章讲纠错码时用的 $\mathbb{F}_2$），但原理与这里完全相同.
+	\end{linkbox}
+	
+	\begin{codebox}{同余方程组与秘密共享}
+		\mstep{目标} 实现多项式的中国剩余定理，并用它完成一次 $(3,5)$ 门限秘密共享.
+		
+		\mstep{准备} \texttt{sympy} 中的 \texttt{Poly}、\texttt{div}、\texttt{gcdex}（扩展的辗转相除法）与 \texttt{interpolate}.
+		
+		\mstep{任务}
+		\begin{enumerate}
+			\item 按定理~\ref{thm:crt} 证明中的构造，写函数 \texttt{crt([(r1, m1), (r2, m2), ...])}，返回次数最低的解. 用本节的例题检验.
+			\item 取秘密 $s=2025$，随机选取整数 $c_1,c_2$，令 $f(x)=s+c_1x+c_2x^2$，生成 $5$ 个份额 $(i,f(i))$，$i=1,\ldots,5$.
+			\item 任取其中 $3$ 个份额，分别用 \texttt{crt}（模取 $x-i$）和 \texttt{interpolate} 恢复 $f$，读出 $f(0)$.
+			\item 只取 $2$ 个份额. 对 $s'=0,1,2$ 分别构造一个经过这两点、常数项为 $s'$ 的二次多项式.
+		\end{enumerate}
+		
+		\mstep{检查点} 任取 $3$ 个份额都恢复出 $2025$；任务 4 中三个多项式都存在.
+		
+		\mstep{思考}
+		\begin{enumerate}
+			\item 在实数上做这件事，份额会泄露``秘密的大致大小''吗？（提示：系数 $c_i$ 怎样``随机''地选？）这说明了实际系统为什么要在有限的数系上运算.
+			\item 任务 1 中的构造用到了 Bézout 等式. 当两个模不互素时，程序会在哪一步失败？
+		\end{enumerate}
+	\end{codebox}
+	
+	\section{\hB 矩阵多项式与最小多项式}\label{sec:minpoly}
+	
+	第 \ref{sec:polyring} 节定义了把方阵代入多项式的运算 $f(\vv A)$. 本节研究一个自然的问题：哪些多项式会把 $\vv A$ 变成零矩阵？
+	
+	\begin{definition}
+		设 $\vv A$ 是 $n$ 阶方阵. 若非零多项式 $g$ 使 $g(\vv A)=\vv O$，称 $g$ 是 $\vv A$ 的一个\textbf{零化多项式}\index{ling2hua4 duo1xiang4shi4@零化多项式}.
+	\end{definition}
+	
+	\begin{proposition}\label{prop:annihexist}
+		每个 $n$ 阶方阵都有次数不超过 $n^2$ 的零化多项式.
+	\end{proposition}
+	\begin{proof}
+		$n$ 阶方阵全体是 $n^2$ 维线性空间（第四章），其中 $n^2+1$ 个向量 $\vv I,\vv A,\vv A^2,\ldots,\vv A^{n^2}$ 必线性相关：有不全为零的数 $c_0,\ldots,c_{n^2}$ 使 $\sum c_k\vv A^k=\vv O$. 多项式 $\sum c_kx^k$ 就是一个零化多项式.
+	\end{proof}
+	
+	\begin{motivebox}
+		$\vv A$ 的幂 $\vv A,\vv A^2,\vv A^3,\ldots$ 有无穷多个，直接算下去没有尽头. 命题~\ref{prop:annihexist} 说，它们都挤在一个有限维的空间里，迟早要``重复''：某一次幂可以由更低的幂线性表出. 从那以后，所有更高的幂都可以化归为有限个低次幂的组合. 序言中``东西比位置多，总得挤一挤''的道理，在这里又出现了一次.
+	\end{motivebox}
+	
+	零化多项式乘以任意非零多项式仍是零化多项式，所以零化多项式有无穷多个. 我们关心次数最低的那个.
+	
+	\begin{definition}
+		$\vv A$ 的零化多项式中次数最低的首一多项式，称为 $\vv A$ 的\textbf{最小多项式}\index{zui4xiao3 duo1xiang4shi4@最小多项式}，记为 $m_{\vv A}$.
+	\end{definition}
+	
+	\begin{theorem}\label{thm:minpoly}
+		\begin{enumerate}
+			\item 最小多项式唯一，并且对任意多项式 $g$，$g(\vv A)=\vv O$ 当且仅当 $m_{\vv A}\mid g$.
+			\item 相似矩阵有相同的最小多项式.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		(1) 记 $m=m_{\vv A}$. 若 $m\mid g$，设 $g=qm$，则 $g(\vv A)=q(\vv A)m(\vv A)=\vv O$. 反之，用 $m$ 除 $g$：$g=qm+r$，$\deg r<\deg m$. 代入 $\vv A$ 得 $r(\vv A)=g(\vv A)-q(\vv A)m(\vv A)=g(\vv A)$. 若 $g(\vv A)=\vv O$，则 $r(\vv A)=\vv O$；由 $m$ 的次数最低，$r=0$. 唯一性：两个最小多项式互相整除且都首一，故相等.
+		
+		(2) 对任意多项式 $g$，$g(\vv P^{-1}\vv{AP})=\vv P^{-1}g(\vv A)\vv P$（因为 $(\vv P^{-1}\vv{AP})^k=\vv P^{-1}\vv A^k\vv P$）. 所以 $\vv A$ 与 $\vv P^{-1}\vv{AP}$ 的零化多项式完全相同.
+	\end{proof}
+	
+	求最小多项式的一个直接方法是：依次检验 $\vv I,\vv A,\vv A^2,\ldots$，找到第一个能由前面各次幂线性表出的 $\vv A^d$，写出的关系式就是最小多项式.
+	
+	\begin{example}\label{eg:minpoly2}
+		设 $\vv A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$. 求 $m_{\vv A}$，并计算 $\vv A^{100}$ 与 $\vv A^{-1}$.
+	\end{example}
+	\begin{solution}
+		$\vv A$ 不是单位矩阵的倍数，所以 $\vv I,\vv A$ 线性无关，$m_{\vv A}$ 至少是二次的. 计算 $\vv A^2=\begin{pmatrix}5&4\\4&5\end{pmatrix}=4\vv A-3\vv I$，故
+		\[m_{\vv A}(x)=x^2-4x+3=(x-1)(x-3).\]
+		
+		\textbf{求 $\vv A^{100}$.} 用 $m_{\vv A}$ 除 $x^{100}$：$x^{100}=q(x)(x-1)(x-3)+ax+b$. 代入 $x=1$ 与 $x=3$，得 $a+b=1$，$3a+b=3^{100}$，于是 $a=\frac{3^{100}-1}2$，$b=\frac{3-3^{100}}2$. 由 $m_{\vv A}(\vv A)=\vv O$，
+		\[\vv A^{100}=a\vv A+b\vv I=\frac12\begin{pmatrix}3^{100}+1&3^{100}-1\\3^{100}-1&3^{100}+1\end{pmatrix}.\]
+		
+		\textbf{求 $\vv A^{-1}$.} 由 $\vv A^2-4\vv A+3\vv I=\vv O$ 得 $\vv A(4\vv I-\vv A)=3\vv I$，所以
+		\[\vv A^{-1}=\frac13(4\vv I-\vv A)=\frac13\begin{pmatrix}2&-1\\-1&2\end{pmatrix}.\]
+	\end{solution}
+	
+	一百次矩阵乘法，被一次带余除法代替了. 例中求逆的办法是一般的：
+	
+	\begin{proposition}\label{prop:minpolyinv}
+		方阵 $\vv A$ 可逆，当且仅当 $m_{\vv A}(0)\ne0$. 这时 $\vv A^{-1}$ 是 $\vv A$ 的多项式.
+	\end{proposition}
+	\begin{proof}
+		设 $m_{\vv A}(x)=xq(x)+c$，其中 $c=m_{\vv A}(0)$. 若 $c\ne0$，由 $\vv A\,q(\vv A)=-c\vv I$ 得 $\vv A^{-1}=-\frac1c\,q(\vv A)$. 若 $c=0$，则 $\vv A\,q(\vv A)=\vv O$；而 $\deg q<\deg m_{\vv A}$，$q(\vv A)\ne\vv O$，取 $q(\vv A)$ 的一个非零列 $\vv x$，有 $\vv{Ax}=\zero$，故 $\vv A$ 不可逆.
+	\end{proof}
+	
+	对角矩阵与分块对角矩阵的最小多项式可以直接写出.
+	
+	\begin{proposition}\label{prop:minpolydiag}
+		设 $\vv D=\diag(\lambda_1,\ldots,\lambda_n)$，其中互不相同的对角元为 $\mu_1,\ldots,\mu_s$，则
+		\[m_{\vv D}(x)=(x-\mu_1)(x-\mu_2)\cdots(x-\mu_s).\]
+		更一般地，若 $\vv A=\diag(\vv A_1,\vv A_2)$ 是分块对角矩阵，则 $g(\vv A)=\vv O$ 当且仅当 $g(\vv A_1)=\vv O$ 且 $g(\vv A_2)=\vv O$，从而 $m_{\vv A}=\operatorname{lcm}(m_{\vv A_1},m_{\vv A_2})$.
+	\end{proposition}
+	\begin{proof}
+		$g(\vv D)=\diag\big(g(\lambda_1),\ldots,g(\lambda_n)\big)$，它为零当且仅当 $\mu_1,\ldots,\mu_s$ 都是 $g$ 的根. 由余数定理并对 $s$ 归纳，这又当且仅当 $(x-\mu_1)\cdots(x-\mu_s)\mid g$（$\mu_i$ 互不相同）. 由定理~\ref{thm:minpoly}(1) 即得第一个结论.
+		
+		分块对角矩阵的幂按块计算，所以 $g(\vv A)=\diag\big(g(\vv A_1),g(\vv A_2)\big)$. 因此 $g$ 零化 $\vv A$ 当且仅当它是 $m_{\vv A_1}$ 与 $m_{\vv A_2}$ 的公倍式，次数最低的首一公倍式就是最小公倍式.
+	\end{proof}
+	
+	\begin{pitfallbox}
+		\begin{enumerate}
+			\item 代入矩阵时，常数项 $c$ 要写成 $c\vv I$. $\vv A^2-4\vv A+3$ 没有意义.
+			\item $g(\vv A)=\vv O$ 说的是矩阵 $g(\vv A)$ 为零，\textbf{不是}说 $\vv A$ 的每个元素都满足 $g$. 例~\ref{eg:minpoly2} 中，$\vv A$ 的元素 $2$ 并不是 $x^2-4x+3$ 的根.
+			\item 最小多项式的次数可以比 $n$ 小得多：$n$ 阶单位矩阵的最小多项式是 $x-1$.
+		\end{enumerate}
+	\end{pitfallbox}
+	
+	命题~\ref{prop:annihexist} 只保证零化多项式的次数不超过 $n^2$. 第八章的 Cayley–Hamilton 定理将说明，$\vv A$ 的特征多项式就是一个 $n$ 次零化多项式，所以最小多项式的次数不超过 $n$；那里还将用最小多项式判断矩阵能否对角化. 第九章将进一步说明，最小多项式可以从矩阵 $\lambda\vv I-\vv A$ 的``不变因子''中直接读出.
+	
+	\begin{codebox}{用最小多项式计算矩阵的高次幂}
+		\mstep{目标} 比较``反复相乘''与``最小多项式加带余除法''两种计算 $\vv A^k$ 的方法.
+		
+		\mstep{准备} \texttt{sympy} 中的 \texttt{Matrix}、\texttt{Poly}、\texttt{rem}；\texttt{numpy.linalg.matrix\_power}.
+		
+		\mstep{任务}
+		\begin{enumerate}
+			\item 写函数 \texttt{min\_poly(A)}：依次把 $\vv I,\vv A,\vv A^2,\ldots$ 展平成向量，找到第一个能由前面线性表出的幂，返回最小多项式. 用例~\ref{eg:minpoly2} 检验.
+			\item 写函数 \texttt{power\_by\_minpoly(A, k)}：用 $m_{\vv A}$ 除 $x^k$ 得余式 $r$，返回 $r(\vv A)$.
+			\item 对两个城市之间人口迁移的转移矩阵 $\vv P=\begin{pmatrix}0.9&0.2\\0.1&0.8\end{pmatrix}$（各列和为 $1$），用两种方法计算 $\vv P^{50}$，并用精确分数检查 \texttt{matrix\_power} 的舍入误差.
+		\end{enumerate}
+		
+		\mstep{检查点} $m_{\vv P}(x)=(x-1)(x-0.7)$；$\vv P^{50}$ 的每一列都非常接近 $\big(\frac23,\frac13\big)^\trans$.
+		
+		\mstep{思考} 当 $k\to\infty$ 时，余式 $r(x)=ax+b$ 的系数怎样变化？这预示了第八章马尔可夫链中``长期分布''的什么性质？
+	\end{codebox}
+	
 	\section{*对称多项式（选读）}
 	
 	多元多项式的定义与一元类似，例如 $x_1^2x_2+3x_3$ 是 $\mathbb{F}[x_1,x_2,x_3]$ 中的元素.
@@ -4391,27 +4676,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{remark}
 		这个定理的意义在于：多项式的根的任何``对称的''组合，都可以\textbf{不解方程}、直接用系数算出来. 第八章会看到，矩阵的迹和行列式分别是特征值的 $\sigma_1$ 和 $\sigma_n$，它们无需求出特征值就能直接从矩阵读出.
 	\end{remark}
-	\begin{codebox}{辗转相除法}
-		\mstep{目标} 用系数列表表示多项式，实现带余除法和扩展的辗转相除法，自动写出 Bézout 等式.
-		
-		\mstep{准备} \texttt{fractions.Fraction}；用于对照的 \texttt{sympy} 中的 \texttt{div} 与 \texttt{gcdex}. 约定 $[a_0,a_1,\ldots,a_n]$ 表示 $a_0+a_1x+\cdots+a_nx^n$.
-		
-		\mstep{任务}
-		\begin{enumerate}
-			\item 按定理~\ref{thm:divalg} 证明中``逐次消去首项''的步骤，写函数 \texttt{poly\_divmod(f, g)}，返回商与余式.
-			\item 写多项式乘法 \texttt{poly\_mul(f, g)}，用它检验 $f=qg+r$.
-			\item 写函数 \texttt{ext\_gcd(f, g)}，返回首一的 $\gcd(f,g)$ 以及 $u,v$，并用 \texttt{poly\_mul} 验证 $uf+vg=\gcd(f,g)$.
-			\item 用书中的两个例子检验，再用它完成本章章末习题~\ref{ex:poly:A1} 与 \ref{ex:poly:A4}，并与 \texttt{sympy} 的结果对照.
-		\end{enumerate}
-		
-		\mstep{检查点} $x^4+2x^3+x+3$ 除以 $x^2+1$，商为 $x^2+2x-1$，余式为 $-x+4$；$\gcd(x^3-1,x^2-1)=x-1$，$u=1$，$v=-x$.
-		
-		\mstep{思考}
-		\begin{enumerate}
-			\item 你的程序只用到了加、减、乘、除. 这与``最大公因式不随数域扩大而改变''有什么关系？
-			\item 把 \texttt{Fraction} 换成浮点数，再对 $(x-1)^3(x+2)$ 与它的导数求最大公因式. 余式还能``恰好为零''吗？程序该怎样判断辗转相除何时结束？
-		\end{enumerate}
-	\end{codebox}
+
 	\ExPolynomial 
 	
 	% =====================================================================
@@ -4707,25 +4972,18 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		一个流传很广的错误``证明''是：$f(\vv A)=\det(\vv A\vv I-\vv A)=\det\vv O=0$. 错在 $f(\vv A)$ 是一个\textbf{矩阵}，而右边是一个\textbf{数}：``先把 $\lambda$ 换成 $\vv A$ 再求行列式''与``先求行列式再代入 $\vv A$''是两回事.
 	\end{pitfallbox}
 	
-	Cayley–Hamilton 定理说明：$\vv A$ 总被某个非零多项式``消灭''. 那么，能消灭 $\vv A$ 的次数最低的多项式是什么？
+	Cayley–Hamilton 定理说明，特征多项式是 $\vv A$ 的一个 $n$ 次零化多项式. 第七章第~\ref{sec:minpoly} 节定义了 $\vv A$ 的最小多项式 $m_{\vv A}$，并证明了它整除 $\vv A$ 的每个零化多项式（定理~\ref{thm:minpoly}）. 两者结合，就得到最小多项式与特征多项式的关系.
 	
-	\begin{definition}
-		使 $m(\vv A)=\vv O$ 的次数最低的首一多项式 $m$ 称为 $\vv A$ 的\textbf{最小多项式}\index{zui4xiao3 duo1xiang4shi4@最小多项式}，记为 $m_{\vv A}$.
-	\end{definition}
-	
-	\begin{theorem}\label{thm:minpoly}
+	\begin{proposition}\label{prop:minpolyeig}
 		\begin{enumerate}
-			\item 最小多项式唯一，并且对任意多项式 $g$，$g(\vv A)=\vv O$ 当且仅当 $m_{\vv A}\mid g$. 特别地，$m_{\vv A}$ 整除特征多项式.
+			\item $m_{\vv A}$ 整除 $\vv A$ 的特征多项式，所以 $\deg m_{\vv A}\le n$.
 			\item $m_{\vv A}$ 与特征多项式有相同的根（不计重数），即 $\vv A$ 的全部特征值.
-			\item 相似矩阵有相同的最小多项式.
 		\end{enumerate}
-	\end{theorem}
+	\end{proposition}
 	\begin{proof}
-		(1) 用 $m=m_{\vv A}$ 除 $g$：$g=qm+r$，$\deg r<\deg m$. 代入 $\vv A$ 得 $r(\vv A)=g(\vv A)-q(\vv A)m(\vv A)=g(\vv A)$. 若 $g(\vv A)=\vv O$，则 $r(\vv A)=\vv O$，由 $m$ 次数最低，$r=0$. 唯一性：两个最小多项式互相整除且都首一，故相等.
+		(1) 由定理~\ref{thm:cayleyhamilton} 与定理~\ref{thm:minpoly}(1).
 		
-		(2) 若 $\vv{Ax}=\lambda\vv x$，$\vv x\ne\zero$，则 $\vv0=m(\vv A)\vv x=m(\lambda)\vv x$，故 $m(\lambda)=0$. 反之 $m$ 整除特征多项式，$m$ 的根都是特征值.
-		
-		(3) $g(\vv P^{-1}\vv{AP})=\vv P^{-1}g(\vv A)\vv P$.
+		(2) 若 $\vv{Ax}=\lambda\vv x$，$\vv x\ne\zero$，则 $\vv A^k\vv x=\lambda^k\vv x$，从而 $\zero=m_{\vv A}(\vv A)\vv x=m_{\vv A}(\lambda)\vv x$，故 $m_{\vv A}(\lambda)=0$. 反之，由 (1)，$m_{\vv A}$ 的根都是特征多项式的根.
 	\end{proof}
 	
 	下面这个引理是 Bézout 等式在线性代数中最漂亮的一次出场.
