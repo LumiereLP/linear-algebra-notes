@@ -174,7 +174,7 @@
 
 当求和范围不是``长方形''时，要小心地写出范围. 例如对 $1\le i<j\le n$ 求和，表示表格对角线以上的部分：
 \[\sum_{1\le i<j\le n}a_{ij}=\sum_{i=1}^{n-1}\sum_{j=i+1}^na_{ij}=\sum_{j=2}^n\sum_{i=1}^{j-1}a_{ij}.\]
-第十一章的二次型 $\sum_{i,j}a_{ij}x_ix_j=\sum_ia_{ii}x_i^2+2\sum_{i<j}a_{ij}x_ix_j$（$a_{ij}=a_{ji}$），就是把这张表拆成对角线和上下两个三角形.
+第十三章的二次型 $\sum_{i,j}a_{ij}x_ix_j=\sum_ia_{ii}x_i^2+2\sum_{i<j}a_{ij}x_ix_j$（$a_{ij}=a_{ji}$），就是把这张表拆成对角线和上下两个三角形.
 
 \begin{example}
 	用双重求和证明矩阵乘法的结合律：设 $\vv A,\vv B,\vv C$ 分别为 $m\times n$、$n\times p$、$p\times q$ 矩阵. $(\vv{AB})\vv C$ 的 $(i,l)$ 元为
@@ -235,7 +235,7 @@
 	\end{enumerate}
 \end{pitfallbox}
 
-本书中用归纳法的地方很多：简化阶梯形的存在（第一章）、Gram–Schmidt 正交化（第九章）、谱定理（第十章）都是对维数或向量个数归纳. 读这些证明时，请先找出``对什么归纳''与``归纳假设用在了哪里''.
+本书中用归纳法的地方很多：简化阶梯形的存在（第一章）、Gram–Schmidt 正交化（第十章）、谱定理（第十一章）都是对维数或向量个数归纳. 读这些证明时，请先找出``对什么归纳''与``归纳假设用在了哪里''.
 
 \begin{exercise}\label{exo:prelim-ind}
 	\begin{enumerate}

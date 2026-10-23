@@ -7,8 +7,8 @@
 	%%      写对应的命令：
 	%%        第一章 \ExElimination      第二章 \ExVectorSpace   第三章 \ExMatrix
 	%%        第四章 \ExLinearMap        第五章 \ExDeterminant   第六章 \ExSolutions
-	%%        第七章 \ExPolynomial       第八章 \ExEigen         第九章 \ExInnerProduct
-	%%        第十章 \ExDecomposition    第十一章 \ExQuadratic   第十二章 \ExBilinear
+	%%        第七章 \ExPolynomial       第八章 \ExEigen         第十章 \ExInnerProduct
+	%%        第十一章 \ExDecomposition    第十三章 \ExQuadratic   第十四章 \ExBilinear
 	%%   3. 分组标准
 	%%        A 组：直接运用本章定义与定理的计算和证明；
 	%%        B 组：需要综合多个结论、或有一定技巧的计算和证明；
@@ -17,7 +17,7 @@
 	%%      第六章按扩充版（ch06-solutions.tex）的内容编写.
 	%%   5. 每道题都带标签 ex:<章键>:<组号>，正文、习题与附录答案一律用 \ref 引用，
 	%%      渲染为``A4''``B12''这样的题号. 章键依次为
-	%%        elim vs mat lmap det sol poly eig ip dec quad bil（第一至十二章）.
+	%%        elim vs mat lmap det sol poly eig ip dec quad bil（第一至十四章）.
 	%%      例：第一章章末习题~\ref{ex:elim:B12}. 新增题目请加在组末，并补上标签.
 	%%      A 组答案、B 组提示在 answers.tex 中，按同一标签对应.
 	%% 依赖：导言区的 \vv \zero \trans \spn \rk \imm \diag，以及 enumitem（elegantbook 已加载）.
@@ -494,7 +494,7 @@
 		\Bgroup
 		\begin{exB}
 			\item\label{ex:sol:B1} 求两个齐次方程组 $\{x_1+x_2=0,\ x_2-x_4=0\}$ 与 $\{x_1-x_2+x_3=0,\ x_2-x_3+x_4=0\}$ 的公共非零解.
-			\item\label{ex:sol:B2} 设 $\vv A$ 是实矩阵. 证明 $\vv{Ax}=\zero$ 与 $\vv A^\trans\vv{Ax}=\zero$ 同解，从而 $\rk(\vv A^\trans\vv A)=\rk\vv A$.（提示：$\vv x^\trans\vv A^\trans\vv{Ax}=\|\vv{Ax}\|^2$ 在第九章才有名字，但这里只需``实数的平方和为零则每个都为零''.）
+			\item\label{ex:sol:B2} 设 $\vv A$ 是实矩阵. 证明 $\vv{Ax}=\zero$ 与 $\vv A^\trans\vv{Ax}=\zero$ 同解，从而 $\rk(\vv A^\trans\vv A)=\rk\vv A$.（提示：$\vv x^\trans\vv A^\trans\vv{Ax}=\|\vv{Ax}\|^2$ 在第十章才有名字，但这里只需``实数的平方和为零则每个都为零''.）
 			\item\label{ex:sol:B3} 证明 $\rk(\vv A+\vv B)\le\rk(\vv A\mid\vv B)\le\rk\vv A+\rk\vv B$.
 			\item\label{ex:sol:B4} 设 $\vv A$ 为 $n$ 阶方阵，$\vv A^2=\vv I$. 证明 $\rk(\vv A+\vv I)+\rk(\vv A-\vv I)=n$.
 			\item\label{ex:sol:B5} 证明 $\rk(\vv{AB})=\rk\vv B$ 当且仅当 $\ker\vv A\cap\imm\vv B=\{\zero\}$.
@@ -659,7 +659,7 @@
 	}
 	
 	% =====================================================================
-	% 第九章　内积空间
+	% 第十章　内积空间
 	% =====================================================================
 	\newcommand{\ExInnerProduct}{%
 		\exsetheading
@@ -714,7 +714,7 @@
 			\item\label{ex:ip:C1} （Hadamard 不等式）用 QR 分解证明：对 $n$ 阶实方阵 $\vv A=(\vv a_1,\ldots,\vv a_n)$，$|\det\vv A|\le\|\vv a_1\|\cdots\|\vv a_n\|$，并说明它的几何意义（平行多面体的体积不超过棱长之积）.
 			\item\label{ex:ip:C2} （Gram–Schmidt 的数值不稳定）设 $\varepsilon$ 很小，对 $\vv a_1=(1,\varepsilon,0,0)^\trans$，$\vv a_2=(1,0,\varepsilon,0)^\trans$，$\vv a_3=(1,0,0,\varepsilon)^\trans$ 作 Gram–Schmidt，在计算中把 $1+\varepsilon^2$ 舍入为 $1$. 证明所得的 $\vv e_2,\vv e_3$ 之间的夹角是 $60^\circ$ 而不是 $90^\circ$. 再用``修正的 Gram–Schmidt''（每得到一个 $\vv e_k$，立即从\textbf{剩余的}所有向量中减去它的分量）重做，比较结果.
 			\item\label{ex:ip:C3} （Legendre 多项式）令 $P_n(x)=\frac1{2^nn!}\frac{\mathrm d^n}{\mathrm dx^n}(x^2-1)^n$. 证明 $P_0,P_1,P_2,\ldots$ 在 $\langle f,g\rangle=\int_{-1}^1fg\,\mathrm dx$ 下两两正交，并求 $\|P_n\|$.
-			\item\label{ex:ip:C4} （Gauss–Markov 定理的线性代数部分）设 $\vv A$ 列满秩. 若 $\vv C\vv y$ 是参数 $\vv\beta$ 的``线性无偏估计''，即 $\vv{CA}=\vv I$. 令 $\vv C_0=(\vv A^\trans\vv A)^{-1}\vv A^\trans$（最小二乘）. 证明 $\vv C\vv C^\trans-\vv C_0\vv C_0^\trans$ 是半正定矩阵（第十一章）. 学过概率论后可以知道，这说明最小二乘估计的方差在一切线性无偏估计中最小.
+			\item\label{ex:ip:C4} （Gauss–Markov 定理的线性代数部分）设 $\vv A$ 列满秩. 若 $\vv C\vv y$ 是参数 $\vv\beta$ 的``线性无偏估计''，即 $\vv{CA}=\vv I$. 令 $\vv C_0=(\vv A^\trans\vv A)^{-1}\vv A^\trans$（最小二乘）. 证明 $\vv C\vv C^\trans-\vv C_0\vv C_0^\trans$ 是半正定矩阵（第十三章）. 学过概率论后可以知道，这说明最小二乘估计的方差在一切线性无偏估计中最小.
 			\item\label{ex:ip:C5} （复内积空间）在 $\mathbb{C}^n$ 上定义 $\langle\vv x,\vv y\rangle=\sum x_i\bar y_i$. 证明它满足共轭对称性、对第一个变量线性、正定性；证明 Cauchy–Schwarz 不等式仍成立. 满足 $\bar{\vv U}^\trans\vv U=\vv I$ 的复矩阵称为\textbf{酉矩阵}，证明它保持这个内积.
 			\item\label{ex:ip:C6} 设 $f:\mathbb{R}^n\to\mathbb{R}^n$ 保持距离（$\|f(\vv x)-f(\vv y)\|=\|\vv x-\vv y\|$）且 $f(\zero)=\zero$. 证明 $f$ 保持内积，进而证明 $f$ 是线性的正交变换. 由此说明：保持距离的变换都可以分解为正交变换与平移的复合.
 			\item\label{ex:ip:C7} （伪逆）设 $\vv A$ 列满秩，$\vv A^+=(\vv A^\trans\vv A)^{-1}\vv A^\trans$. 验证 Penrose 四条件：$\vv{AA}^+\vv A=\vv A$，$\vv A^+\vv{AA}^+=\vv A^+$，$(\vv{AA}^+)^\trans=\vv{AA}^+$，$(\vv A^+\vv A)^\trans=\vv A^+\vv A$. 说明 $\vv{AA}^+$ 是向哪个子空间的正交投影.
@@ -723,7 +723,7 @@
 	}
 	
 	% =====================================================================
-	% 第十章　矩阵分解
+	% 第十一章　矩阵分解
 	% =====================================================================
 	\newcommand{\ExDecomposition}{%
 		\exsetheading
@@ -761,14 +761,14 @@
 			\item\label{ex:dec:B4} 证明：对任意 $\vv x$，$\|\vv{Ax}\|\le\sigma_1\|\vv x\|$，且等号可以取到. 因此 $\sigma_1=\max_{\vv x\ne\zero}\|\vv{Ax}\|/\|\vv x\|$，称为 $\vv A$ 的\textbf{谱范数}\index{pu3 fan4shu4@谱范数} $\|\vv A\|_2$.
 			\item\label{ex:dec:B5} 证明：方阵 $\vv A$ 的任一特征值 $\lambda$ 满足 $\sigma_{\min}\le|\lambda|\le\sigma_{\max}$.
 			\item\label{ex:dec:B6} 求 $\vv A=\begin{pmatrix}1&0&1\\0&1&1\end{pmatrix}$ 的奇异值分解.
-			\item\label{ex:dec:B7} （伪逆）设 $\vv A=\vv U\vv\Sigma\vv V^\trans$，定义 $\vv A^+=\vv V\vv\Sigma^+\vv U^\trans$，其中 $\vv\Sigma^+$ 是把 $\vv\Sigma$ 转置并把非零元取倒数. 证明 $\vv A^+\vv b$ 是 $\vv{Ax}=\vv b$ 的范数最小的最小二乘解. 当 $\vv A$ 列满秩时，它与第九章的 $(\vv A^\trans\vv A)^{-1}\vv A^\trans$ 一致.
+			\item\label{ex:dec:B7} （伪逆）设 $\vv A=\vv U\vv\Sigma\vv V^\trans$，定义 $\vv A^+=\vv V\vv\Sigma^+\vv U^\trans$，其中 $\vv\Sigma^+$ 是把 $\vv\Sigma$ 转置并把非零元取倒数. 证明 $\vv A^+\vv b$ 是 $\vv{Ax}=\vv b$ 的范数最小的最小二乘解. 当 $\vv A$ 列满秩时，它与第十章的 $(\vv A^\trans\vv A)^{-1}\vv A^\trans$ 一致.
 			\item\label{ex:dec:B8} 设 $p$ 个标准化指标两两相关系数都为 $\rho$（$0<\rho<1$），相关系数矩阵为 $(1-\rho)\vv I+\rho\vv J$（$\vv J$ 为全 $1$ 矩阵）. 求它的特征值与第一主成分，并求第一主成分解释的方差比例. 当 $\rho\to1$ 与 $\rho\to0$ 时比例分别趋于多少？
 			\item\label{ex:dec:B9} 设两个指标的协方差矩阵为 $\begin{pmatrix}100&6\\6&1\end{pmatrix}$（第一个指标以``元''计，第二个以``万元''计）. 对协方差矩阵与相关系数矩阵分别作主成分分析，比较第一主成分. 由此说明：主成分分析对量纲敏感，为什么通常先标准化.
 			\item\label{ex:dec:B10} 证明 $\|\vv A-\vv A_k\|_2=\sigma_{k+1}$.
 			\item\label{ex:dec:B11} 证明：若 $\vv A$ 的奇异值互不相同且都不为零，则 $\vv A$ 的奇异值分解中的 $\vv u_i,\vv v_i$ 除了同时改变符号之外是唯一的.
 			\item\label{ex:dec:B12} （正规矩阵）满足 $\vv A^\trans\vv A=\vv{AA}^\trans$ 的实方阵称为正规矩阵. 证明二阶实正规矩阵只有两类：对称矩阵，以及形如 $\begin{pmatrix}a&-b\\b&a\end{pmatrix}$ 的矩阵（旋转与伸缩的复合）.
 			\item\label{ex:dec:B13} 设 $\vv A$ 是实对称矩阵. 证明 $\vv A$ 的特征值都落在 $[\min_i(a_{ii}-r_i),\ \max_i(a_{ii}+r_i)]$ 中，$r_i=\sum_{j\ne i}|a_{ij}|$. 并证明 $\lambda_{\max}\ge\max_ia_{ii}$.
-			\item\label{ex:dec:B14} 对第十章``潜在语义分析''的例子，取 $k=1$，说明此时四份文书分别被表示成什么，查询``解约''与哪几份文书相似. 与 $k=2$ 比较，``压缩过头''的现象是否更严重？
+			\item\label{ex:dec:B14} 对第十一章``潜在语义分析''的例子，取 $k=1$，说明此时四份文书分别被表示成什么，查询``解约''与哪几份文书相似. 与 $k=2$ 比较，``压缩过头''的现象是否更严重？
 			\item\label{ex:dec:B15} 证明：实对称矩阵 $\vv A$ 的特征值都在 $[a,b]$ 中，当且仅当 $\vv A-a\vv I$ 与 $b\vv I-\vv A$ 的二次型都非负.
 		\end{exB}
 		
@@ -787,7 +787,7 @@
 	}
 	
 	% =====================================================================
-	% 第十一章　二次型
+	% 第十三章　二次型
 	% =====================================================================
 	\newcommand{\ExQuadratic}{%
 		\exsetheading
@@ -853,7 +853,7 @@
 	}
 	
 	% =====================================================================
-	% 第十二章　*对偶空间与双线性型（选读）
+	% 第十四章　*对偶空间与双线性型（选读）
 	% =====================================================================
 	\newcommand{\ExBilinear}{%
 		\exsetheading

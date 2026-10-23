@@ -148,6 +148,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \newcommand{\vv}[1]{\boldsymbol{#1}}
 \newcommand{\zero}{\boldsymbol{0}}          % 零向量（全书统一，不再混用 \mathbf{0}）
 \newcommand{\trans}{\mathrm{T}}             % 转置：A^{\trans}
+\newcommand{\herm}{\mathrm{H}}              % 共轭转置：A^{\herm}（第十二章；A^* 已表示伴随矩阵）
 \newcommand{\spn}{\operatorname{span}}      % 张成：\spn(\vv\alpha_1,\ldots)
 \newcommand{\rk}{\operatorname{rank}}       % 秩
 \newcommand{\imm}{\operatorname{Im}}        % 像
@@ -155,11 +156,11 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \providecommand{\tr}{\operatorname{tr}}     % 迹（正文、习题与答案统一使用）
 
 % ---------- 学时标记（含义见``本书记号约定''） ----------
-% 不加标记：48 学时方案即讲授；\hB：64 学时及以上讲授；\hC：72 学时讲授；* ：选读.
+% 不加标记：48 学时方案即讲授；\hB：72 学时及以上讲授；\hC：96 学时讲授；* ：选读.
 \newcommand{\hB}{\texorpdfstring{\textdagger}{†}}
 \newcommand{\hC}{\texorpdfstring{\textdaggerdbl}{‡}}
 \newcommand{\chapterhours}[3]{%
-	\par\smallskip\noindent{\small\sffamily 建议学时：48 学时方案 #1\quad 64 学时方案 #2\quad 72 学时方案 #3}\par\smallskip}
+	\par\smallskip\noindent{\small\sffamily 建议学时：48 学时方案 #1\quad 72 学时方案 #2\quad 96 学时方案 #3}\par\smallskip}
 
 % ---------- 索引与长表格 ----------
 % 索引条目用 \index{拼音@中文} 的形式按拼音排序；编译时需运行 makeindex
@@ -410,7 +411,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 
 		不过，既然我能以编者的身份站在这里，说明事情出现了转机。我已经讲不清自己现在对于数学的热情是因为什么具体的事件而产生了，但是这份热情能够维持至今并仍然熊熊燃烧的原因，我很清楚。
 
-		\textbf{数学是实用的。}一家企业安排下个月的生产计划，要算清每种产品各需要多少零部件、多少原料，而各部门之间又互相消耗彼此的产出——这是一张 “表” 乘上一列 “数” 的问题。一个法律检索系统要从上万条法条中找出与一段案情描述最相近的几条——它把每条法条变成一个高维向量，再比较向量之间的 “夹角”。一个搜索引擎要给数以亿计的网页排出先后——它求的是一个巨大矩阵的特征向量。这三件事分别对应本书的第三章、第九章和第八章。
+		\textbf{数学是实用的。}一家企业安排下个月的生产计划，要算清每种产品各需要多少零部件、多少原料，而各部门之间又互相消耗彼此的产出——这是一张 “表” 乘上一列 “数” 的问题。一个法律检索系统要从上万条法条中找出与一段案情描述最相近的几条——它把每条法条变成一个高维向量，再比较向量之间的 “夹角”。一个搜索引擎要给数以亿计的网页排出先后——它求的是一个巨大矩阵的特征向量。这三件事分别对应本书的第三章、第十章和第八章。
 		\sidefig[0.3\linewidth]{image/heisenberg.jpg}{维尔纳·海森堡}[fig:portraitheisenberg]
 		但是，我们在学习数学时，总会问出 “我买菜又用不到三角函数，为什么要学” 这样的问题。这是因为，数学常常走在它的用途前面。1858 年，英国数学家凯莱（Cayley）发表了《矩阵理论研究报告》（\textit{A Memoir on the Theory of Matrices}），系统地规定了矩阵的加法与乘法。他定义的乘法有一个古怪之处：$AB$ 与 $BA$ 一般并不相等。在当时看来，这不过是代数学家摆弄符号的又一种游戏，看不出有什么实际用处。六十七年后的 1925 年夏天，年轻的德国物理学家海森堡（Heisenberg）为了躲避花粉症，独自来到北海的黑尔戈兰岛，试图写出描述原子内部的新力学。他在计算中造出了一种奇怪的乘法——两个量相乘，先后次序一交换，结果就变了——这让他自己也颇为不安。回到哥廷根后，玻恩（Born）反复琢磨这份手稿，终于认出：这正是他学生时代学过的矩阵乘法。不久，玻恩与约当（Jordan）用矩阵的语言重写了海森堡的理论，量子力学的第一种完整形式——矩阵力学——由此诞生。刻画位置与动量 “不可交换” 的关系式 $pq-qp=\dfrac{h}{2\pi \mathrm{i}}$ 后来被刻在了玻恩的墓碑上，而这个式子之所以能够成立，靠的正是凯莱那个 “古怪” 的乘法。一个在纸面上沉睡了六十多年的定义，最终成了描述微观世界的语言。
 
@@ -462,6 +463,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			ch/.style={draw=figblue,thick,fill=accent!14,rounded corners=3pt,
 				text width=27mm,minimum height=17mm,align=center,inner sep=2pt},
 			opt48/.style={ch,dashed,fill=accent!4},
+			opt96/.style={ch,dash pattern=on 4pt off 1.5pt on 1pt off 1.5pt,fill=white},
 			sel/.style={ch,densely dotted,draw=gray!70,fill=gray!6},
 			app/.style={ch,draw=gray!70,fill=white},
 			num/.style={font=\sffamily\bfseries\small,text=figblue},
@@ -488,19 +490,21 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\node[ch] (c6) at (7.4,-2.8) {{\sffamily\bfseries 第六章}\\[2pt]线性方程组\\解的结构};
 			\node[ch] (c5) at (11.1,-2.8){{\sffamily\bfseries 第五章}\\[2pt]行列式};
 			
-			\node[ch] (c9) at (0,-6.2)     {{\sffamily\bfseries 第九章}\\[2pt]内积空间};
+			\node[ch] (c9) at (0,-6.2)     {{\sffamily\bfseries 第十章}\\[2pt]内积空间};
 			\node[opt48] (c7) at (3.7,-6.2){{\sffamily\bfseries 第七章}\\[2pt]多项式};
 			\node[ch] (c8) at (7.4,-6.2)   {{\sffamily\bfseries 第八章}\\[2pt]特征值\\与特征向量};
 			\node[app] (pa) at (11.1,-6.2) {{\sffamily\bfseries 附录 A}\\[2pt]预备知识};
-			\node[ch] (c10) at (3.7,-8.9)  {{\sffamily\bfseries 第十章}\\[2pt]矩阵分解};
+			\node[ch] (c10) at (3.7,-8.9)  {{\sffamily\bfseries 第十一章}\\[2pt]矩阵分解};
+			\node[opt48] (clam) at (7.4,-8.9) {{\sffamily\bfseries 第九章}\\[2pt]$\lambda$-矩阵};
+			\node[opt96] (cuni) at (0,-8.9)   {{\sffamily\bfseries 第十二章}\\[2pt]酉空间};
 			
-			\node[ch] (c11) at (3.7,-12.0) {{\sffamily\bfseries 第十一章}\\[2pt]二次型};
-			\node[sel] (c12) at (7.4,-12.0){{\sffamily\bfseries 第十二章}\\[2pt]*对偶空间\\与双线性型};
+			\node[ch] (c11) at (3.7,-12.0) {{\sffamily\bfseries 第十三章}\\[2pt]二次型};
+			\node[sel] (c12) at (7.4,-12.0){{\sffamily\bfseries 第十四章}\\[2pt]*对偶空间\\与双线性型};
 			\node[app] (pb) at (11.1,-12.0){{\sffamily\bfseries 附录 B}\\[2pt]运筹学初步};
 			
-			% ---------- 学时（48·64·72） ----------
-			\foreach \n/\h in {c1/{3·3·3},c2/{6·7·9},c3/{6·7·7},c4/{4·5·6},c5/{4·5·5},c6/{4·5·6},
-				c7/{—·3·4},c8/{6·8·9},c9/{3·5·6},c10/{3·5·6},c11/{5·7·7}}{
+			% ---------- 学时（48·72·96） ----------
+			\foreach \n/\h in {c1/{3·3·3},c2/{5·6·7},c3/{6·7·8},c4/{5·7·9},c5/{4·5·6},c6/{4·5·7},
+				c7/{—·4·6},c8/{6·7·9},clam/{—·4·6},c9/{3·6·7},c10/{3·5·7},cuni/{—·—·6},c11/{5·7·8}}{
 				\node[hrs,anchor=north east] at ([yshift=-1pt]\n.south east) {\h};
 			}
 			
@@ -535,6 +539,9 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\node[font=\scriptsize,text=gray,anchor=north] at ([yshift=-1pt]pa.south) {48 学时方案用它代替第七章};
 			\draw[dep] (c9.south east) -- (c10.north west);
 			\draw[dep] (c8.south west) -- (c10.north east);
+			\draw[dep] (c8) -- (clam);
+			\draw[dep] (c9) -- (cuni);
+			\draw[dep] (c10) -- (cuni);
 			\draw[dep] (c10) -- (c11);
 			\draw[dep] (c11) -- (c12);
 			
@@ -544,9 +551,11 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 				\node[anchor=west] at (0.75,0) {各方案都讲};
 				\node[opt48,text width=6mm,minimum height=4mm] at (3.3,0) {};
 				\node[anchor=west] at (3.75,0) {48 学时不讲};
-				\node[sel,text width=6mm,minimum height=4mm] at (6.5,0) {};
-				\node[anchor=west] at (6.95,0) {选读};
-				\node[anchor=west,hrs] at (8.4,0) {3·3·3 = 48·64·72 学时方案的建议学时};
+				\node[opt96,text width=6mm,minimum height=4mm] at (6.5,0) {};
+				\node[anchor=west] at (6.95,0) {仅 96 学时讲};
+				\node[sel,text width=6mm,minimum height=4mm] at (9.7,0) {};
+				\node[anchor=west] at (10.15,0) {选读};
+				\node[anchor=west,hrs] at (0.1,-1.1) {3·3·3 = 48·72·96 学时方案的建议学时};
 				\node[cs=caseA] at (0.3,-0.55) {};   \node[anchor=west] at (0.45,-0.55) {投入产出};
 				\node[cs=caseB] at (2.4,-0.55) {}; \node[anchor=west] at (2.55,-0.55) {物流网络};
 				\node[cs=caseC] at (4.5,-0.55) {};    \node[anchor=west] at (4.65,-0.55) {判例引证与法条检索};
@@ -932,7 +941,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	第一章给出了求解方程组的方法，但没有回答解集具有怎样的结构. 要回答这一问题，需要把一组数作为整体来研究. 本章研究 $n$ 维向量：先考察一组向量之间有没有``冗余''，即线性相关性；再用极大无关组与秩度量一个向量组中真正独立的方向有多少. 本章最后把这些结论收拢成``向量空间''的概念，并说明一个向量组的秩，就是它所张成的向量空间的维数. 一般的线性空间，即把这套语言推广到多项式、矩阵、函数等对象上，留到第四章.
 	
-	\chapterhours{6}{7}{9}
+	\chapterhours{5}{6}{7}
 	
 	\begin{introduction}[学习目标]
 		\item 判断向量组的线性相关性，把它归结为齐次方程组是否有非零解
@@ -1426,7 +1435,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	第一章把矩阵当作记录方程组的表格. 本章把矩阵本身作为研究对象，定义矩阵的运算，并研究初等矩阵、逆矩阵与矩阵的秩. 矩阵乘法的定义来自线性组合，方程组由此可以写成 $\vv{Ax}=\vv b$ 的形式，第一、二章的结论也随之获得矩阵语言的表述. 本章证明的``行秩等于列秩''，把方程组、向量组与矩阵三方面的秩统一了起来.
 	
-	\chapterhours{6}{7}{7}
+	\chapterhours{6}{7}{8}
 	
 	\begin{introduction}[学习目标]
 		\item 进行矩阵的线性运算、乘法、转置与求迹，并能按列的线性组合理解矩阵乘向量
@@ -1635,9 +1644,9 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\end{enumerate}
 	\end{pitfallbox}
 	
-	由 (1)，迹是 $M_n(\mathbb{F})$ 上的线性函数（第四章、第十二章）；第八章会看到，迹还等于矩阵全部特征值之和.
+	由 (1)，迹是 $M_n(\mathbb{F})$ 上的线性函数（第四章、第十四章）；第八章会看到，迹还等于矩阵全部特征值之和.
 	\begin{linkbox}{法条检索中的``词项—文档矩阵''}
-		设一个法规库有 $n$ 条法条，词表中有 $m$ 个关键词. 令 $a_{ij}$ 为第 $i$ 个词在第 $j$ 条法条中出现的次数，得到 $m\times n$ 的\textbf{词项—文档矩阵}\index{ci2xiang4 wen2dang4 ju3zhen4@词项—文档矩阵} $\vv A$. 用户的查询也写成 $m$ 维向量 $\vv q$（第 $i$ 个分量表示是否含第 $i$ 个词），则 $\vv A^\trans\vv q$ 的第 $j$ 个分量就是查询与第 $j$ 条法条的``共同词数''——一次矩阵乘法就给所有法条打了分. 第九章我们会用``夹角''改进这个打分方法.
+		设一个法规库有 $n$ 条法条，词表中有 $m$ 个关键词. 令 $a_{ij}$ 为第 $i$ 个词在第 $j$ 条法条中出现的次数，得到 $m\times n$ 的\textbf{词项—文档矩阵}\index{ci2xiang4 wen2dang4 ju3zhen4@词项—文档矩阵} $\vv A$. 用户的查询也写成 $m$ 维向量 $\vv q$（第 $i$ 个分量表示是否含第 $i$ 个词），则 $\vv A^\trans\vv q$ 的第 $j$ 个分量就是查询与第 $j$ 条法条的``共同词数''——一次矩阵乘法就给所有法条打了分. 第十章我们会用``夹角''改进这个打分方法.
 	\end{linkbox}
 	
 	\begin{modelbox}{判例引证网络}
@@ -1976,7 +1985,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	这个等式直接计算几乎无从下手：$\vv{AB}$ 与 $\vv{BA}$ 甚至不是同阶矩阵. 打洞的诀窍在于\textbf{把两个矩阵放进同一个更大的矩阵里}，从两个方向消元，再比较结果.
 	
 	\begin{remark}
-		打洞将在后文反复出现. 第五章会看到，分块初等矩阵 $\vv P,\vv Q$ 的行列式都是 $1$，于是由定理~\ref{thm:holepunch}(1) 立即得到 $\det\vv M=\det\vv A\cdot\det\vv S$. 第十一章证明正定矩阵的顺序主子式判据时，对 $\vv C=\vv B^\trans$ 的对称情形打洞，Schur 补将再次登场.
+		打洞将在后文反复出现. 第五章会看到，分块初等矩阵 $\vv P,\vv Q$ 的行列式都是 $1$，于是由定理~\ref{thm:holepunch}(1) 立即得到 $\det\vv M=\det\vv A\cdot\det\vv S$. 第十三章证明正定矩阵的顺序主子式判据时，对 $\vv C=\vv B^\trans$ 的对称情形打洞，Schur 补将再次登场.
 	\end{remark}
 	
 	\begin{historybox}{华罗庚与``打洞''}
@@ -2032,7 +2041,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	第二章在 $\mathbb{F}^n$ 中建立了线性相关、秩、基与维数，这些结论的证明只用到了加法与数乘的运算性质. 本章前半部分把这一观察变成定义：先用数域概括``数可以自由地做四则运算''，再用八条运算律定义一般的线性空间，使多项式、矩阵、函数等对象都能使用第二章的全部结论；并证明同一数域上维数相同的有限维线性空间都同构于 $\mathbb{F}^n$. 后半部分研究线性空间之间保持线性运算的映射，并证明：取定基以后，线性映射与矩阵一一对应，映射的复合对应矩阵的乘法. 由此，第三章中矩阵乘法的定义得到了解释. 本章最后讨论同一个线性变换在不同基下的矩阵之间的关系，引出相似矩阵，为第八章的对角化问题做准备.
 	
-	\chapterhours{4}{5}{6}
+	\chapterhours{5}{7}{9}
 	
 	\begin{introduction}[学习目标]
 		\item 验证一个集合关于给定的运算是否构成数域、线性空间或子空间
@@ -2330,7 +2339,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	像 $H_i$ 这样由一个非平凡的齐次方程定义的子空间，称为\textbf{超平面}. 在 $\mathbb{R}^2$ 中它是过原点的直线，在 $\mathbb{R}^3$ 中是过原点的平面. 推论说：有限个超平面之外，总有立足之地.
 	
 	\begin{linkbox}{综合指数为什么几乎不会``并列''}
-		本书多次用加权求和给对象打分：价目表给购物篮定价，词频给法条打分，第十章还会用主成分给地区编制综合指数. 设 $n$ 个地区各有 $p$ 个指标，第 $i$ 个地区的数据为 $\vv x_i=(x_{i1},\ldots,x_{ip})^\trans$，且任意两个地区的数据不完全相同. 给定权重 $\vv w$，地区 $i$ 的得分为 $w_1x_{i1}+\cdots+w_px_{ip}$.
+		本书多次用加权求和给对象打分：价目表给购物篮定价，词频给法条打分，第十一章还会用主成分给地区编制综合指数. 设 $n$ 个地区各有 $p$ 个指标，第 $i$ 个地区的数据为 $\vv x_i=(x_{i1},\ldots,x_{ip})^\trans$，且任意两个地区的数据不完全相同. 给定权重 $\vv w$，地区 $i$ 的得分为 $w_1x_{i1}+\cdots+w_px_{ip}$.
 		
 		地区 $i$ 与 $j$ 得分相同，恰好是 $\vv w$ 落在超平面
 		\[\{\vv w\mid w_1(x_{i1}-x_{j1})+\cdots+w_p(x_{ip}-x_{jp})=0\}\]
@@ -2338,7 +2347,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		
 		更进一步，在 $\mathbb{R}^p$ 中，``坏''的权重全都挤在有限个超平面上，而超平面在 $\mathbb{R}^p$ 中``没有体积''. 所以若权重是从某个连续的范围里随意选取的，出现并列几乎是不可能的. 这个直觉的严格表述需要概率论或测度论，这里不作证明.
 		
-		不过，``能排出不并列的名次''与``名次有意义''是两回事. 覆盖定理只保证前者；后者取决于权重是否反映了我们真正在乎的东西——这正是第十章主成分分析建模实验中``局限''一栏讨论的问题.
+		不过，``能排出不并列的名次''与``名次有意义''是两回事. 覆盖定理只保证前者；后者取决于权重是否反映了我们真正在乎的东西——这正是第十一章主成分分析建模实验中``局限''一栏讨论的问题.
 	\end{linkbox}
 	
 	
@@ -2469,7 +2478,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		取 $W$ 的基 $\vv\alpha_1,\ldots,\vv\alpha_k$，扩张为 $V$ 的基 $\vv\alpha_1,\ldots,\vv\alpha_k,\vv\beta_1,\ldots,\vv\beta_{n-k}$，令 $$U=\spn(\vv\beta_1,\ldots,\vv\beta_{n-k})$$，由定理~\ref{thm:directsum2}(5) 即得. 不唯一的例子：在 $\mathbb{R}^2$ 中，$x$ 轴的补空间可以是任意一条不同于 $x$ 轴的过原点直线.
 	\end{proof}
 	
-	补空间不唯一，那么有没有一个``最自然''的补空间？有了``垂直''的概念之后答案是肯定的，见第九章正交补一节.
+	补空间不唯一，那么有没有一个``最自然''的补空间？有了``垂直''的概念之后答案是肯定的，见第十章正交补一节.
 	
 	\begin{example}
 		在 $\mathbb{F}[x]_n$ 中，令 $E$ 为只含偶次项的多项式全体，$O$ 为只含奇次项的多项式全体. 每个多项式都能唯一地拆成偶次部分与奇次部分之和，故 $\mathbb{F}[x]_n=E\oplus O$.
@@ -2498,7 +2507,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\draw[vec,figorange] (0,0,0) -- (r) node[below left,font=\small]{偏离平均};
 			\draw[vec,figred] (0,0,0) -- (x) node[right]{$\vv x$};
 		\end{tikzpicture}
-		\caption{$\mathbb{R}^3=L\oplus R$：任何价格变动 $\vv x$ 都唯一地分解为``一般价格水平''（$L$ 中）与``相对价格''（$R$ 中）两部分. 图中 $\vv x$ 按 $(3,1,2)^\trans$ 的比例画出. 第九章会看到，$L$ 与 $R$ 互相垂直.}
+		\caption{$\mathbb{R}^3=L\oplus R$：任何价格变动 $\vv x$ 都唯一地分解为``一般价格水平''（$L$ 中）与``相对价格''（$R$ 中）两部分. 图中 $\vv x$ 按 $(3,1,2)^\trans$ 的比例画出. 第十章会看到，$L$ 与 $R$ 互相垂直.}
 		\label{fig:pricedecomp}
 	\end{figure}
 	\subsection{多个子空间的直和}
@@ -2869,7 +2878,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\begin{itemize}
 			\item 第一行系数之和为 $1$，后两行系数之和为 $0$. 所以灰色像素 $R=G=B=g$ 变为 $(g,0,0)^\trans$：灰色没有``色度''，只有亮度.
 			\item 系数矩阵可逆，换基本身不损失任何信息. 但人眼对亮度远比对颜色敏感，于是可以对每 $2\times2$ 个像素只保留一组 $(C_b,C_r)$. 原来 $4$ 个像素要存 $12$ 个数，现在只需 $4+1+1=6$ 个，数据量减半.
-			\item 换基不改变信息，但改变了\textbf{信息在坐标之间的分布}，让``重要的''集中到少数坐标上，``不重要的''可以舍弃. 这一思想将在第十章的奇异值分解与主成分分析中达到顶峰.
+			\item 换基不改变信息，但改变了\textbf{信息在坐标之间的分布}，让``重要的''集中到少数坐标上，``不重要的''可以舍弃. 这一思想将在第十一章的奇异值分解与主成分分析中达到顶峰.
 		\end{itemize}
 		
 		\mstep{局限} 加上 $128$ 的偏移后，变换是``线性映射 $+$ 平移''，即\textbf{仿射变换}\index{fang3she4 bian4huan4@仿射变换}，而不是线性变换（回忆：平移不保持零向量）. 另外，系数取决于所采用的标准，高清视频标准使用另一组系数.
@@ -2884,7 +2893,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	本章为方阵定义一个数值特征，即行列式. 从几何上看，行列式是方阵所代表的线性变换对面积或体积的有向伸缩倍数. 行列式给出了方阵可逆的数值判据，以及逆矩阵和方程组的解的显式公式（伴随矩阵与 Cramer 法则）. 本章最后用子式刻画矩阵的秩，与第三章用向量组定义的秩相互印证.
 	
-	\chapterhours{4}{5}{5}
+	\chapterhours{4}{5}{6}
 	
 	\begin{introduction}[学习目标]
 		\item 计算排列的逆序数，按定义写出低阶行列式的展开式
@@ -3237,7 +3246,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{solution}
 	
 	\begin{remark}
-		求秩时，子式通常比初等变换麻烦得多. 这个定理的价值在于理论上的刻画. 例如它说明：一个非零子式在矩阵元素作微小改动后仍不为零，所以\textbf{秩在微小扰动下不会降低，只可能升高}. 带测量误差的数据矩阵因此几乎总是满秩的，``数据的真实秩''要用第十章的奇异值来判断.
+		求秩时，子式通常比初等变换麻烦得多. 这个定理的价值在于理论上的刻画. 例如它说明：一个非零子式在矩阵元素作微小改动后仍不为零，所以\textbf{秩在微小扰动下不会降低，只可能升高}. 带测量误差的数据矩阵因此几乎总是满秩的，``数据的真实秩''要用第十一章的奇异值来判断.
 	\end{remark}
 	\begin{modelbox}{投入产出（续）：经济能否运转与产业乘数}
 		\mstep{问题} 回到两部门模型 $(\vv I-\vv A)\vv x=\vv d$，$\vv A=\begin{pmatrix}0.2&0.3\\0.4&0.1\end{pmatrix}$. 两个问题：(1) 这个经济体是否\textbf{对任何}非负的最终需求都能给出非负的产出？(2) 某部门的最终需求增加 $1$ 单位，各部门产出各需增加多少？
@@ -3293,13 +3302,13 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	本章是第一部分的总结. 第一章给出了求解方程组的算法，第二至五章建立了秩、维数、线性映射与行列式的语言. 本章用这些语言完整地描述线性方程组的解集：解是否存在、是否唯一，齐次方程组的解空间及其基础解系，以及非齐次方程组的解集与齐次方程组解空间的关系. 64、72 学时方案还将讨论子空间的方程表示、方程组能够唯一确定哪些量，以及矩阵的秩不等式.
 	
-	\chapterhours{4}{5}{6}
+	\chapterhours{4}{5}{7}
 	
 	\begin{introduction}[学习目标]
 		\item 用秩判断线性方程组是否有解、解是否唯一
 		\item 求齐次方程组的基础解系，写出非齐次方程组的通解
 		\item 说明非齐次方程组的解集与对应齐次方程组的解空间之间的关系
-		\item 在子空间的参数表示与方程表示之间相互转化（64 学时起），解矩阵方程，运用 Sylvester 不等式
+		\item 在子空间的参数表示与方程表示之间相互转化（72 学时起），解矩阵方程，运用 Sylvester 不等式
 		\item 判断方程组能否唯一确定给定的量
 	\end{introduction}
 	
@@ -3501,7 +3510,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		证明的关键是一种``对称性''：$\vv a$ 与 $\vv\beta$ 的关系 $\vv a^\trans\vv\beta=0$ 对两者是平等的. 从 $W$ 的基出发求出所有``与 $W$ 正交的系数向量''，再反过来用它们写方程. 第九章会看到，这正是``正交补''的思想；这里我们只用到了方程组.
+		证明的关键是一种``对称性''：$\vv a$ 与 $\vv\beta$ 的关系 $\vv a^\trans\vv\beta=0$ 对两者是平等的. 从 $W$ 的基出发求出所有``与 $W$ 正交的系数向量''，再反过来用它们写方程. 第十章会看到，这正是``正交补''的思想；这里我们只用到了方程组.
 	\end{motivebox}
 	
 	\begin{example}
@@ -3729,7 +3738,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		
 		\mstep{求解} 对增广矩阵消元可得 $\rk\vv A=2$，$\rk(\vv A\mid\vv y)=3$. 由定理~\ref{thm:rouche}，方程组\textbf{无解}：没有一条直线同时穿过四个点. 由推论~\ref{cor:sol-fullrank}，$\vv A$ 列满秩，所以即使有解也至多一个；困难只在于存在性.
 		
-		\mstep{解读} 这不是模型错了，而是问题问错了. 观测数据总带有误差，数据点多于参数时，方程组几乎总是不相容的. 正确的问题不是``哪条直线\textbf{恰好}过所有点''，而是``哪条直线\textbf{最接近}所有点''. 回答它需要``距离''和``垂直''的概念——这正是第九章内积空间的出发点. 届时我们会求出最佳直线 $y=0.5+1.4x$.
+		\mstep{解读} 这不是模型错了，而是问题问错了. 观测数据总带有误差，数据点多于参数时，方程组几乎总是不相容的. 正确的问题不是``哪条直线\textbf{恰好}过所有点''，而是``哪条直线\textbf{最接近}所有点''. 回答它需要``距离''和``垂直''的概念——这正是第十章内积空间的出发点. 届时我们会求出最佳直线 $y=0.5+1.4x$.
 	\end{modelbox}
 	
 	% ---------------------------------------------------------------------
@@ -3867,7 +3876,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\label{fig:illcond}
 	\end{figure}
 	\begin{pitfallbox}
-		行列式很小，并\textbf{不}说明方程组病态. 把上例第一个方程组的两边都乘以 $1000$，行列式变为原来的 $10^6$ 倍，但解对扰动的敏感程度丝毫未变；反之，$\vv A=0.001\vv I_{10}$ 的行列式是 $10^{-30}$，方程组却毫不病态. 衡量病态程度的正确工具是\textbf{条件数}\index{tiao2jian4shu4@条件数}，它需要``向量的长度''（范数），将在第九章之后介绍.
+		行列式很小，并\textbf{不}说明方程组病态. 把上例第一个方程组的两边都乘以 $1000$，行列式变为原来的 $10^6$ 倍，但解对扰动的敏感程度丝毫未变；反之，$\vv A=0.001\vv I_{10}$ 的行列式是 $10^{-30}$，方程组却毫不病态. 衡量病态程度的正确工具是\textbf{条件数}\index{tiao2jian4shu4@条件数}，它需要``向量的长度''（范数），将在第十章之后介绍.
 	\end{pitfallbox}
 	
 	\begin{historybox}{名字与概念}
@@ -3913,7 +3922,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	$\mathbb{F}_2$ 不是第四章定义的数域——它不是复数集的子集. 但第四章数域定义中真正用到的只是：加、减、乘、除（除数非零）可以进行，并且满足通常的运算律. 满足这些条件的数系称为\textbf{域}\index{yu4@域}(field)，$\mathbb{F}_2$ 是只有两个元素的域. 第一至六章的定义与定理，凡是只用到四则运算的——消元法、线性相关、基与维数、秩、基础解系——在任何域上都成立. 本节就在 $\mathbb{F}_2$ 上使用它们. 第二章章末习题 C5 已经在 $\mathbb{F}_2^3$ 中数过向量和子空间.
 	
 	\begin{pitfallbox}
-		在 $\mathbb{F}_2$ 上，``$\vv x\neq\zero$ 时 $\vv x^\trans\vv x>0$''不再成立：$(1,1)^\trans$ 与自身的``内积''是 $1+1=0$. 依赖于大小比较、开方或``平方和为零则全为零''的结论（第九章以后的内积、长度、正交投影）都不能照搬到 $\mathbb{F}_2$ 上.
+		在 $\mathbb{F}_2$ 上，``$\vv x\neq\zero$ 时 $\vv x^\trans\vv x>0$''不再成立：$(1,1)^\trans$ 与自身的``内积''是 $1+1=0$. 依赖于大小比较、开方或``平方和为零则全为零''的结论（第十章以后的内积、长度、正交投影）都不能照搬到 $\mathbb{F}_2$ 上.
 	\end{pitfallbox}
 	
 	\subsection{校验矩阵与码字}
@@ -4049,7 +4058,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{enumerate}
 		\item 选取一部法律的 50 条左右条文，手工或用分词工具确定 100 个左右关键词，建立词项—文档矩阵.
 		\item 设计 5 个模拟案情查询，用 $\vv A^\trans\vv q$ 打分，评价排名前五的结果是否合理.
-		\item 找出``共同词数''打分的至少两个缺陷（例如长条文天然得分高），提出改进思路. 第九章的余弦相似度是其中一种答案.
+		\item 找出``共同词数''打分的至少两个缺陷（例如长条文天然得分高），提出改进思路. 第十章的余弦相似度是其中一种答案.
 	\end{enumerate}
 	
 	\begin{note}
@@ -4105,15 +4114,15 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	多项式是继数域、线性空间之后，又一个``只看运算规则''的代数对象. 本章把整数的整除理论——带余除法、最大公约数、素数分解、同余——逐一平移到多项式上，二者的论证方法基本相同. 最后一节把矩阵代入多项式，引入最小多项式，这是多项式与矩阵的第一次会合. 第八章讨论线性变换的矩阵何时可以化为对角矩阵，第九章讨论不能对角化时矩阵能化成的最简形式，所用的工具都来自本章. 48 学时方案不讲本章，第八章所需的结论见附录~A.
 	
-	\chapterhours{—}{3}{4}
+	\chapterhours{—}{4}{6}
 	
 	\begin{introduction}[学习目标]
 		\item 进行多项式的带余除法，用余数定理判断根并讨论重根
 		\item 说明代数基本定理的含义，以及实系数多项式的不可约因式至多为二次
 		\item 把方阵代入多项式进行计算，求矩阵的最小多项式，并用它计算矩阵的高次幂与逆矩阵
-		\item 用辗转相除法求最大公因式，写出 Bézout 等式（72 学时方案）
-		\item 说明唯一分解定理的内容，在不同数域上分解多项式，判断多项式有无重因式（72 学时方案）
-		\item 用中国剩余定理与 Lagrange 插值构造满足给定余式的多项式（72 学时方案）
+		\item 用辗转相除法求最大公因式，写出 Bézout 等式（96 学时方案）
+		\item 说明唯一分解定理的内容，在不同数域上分解多项式，判断多项式有无重因式（96 学时方案）
+		\item 用中国剩余定理与 Lagrange 插值构造满足给定余式的多项式（96 学时方案）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
@@ -4388,7 +4397,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		请记住这个结论的形状：\textbf{实数世界里，不可约的东西至多是``二维''的.} 一个实系数多项式，最多只能被拆到一次因式和二次因式为止，再也拆不动. 第九章的选读节会遇到它的一个``几何分身''：实空间上的正交变换，也总能被拆成一维块和二维块，二维块就是平面上的旋转. 那里的``$2$''，正是这里的``$2$''.
+		请记住这个结论的形状：\textbf{实数世界里，不可约的东西至多是``二维''的.} 一个实系数多项式，最多只能被拆到一次因式和二次因式为止，再也拆不动. 第十章的选读节会遇到它的一个``几何分身''：实空间上的正交变换，也总能被拆成一维块和二维块，二维块就是平面上的旋转. 那里的``$2$''，正是这里的``$2$''.
 	\end{motivebox}
 	
 	
@@ -4686,15 +4695,15 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	第四章指出，同一个线性变换在不同基下有不同的矩阵. 本章讨论能否选取一组基，使变换的矩阵成为对角矩阵. 这一问题归结为寻找特征向量，即在变换下只改变长度、不改变方向的非零向量. 本章给出特征值与特征向量的求法、可对角化的判别条件，以及对角化在计算矩阵的幂、分析线性递推关系中的应用. 特征值是第二部分的核心概念，也是本课程中应用最广的概念之一.
 	
-	\chapterhours{6}{8}{9}
+	\chapterhours{6}{7}{9}
 	
 	\begin{introduction}[学习目标]
 		\item 求方阵的特征多项式、特征值与特征子空间
 		\item 运用迹、行列式与特征值的关系检验计算结果
 		\item 区分特征值的代数重数与几何重数，判断方阵能否对角化
 		\item 对可对角化的方阵求出相似变换矩阵，计算方阵的幂，求解线性递推关系
-		\item 用马尔可夫链与 PageRank 说明特征向量在实际问题中的含义（64 学时方案起）
-		\item 说明 Cayley–Hamilton 定理，求最小多项式并用它判断可对角化（72 学时方案）
+		\item 用马尔可夫链与 PageRank 说明特征向量在实际问题中的含义（72 学时方案起）
+		\item 说明 Cayley–Hamilton 定理，求最小多项式并用它判断可对角化（96 学时方案）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
@@ -5158,16 +5167,16 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 
 	\paragraph*{本章地位}
 	
-	此前的向量空间只有加法与数乘，没有长度和角度. 本章在向量空间上引入内积，由此定义长度、夹角与正交，并建立标准正交基与 Gram–Schmidt 正交化方法. 在此基础上，本章讨论正交投影与最小二乘法，以及保持内积的正交变换与正交矩阵. 内积是第十章的谱定理与奇异值分解、第十一章的二次型所必需的工具.
+	此前的向量空间只有加法与数乘，没有长度和角度. 本章在向量空间上引入内积，由此定义长度、夹角与正交，并建立标准正交基与 Gram–Schmidt 正交化方法. 在此基础上，本章讨论正交投影与最小二乘法，以及保持内积的正交变换与正交矩阵. 内积是第十一章的谱定理与奇异值分解、第十三章的二次型所必需的工具.
 	
-	\chapterhours{3}{5}{6}
+	\chapterhours{3}{6}{7}
 	
 	\begin{introduction}[学习目标]
 		\item 验证一个二元函数是否为内积，计算向量的长度、夹角与距离
 		\item 运用 Cauchy–Schwarz 不等式
 		\item 用 Gram–Schmidt 方法把线性无关组化为标准正交组
 		\item 判断矩阵是否为正交矩阵，说明正交变换保持长度与内积
-		\item 求向量在子空间上的正交投影，用正规方程求最小二乘解（64 学时方案起）
+		\item 求向量在子空间上的正交投影，用正规方程求最小二乘解（72 学时方案起）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
@@ -5178,7 +5187,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{itemize}
 		\item 本章的概念大多可以在平面和空间中直观理解. 学习时应先在二维、三维的情形下作图，再看它们如何推广到 $n$ 维和一般的内积空间.
 		\item 在标准正交基下，求坐标只需计算内积；正交投影给出子空间中与给定向量距离最近的点. 这两点是本章各项应用（包括最小二乘法）的共同基础.
-		\item 正交矩阵对应于保持长度与角度的变换. 第十、十一章的正交对角化，都是在正交矩阵的范围内选取基.
+		\item 正交矩阵对应于保持长度与角度的变换. 第十一、十三章的正交对角化，都是在正交矩阵的范围内选取基.
 	\end{itemize}
 	
 	\newpage
@@ -5291,7 +5300,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{linkbox}
 	
 	\begin{remark}
-		在复向量空间上，内积的对称性要改为 $\langle\vv\alpha,\vv\beta\rangle=\overline{\langle\vv\beta,\vv\alpha\rangle}$（例如 $\mathbb{C}^n$ 上 $\langle\vv x,\vv y\rangle=\sum x_i\bar y_i$），否则 $\langle\vv\alpha,\vv\alpha\rangle$ 不一定是非负实数. 本书只在第十章的一个证明中用到复数的取共轭，其余都在实数范围内讨论.
+		在复向量空间上，内积的对称性要改为 $\langle\vv\alpha,\vv\beta\rangle=\overline{\langle\vv\beta,\vv\alpha\rangle}$（例如 $\mathbb{C}^n$ 上 $\langle\vv x,\vv y\rangle=\sum x_i\bar y_i$），否则 $\langle\vv\alpha,\vv\alpha\rangle$ 不一定是非负实数. 第十二章将系统地讨论这样的复内积空间（酉空间）；在此之前，本书只在第十一章的一个证明中用到复数的取共轭，其余都在实数范围内讨论.
 	\end{remark}
 	
 	\section{正交基与 Gram–Schmidt 正交化}\label{sec:gramschmidt}
@@ -5553,7 +5562,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\caption{Householder 矩阵 $\vv H=\vv I-2\vv u\vv u^\trans$ 是关于超平面 $\vv u^\perp$ 的镜面反射：与 $\vv u$ 垂直的分量不变，沿 $\vv u$ 的分量反号.}
 		\label{fig:householder}
 	\end{figure}
-	正交矩阵还出现在换基中：两组标准正交基之间的过渡矩阵是正交矩阵（它的列是新基在旧基下的坐标）. 于是，在标准正交基之间换基时，相似变换 $\vv P^{-1}\vv{AP}$ 就成了 $\vv P^\trans\vv{AP}$，称为\textbf{正交相似}\index{zheng4jiao1 xiang1si4@正交相似}. 第十章的主角正是它.
+	正交矩阵还出现在换基中：两组标准正交基之间的过渡矩阵是正交矩阵（它的列是新基在旧基下的坐标）. 于是，在标准正交基之间换基时，相似变换 $\vv P^{-1}\vv{AP}$ 就成了 $\vv P^\trans\vv{AP}$，称为\textbf{正交相似}\index{zheng4jiao1 xiang1si4@正交相似}. 第十一章的主角正是它.
 	
 	\section{*正交补与正交分解（选读）}\label{sec:orthcomp}
 	
@@ -5841,7 +5850,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\item 证明：平面上的旋转 $\vv R(\theta)$ 是两个反射之积. 由结构定理推出：$\mathbb{R}^n$ 上的每个正交变换都是至多 $n$ 个 Householder 反射之积（Cartan–Dieudonné 定理）.
 			\item 设 $\vv Q$ 是正交矩阵. 证明：存在正整数 $m$ 使 $\vv Q^m=\vv I$，当且仅当结构定理中每个 $\theta_j$ 都是 $\pi$ 的有理数倍.
 			\item 证明：若 $\mathscr T$ 是正交变换，则 $\ker(\mathscr T-\mathscr I)^\perp=\imm(\mathscr T-\mathscr I)$.
-			\item （思考）引理~\ref{lem:orthinvperp} 的证明用到了什么？对于满足 $\langle\mathscr T\vv\alpha,\vv\beta\rangle=\langle\vv\alpha,\mathscr T\vv\beta\rangle$ 的变换，类似的结论是否成立？（第十章的谱定理会回答这个问题.）
+			\item （思考）引理~\ref{lem:orthinvperp} 的证明用到了什么？对于满足 $\langle\mathscr T\vv\alpha,\vv\beta\rangle=\langle\vv\alpha,\mathscr T\vv\beta\rangle$ 的变换，类似的结论是否成立？（第十一章的谱定理会回答这个问题.）
 		\end{enumerate}
 	\end{exercise}
 	\section{*范数与 \texorpdfstring{$\ell^p$}{lp}、\texorpdfstring{$L^p$}{Lp} 空间（选读）}\label{sec:lp}
@@ -5916,7 +5925,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\]
 	于是，若一列向量在其中一种范数下趋于零，在另外两种范数下也趋于零. 可以证明，有限维空间上的任意两个范数都有这样的关系（称为\textbf{等价}）. 因此在有限维空间中，选哪种范数不影响``收敛''与否，只影响具体的数值与几何形状.
 	
-	\paragraph*{哪些范数来自内积.} 第九章章末习题~\ref{ex:ip:B1} 说明，$\|\cdot\|_1$ 不满足\textbf{平行四边形法则}\index{ping2xing2 si4bian1xing2 fa3ze2@平行四边形法则}
+	\paragraph*{哪些范数来自内积.} 第十章章末习题~\ref{ex:ip:B1} 说明，$\|\cdot\|_1$ 不满足\textbf{平行四边形法则}\index{ping2xing2 si4bian1xing2 fa3ze2@平行四边形法则}
 	\[
 	\|\vv\alpha+\vv\beta\|^2+\|\vv\alpha-\vv\beta\|^2=2\|\vv\alpha\|^2+2\|\vv\beta\|^2,
 	\]
@@ -5925,13 +5934,13 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{linkbox}{三种误差，三种答案}
 		设对某个量做了 $n$ 次观测，得到 $y_1,\ldots,y_n$，希望用一个数 $c$ 来概括它们. 误差向量为 $\vv e=(y_1-c,\ldots,y_n-c)^\trans$，使哪种范数下的误差最小，就得到哪种``代表值''：
 		\begin{itemize}
-			\item 使 $\|\vv e\|_2$ 最小：$c$ 是\textbf{平均数}. 这是第九章最小二乘法最简单的情形.
+			\item 使 $\|\vv e\|_2$ 最小：$c$ 是\textbf{平均数}. 这是第十章最小二乘法最简单的情形.
 			\item 使 $\|\vv e\|_1$ 最小：$c$ 是\textbf{中位数}. 把 $c$ 从左向右移动，每越过一个数据点，$\sum|y_i-c|$ 的斜率增加 $2$；斜率从负变为正的位置，正好是中间的那个数据点.
 			\item 使 $\|\vv e\|_\infty$ 最小：$c$ 是最大值与最小值的平均，称为\textbf{中程数}.
 		\end{itemize}
 		对数据 $2,3,4,5,16$，三者分别为 $6$，$4$，$9$. 一个异常大的观测值 $16$，把平均数拉高了 $2$，把中程数拉高了更多，却完全不影响中位数. 这就是为什么统计学中有``最小一乘法''\index{zui4xiao3 yi1cheng2fa3@最小一乘法}：当数据中可能混有异常值时，用 $\|\cdot\|_1$ 度量误差，结论更稳健.
 		
-		$\ell^1$ 范数还有另一个用途. 在回归中把第十一章岭回归的惩罚项 $\mu\|\vv x\|_2^2$ 换成 $\mu\|\vv x\|_1$，所得的方法称为 LASSO. 由图~\ref{fig:lpballs} 可以想见：菱形的尖角落在坐标轴上，所以最优解往往有许多分量恰好为零. 这使 LASSO 能从大量候选变量中自动挑出少数几个，在计量经济学和数据科学中应用广泛. 选择哪一种范数，本质上是一个建模决定，而不是数学上的必然.
+		$\ell^1$ 范数还有另一个用途. 在回归中把第十三章岭回归的惩罚项 $\mu\|\vv x\|_2^2$ 换成 $\mu\|\vv x\|_1$，所得的方法称为 LASSO. 由图~\ref{fig:lpballs} 可以想见：菱形的尖角落在坐标轴上，所以最优解往往有许多分量恰好为零. 这使 LASSO 能从大量候选变量中自动挑出少数几个，在计量经济学和数据科学中应用广泛. 选择哪一种范数，本质上是一个建模决定，而不是数学上的必然.
 	\end{linkbox}
 	
 	\subsection{\texorpdfstring{$\ell^p$}{lp} 空间}
@@ -5953,7 +5962,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\subsection{\texorpdfstring{$L^p$}{Lp} 空间}
 	
-	第九章已经在连续函数空间 $C[a,b]$ 上用积分定义了内积 $\langle f,g\rangle=\int_a^bf(x)g(x)\,\mathrm dx$，它给出的长度是 $\|f\|_2=\big(\int_a^b|f(x)|^2\,\mathrm dx\big)^{1/2}$. 仿照 $\ell^p$，对 $p\ge1$ 可以定义
+	第十章已经在连续函数空间 $C[a,b]$ 上用积分定义了内积 $\langle f,g\rangle=\int_a^bf(x)g(x)\,\mathrm dx$，它给出的长度是 $\|f\|_2=\big(\int_a^b|f(x)|^2\,\mathrm dx\big)^{1/2}$. 仿照 $\ell^p$，对 $p\ge1$ 可以定义
 	\[
 	\|f\|_p=\Big(\int_a^b|f(x)|^p\,\mathrm dx\Big)^{1/p},\qquad \|f\|_\infty=\max_{a\le x\le b}|f(x)|.
 	\]
@@ -5968,7 +5977,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	补上这些缺口，需要比 Riemann 积分更一般的 Lebesgue 积分，并把在``可以忽略的集合''（例如有限个点）上取值不同的函数视为同一个元素. 补全之后的空间记为 $L^p[a,b]$，称为 \textbf{$L^p$ 空间}\index{lp han2shu4 kong1jian1@$L^p$ 空间}. 一个空间若没有上述缺口，就称为\textbf{完备的}\index{wan2bei4@完备}. $\ell^p$ 与 $L^p$ 都是完备的赋范空间，$\ell^2$ 与 $L^2$ 都是 Hilbert 空间. 严格的构造属于实变函数与泛函分析课程.
 	
-	在 $L^2[-\pi,\pi]$ 中，函数组 $1,\cos x,\sin x,\cos2x,\sin2x,\ldots$ 两两正交（第九章章末习题~\ref{ex:ip:B9}）. 一个函数的 \textbf{Fourier 级数}，正是它在这组正交函数上的``坐标展开''，而部分和就是它在有限个函数张成的子空间上的正交投影. 本章的最佳逼近定理在这里的含义是：在次数不超过 $N$ 的三角多项式中，Fourier 级数的前 $N$ 阶部分和在 $\|\cdot\|_2$ 下离原函数最近. 信号处理中把 $\|f\|_2^2$ 称为信号的``能量''，Fourier 展开把能量分配到各个频率上，这是勾股定理在无穷维中的推广.
+	在 $L^2[-\pi,\pi]$ 中，函数组 $1,\cos x,\sin x,\cos2x,\sin2x,\ldots$ 两两正交（第十章章末习题~\ref{ex:ip:B9}）. 一个函数的 \textbf{Fourier 级数}，正是它在这组正交函数上的``坐标展开''，而部分和就是它在有限个函数张成的子空间上的正交投影. 本章的最佳逼近定理在这里的含义是：在次数不超过 $N$ 的三角多项式中，Fourier 级数的前 $N$ 阶部分和在 $\|\cdot\|_2$ 下离原函数最近. 信号处理中把 $\|f\|_2^2$ 称为信号的``能量''，Fourier 展开把能量分配到各个频率上，这是勾股定理在无穷维中的推广.
 	
 	\begin{historybox}{从无穷多个未知数到泛函分析}
 		二十世纪初，希尔伯特在研究积分方程时，把问题转化为``无穷多个未知数的线性方程组''，其中的未知数数列满足平方和有限，也就是今天的 $\ell^2$. 1907 年，希尔伯特的学生施密特（E.~Schmidt）给出了把线性无关组正交化的方法，1908 年，他在论文\cite{schmidt1908aufloesung}中为$\ell^2$建立了系统的几何语言. 1910 年，匈牙利数学家里斯（F.~Riesz）引入了 $L^p$ 空间\cite{riesz1910untersuchungen}. 波兰数学家巴拿赫（S.~Banach）在在 1920 年完成、1922 年发表的博士论文\cite{banach1922operations}中给出了完备赋范空间的公理化定义，这类空间后来以他的名字命名. 以这些空间为舞台研究线性映射的学科，称为\textbf{泛函分析}. 它可以看作把本书的线性代数推广到无穷维的结果.
@@ -6011,21 +6020,21 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	% =====================================================================
 	\paragraph*{本章地位}
 
-	第八章讨论了矩阵的对角化，第九章引入了正交. 本章把二者结合起来，证明实对称矩阵可以用正交矩阵对角化（谱定理），即存在一组由特征向量构成的标准正交基. 在此基础上，本章对任意矩阵建立奇异值分解，由此得到矩阵的最佳低秩逼近，并讨论主成分分析等应用. 谱定理也是第十一章用正交变换化二次型为标准形的依据.
+	第八章讨论了矩阵的对角化，第十章引入了正交. 本章把二者结合起来，证明实对称矩阵可以用正交矩阵对角化（谱定理），即存在一组由特征向量构成的标准正交基. 在此基础上，本章对任意矩阵建立奇异值分解，由此得到矩阵的最佳低秩逼近，并讨论主成分分析等应用. 谱定理也是第十三章用正交变换化二次型为标准形的依据.
 	
-	\chapterhours{3}{5}{6}
+	\chapterhours{3}{5}{7}
 	
 	\begin{introduction}[学习目标]
 		\item 说明实对称矩阵的特征值都是实数，属于不同特征值的特征向量互相正交
 		\item 用正交矩阵把实对称矩阵对角化，写出谱分解
-		\item 用 Rayleigh 商刻画实对称矩阵的最大与最小特征值（64 学时方案起）
-		\item 求矩阵的奇异值分解，说明它的几何意义（64 学时方案起）
-		\item 求矩阵的最佳低秩逼近，并用于主成分分析等问题（72 学时方案）
+		\item 用 Rayleigh 商刻画实对称矩阵的最大与最小特征值（72 学时方案起）
+		\item 求矩阵的奇异值分解，说明它的几何意义（72 学时方案起）
+		\item 求矩阵的最佳低秩逼近，并用于主成分分析等问题（96 学时方案）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
 	
-	第八章（特征值与对角化）；第九章（标准正交基与正交矩阵）.
+	第八章（特征值与对角化）；第十章（标准正交基与正交矩阵）.
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
@@ -6074,7 +6083,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		把这个证明与第九章正交变换的结构定理并排放：两者都是``找到一个小的不变子空间，再证明它的正交补也不变，然后归纳''. 正交变换靠的是``保持内积''，对称矩阵靠的是 $\langle\vv{Ax},\vv y\rangle=\langle\vv x,\vv{Ay}\rangle$（这样的变换称为\textbf{自伴的}\index{zi4ban4 bian4huan4@自伴变换}）. 不同之处只在于：对称矩阵的小块总是一维的（特征值是实数），正交变换的小块可以是二维的（特征值可以是 $\mathrm e^{\pm\mathrm i\theta}$）.
+		把这个证明与第十章正交变换的结构定理并排放：两者都是``找到一个小的不变子空间，再证明它的正交补也不变，然后归纳''. 正交变换靠的是``保持内积''，对称矩阵靠的是 $\langle\vv{Ax},\vv y\rangle=\langle\vv x,\vv{Ay}\rangle$（这样的变换称为\textbf{自伴的}\index{zi4ban4 bian4huan4@自伴变换}）. 不同之处只在于：对称矩阵的小块总是一维的（特征值是实数），正交变换的小块可以是二维的（特征值可以是 $\mathrm e^{\pm\mathrm i\theta}$）.
 	\end{motivebox}
 	
 	\paragraph*{正交对角化的步骤.} (1) 求出全部特征值；(2) 对每个特征值求特征子空间的基，并在\textbf{每个特征子空间内部}作 Gram–Schmidt 正交化、单位化；(3) 把所有这些向量排成 $\vv Q$. 不同特征子空间之间自动正交，无需再处理.
@@ -6085,7 +6094,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	把 $\vv Q=(\vv q_1,\ldots,\vv q_n)$ 按列展开，谱定理还可以写成
 	\[\vv A=\vv Q\vv D\vv Q^\trans=\lambda_1\vv q_1\vv q_1^\trans+\lambda_2\vv q_2\vv q_2^\trans+\cdots+\lambda_n\vv q_n\vv q_n^\trans,\]
-	称为\textbf{谱分解}\index{pu3 fen1jie3@谱分解}. 每个 $\vv q_i\vv q_i^\trans$ 是向 $\spn(\vv q_i)$ 的正交投影（第九章章末习题~\ref{ex:ip:A21}），所以：\textbf{对称矩阵就是若干个互相垂直方向上的投影，各自乘上一个伸缩倍数，再加起来.}
+	称为\textbf{谱分解}\index{pu3 fen1jie3@谱分解}. 每个 $\vv q_i\vv q_i^\trans$ 是向 $\spn(\vv q_i)$ 的正交投影（第十章章末习题~\ref{ex:ip:A21}），所以：\textbf{对称矩阵就是若干个互相垂直方向上的投影，各自乘上一个伸缩倍数，再加起来.}
 	
 	\subsection{\hB 特征值的极值刻画}
 	
@@ -6123,7 +6132,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		把 $\vv u_1,\ldots,\vv u_r$ 扩充为 $\mathbb{R}^m$ 的标准正交基 $\vv u_1,\ldots,\vv u_m$. 对 $i>r$，$\|\vv A\vv v_i\|^2=\lambda_i=0$，故 $\vv A\vv v_i=\zero$. 于是 $\vv A\vv v_i=\sigma_i\vv u_i$（$i\le r$），$\vv A\vv v_i=\zero$（$i>r$），即 $\vv{AV}=\vv U\vv\Sigma$. 右乘 $\vv V^\trans=\vv V^{-1}$ 即得.
 	\end{proof}
 	
-	\paragraph*{几何意义.} $\vv A\vv x=\vv U\vv\Sigma\vv V^\trans\vv x$ 分三步：先用 $\vv V^\trans$ 做一次正交变换（把 $\vv v_i$ 转到坐标轴上），再用 $\vv\Sigma$ 沿坐标轴伸缩（第 $i$ 个轴伸缩 $\sigma_i$ 倍，多余的维数被压扁或补零），最后用 $\vv U$ 再做一次正交变换（把坐标轴转到 $\vv u_i$ 上）. 单位球的像是以 $\sigma_i\vv u_i$ 为半轴的椭球. 由第九章的结构定理，每个正交变换又只是若干平面旋转与反射的组合——于是\textbf{任何}线性映射都可以拆成``转、伸、转''.
+	\paragraph*{几何意义.} $\vv A\vv x=\vv U\vv\Sigma\vv V^\trans\vv x$ 分三步：先用 $\vv V^\trans$ 做一次正交变换（把 $\vv v_i$ 转到坐标轴上），再用 $\vv\Sigma$ 沿坐标轴伸缩（第 $i$ 个轴伸缩 $\sigma_i$ 倍，多余的维数被压扁或补零），最后用 $\vv U$ 再做一次正交变换（把坐标轴转到 $\vv u_i$ 上）. 单位球的像是以 $\sigma_i\vv u_i$ 为半轴的椭球. 由第十章的结构定理，每个正交变换又只是若干平面旋转与反射的组合——于是\textbf{任何}线性映射都可以拆成``转、伸、转''.
 	\begin{figure}[htbp]
 		\centering
 		\begin{tikzpicture}[scale=0.8]
@@ -6191,7 +6200,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{theorem}[Eckart–Young]\label{thm:eckartyoung}\index{eckart young ding4li3@Eckart–Young 定理}
 		在所有秩不超过 $k$ 的 $m\times n$ 矩阵 $\vv B$ 中，$\vv A_k$ 离 $\vv A$ 最近：
 		\[\|\vv A-\vv A_k\|_F\le\|\vv A-\vv B\|_F,\qquad \|\vv A-\vv A_k\|_F=\sqrt{\sigma_{k+1}^2+\cdots+\sigma_r^2},\]
-		其中 $\|\vv M\|_F=\sqrt{\sum m_{ij}^2}$ 称为 \textbf{Frobenius 范数}\index{frobenius fan4shu4@Frobenius 范数}，它是第九章 $M_{m\times n}(\mathbb{R})$ 上的内积所对应的范数.
+		其中 $\|\vv M\|_F=\sqrt{\sum m_{ij}^2}$ 称为 \textbf{Frobenius 范数}\index{frobenius fan4shu4@Frobenius 范数}，它是第十章 $M_{m\times n}(\mathbb{R})$ 上的内积所对应的范数.
 	\end{theorem}
 	
 	后一个等式容易验证：$\vv A-\vv A_k=\sum_{i>k}\sigma_i\vv u_i\vv v_i^\trans$，而各 $\vv u_i\vv v_i^\trans$ 在这个内积下两两正交、长度为 $1$（习题），由勾股定理即得. 前一个不等式（``最近''）的证明需要更多技巧，这里从略.
@@ -6293,7 +6302,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	模型先把文本切分成\textbf{词元}\index{ci2yuan2@词元}(token)——字、词或词的一部分. 全体可能的词元构成词表，设其大小为 $N$，并给每个词元编号. 模型中有一个 $N\times d$ 矩阵 $\vv E$，第 $i$ 个词元对应 $\vv E$ 的第 $i$ 行，记为 $\vv e_i^\trans\vv E$，它是一个 $d$ 维向量，称为该词元的\textbf{嵌入}\index{qian4ru4@嵌入}(embedding). 实际模型中 $N$ 为数万到十几万，$d$ 为数千.
 	
-	$\vv E$ 的元素不是人为设定的，而是从数据中学出来的. 训练的结果是：在相近上下文中出现的词元，嵌入的方向也相近，可以用第九章的余弦相似度来度量. 这与本章潜在语义分析的想法一脉相承：在那里，SVD 把共现模式相似的词压到相近的方向上；在这里，同样的效果由训练得到，维数和数据规模大得多.
+	$\vv E$ 的元素不是人为设定的，而是从数据中学出来的. 训练的结果是：在相近上下文中出现的词元，嵌入的方向也相近，可以用第十章的余弦相似度来度量. 这与本章潜在语义分析的想法一脉相承：在那里，SVD 把共现模式相似的词压到相近的方向上；在这里，同样的效果由训练得到，维数和数据规模大得多.
 	
 	2013 年，米科洛夫（T.~Mikolov）等人观察到，这类嵌入中存在近似的线性关系\cite{mikolov2013linguistic}：
 	\[
@@ -6401,6 +6410,8 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\newpage
 	\ExDecomposition
 	
+	\input{chapters/unitary}
+	
 	% =====================================================================
 	\noteopenany
 	\chapter*{第二部分综合项目}
@@ -6447,7 +6458,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	此前，矩阵主要作为线性变换出现. 本章研究矩阵的另一种角色，即二次型：以向量为自变量、取值为各分量的二次齐次式的函数. 本章讨论如何通过可逆的变量替换把二次型化为只含平方项的标准形，证明标准形中正、负系数的个数与化法无关（惯性定理），并给出判别正定性的方法. 二次型出现在多元函数的极值、最小二乘法与投资组合风险等问题中.
 	
-	\chapterhours{5}{7}{7}
+	\chapterhours{5}{7}{8}
 	
 	\begin{introduction}[学习目标]
 		\item 写出二次型的矩阵，判断两个实对称矩阵是否合同
@@ -6455,12 +6466,12 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\item 求二次型的正、负惯性指数与规范形
 		\item 用特征值或顺序主子式判断二次型是否正定
 		\item 用 Hessian 矩阵判断多元函数驻点的类型
-		\item 把投资组合的方差写成二次型，求最小方差组合（64 学时方案起）
+		\item 把投资组合的方差写成二次型，求最小方差组合（72 学时方案起）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
 	
-	第五章（行列式与子式）；第十章（实对称矩阵的谱定理）；高等数学中多元函数的极值.
+	第五章（行列式与子式）；第十一章（实对称矩阵的谱定理）；高等数学中多元函数的极值.
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
@@ -6526,7 +6537,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	合同是等价关系（反身、对称、传递的验证与相似完全类似）. 由推论~\ref{cor:rankinvariant}，合同的矩阵秩相同，所以\textbf{二次型的秩不随可逆变量替换而改变}.
 	
 	\begin{pitfallbox}
-		合同 $\vv C^\trans\vv A\vv C$ 与相似 $\vv P^{-1}\vv A\vv P$ 是两回事. $\diag(1,4)$ 与 $\vv I_2$ 合同（取 $\vv C=\diag(1,\frac12)$），却不相似（特征值不同）. 二次型 $x^2+4y^2$ 换成 $y'=2y$ 后就是 $x^2+y'^2$——作为``数值''，它们只是同一个函数用不同的尺子量；而作为``变换''，``拉伸 $4$ 倍''与``不动''当然不同. 为什么同一个对称矩阵会有两种换基规则？第十二章会给出答案. 两者唯一重合的情形是 $\vv C$ 为正交矩阵：$\vv C^\trans=\vv C^{-1}$.
+		合同 $\vv C^\trans\vv A\vv C$ 与相似 $\vv P^{-1}\vv A\vv P$ 是两回事. $\diag(1,4)$ 与 $\vv I_2$ 合同（取 $\vv C=\diag(1,\frac12)$），却不相似（特征值不同）. 二次型 $x^2+4y^2$ 换成 $y'=2y$ 后就是 $x^2+y'^2$——作为``数值''，它们只是同一个函数用不同的尺子量；而作为``变换''，``拉伸 $4$ 倍''与``不动''当然不同. 为什么同一个对称矩阵会有两种换基规则？第十四章会给出答案. 两者唯一重合的情形是 $\vv C$ 为正交矩阵：$\vv C^\trans=\vv C^{-1}$.
 	\end{pitfallbox}
 	
 	\section{化二次型为标准形}
@@ -6714,7 +6725,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\end{itemize}
 	\end{definition}
 	
-	例如 $x_1^2+x_2^2$ 正定，$(x_1+x_2)^2$ 半正定但不正定，$x_1^2-x_2^2$ 不定. 第九章的内积公理中的``正定性''，说的正是 $\langle\vv\alpha,\vv\alpha\rangle$ 作为二次型是正定的.
+	例如 $x_1^2+x_2^2$ 正定，$(x_1+x_2)^2$ 半正定但不正定，$x_1^2-x_2^2$ 不定. 第十章的内积公理中的``正定性''，说的正是 $\langle\vv\alpha,\vv\alpha\rangle$ 作为二次型是正定的.
 	
 	\begin{theorem}\label{thm:posdef}
 		对 $n$ 阶实对称矩阵 $\vv A$，以下条件等价：
@@ -6729,7 +6740,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\end{enumerate}
 	\end{theorem}
 	\begin{proof}
-		(1)$\Leftrightarrow$(2)：由主轴定理，$f=\sum\lambda_iy_i^2$，$\vv y=\vv Q^\trans\vv x$，且 $\vv x\ne\zero\iff\vv y\ne\zero$. 若某个 $\lambda_i\le0$，取 $\vv y=\vv e_i$ 得 $f\le0$；若全为正，则 $\vv y\ne\zero$ 时 $f>0$. （这正是第十章章末习题~\ref{ex:dec:A21}.）
+		(1)$\Leftrightarrow$(2)：由主轴定理，$f=\sum\lambda_iy_i^2$，$\vv y=\vv Q^\trans\vv x$，且 $\vv x\ne\zero\iff\vv y\ne\zero$. 若某个 $\lambda_i\le0$，取 $\vv y=\vv e_i$ 得 $f\le0$；若全为正，则 $\vv y\ne\zero$ 时 $f>0$. （这正是第十一章章末习题~\ref{ex:dec:A21}.）
 		
 		(2)$\Leftrightarrow$(3)：推论~\ref{cor:inertiaeig}(1). (3)$\Leftrightarrow$(4)：$p=n$ 当且仅当规范形为 $z_1^2+\cdots+z_n^2$，即 $\vv A$ 合同于 $\vv I$；而 $\vv A=\vv C^\trans\vv I\vv C=\vv C^\trans\vv C$.
 		
@@ -6782,14 +6793,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		$\vv x^\trans\vv B^\trans\vv B\vv x=\|\vv B\vv x\|^2\ge0$，等号成立当且仅当 $\vv B\vv x=\zero$. 列满秩当且仅当 $\vv B\vv x=\zero$ 只有零解.
 	\end{proof}
 	
-	矩阵 $\vv B^\trans\vv B$ 的 $(i,j)$ 元是 $\vv B$ 第 $i$、$j$ 两列的内积，称为 \textbf{Gram 矩阵}\index{gram ju3zhen4@Gram 矩阵}. 它已经出现过三次：第九章的正规方程 $\vv A^\trans\vv A\hat{\vv x}=\vv A^\trans\vv y$，第十章奇异值分解中的 $\vv A^\trans\vv A$，以及主成分分析中的样本协方差矩阵 $\frac1{n-1}\vv X^\trans\vv X$. 由这个命题，\textbf{样本协方差矩阵总是半正定的}.
+	矩阵 $\vv B^\trans\vv B$ 的 $(i,j)$ 元是 $\vv B$ 第 $i$、$j$ 两列的内积，称为 \textbf{Gram 矩阵}\index{gram ju3zhen4@Gram 矩阵}. 它已经出现过三次：第十章的正规方程 $\vv A^\trans\vv A\hat{\vv x}=\vv A^\trans\vv y$，第十一章奇异值分解中的 $\vv A^\trans\vv A$，以及主成分分析中的样本协方差矩阵 $\frac1{n-1}\vv X^\trans\vv X$. 由这个命题，\textbf{样本协方差矩阵总是半正定的}.
 	
 	\begin{example}[（最小二乘：配方的观点）]
 		设 $\vv A$ 列满秩，$\vv G=\vv A^\trans\vv A$ 正定，$\hat{\vv x}=\vv G^{-1}\vv A^\trans\vv y$. 直接展开可以验证
 		\[
 		\|\vv y-\vv A\vv x\|^2=(\vv x-\hat{\vv x})^\trans\vv G(\vv x-\hat{\vv x})+\|\vv y-\vv A\hat{\vv x}\|^2.
 		\]
-		右边第一项是正定二次型，$\vv x\ne\hat{\vv x}$ 时严格为正，所以 $\hat{\vv x}$ 是唯一的最小值点. 这是第九章正规方程定理（定理~\ref{thm:normaleq}）的一个``纯代数''的证明：不画垂线，只配方. 若 $\vv A$ 不列满秩，$\vv G$ 只是半正定，最小值点就不唯一；统计学中的\textbf{岭回归}\index{ling3 hui2gui1@岭回归}在目标函数中加上 $\mu\|\vv x\|^2$（$\mu>0$），把 $\vv G$ 换成正定的 $\vv G+\mu\vv I$，人为地保证了唯一性.
+		右边第一项是正定二次型，$\vv x\ne\hat{\vv x}$ 时严格为正，所以 $\hat{\vv x}$ 是唯一的最小值点. 这是第十章正规方程定理（定理~\ref{thm:normaleq}）的一个``纯代数''的证明：不画垂线，只配方. 若 $\vv A$ 不列满秩，$\vv G$ 只是半正定，最小值点就不唯一；统计学中的\textbf{岭回归}\index{ling3 hui2gui1@岭回归}在目标函数中加上 $\mu\|\vv x\|^2$（$\mu>0$），把 $\vv G$ 换成正定的 $\vv G+\mu\vv I$，人为地保证了唯一性.
 	\end{example}
 	
 	\section{\hB 应用：投资组合的风险}
@@ -6872,7 +6883,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\textbf{样本协方差矩阵可能是奇异的.} 用 $T$ 期历史收益率估计 $n$ 种资产的协方差矩阵，样本协方差矩阵是 $\frac1{T-1}\vv X^\trans\vv X$，其中 $\vv X$ 是 $T\times n$ 的中心化数据矩阵. 中心化使 $\vv X$ 的各行之和为零，所以 $\rk\vv X\le T-1$，从而样本协方差矩阵的秩 $\le T-1$. 若 $T\le n$（例如用 $60$ 个月的数据估计 $100$ 只股票），它必然奇异：数据会``告诉''你存在零风险的组合，而这完全是样本太少造成的假象. 线性代数在这里给出了一个统计学上的警告.
 	\end{pitfallbox}
 	
-	\paragraph*{均值—方差模型的局限.} 模型对输入极其敏感：$\vv\Sigma^{-1}$ 会放大估计误差，尤其是 $\vv\Sigma$ 接近奇异（条件数大）时. 优化器会把大量资金押在``估计误差恰好看起来最有利''的资产上，因此有人戏称均值—方差优化是``误差最大化''. 实践中常用的补救包括：限制卖空，对协方差矩阵作``收缩''（向一个结构简单的正定矩阵拉近，与岭回归同一思路），或用第十章的主成分构造少数几个``因子''来描述协方差. 此外，方差把上涨和下跌一视同仁地当作``风险''，这对收益分布不对称的资产并不合适.
+	\paragraph*{均值—方差模型的局限.} 模型对输入极其敏感：$\vv\Sigma^{-1}$ 会放大估计误差，尤其是 $\vv\Sigma$ 接近奇异（条件数大）时. 优化器会把大量资金押在``估计误差恰好看起来最有利''的资产上，因此有人戏称均值—方差优化是``误差最大化''. 实践中常用的补救包括：限制卖空，对协方差矩阵作``收缩''（向一个结构简单的正定矩阵拉近，与岭回归同一思路），或用第十一章的主成分构造少数几个``因子''来描述协方差. 此外，方差把上涨和下跌一视同仁地当作``风险''，这对收益分布不对称的资产并不合适.
 	
 	\begin{historybox}{一篇十余页的论文}
 		1952 年，二十多岁的芝加哥大学研究生马科维茨在《金融杂志》上发表了十余页的论文《投资组合选择》\cite{markowitz1952portfolio}. 在此之前，人们挑选股票主要看单只股票的前景；马科维茨指出，一只股票该不该买，取决于它与已有组合的\textbf{协方差}. 据他本人回忆，在博士答辩上，答辩委员、后来的诺贝尔奖得主弗里德曼半开玩笑地说，这篇论文不是经济学\cite{markowitz1991foundations}. 1990 年，马科维茨因这项工作获得诺贝尔经济学奖.
@@ -6946,7 +6957,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\paragraph*{前置知识}
 	
-	第四章（线性映射）；第十一章（二次型与合同）.
+	第四章（线性映射）；第十三章（二次型与合同）.
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
@@ -6961,7 +6972,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{quote}数学中的对偶不是一条定理，而是一种``原理''.\end{quote}
 	\begin{flushright}——迈克尔·阿蒂亚\footnotemark\end{flushright}
 	\end{tcolorbox}
-	\footnotetext{迈克尔·阿蒂亚（1929—2019），英国数学家，1966 年菲尔兹奖、2004 年阿贝尔奖得主. 引文出自其 2007 年在巴塞罗那所作讲演《数学与物理中的对偶》的开头. 本书其实早已多次遇到对偶的影子：第九章``行空间与解空间互为正交补''、第六章``能被确定的量恰是各行的线性组合''，都是同一个原理在不同场合的表现.}
+	\footnotetext{迈克尔·阿蒂亚（1929—2019），英国数学家，1966 年菲尔兹奖、2004 年阿贝尔奖得主. 引文出自其 2007 年在巴塞罗那所作讲演《数学与物理中的对偶》的开头. 本书其实早已多次遇到对偶的影子：第十章``行空间与解空间互为正交补''、第六章``能被确定的量恰是各行的线性组合''，都是同一个原理在不同场合的表现.}
 	
 	\section{对偶空间}
 	
@@ -7071,7 +7082,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{remark}
-		第一式说：$\vv{Ax}=\vv b$ 有解（$\vv b\in\imm\mathscr T$），当且仅当凡是满足 $g\circ\mathscr T=0$ 的线性函数 $g$ 都有 $g(\vv b)=0$. 这就是第九章的``相容性条件''，只是这里没有用到内积. 在内积空间中，每个线性函数都可以写成 $\langle\cdot,\vv\beta\rangle$ 的形式（本章章末习题~\ref{ex:bil:A15}），零化子于是变成了正交补，第九章的定理~\ref{thm:fourspaces} 就是本定理``穿上内积的外衣''.
+		第一式说：$\vv{Ax}=\vv b$ 有解（$\vv b\in\imm\mathscr T$），当且仅当凡是满足 $g\circ\mathscr T=0$ 的线性函数 $g$ 都有 $g(\vv b)=0$. 这就是第十章的``相容性条件''，只是这里没有用到内积. 在内积空间中，每个线性函数都可以写成 $\langle\cdot,\vv\beta\rangle$ 的形式（本章章末习题~\ref{ex:bil:A15}），零化子于是变成了正交补，第十章的定理~\ref{thm:fourspaces} 就是本定理``穿上内积的外衣''.
 	\end{remark}
 	
 	\section{双线性型}
@@ -7105,12 +7116,12 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		第十一章的悬案到此结案. \textbf{同一个方阵可以有两种身份}：
+		第十三章的悬案到此结案. \textbf{同一个方阵可以有两种身份}：
 		\begin{itemize}
 			\item 作为线性变换 $V\to V$ 的矩阵，换基时变为 $\vv P^{-1}\vv A\vv P$（相似）；
 			\item 作为双线性型 $V\times V\to\mathbb{F}$ 的度量矩阵，换基时变为 $\vv P^\trans\vv A\vv P$（合同）.
 		\end{itemize}
-		差别从哪里来？双线性型 $f$ 其实也是一个线性映射，只不过是从 $V$ 到 $V^*$ 的：$\vv\alpha\mapsto f(\vv\alpha,\cdot)$. 它的``出发地''是 $V$，``目的地''却是对偶空间，而对偶空间中的坐标按 $\vv P^\trans$ 而非 $\vv P^{-1}$ 变换（上一节的价格例子）. 所以只要看清一个矩阵描述的是 $V\to V$ 还是 $V\to V^*$，换基公式就不会记错. 在标准正交基之间换基时，$\vv P$ 是正交矩阵，$\vv P^\trans=\vv P^{-1}$，两种规则恰好重合——这就是为什么第十章的谱定理能\textbf{同时}把对称矩阵作为变换和作为二次型对角化. 也正因为欧几里得空间中二者重合，许多教材从不提醒读者它们本是两回事.
+		差别从哪里来？双线性型 $f$ 其实也是一个线性映射，只不过是从 $V$ 到 $V^*$ 的：$\vv\alpha\mapsto f(\vv\alpha,\cdot)$. 它的``出发地''是 $V$，``目的地''却是对偶空间，而对偶空间中的坐标按 $\vv P^\trans$ 而非 $\vv P^{-1}$ 变换（上一节的价格例子）. 所以只要看清一个矩阵描述的是 $V\to V$ 还是 $V\to V^*$，换基公式就不会记错. 在标准正交基之间换基时，$\vv P$ 是正交矩阵，$\vv P^\trans=\vv P^{-1}$，两种规则恰好重合——这就是为什么第十一章的谱定理能\textbf{同时}把对称矩阵作为变换和作为二次型对角化. 也正因为欧几里得空间中二者重合，许多教材从不提醒读者它们本是两回事.
 	\end{motivebox}
 	
 	\begin{definition}
@@ -7124,7 +7135,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		$f(\vv\alpha,\vv\beta)=\vv x^\trans\vv A\vv y$ 对一切 $\vv y$ 为零，当且仅当 $\vv x^\trans\vv A=\zero^\trans$，即 $\vv A^\trans\vv x=\zero$. 所以非退化 $\iff\vv A^\trans\vv x=\zero$ 只有零解 $\iff\vv A$ 可逆. 后一个等价是因为 $\dim V=\dim V^*$，单射即同构.
 	\end{proof}
 	
-	内积是非退化的（甚至是正定的）. 所以在内积空间中，$\vv\beta\mapsto\langle\cdot,\vv\beta\rangle$ 把 $V$ 与 $V^*$ 等同了起来——这就是为什么在第九章，我们从来不需要区分``向量''与``线性函数''.
+	内积是非退化的（甚至是正定的）. 所以在内积空间中，$\vv\beta\mapsto\langle\cdot,\vv\beta\rangle$ 把 $V$ 与 $V^*$ 等同了起来——这就是为什么在第十章，我们从来不需要区分``向量''与``线性函数''.
 	
 	\section{对称型与交错型}
 	
@@ -7140,7 +7151,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	对称双线性型 $f$ 确定一个二次型 $q(\vv\alpha)=f(\vv\alpha,\vv\alpha)$；反过来，由\textbf{极化恒等式}\index{ji2hua4 heng2deng3shi4@极化恒等式}
 	\[f(\vv\alpha,\vv\beta)=\tfrac12\big(q(\vv\alpha+\vv\beta)-q(\vv\alpha)-q(\vv\beta)\big),\]
-	二次型也唯一地确定对称双线性型. 第九章定理~\ref{thm:orthequiv} 的证明（``保持长度就保持内积''）用的正是这个恒等式. 所以``对称双线性型''与``二次型''是同一个对象的两种说法，第十一章的全部理论都可以用双线性型重述. 例如定理~\ref{thm:lagrangediag}（配方法）变为：
+	二次型也唯一地确定对称双线性型. 第十章定理~\ref{thm:orthequiv} 的证明（``保持长度就保持内积''）用的正是这个恒等式. 所以``对称双线性型''与``二次型''是同一个对象的两种说法，第十三章的全部理论都可以用双线性型重述. 例如定理~\ref{thm:lagrangediag}（配方法）变为：
 	
 	\begin{theorem}\label{thm:symdiag}
 		有限维空间上的对称双线性型 $f$ 总有一组基 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$，使 $f(\vv\varepsilon_i,\vv\varepsilon_j)=0$（$i\ne j$）. 这样的基称为 $f$ 的\textbf{正交基}.
@@ -7149,7 +7160,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		对 $n$ 归纳. 若 $f=0$，任何基都可以. 否则由极化恒等式，$q$ 不恒为零，取 $\vv\varepsilon_1$ 使 $q(\vv\varepsilon_1)\ne0$. 令 $U=\{\vv\beta\mid f(\vv\varepsilon_1,\vv\beta)=0\}$，它是线性函数 $f(\vv\varepsilon_1,\cdot)$ 的核，这个函数在 $\vv\varepsilon_1$ 处不为零，所以 $\dim U=n-1$，且 $\vv\varepsilon_1\notin U$，$V=\spn(\vv\varepsilon_1)\oplus U$. 对 $f|_U$ 用归纳假设得 $U$ 的正交基 $\vv\varepsilon_2,\ldots,\vv\varepsilon_n$，它们都与 $\vv\varepsilon_1$ 正交.
 	\end{proof}
 	
-	与第九章 Gram–Schmidt 的区别在于：一般的对称型可能有 $q(\vv\alpha)=0$ 而 $\vv\alpha\ne\zero$ 的\textbf{迷向向量}\index{mi2xiang4 xiang4liang4@迷向向量}(isotropic vector)，所以不能随便取第一个向量，必须挑一个 $q(\vv\varepsilon_1)\neq0$ 的——这对应于配方法的``情形二''.
+	与第十章 Gram–Schmidt 的区别在于：一般的对称型可能有 $q(\vv\alpha)=0$ 而 $\vv\alpha\ne\zero$ 的\textbf{迷向向量}\index{mi2xiang4 xiang4liang4@迷向向量}(isotropic vector)，所以不能随便取第一个向量，必须挑一个 $q(\vv\varepsilon_1)\neq0$ 的——这对应于配方法的``情形二''.
 	
 	\subsection{交错型}
 	
@@ -7169,7 +7180,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		对称型拆成\textbf{一维}的块（平方项），交错型却只能拆成\textbf{二维}的块 $\vv J$——因为单独一个向量与自己的 $f$ 值永远是零，交错型天生要``两两配对''才能有非零的值. 这又是一个``不可约的块至多二维''的现象，与第九章正交变换的结构定理遥相呼应.
+		对称型拆成\textbf{一维}的块（平方项），交错型却只能拆成\textbf{二维}的块 $\vv J$——因为单独一个向量与自己的 $f$ 值永远是零，交错型天生要``两两配对''才能有非零的值. 这又是一个``不可约的块至多二维''的现象，与第十章正交变换的结构定理遥相呼应.
 	\end{motivebox}
 	
 	\begin{corollary}\label{cor:pfaffian}
@@ -7295,7 +7306,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\item \textbf{随机过程}会告诉你，如何描述一个随时间演变、每一步又都带着不确定性的系统。股价的涨跌、排队等候的顾客、在诉讼程序各阶段之间流转的案件，都是这样的系统。其中最基本的一类叫作马尔可夫链：把状态之间的转移概率排成一个矩阵，系统的长期命运就写在这个矩阵的幂里，写在属于特征值 $1$ 的那个特征向量里。
 			\item \textbf{图论与网络分析}会告诉你，如何研究由“关系”构成的世界。人际往来、企业之间的交叉持股、判决书之间的相互引用，都是网络，都可以写成一个邻接矩阵。“谁在这张网里最重要”这个问题的答案，往往又是某个特征向量。
 			\item \textbf{常微分方程与动力系统}会把你大一、大二所学连在一起。当一个量的变化速度线性地取决于当前的状态时，系统会增长、衰减还是振荡，很大程度上由一个矩阵的特征值决定。经济增长和市场价格调整的许多模型，都建立在这个想法之上。
-			\item \textbf{矩阵分析与数据科学}会告诉你，如何把一张庞大而杂乱的表格，拆解成少数几个“主要模式”。它的核心工具正是第十章介绍过的奇异值分解，那里只是一个开端。推荐系统、文本的主题挖掘、图像压缩，背后都是它。
+			\item \textbf{矩阵分析与数据科学}会告诉你，如何把一张庞大而杂乱的表格，拆解成少数几个“主要模式”。它的核心工具正是第十一章介绍过的奇异值分解，那里只是一个开端。推荐系统、文本的主题挖掘、图像压缩，背后都是它。
 			\item 如果你只是单纯地喜欢上了“从定义出发、一步步推出结论”的那种感觉，那么不妨读一读\textbf{近世代数}。这是一门极具魅力的学科，也是一门极具难度的学科。你会空前地感受到数学的“对称性”的优美所在。
 		\end{itemize}
 		
