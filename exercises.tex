@@ -169,6 +169,25 @@
 			\item\label{ex:vs:B5} 写出 $\mathbb{R}^2$ 与 $\mathbb{R}^3$ 的全部子空间（按维数分类，并说明几何意义）.
 			\item\label{ex:vs:B6} 证明：$\mathbb{R}^5$ 中任意两个三维子空间的交至少是一维的. 一般地，$\mathbb{F}^n$ 中维数分别为 $k_1,k_2$ 的两个向量空间，若 $k_1+k_2>n$，则交不为 $\{\zero\}$.
 		\end{exB}
+		
+		\Cgroup
+		\begin{exC}
+			\item\label{ex:vs:C1} （插值多项式的唯一性）设 $a_1,\ldots,a_n$ 是 $n$ 个互不相同的数，令 $\vv w_k=(a_1^k,a_2^k,\ldots,a_n^k)^\trans$（$k=0,1,\ldots,n-1$，约定 $a^0=1$）.
+			\begin{enumerate}
+				\item 证明 $\vv w_0,\vv w_1,\ldots,\vv w_{n-1}$ 线性无关.（可以承认中学的结论：次数小于 $n$ 的非零多项式至多有 $n-1$ 个根. 第七章将给出证明.）
+				\item 由此说明：对任意给定的数 $b_1,\ldots,b_n$，恰有一个次数小于 $n$ 的多项式 $f(x)=c_0+c_1x+\cdots+c_{n-1}x^{n-1}$ 满足 $f(a_i)=b_i$（$i=1,\ldots,n$）. 也就是说，过平面上 $n$ 个横坐标互不相同的点，次数小于 $n$ 的多项式曲线恰好有一条.（提示：条件 $f(a_i)=b_i$ 就是 $c_0\vv w_0+\cdots+c_{n-1}\vv w_{n-1}=(b_1,\ldots,b_n)^\trans$.）
+			\end{enumerate}
+			\item\label{ex:vs:C2} （替换定理）设向量组 $\vv\alpha_1,\ldots,\vv\alpha_r$ 线性无关，且每个 $\vv\alpha_i$ 都可由向量组 $\vv\beta_1,\ldots,\vv\beta_s$ 线性表出. 证明：可以从 $\vv\beta_1,\ldots,\vv\beta_s$ 中选出 $r$ 个向量，把它们换成 $\vv\alpha_1,\ldots,\vv\alpha_r$ 后，所得的向量组与 $\vv\beta_1,\ldots,\vv\beta_s$ 等价. 由此再次得到 $r\le s$.（提示：对 $r$ 归纳. 把 $\vv\alpha_r$ 用已经换过的向量组线性表出时，系数不为零的向量中，至少有一个是尚未被换掉的 $\vv\beta_j$.）
+			\item\label{ex:vs:C3} （无穷多个向量的秩）设 $S$ 是 $\mathbb{F}^n$ 中含有非零向量的集合，$S$ 可以含有无穷多个向量. 若 $S$ 中有限个向量线性无关，并且 $S$ 中每个向量都可由它们线性表出，就称它们是 $S$ 的一个极大无关组.
+			\begin{enumerate}
+				\item 证明 $S$ 的极大无关组存在，且所含向量的个数不超过 $n$.（提示：在 $S$ 中逐个挑选，每次挑一个不能由已选向量线性表出的向量.）
+				\item 证明 $S$ 的任意两个极大无关组所含向量的个数相同. 于是可以把这个个数定义为 $S$ 的秩.
+				\item 由 $S$ 中有限个向量作出的全部线性组合构成一个集合. 证明它是向量空间，且维数等于 $S$ 的秩.
+			\end{enumerate}
+			\item\label{ex:vs:C4} （Radon 定理）设 $\vv p_1,\ldots,\vv p_{n+2}$ 是 $\mathbb{R}^n$ 中的 $n+2$ 个向量. 证明：可以把下标 $1,2,\ldots,n+2$ 分成两个互不相交的非空部分 $I$ 与 $J$，并找到非负实数 $\lambda_i$（$i\in I$）与 $\mu_j$（$j\in J$），满足 $\sum_{i\in I}\lambda_i=\sum_{j\in J}\mu_j=1$，使
+			\[\sum_{i\in I}\lambda_i\vv p_i=\sum_{j\in J}\mu_j\vv p_j.\]
+			系数非负、和为 $1$ 的线性组合可以理解为``加权平均''. $n=2$ 时，这个结论说的是：平面上任意四个点，或者有一个点落在其余三点构成的三角形内（含边上），或者可以分成两对，两对连成的线段相交.（提示：在每个 $\vv p_i$ 的分量末尾添一个分量 $1$，得到 $\mathbb{R}^{n+1}$ 中的 $n+2$ 个向量.）
+		\end{exC}
 
 	}
 	
