@@ -7,8 +7,9 @@
 	%%      写对应的命令：
 	%%        第一章 \ExElimination      第二章 \ExVectorSpace   第三章 \ExMatrix
 	%%        第四章 \ExLinearMap        第五章 \ExDeterminant   第六章 \ExSolutions
-	%%        第七章 \ExPolynomial       第八章 \ExEigen         第十章 \ExInnerProduct
-	%%        第十一章 \ExDecomposition    第十三章 \ExQuadratic   第十四章 \ExBilinear
+	%%        第七章 \ExPolynomial       第八章 \ExEigen         第九章 \ExLambda
+	%%        第十章 \ExInnerProduct     第十一章 \ExDecomposition 第十二章 \ExUnitary
+	%%        第十三章 \ExQuadratic      第十四章 \ExBilinear
 	%%   3. 分组标准
 	%%        A 组：直接运用本章定义与定理的计算和证明；
 	%%        B 组：需要综合多个结论、或有一定技巧的计算和证明；
@@ -17,7 +18,7 @@
 	%%      第六章按扩充版（ch06-solutions.tex）的内容编写.
 	%%   5. 每道题都带标签 ex:<章键>:<组号>，正文、习题与附录答案一律用 \ref 引用，
 	%%      渲染为``A4''``B12''这样的题号. 章键依次为
-	%%        elim vs mat lmap det sol poly eig ip dec quad bil（第一至十四章）.
+	%%        elim vs mat lmap det sol poly eig lam ip dec uni quad bil（第一至十四章）.
 	%%      例：第一章章末习题~\ref{ex:elim:B12}. 新增题目请加在组末，并补上标签.
 	%%      A 组答案、B 组提示在 answers.tex 中，按同一标签对应.
 	%% 依赖：导言区的 \vv \zero \trans \spn \rk \imm \diag，以及 enumitem（elegantbook 已加载）.
@@ -139,93 +140,36 @@
 	% =====================================================================
 	% 第二章　向量空间
 	% =====================================================================
-	\newcommand{\ExVectorSpace}{%
+		\newcommand{\ExVectorSpace}{%
 		\exsetheading
 		\Agroup
 		\begin{exA}
-			\item\label{ex:vs:A1} 下列集合关于通常的四则运算是否构成数域？
-			(1) $\{a+b\sqrt3\mid a,b\in\mathbb{Q}\}$；(2) $\{a+b\sqrt2\mid a\in\mathbb{Q},\ b\in\mathbb{Z}\}$；(3) 全体偶数；(4) $\{a+b\sqrt[3]{2}\mid a,b\in\mathbb{Q}\}$；(5) 全体纯虚数与 $0$.
-			\item\label{ex:vs:A2} 下列集合关于通常的加法与数乘是否构成实向量空间？
-			(1) 全体 $n$ 阶实对称矩阵；(2) $\{(x,y)^\trans\in\mathbb{R}^2\mid x\ge0\}$；(3) 次数恰为 $n$ 的实系数多项式全体；(4) $\{f\in\mathbb{R}[x]\mid f(1)=0\}$；(5) 满足 $a_{n+2}=a_{n+1}+a_n$ 的全体实数列；(6) $\{(x,y,z)^\trans\mid x+y+z=1\}$.
-			\item\label{ex:vs:A3} 判断下列向量组的线性相关性：
-			\begin{enumerate}
-				\item $(1,2,-1)^\trans$，$(2,-3,1)^\trans$，$(4,1,-1)^\trans$；
-				\item 在 $\mathbb{R}[x]_3$ 中：$1+x$，$1-x$，$x^2$；
-				\item 在 $\mathbb{R}[x]_3$ 中：$1+x+x^2$，$1-x$，$2+x^2$，$x+x^2$；
-				\item 在 $M_2(\mathbb{R})$ 中：$\begin{pmatrix}1&0\\0&1\end{pmatrix}$，$\begin{pmatrix}0&1\\1&0\end{pmatrix}$，$\begin{pmatrix}1&1\\1&1\end{pmatrix}$，$\begin{pmatrix}1&0\\0&0\end{pmatrix}$.
-			\end{enumerate}
-			\item\label{ex:vs:A4} 把 $\vv\beta=(1,2,1,1)^\trans$ 表示为 $\vv\alpha_1=(1,1,1,1)^\trans$，$\vv\alpha_2=(1,1,-1,-1)^\trans$，$\vv\alpha_3=(1,-1,1,-1)^\trans$，$\vv\alpha_4=(1,-1,-1,1)^\trans$ 的线性组合.
-			\item\label{ex:vs:A5} $t$ 取何值时，$(1,1,0)^\trans$，$(1,3,-1)^\trans$，$(5,3,t)^\trans$ 线性相关？
-			\item\label{ex:vs:A6} 求向量组 $\vv\alpha_1=(1,-1,2,4)^\trans$，$\vv\alpha_2=(0,3,1,2)^\trans$，$\vv\alpha_3=(3,0,7,14)^\trans$，$\vv\alpha_4=(1,-1,2,0)^\trans$，$\vv\alpha_5=(2,1,5,6)^\trans$ 的秩和一个极大无关组，并把其余向量用这个极大无关组线性表出.
-			\item\label{ex:vs:A7} 设 $\vv\alpha_1,\vv\alpha_2,\vv\alpha_3$ 线性无关. 判断下列向量组的线性相关性：
+			\item\label{ex:vs:A1} 把 $\vv\beta=(1,2,1,1)^\trans$ 表示为 $\vv\alpha_1=(1,1,1,1)^\trans$，$\vv\alpha_2=(1,1,-1,-1)^\trans$，$\vv\alpha_3=(1,-1,1,-1)^\trans$，$\vv\alpha_4=(1,-1,-1,1)^\trans$ 的线性组合.
+			\item\label{ex:vs:A2} $t$ 取何值时，$(1,1,0)^\trans$，$(1,3,-1)^\trans$，$(5,3,t)^\trans$ 线性相关？
+			\item\label{ex:vs:A3} 求向量组 $\vv\alpha_1=(1,-1,2,4)^\trans$，$\vv\alpha_2=(0,3,1,2)^\trans$，$\vv\alpha_3=(3,0,7,14)^\trans$，$\vv\alpha_4=(1,-1,2,0)^\trans$，$\vv\alpha_5=(2,1,5,6)^\trans$ 的秩和一个极大无关组，并把其余向量用这个极大无关组线性表出.
+			\item\label{ex:vs:A4} 设 $\vv\alpha_1,\vv\alpha_2,\vv\alpha_3$ 线性无关. 判断下列向量组的线性相关性：
 			(1) $\vv\alpha_1-\vv\alpha_2$，$\vv\alpha_2-\vv\alpha_3$，$\vv\alpha_3-\vv\alpha_1$；
 			(2) $\vv\alpha_1$，$\vv\alpha_1+\vv\alpha_2$，$\vv\alpha_1+\vv\alpha_2+\vv\alpha_3$；
 			(3) $\vv\alpha_1+2\vv\alpha_2$，$\vv\alpha_2+2\vv\alpha_3$，$\vv\alpha_3+2\vv\alpha_1$.
-			\item\label{ex:vs:A8} 证明：含有零向量的向量组线性相关；含有两个相同向量的向量组线性相关；单个向量 $\vv\alpha$ 线性无关当且仅当 $\vv\alpha\ne\zero$.
-			\item\label{ex:vs:A9} 证明：两个向量线性相关，当且仅当其中一个是另一个的倍数. 三个向量的情形能这样说吗？
-			\item\label{ex:vs:A10} 只用向量空间的八条公理与命题~\ref{prop:linspc}，证明：(1) $\vv\alpha+\vv\alpha=2\vv\alpha$；(2) 若 $k\ne0$ 且 $k\vv\alpha=k\vv\beta$，则 $\vv\alpha=\vv\beta$；(3) $-(-\vv\alpha)=\vv\alpha$.
-			\item\label{ex:vs:A11} 证明下列集合是相应空间的子空间，并求一组基和维数：
-			\begin{enumerate}
-				\item $\{\vv x\in\mathbb{R}^4\mid x_1+x_2=x_3+x_4\}$；
-				\item $n$ 阶上三角矩阵全体；
-				\item 迹为零的 $n$ 阶方阵全体 $\{\vv X\mid x_{11}+\cdots+x_{nn}=0\}$；
-				\item $\{f\in\mathbb{R}[x]_4\mid f(1)=0\}$.
-			\end{enumerate}
-			\item\label{ex:vs:A12} 判断下列子集是否为子空间：(1) $\{(a,b,c)^\trans\mid a=2b\}$；(2) $\{(a,b,c)^\trans\mid ab=0\}$；(3) $\{(a,b,c)^\trans\mid a,b,c\in\mathbb{Q}\}\subset\mathbb{R}^3$；(4) $\{f\in C[0,1]\mid f(0)=2f(1)\}$.
-			\item\label{ex:vs:A13} 求 $\vv\alpha_1=(1,2,1,0)^\trans$，$\vv\alpha_2=(-1,1,1,1)^\trans$，$\vv\alpha_3=(0,3,2,1)^\trans$，$\vv\alpha_4=(1,0,1,2)^\trans$ 张成的子空间的维数和一组基.
-			\item\label{ex:vs:A14} 求多项式 $2x^2-x+3$ 在基 $1,\ x-1,\ (x-1)^2$ 下的坐标.
-			\item\label{ex:vs:A15} 求矩阵 $\begin{pmatrix}2&3\\-1&4\end{pmatrix}$ 在 $M_2(\mathbb{R})$ 的基 $\begin{pmatrix}1&0\\0&0\end{pmatrix},\begin{pmatrix}1&1\\0&0\end{pmatrix},\begin{pmatrix}1&1\\1&0\end{pmatrix},\begin{pmatrix}1&1\\1&1\end{pmatrix}$ 下的坐标.
-			\item\label{ex:vs:A16} (1) $\mathbb{R}$ 是否是 $\mathbb{Q}$ 上的向量空间？(2) $\mathbb{Q}$ 是否是 $\mathbb{R}$ 上的向量空间？(3) $\mathbb{C}$ 作为 $\mathbb{R}$ 上的向量空间和作为 $\mathbb{C}$ 上的向量空间，维数各是多少？
-			\item\label{ex:vs:A17} 写出 $\mathbb{F}[x]_n$ 与 $\mathbb{F}^n$ 之间、$M_2(\mathbb{F})$ 与 $\mathbb{F}^4$ 之间的一个同构映射，并验证它保持线性运算.
-			\item\label{ex:vs:A18} 设 $W_1=\spn\big((1,0,0)^\trans,(0,1,0)^\trans\big)$，$W_2=\spn\big((1,1,1)^\trans\big)$，$W_3=\spn\big((1,1,0)^\trans\big)$. 分别判断 $W_1+W_2$，$W_1+W_3$ 是否为直和，并求和空间的维数.
-			\item\label{ex:vs:A19} 设 $W_1=\spn\big((1,1,0,0)^\trans,(1,0,1,1)^\trans\big)$，$W_2=\spn\big((0,-1,1,1)^\trans,(1,2,0,1)^\trans\big)$. 求 $W_1+W_2$ 与 $W_1\cap W_2$ 的维数，并验证维数公式.
-			\item\label{ex:vs:A20} 设 $\vv\alpha_1,\ldots,\vv\alpha_s$ 的秩为 $r$. 证明：其中任意 $r+1$ 个向量线性相关；任意 $r$ 个线性无关的向量都构成极大无关组.
+			\item\label{ex:vs:A5} 证明：含有零向量的向量组线性相关；含有两个相同向量的向量组线性相关；单个向量 $\vv\alpha$ 线性无关当且仅当 $\vv\alpha\ne\zero$.
+			\item\label{ex:vs:A6} 证明：两个向量线性相关，当且仅当其中一个是另一个的倍数. 三个向量的情形能这样说吗？
+			\item\label{ex:vs:A7} 判断下列集合是否为向量空间：(1) $\{(x,y)^\trans\in\mathbb{R}^2\mid x\ge0\}$；(2) $\{(x,y,z)^\trans\in\mathbb{R}^3\mid x+y+z=1\}$；(3) $\{(a,b,c)^\trans\in\mathbb{R}^3\mid a=2b\}$；(4) $\{(a,b,c)^\trans\in\mathbb{R}^3\mid ab=0\}$；(5) $\{(a,b,c)^\trans\mid a,b,c\in\mathbb{Q}\}\subset\mathbb{R}^3$（数取实数）；(6) $\{\vv x\in\mathbb{R}^3\mid x_1=x_2=x_3\}$.
+			\item\label{ex:vs:A8} 求向量空间 $\{\vv x\in\mathbb{R}^4\mid x_1+x_2=x_3+x_4\}$ 的一组基和维数.
+			\item\label{ex:vs:A9} 求 $\vv\alpha_1=(1,2,1,0)^\trans$，$\vv\alpha_2=(-1,1,1,1)^\trans$，$\vv\alpha_3=(0,3,2,1)^\trans$，$\vv\alpha_4=(1,0,1,2)^\trans$ 张成的子空间的维数和一组基.
+			\item\label{ex:vs:A10} 设 $\vv\alpha_1=(1,1,0)^\trans$，$\vv\alpha_2=(0,1,1)^\trans$，$\vv\alpha_3=(1,2,1)^\trans$. 求 $\spn(\vv\alpha_1,\vv\alpha_2,\vv\alpha_3)$ 的维数和一组基，并判断 $(2,3,1)^\trans$ 是否属于它.
+			\item\label{ex:vs:A11} 设 $\vv\alpha_1,\ldots,\vv\alpha_s$ 的秩为 $r$. 证明：其中任意 $r+1$ 个向量线性相关；任意 $r$ 个线性无关的向量都构成极大无关组.
 		\end{exA}
 		
 		\Bgroup
 		\begin{exB}
-			\item\label{ex:vs:B1} 证明：两个子空间的并 $W_1\cup W_2$ 是子空间，当且仅当 $W_1\subset W_2$ 或 $W_2\subset W_1$.
+			\item\label{ex:vs:B1} 证明：$\mathbb{F}^n$ 中两个向量空间的并 $W_1\cup W_2$ 是向量空间，当且仅当 $W_1\subset W_2$ 或 $W_2\subset W_1$.
 			\item\label{ex:vs:B2} 证明：若向量组 $\vv\beta_1,\ldots,\vv\beta_t$ 可由 $\vv\alpha_1,\ldots,\vv\alpha_s$ 线性表出，且两组的秩相等，则两组等价.
 			\item\label{ex:vs:B3} 设向量组 (I) 与 (II) 的秩分别为 $r_1,r_2$，把它们合并为 (III). 证明 $\max\{r_1,r_2\}\le\rk(\mathrm{III})\le r_1+r_2$. 再证明：$\rk(\vv\alpha_1+\vv\beta_1,\ldots,\vv\alpha_s+\vv\beta_s)\le\rk(\vv\alpha_1,\ldots,\vv\alpha_s)+\rk(\vv\beta_1,\ldots,\vv\beta_s)$.
 			\item\label{ex:vs:B4} 设 $\vv\alpha_1,\ldots,\vv\alpha_n$ 是 $V$ 的基，$\vv\beta=a_1\vv\alpha_1+\cdots+a_n\vv\alpha_n$. 证明：把 $\vv\alpha_j$ 换成 $\vv\beta$ 后所得的向量组仍是基，当且仅当 $a_j\ne0$.
-			\item\label{ex:vs:B5} 设 $p_0,p_1,\ldots,p_{n-1}\in\mathbb{F}[x]$ 满足 $\deg p_k=k$. 证明它们构成 $\mathbb{F}[x]_n$ 的一组基.
-			\item\label{ex:vs:B6} 记 $V$ 为满足 $a_{n+2}=a_{n+1}+2a_n$（$n\ge1$）的全体实数列. 证明 $V$ 是向量空间，$\dim V=2$，并说明 $\{2^n\}$ 与 $\{(-1)^n\}$ 构成 $V$ 的一组基. 由此写出 $a_1=1$，$a_2=1$ 时的通项.
-			\item\label{ex:vs:B7} 在 $C(\mathbb{R})$ 中：(1) 证明 $\mathrm e^x,\mathrm e^{2x},\mathrm e^{3x}$ 线性无关；(2) 证明 $\sin x,\cos x,\sin(x+1)$ 线性相关；(3) $1,\cos x,\cos2x,\cos^2x$ 的秩是多少？
-			\item\label{ex:vs:B8} 证明 $\{a+b\sqrt2+c\sqrt3+d\sqrt6\mid a,b,c,d\in\mathbb{Q}\}$ 是数域，并证明 $1,\sqrt2,\sqrt3,\sqrt6$ 在 $\mathbb{Q}$ 上线性无关. 这个数域作为 $\mathbb{Q}$ 上的向量空间是几维的？
-			\item\label{ex:vs:B9} 写出 $\mathbb{R}^2$ 与 $\mathbb{R}^3$ 的全部子空间（按维数分类，并说明几何意义）.
-			\item\label{ex:vs:B10} 证明：$\mathbb{R}^5$ 中任意两个三维子空间的交至少是一维的. 一般地，$n$ 维空间中维数分别为 $k_1,k_2$ 的两个子空间，若 $k_1+k_2>n$，则交不为 $\{\zero\}$.
-			\item\label{ex:vs:B11} 设 $a\in\mathbb{F}$. 证明 $\mathbb{F}[x]_n=\mathbb{F}\cdot1\oplus\{f\in\mathbb{F}[x]_n\mid f(a)=0\}$，并写出 $f$ 按这个直和的分解.
-			\item\label{ex:vs:B12} 设 $V=C[-1,1]$，$E$，$O$ 分别为其中的偶函数、奇函数全体. 证明 $V=E\oplus O$，并把 $\mathrm e^x$ 按此分解.
-			\item\label{ex:vs:B13} 设 $\dim V=n$，$W_1,\ldots,W_k$ 是 $V$ 的子空间，且 $\dim W_1+\cdots+\dim W_k>(k-1)n$. 证明 $W_1\cap\cdots\cap W_k\ne\{\zero\}$.
-			\item\label{ex:vs:B14} 设 $\vv\alpha_1,\ldots,\vv\alpha_n$ 是 $V$ 的基，$W=\spn(\vv\alpha_1+\vv\alpha_2,\ \vv\alpha_2+\vv\alpha_3,\ \ldots,\ \vv\alpha_{n-1}+\vv\alpha_n)$. 求 $\dim W$，并求 $W$ 的一个补空间.
-			\item\label{ex:vs:B15} 设 $V_1=\{\vv x\in\mathbb{F}^n\mid x_1=x_2=\cdots=x_n\}$，$V_2=\{\vv x\in\mathbb{F}^n\mid x_1=0\}$. 证明 $\mathbb{F}^n=V_1\oplus V_2$. 与第二章例~\ref{eg:pricedecomp} 的分解相比，哪一种分解更``自然''？（提示：思考补空间的不唯一性.）
-			\item\label{ex:vs:B16} 在 $M_n(\mathbb{F})$ 中，设 $W_1$ 为对角线以下元素全为零的矩阵（上三角矩阵）全体，$W_2$ 为对角线及以上元素全为零的矩阵全体. 证明 $M_n(\mathbb{F})=W_1\oplus W_2$，并求 $\dim W_1$.
-			\item\label{ex:vs:B17} （覆盖定理的另一个证明）设 $W_1,\ldots,W_s$ 是 $\mathbb{R}^n$ 的真子空间，令 $\vv v(t)=(1,t,t^2,\ldots,t^{n-1})^\trans$.
-			\begin{enumerate}
-				\item 证明：每个真子空间都包含于某个超平面 $\{\vv x\mid a_1x_1+\cdots+a_nx_n=0\}$（$a_i$ 不全为零）中.（提示：取 $W$ 的基并扩充为 $\mathbb{R}^n$ 的基，看``最后一个坐标''.）
-				\item 证明：对上述超平面，满足 $\vv v(t)$ 落在其中的实数 $t$ 至多有 $n-1$ 个.
-				\item 由此推出：$\vv v(t)$ 落在 $W_1\cup\cdots\cup W_s$ 中的 $t$ 至多有 $s(n-1)$ 个. 这给出了覆盖定理在 $\mathbb{R}^n$ 中的一个``构造性''证明. 对 $n=3$ 以及三个子空间 $x_1=x_2$，$x_2=x_3$，$x_1+x_2+x_3=0$，写出一个不在它们之中的 $\vv v(t)$.
-			\end{enumerate}
-			\item\label{ex:vs:B18} 设 $\dim V=n$，$W_1,\ldots,W_s$ 是 $V$ 的真子空间. 证明：存在 $V$ 的一组基 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$，其中\textbf{每个}向量都不属于 $W_1\cup\cdots\cup W_s$.（提示：逐个选取. 选 $\vv\varepsilon_k$ 时，要躲开的除了 $W_1,\ldots,W_s$，还有哪个真子空间？）
+			\item\label{ex:vs:B5} 写出 $\mathbb{R}^2$ 与 $\mathbb{R}^3$ 的全部子空间（按维数分类，并说明几何意义）.
+			\item\label{ex:vs:B6} 证明：$\mathbb{R}^5$ 中任意两个三维子空间的交至少是一维的. 一般地，$\mathbb{F}^n$ 中维数分别为 $k_1,k_2$ 的两个向量空间，若 $k_1+k_2>n$，则交不为 $\{\zero\}$.
 		\end{exB}
-		
-		\Cgroup
-		\begin{exC}
-			\item\label{ex:vs:C1} （覆盖定理在有限``数系''上的失效）设 $p$ 是素数，$\mathbb{F}_p=\{0,1,\ldots,p-1\}$ 按模 $p$ 作加法和乘法（可以承认它对加、减、乘以及除以非零元素都封闭. 它不包含 $\mathbb{Q}$，所以不是本书意义下的数域；但第二章中除定理~\ref{thm:Qsmallest} 与覆盖定理以外的定义和结论，在它上面照样成立）.
-			\begin{enumerate}
-				\item 证明 $\mathbb{F}_p^2$ 恰有 $p+1$ 个一维子空间，并且它们的并是整个 $\mathbb{F}_p^2$.
-				\item 证明 $\mathbb{F}_p^2$ 不能写成 $p$ 个真子空间的并.（提示：每个一维子空间恰含 $p-1$ 个非零向量，数一数.）
-				\item 指出定理~\ref{thm:cover} 的证明在 $\mathbb{F}_p$ 上从哪一步开始失效. 由第 2 问，``个数不超过 $p$ 时盖不住''，你能把正文的证明改写成这个``定量''的版本吗？
-			\end{enumerate}
-			\item\label{ex:vs:C2} 证明 $\ln2,\ln3,\ln5$ 在 $\mathbb{Q}$ 上线性无关. 由此说明 $\mathbb{R}$ 作为 $\mathbb{Q}$ 上的向量空间不是有限维的.（提示：算术基本定理.）
-			\item\label{ex:vs:C3} 证明：全体实数列构成的向量空间不是有限维的；而``只有有限项非零''的实数列全体是它的子空间，且 $\vv e_1,\vv e_2,\ldots$（第 $i$ 项为 $1$，其余为 $0$）是它的一组``基''——每个元素都能唯一地写成其中\textbf{有限个}向量的线性组合. 这组向量为什么不是全体实数列的基？
-			\item\label{ex:vs:C4} （模律）设 $W_1,W_2,W_3$ 是 $V$ 的子空间. 证明 $(W_1\cap W_3)+(W_2\cap W_3)\subset(W_1+W_2)\cap W_3$，在 $\mathbb{R}^2$ 中举例说明等号可以不成立；再证明：若 $W_1\subset W_3$，则等号一定成立.
-			\item\label{ex:vs:C5} （有限域上的向量空间）在只含 $0,1$ 两个元素、按模 $2$ 运算的``数系'' $\mathbb{F}_2$ 上考虑 $\mathbb{F}_2^3$. (1) 它有多少个向量？(2) 有多少个一维子空间、多少个二维子空间？(3) 它有多少组（有序）基？推广到 $\mathbb{F}_2^n$.
-			\item\label{ex:vs:C6} （塔律）设 $\mathbb{F}\subset\mathbb{K}\subset\mathbb{L}$ 是三个数域，$\mathbb{L}$ 作为 $\mathbb{K}$ 上的向量空间是 $m$ 维的，$\mathbb{K}$ 作为 $\mathbb{F}$ 上的向量空间是 $n$ 维的. 证明 $\mathbb{L}$ 作为 $\mathbb{F}$ 上的向量空间是 $mn$ 维的. 用它重新计算 B8 中数域的维数.
-			\item\label{ex:vs:C7} 证明 $\mathbb{Q}(\sqrt2+\sqrt3)=\mathbb{Q}(\sqrt2,\sqrt3)$，即包含 $\sqrt2+\sqrt3$ 的最小数域与包含 $\sqrt2,\sqrt3$ 的最小数域相同.（提示：计算 $(\sqrt2+\sqrt3)^3$.）
-			\item\label{ex:vs:C8} 设 $V$ 是 $n$ 维空间，$W$ 是 $k$ 维子空间（$0<k<n$）. 证明 $W$ 有无穷多个补空间. 在 $\mathbb{F}_2^2$ 中，一维子空间有几个补空间？
-			\item\label{ex:vs:C9} （Fibonacci 空间的另一组基）在 B6 的记号下，改为研究满足 $a_{n+2}=a_{n+1}+a_n$ 的数列空间. 求出两个公比 $q$ 使 $\{q^n\}$ 属于这个空间，证明它们构成一组基，并推出 Fibonacci 数列的通项（Binet 公式）. 第八章会从另一个角度再次得到它.
-		\end{exC}
+
 	}
 	
 	% =====================================================================
@@ -302,11 +246,37 @@
 	% =====================================================================
 	% 第四章　线性映射
 	% =====================================================================
-	\newcommand{\ExLinearMap}{%
+		\newcommand{\ExLinearMap}{%
 		\exsetheading
 		\Agroup
 		\begin{exA}
-			\item\label{ex:lmap:A1} 判断下列映射是否线性，是线性映射的求出核：
+			\item\label{ex:lmap:A1} 下列集合关于通常的四则运算是否构成数域？
+			(1) $\{a+b\sqrt3\mid a,b\in\mathbb{Q}\}$；(2) $\{a+b\sqrt2\mid a\in\mathbb{Q},\ b\in\mathbb{Z}\}$；(3) 全体偶数；(4) $\{a+b\sqrt[3]{2}\mid a,b\in\mathbb{Q}\}$；(5) 全体纯虚数与 $0$.
+			\item\label{ex:lmap:A2} 下列集合关于通常的加法与数乘是否构成实线性空间？
+			(1) 全体 $n$ 阶实对称矩阵；(2) $\{(x,y)^\trans\in\mathbb{R}^2\mid x\ge0\}$；(3) 次数恰为 $n$ 的实系数多项式全体；(4) $\{f\in\mathbb{R}[x]\mid f(1)=0\}$；(5) 满足 $a_{n+2}=a_{n+1}+a_n$ 的全体实数列；(6) $\{(x,y,z)^\trans\mid x+y+z=1\}$.
+			\item\label{ex:lmap:A3} 判断下列向量组的线性相关性：
+			\begin{enumerate}
+				\item $(1,2,-1)^\trans$，$(2,-3,1)^\trans$，$(4,1,-1)^\trans$；
+				\item 在 $\mathbb{R}[x]_3$ 中：$1+x$，$1-x$，$x^2$；
+				\item 在 $\mathbb{R}[x]_3$ 中：$1+x+x^2$，$1-x$，$2+x^2$，$x+x^2$；
+				\item 在 $M_2(\mathbb{R})$ 中：$\begin{pmatrix}1&0\\0&1\end{pmatrix}$，$\begin{pmatrix}0&1\\1&0\end{pmatrix}$，$\begin{pmatrix}1&1\\1&1\end{pmatrix}$，$\begin{pmatrix}1&0\\0&0\end{pmatrix}$.
+			\end{enumerate}
+			\item\label{ex:lmap:A4} 只用线性空间的八条公理与命题~\ref{prop:linspc}，证明：(1) $\vv\alpha+\vv\alpha=2\vv\alpha$；(2) 若 $k\ne0$ 且 $k\vv\alpha=k\vv\beta$，则 $\vv\alpha=\vv\beta$；(3) $-(-\vv\alpha)=\vv\alpha$.
+			\item\label{ex:lmap:A5} 证明下列集合是相应空间的子空间，并求一组基和维数：
+			\begin{enumerate}
+				\item $\{\vv x\in\mathbb{R}^4\mid x_1+x_2=x_3+x_4\}$；
+				\item $n$ 阶上三角矩阵全体；
+				\item 迹为零的 $n$ 阶方阵全体 $\{\vv X\mid x_{11}+\cdots+x_{nn}=0\}$；
+				\item $\{f\in\mathbb{R}[x]_4\mid f(1)=0\}$.
+			\end{enumerate}
+			\item\label{ex:lmap:A6} 判断下列子集是否为子空间：(1) $\{(a,b,c)^\trans\mid a=2b\}$；(2) $\{(a,b,c)^\trans\mid ab=0\}$；(3) $\{(a,b,c)^\trans\mid a,b,c\in\mathbb{Q}\}\subset\mathbb{R}^3$；(4) $\{f\in C[0,1]\mid f(0)=2f(1)\}$.
+			\item\label{ex:lmap:A7} 求多项式 $2x^2-x+3$ 在基 $1,\ x-1,\ (x-1)^2$ 下的坐标.
+			\item\label{ex:lmap:A8} 求矩阵 $\begin{pmatrix}2&3\\-1&4\end{pmatrix}$ 在 $M_2(\mathbb{R})$ 的基 $\begin{pmatrix}1&0\\0&0\end{pmatrix},\begin{pmatrix}1&1\\0&0\end{pmatrix},\begin{pmatrix}1&1\\1&0\end{pmatrix},\begin{pmatrix}1&1\\1&1\end{pmatrix}$ 下的坐标.
+			\item\label{ex:lmap:A9} (1) $\mathbb{R}$ 是否是 $\mathbb{Q}$ 上的线性空间？(2) $\mathbb{Q}$ 是否是 $\mathbb{R}$ 上的线性空间？(3) $\mathbb{C}$ 作为 $\mathbb{R}$ 上的线性空间和作为 $\mathbb{C}$ 上的线性空间，维数各是多少？
+			\item\label{ex:lmap:A10} 写出 $\mathbb{F}[x]_n$ 与 $\mathbb{F}^n$ 之间、$M_2(\mathbb{F})$ 与 $\mathbb{F}^4$ 之间的一个同构映射，并验证它保持线性运算.
+			\item\label{ex:lmap:A11} 设 $W_1=\spn\big((1,0,0)^\trans,(0,1,0)^\trans\big)$，$W_2=\spn\big((1,1,1)^\trans\big)$，$W_3=\spn\big((1,1,0)^\trans\big)$. 分别判断 $W_1+W_2$，$W_1+W_3$ 是否为直和，并求和空间的维数.
+			\item\label{ex:lmap:A12} 设 $W_1=\spn\big((1,1,0,0)^\trans,(1,0,1,1)^\trans\big)$，$W_2=\spn\big((0,-1,1,1)^\trans,(1,2,0,1)^\trans\big)$. 求 $W_1+W_2$ 与 $W_1\cap W_2$ 的维数，并验证维数公式.
+			\item\label{ex:lmap:A13} 判断下列映射是否线性，是线性映射的求出核：
 			\begin{enumerate}
 				\item $\mathbb{R}^2\to\mathbb{R}^2$，$(x,y)^\trans\mapsto(x+y,\,2x)^\trans$；
 				\item $\mathbb{R}^2\to\mathbb{R}^2$，$(x,y)^\trans\mapsto(x+1,\,y)^\trans$；
@@ -316,70 +286,102 @@
 				\item $M_n(\mathbb{R})\to M_n(\mathbb{R})$，$\vv X\mapsto\vv X^\trans$；
 				\item $M_2(\mathbb{R})\to\mathbb{R}$，$\vv X\mapsto x_{11}x_{22}-x_{12}x_{21}$.
 			\end{enumerate}
-			\item\label{ex:lmap:A2} 求下列矩阵所定义的线性映射 $\vv x\mapsto\vv{Ax}$ 的核与像（各给出一组基），并验证秩—零化度定理：
+			\item\label{ex:lmap:A14} 求下列矩阵所定义的线性映射 $\vv x\mapsto\vv{Ax}$ 的核与像（各给出一组基），并验证秩—零化度定理：
 			\[\begin{pmatrix}1&2&-1\\2&4&-2\end{pmatrix},\qquad\begin{pmatrix}1&0&2&1\\0&1&-1&1\\1&1&1&2\end{pmatrix}.\]
-			\item\label{ex:lmap:A3} 写出线性映射 $\mathscr T:\mathbb{R}^3\to\mathbb{R}^2$，$\mathscr T(x_1,x_2,x_3)^\trans=(x_1-2x_2+x_3,\ 3x_2+4x_3)^\trans$ 在标准基下的矩阵.
-			\item\label{ex:lmap:A4} 求下列平面变换在标准基下的矩阵：(1) 逆时针旋转 $90^\circ$；(2) 关于直线 $y=x$ 的反射；(3) 向直线 $y=x$ 的正投影；(4) 沿 $x$ 方向的剪切 $(x,y)\mapsto(x+2y,y)$. 计算 (2)(3) 的矩阵的平方，并解释结果.
-			\item\label{ex:lmap:A5} 求求导变换 $\mathscr D:\mathbb{R}[x]_3\to\mathbb{R}[x]_3$ 在基 $1,x,x^2$ 下的矩阵，以及在基 $1,\ x-1,\ (x-1)^2$ 下的矩阵.
-			\item\label{ex:lmap:A6} 求转置变换 $\vv X\mapsto\vv X^\trans$ 在 $M_2(\mathbb{F})$ 的基 $\vv E_{11},\vv E_{12},\vv E_{21},\vv E_{22}$ 下的矩阵. 它的平方是什么？
-			\item\label{ex:lmap:A7} 在 $\mathbb{R}^3$ 中，求从基 $\vv\varepsilon_1=(1,0,0)^\trans$，$\vv\varepsilon_2=(1,1,0)^\trans$，$\vv\varepsilon_3=(1,1,1)^\trans$ 到基 $\vv\eta_1=(1,2,1)^\trans$，$\vv\eta_2=(2,3,3)^\trans$，$\vv\eta_3=(3,7,1)^\trans$ 的过渡矩阵，并求 $\vv\alpha=(3,4,2)^\trans$ 在两组基下的坐标.
-			\item\label{ex:lmap:A8} 设线性变换 $\mathscr T$ 在基 $\vv\varepsilon_1,\vv\varepsilon_2$ 下的矩阵为 $\begin{pmatrix}2&1\\1&2\end{pmatrix}$. 求它在基 $\vv\eta_1=\vv\varepsilon_1+\vv\varepsilon_2$，$\vv\eta_2=\vv\varepsilon_1-\vv\varepsilon_2$ 下的矩阵.
-			\item\label{ex:lmap:A9} 证明：线性映射的复合仍是线性映射；可逆（双射）线性映射的逆映射仍是线性映射.
-			\item\label{ex:lmap:A10} 证明：线性映射 $\mathscr T$ 是单射，当且仅当它把每个线性无关组都映为线性无关组.
-			\item\label{ex:lmap:A11} 是否存在线性变换 $\mathscr T:\mathbb{R}^2\to\mathbb{R}^2$，使
+			\item\label{ex:lmap:A15} 写出线性映射 $\mathscr T:\mathbb{R}^3\to\mathbb{R}^2$，$\mathscr T(x_1,x_2,x_3)^\trans=(x_1-2x_2+x_3,\ 3x_2+4x_3)^\trans$ 在标准基下的矩阵.
+			\item\label{ex:lmap:A16} 求下列平面变换在标准基下的矩阵：(1) 逆时针旋转 $90^\circ$；(2) 关于直线 $y=x$ 的反射；(3) 向直线 $y=x$ 的正投影；(4) 沿 $x$ 方向的剪切 $(x,y)\mapsto(x+2y,y)$. 计算 (2)(3) 的矩阵的平方，并解释结果.
+			\item\label{ex:lmap:A17} 求求导变换 $\mathscr D:\mathbb{R}[x]_3\to\mathbb{R}[x]_3$ 在基 $1,x,x^2$ 下的矩阵，以及在基 $1,\ x-1,\ (x-1)^2$ 下的矩阵.
+			\item\label{ex:lmap:A18} 求转置变换 $\vv X\mapsto\vv X^\trans$ 在 $M_2(\mathbb{F})$ 的基 $\vv E_{11},\vv E_{12},\vv E_{21},\vv E_{22}$ 下的矩阵. 它的平方是什么？
+			\item\label{ex:lmap:A19} 在 $\mathbb{R}^3$ 中，求从基 $\vv\varepsilon_1=(1,0,0)^\trans$，$\vv\varepsilon_2=(1,1,0)^\trans$，$\vv\varepsilon_3=(1,1,1)^\trans$ 到基 $\vv\eta_1=(1,2,1)^\trans$，$\vv\eta_2=(2,3,3)^\trans$，$\vv\eta_3=(3,7,1)^\trans$ 的过渡矩阵，并求 $\vv\alpha=(3,4,2)^\trans$ 在两组基下的坐标.
+			\item\label{ex:lmap:A20} 设线性变换 $\mathscr T$ 在基 $\vv\varepsilon_1,\vv\varepsilon_2$ 下的矩阵为 $\begin{pmatrix}2&1\\1&2\end{pmatrix}$. 求它在基 $\vv\eta_1=\vv\varepsilon_1+\vv\varepsilon_2$，$\vv\eta_2=\vv\varepsilon_1-\vv\varepsilon_2$ 下的矩阵.
+			\item\label{ex:lmap:A21} 证明：线性映射的复合仍是线性映射；可逆（双射）线性映射的逆映射仍是线性映射.
+			\item\label{ex:lmap:A22} 证明：线性映射 $\mathscr T$ 是单射，当且仅当它把每个线性无关组都映为线性无关组.
+			\item\label{ex:lmap:A23} 是否存在线性变换 $\mathscr T:\mathbb{R}^2\to\mathbb{R}^2$，使
 			(1) $\mathscr T(1,1)^\trans=(1,0)^\trans$，$\mathscr T(1,-1)^\trans=(0,1)^\trans$，$\mathscr T(2,0)^\trans=(1,1)^\trans$？
 			(2) 同上，但最后一个条件改为 $\mathscr T(2,0)^\trans=(1,2)^\trans$？
 			存在时求出 $\mathscr T(x,y)^\trans$.
-			\item\label{ex:lmap:A12} (1) 线性映射 $\mathscr T:\mathbb{R}^5\to\mathbb{R}^3$ 是满射，$\dim\ker\mathscr T$ 是多少？(2) 是否存在从 $\mathbb{R}^3$ 到 $\mathbb{R}^5$ 的满射线性映射？是否存在从 $\mathbb{R}^5$ 到 $\mathbb{R}^3$ 的单射线性映射？
-			\item\label{ex:lmap:A13} 设 $\mathscr T:U\to V$，$\mathscr S:V\to W$ 线性. 证明 $\ker\mathscr T\subset\ker(\mathscr{ST})$，$\imm(\mathscr{ST})\subset\imm\mathscr S$，从而 $\rk(\mathscr{ST})\le\min\{\rk\mathscr S,\rk\mathscr T\}$.
-			\item\label{ex:lmap:A14} 求迹映射 $\tr:M_n(\mathbb{F})\to\mathbb{F}$ 的核的维数.
-			\item\label{ex:lmap:A15} 证明：相似矩阵有相同的迹（利用命题~\ref{prop:trace}(3)）. 由此判断 $\begin{pmatrix}1&2\\0&3\end{pmatrix}$ 与 $\begin{pmatrix}1&0\\0&2\end{pmatrix}$ 是否相似.
-			\item\label{ex:lmap:A16} 证明：与单位矩阵相似的矩阵只有单位矩阵本身. 由此说明 $\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 与 $\vv I$ 不相似.
-			\item\label{ex:lmap:A17} 定义求值映射 $\mathscr E:\mathbb{R}[x]_3\to\mathbb{R}^3$，$f\mapsto(f(0),f(1),f(2))^\trans$. 求它在基 $1,x,x^2$ 与标准基下的矩阵，并证明 $\mathscr E$ 是同构.
-			\item\label{ex:lmap:A18} 设 $\mathscr T$ 是 $\mathbb{R}^3$ 上的线性变换，$\mathscr T\vv e_1=(1,1,0)^\trans$，$\mathscr T\vv e_2=(0,1,1)^\trans$，$\mathscr T\vv e_3=(1,2,1)^\trans$. 求 $\mathscr T(x_1,x_2,x_3)^\trans$，$\ker\mathscr T$ 与 $\imm\mathscr T$.
-			\item\label{ex:lmap:A19} 称 $\vv x\mapsto\vv{Ax}+\vv b$ 为\textbf{仿射变换}. 证明两个仿射变换的复合仍是仿射变换；仿射变换是线性变换当且仅当 $\vv b=\zero$.
-			\item\label{ex:lmap:A20} 设 $\vv R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix}$ 是平面上绕原点旋转角 $\theta$ 的变换在标准基下的矩阵. 从几何上说明``先转 $\beta$ 再转 $\alpha$''就是转 $\alpha+\beta$，从而 $\vv R(\alpha)\vv R(\beta)=\vv R(\alpha+\beta)$；比较两边矩阵的元素，推出两角和的正弦、余弦公式.
+			\item\label{ex:lmap:A24} (1) 线性映射 $\mathscr T:\mathbb{R}^5\to\mathbb{R}^3$ 是满射，$\dim\ker\mathscr T$ 是多少？(2) 是否存在从 $\mathbb{R}^3$ 到 $\mathbb{R}^5$ 的满射线性映射？是否存在从 $\mathbb{R}^5$ 到 $\mathbb{R}^3$ 的单射线性映射？
+			\item\label{ex:lmap:A25} 设 $\mathscr T:U\to V$，$\mathscr S:V\to W$ 线性. 证明 $\ker\mathscr T\subset\ker(\mathscr{ST})$，$\imm(\mathscr{ST})\subset\imm\mathscr S$，从而 $\rk(\mathscr{ST})\le\min\{\rk\mathscr S,\rk\mathscr T\}$.
+			\item\label{ex:lmap:A26} 求迹映射 $\tr:M_n(\mathbb{F})\to\mathbb{F}$ 的核的维数.
+			\item\label{ex:lmap:A27} 证明：相似矩阵有相同的迹（利用命题~\ref{prop:trace}(3)）. 由此判断 $\begin{pmatrix}1&2\\0&3\end{pmatrix}$ 与 $\begin{pmatrix}1&0\\0&2\end{pmatrix}$ 是否相似.
+			\item\label{ex:lmap:A28} 证明：与单位矩阵相似的矩阵只有单位矩阵本身. 由此说明 $\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 与 $\vv I$ 不相似.
+			\item\label{ex:lmap:A29} 定义求值映射 $\mathscr E:\mathbb{R}[x]_3\to\mathbb{R}^3$，$f\mapsto(f(0),f(1),f(2))^\trans$. 求它在基 $1,x,x^2$ 与标准基下的矩阵，并证明 $\mathscr E$ 是同构.
+			\item\label{ex:lmap:A30} 设 $\mathscr T$ 是 $\mathbb{R}^3$ 上的线性变换，$\mathscr T\vv e_1=(1,1,0)^\trans$，$\mathscr T\vv e_2=(0,1,1)^\trans$，$\mathscr T\vv e_3=(1,2,1)^\trans$. 求 $\mathscr T(x_1,x_2,x_3)^\trans$，$\ker\mathscr T$ 与 $\imm\mathscr T$.
+			\item\label{ex:lmap:A31} 称 $\vv x\mapsto\vv{Ax}+\vv b$ 为\textbf{仿射变换}. 证明两个仿射变换的复合仍是仿射变换；仿射变换是线性变换当且仅当 $\vv b=\zero$.
+			\item\label{ex:lmap:A32} 设 $\vv R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix}$ 是平面上绕原点旋转角 $\theta$ 的变换在标准基下的矩阵. 从几何上说明``先转 $\beta$ 再转 $\alpha$''就是转 $\alpha+\beta$，从而 $\vv R(\alpha)\vv R(\beta)=\vv R(\alpha+\beta)$；比较两边矩阵的元素，推出两角和的正弦、余弦公式.
 		\end{exA}
 		
 		\Bgroup
 		\begin{exB}
-			\item\label{ex:lmap:B1} 记 $L(V,W)$ 为 $V$ 到 $W$ 的全体线性映射. 证明它关于映射的加法与数乘构成向量空间，且 $\dim L(V,W)=\dim V\cdot\dim W$.（提示：取定基后，线性映射与矩阵一一对应.）
-			\item\label{ex:lmap:B2} 设 $\mathscr T$ 是 $n$ 维空间 $V$ 上的线性变换，$\mathscr T^2=\mathscr O$. 证明 $\imm\mathscr T\subset\ker\mathscr T$，从而 $\rk\mathscr T\le n/2$；并证明存在一组基，使 $\mathscr T$ 的矩阵只在 $(1,2),(3,4),\ldots,(2r-1,2r)$ 这 $r$ 个位置上为 $1$，其余元素全为 $0$，其中 $r=\rk\mathscr T$.
-			\item\label{ex:lmap:B3} 设 $\mathscr T,\mathscr S$ 是有限维空间上的线性变换. 证明 $\dim\ker(\mathscr{ST})\le\dim\ker\mathscr S+\dim\ker\mathscr T$.
-			\item\label{ex:lmap:B4} 设 $V$ 有限维，$\mathscr S,\mathscr T$ 是 $V$ 上的线性变换且 $\mathscr{ST}=\mathscr I$. 证明 $\mathscr{TS}=\mathscr I$.
-			\item\label{ex:lmap:B5} 在无限维空间 $\mathbb{R}[x]$ 上，令 $\mathscr D$ 为求导，$\mathscr J$ 为 $f\mapsto\int_0^xf(t)\,\mathrm dt$. 证明 $\mathscr{DJ}=\mathscr I$，但 $\mathscr{JD}\ne\mathscr I$；$\mathscr D$ 是满射但不是单射，$\mathscr J$ 是单射但不是满射. 这与 B4 是否矛盾？
-			\item\label{ex:lmap:B6} 固定 $\vv A\in M_n(\mathbb{F})$，令 $\mathscr T(\vv X)=\vv{AX}-\vv{XA}$. 证明 $\imm\mathscr T$ 含于迹为零的矩阵全体，从而 $\mathscr T$ 不是满射；并证明 $\ker\mathscr T$ 包含 $\vv I,\vv A,\vv A^2,\ldots$.
-			\item\label{ex:lmap:B7} 设 $\vv A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$. 求线性变换 $\vv X\mapsto\vv{AX}$ 在 $M_2(\mathbb{F})$ 的基 $\vv E_{11},\vv E_{21},\vv E_{12},\vv E_{22}$ 下的矩阵. 若换成 $\vv X\mapsto\vv{XA}$ 呢？
-			\item\label{ex:lmap:B8} 设线性变换 $\mathscr P$ 满足 $\mathscr P^2=\mathscr P$. 证明存在一组基使 $\mathscr P$ 的矩阵为 $\begin{pmatrix}\vv I_r&\vv O\\ \vv O&\vv O\end{pmatrix}$，其中 $r=\rk\mathscr P$.
-			\item\label{ex:lmap:B9} 设线性变换 $\mathscr T$ 满足 $\mathscr T^2=\mathscr I$. 证明 $V=\ker(\mathscr T-\mathscr I)\oplus\ker(\mathscr T+\mathscr I)$，从而存在一组基使 $\mathscr T$ 的矩阵为 $\diag(\vv I_p,-\vv I_q)$.（提示：$\vv\alpha=\frac12(\vv\alpha+\mathscr T\vv\alpha)+\frac12(\vv\alpha-\mathscr T\vv\alpha)$.）
-			\item\label{ex:lmap:B10} 设 $\mathscr T:V\to W$ 线性，$U$ 是 $V$ 的子空间. 证明 $\dim\mathscr T(U)=\dim U-\dim(U\cap\ker\mathscr T)$.
-			\item\label{ex:lmap:B11} 在由 $\mathrm e^x\cos x$，$\mathrm e^x\sin x$ 张成的二维函数空间中，求求导变换的矩阵，证明它可逆，并利用逆矩阵求出 $\int\mathrm e^x\sin x\,\mathrm dx$（不必用分部积分）.
-			\item\label{ex:lmap:B12} （齐次坐标）平面上的平移 $(x,y)\mapsto(x+a,y+b)$ 不是线性的. 把点 $(x,y)$ 写成三维向量 $(x,y,1)^\trans$，证明平移、旋转、伸缩都可以写成 $3\times3$ 矩阵的乘法，且仿射变换的复合对应矩阵的乘积. 写出``先绕原点旋转 $90^\circ$，再平移 $(1,2)$''与``先平移再旋转''的矩阵，它们相等吗？（计算机图形学正是这样处理变换的.）
-			\item\label{ex:lmap:B13} 证明：若 $\vv A$ 与 $\vv B$ 相似，则 $\vv A^k$ 与 $\vv B^k$ 相似，$\vv A^\trans$ 与 $\vv B^\trans$ 相似，$f(\vv A)$ 与 $f(\vv B)$ 相似（$f$ 为多项式）.
-			\item\label{ex:lmap:B14} 证明 $\begin{pmatrix}1&0\\0&0\end{pmatrix}$ 与 $\begin{pmatrix}0&1\\0&0\end{pmatrix}$ 相抵但不相似. 从``线性映射 $V\to W$''与``线性变换 $V\to V$''的区别解释：为什么相抵只需看秩，而相似要复杂得多？
-			\item\label{ex:lmap:B15} 设 $\mathscr T$ 是 $V$ 上的线性变换，$\vv\alpha\in V$ 满足 $\mathscr T^{k-1}\vv\alpha\ne\zero$，$\mathscr T^k\vv\alpha=\zero$. 证明 $\vv\alpha,\mathscr T\vv\alpha,\ldots,\mathscr T^{k-1}\vv\alpha$ 线性无关. 若 $k=n=\dim V$，求 $\mathscr T$ 在基 $\mathscr T^{n-1}\vv\alpha,\ldots,\mathscr T\vv\alpha,\vv\alpha$ 下的矩阵.
+			\item\label{ex:lmap:B1} 设 $p_0,p_1,\ldots,p_{n-1}\in\mathbb{F}[x]$ 满足 $\deg p_k=k$. 证明它们构成 $\mathbb{F}[x]_n$ 的一组基.
+			\item\label{ex:lmap:B2} 记 $V$ 为满足 $a_{n+2}=a_{n+1}+2a_n$（$n\ge1$）的全体实数列. 证明 $V$ 是线性空间，$\dim V=2$，并说明 $\{2^n\}$ 与 $\{(-1)^n\}$ 构成 $V$ 的一组基. 由此写出 $a_1=1$，$a_2=1$ 时的通项.
+			\item\label{ex:lmap:B3} 在 $C(\mathbb{R})$ 中：(1) 证明 $\mathrm e^x,\mathrm e^{2x},\mathrm e^{3x}$ 线性无关；(2) 证明 $\sin x,\cos x,\sin(x+1)$ 线性相关；(3) $1,\cos x,\cos2x,\cos^2x$ 的秩是多少？
+			\item\label{ex:lmap:B4} 证明 $\{a+b\sqrt2+c\sqrt3+d\sqrt6\mid a,b,c,d\in\mathbb{Q}\}$ 是数域，并证明 $1,\sqrt2,\sqrt3,\sqrt6$ 在 $\mathbb{Q}$ 上线性无关. 这个数域作为 $\mathbb{Q}$ 上的线性空间是几维的？
+			\item\label{ex:lmap:B5} 设 $a\in\mathbb{F}$. 证明 $\mathbb{F}[x]_n=\mathbb{F}\cdot1\oplus\{f\in\mathbb{F}[x]_n\mid f(a)=0\}$，并写出 $f$ 按这个直和的分解.
+			\item\label{ex:lmap:B6} 设 $V=C[-1,1]$，$E$，$O$ 分别为其中的偶函数、奇函数全体. 证明 $V=E\oplus O$，并把 $\mathrm e^x$ 按此分解.
+			\item\label{ex:lmap:B7} 设 $\dim V=n$，$W_1,\ldots,W_k$ 是 $V$ 的子空间，且 $\dim W_1+\cdots+\dim W_k>(k-1)n$. 证明 $W_1\cap\cdots\cap W_k\ne\{\zero\}$.
+			\item\label{ex:lmap:B8} 设 $\vv\alpha_1,\ldots,\vv\alpha_n$ 是 $V$ 的基，$W=\spn(\vv\alpha_1+\vv\alpha_2,\ \vv\alpha_2+\vv\alpha_3,\ \ldots,\ \vv\alpha_{n-1}+\vv\alpha_n)$. 求 $\dim W$，并求 $W$ 的一个补空间.
+			\item\label{ex:lmap:B9} 设 $V_1=\{\vv x\in\mathbb{F}^n\mid x_1=x_2=\cdots=x_n\}$，$V_2=\{\vv x\in\mathbb{F}^n\mid x_1=0\}$. 证明 $\mathbb{F}^n=V_1\oplus V_2$. 与本章例~\ref{eg:pricedecomp} 的分解相比，哪一种分解更``自然''？（提示：思考补空间的不唯一性.）
+			\item\label{ex:lmap:B10} 在 $M_n(\mathbb{F})$ 中，设 $W_1$ 为对角线以下元素全为零的矩阵（上三角矩阵）全体，$W_2$ 为对角线及以上元素全为零的矩阵全体. 证明 $M_n(\mathbb{F})=W_1\oplus W_2$，并求 $\dim W_1$.
+			\item\label{ex:lmap:B11} （覆盖定理的另一个证明）设 $W_1,\ldots,W_s$ 是 $\mathbb{R}^n$ 的真子空间，令 $\vv v(t)=(1,t,t^2,\ldots,t^{n-1})^\trans$.
+			\begin{enumerate}
+				\item 证明：每个真子空间都包含于某个超平面 $\{\vv x\mid a_1x_1+\cdots+a_nx_n=0\}$（$a_i$ 不全为零）中.（提示：取 $W$ 的基并扩充为 $\mathbb{R}^n$ 的基，看``最后一个坐标''.）
+				\item 证明：对上述超平面，满足 $\vv v(t)$ 落在其中的实数 $t$ 至多有 $n-1$ 个.
+				\item 由此推出：$\vv v(t)$ 落在 $W_1\cup\cdots\cup W_s$ 中的 $t$ 至多有 $s(n-1)$ 个. 这给出了覆盖定理在 $\mathbb{R}^n$ 中的一个``构造性''证明. 对 $n=3$ 以及三个子空间 $x_1=x_2$，$x_2=x_3$，$x_1+x_2+x_3=0$，写出一个不在它们之中的 $\vv v(t)$.
+			\end{enumerate}
+			\item\label{ex:lmap:B12} 设 $\dim V=n$，$W_1,\ldots,W_s$ 是 $V$ 的真子空间. 证明：存在 $V$ 的一组基 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$，其中\textbf{每个}向量都不属于 $W_1\cup\cdots\cup W_s$.（提示：逐个选取. 选 $\vv\varepsilon_k$ 时，要躲开的除了 $W_1,\ldots,W_s$，还有哪个真子空间？）
+			\item\label{ex:lmap:B13} 记 $L(V,W)$ 为 $V$ 到 $W$ 的全体线性映射. 证明它关于映射的加法与数乘构成线性空间，且 $\dim L(V,W)=\dim V\cdot\dim W$.（提示：取定基后，线性映射与矩阵一一对应.）
+			\item\label{ex:lmap:B14} 设 $\mathscr T$ 是 $n$ 维空间 $V$ 上的线性变换，$\mathscr T^2=\mathscr O$. 证明 $\imm\mathscr T\subset\ker\mathscr T$，从而 $\rk\mathscr T\le n/2$；并证明存在一组基，使 $\mathscr T$ 的矩阵只在 $(1,2),(3,4),\ldots,(2r-1,2r)$ 这 $r$ 个位置上为 $1$，其余元素全为 $0$，其中 $r=\rk\mathscr T$.
+			\item\label{ex:lmap:B15} 设 $\mathscr T,\mathscr S$ 是有限维空间上的线性变换. 证明 $\dim\ker(\mathscr{ST})\le\dim\ker\mathscr S+\dim\ker\mathscr T$.
+			\item\label{ex:lmap:B16} 设 $V$ 有限维，$\mathscr S,\mathscr T$ 是 $V$ 上的线性变换且 $\mathscr{ST}=\mathscr I$. 证明 $\mathscr{TS}=\mathscr I$.
+			\item\label{ex:lmap:B17} 在无限维空间 $\mathbb{R}[x]$ 上，令 $\mathscr D$ 为求导，$\mathscr J$ 为 $f\mapsto\int_0^xf(t)\,\mathrm dt$. 证明 $\mathscr{DJ}=\mathscr I$，但 $\mathscr{JD}\ne\mathscr I$；$\mathscr D$ 是满射但不是单射，$\mathscr J$ 是单射但不是满射. 这与 \ref{ex:lmap:B16} 是否矛盾？
+			\item\label{ex:lmap:B18} 固定 $\vv A\in M_n(\mathbb{F})$，令 $\mathscr T(\vv X)=\vv{AX}-\vv{XA}$. 证明 $\imm\mathscr T$ 含于迹为零的矩阵全体，从而 $\mathscr T$ 不是满射；并证明 $\ker\mathscr T$ 包含 $\vv I,\vv A,\vv A^2,\ldots$.
+			\item\label{ex:lmap:B19} 设 $\vv A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$. 求线性变换 $\vv X\mapsto\vv{AX}$ 在 $M_2(\mathbb{F})$ 的基 $\vv E_{11},\vv E_{21},\vv E_{12},\vv E_{22}$ 下的矩阵. 若换成 $\vv X\mapsto\vv{XA}$ 呢？
+			\item\label{ex:lmap:B20} 设线性变换 $\mathscr P$ 满足 $\mathscr P^2=\mathscr P$. 证明存在一组基使 $\mathscr P$ 的矩阵为 $\begin{pmatrix}\vv I_r&\vv O\\ \vv O&\vv O\end{pmatrix}$，其中 $r=\rk\mathscr P$.
+			\item\label{ex:lmap:B21} 设线性变换 $\mathscr T$ 满足 $\mathscr T^2=\mathscr I$. 证明 $V=\ker(\mathscr T-\mathscr I)\oplus\ker(\mathscr T+\mathscr I)$，从而存在一组基使 $\mathscr T$ 的矩阵为 $\diag(\vv I_p,-\vv I_q)$.（提示：$\vv\alpha=\frac12(\vv\alpha+\mathscr T\vv\alpha)+\frac12(\vv\alpha-\mathscr T\vv\alpha)$.）
+			\item\label{ex:lmap:B22} 设 $\mathscr T:V\to W$ 线性，$U$ 是 $V$ 的子空间. 证明 $\dim\mathscr T(U)=\dim U-\dim(U\cap\ker\mathscr T)$.
+			\item\label{ex:lmap:B23} 在由 $\mathrm e^x\cos x$，$\mathrm e^x\sin x$ 张成的二维函数空间中，求求导变换的矩阵，证明它可逆，并利用逆矩阵求出 $\int\mathrm e^x\sin x\,\mathrm dx$（不必用分部积分）.
+			\item\label{ex:lmap:B24} （齐次坐标）平面上的平移 $(x,y)\mapsto(x+a,y+b)$ 不是线性的. 把点 $(x,y)$ 写成三维向量 $(x,y,1)^\trans$，证明平移、旋转、伸缩都可以写成 $3\times3$ 矩阵的乘法，且仿射变换的复合对应矩阵的乘积. 写出``先绕原点旋转 $90^\circ$，再平移 $(1,2)$''与``先平移再旋转''的矩阵，它们相等吗？（计算机图形学正是这样处理变换的.）
+			\item\label{ex:lmap:B25} 证明：若 $\vv A$ 与 $\vv B$ 相似，则 $\vv A^k$ 与 $\vv B^k$ 相似，$\vv A^\trans$ 与 $\vv B^\trans$ 相似，$f(\vv A)$ 与 $f(\vv B)$ 相似（$f$ 为多项式）.
+			\item\label{ex:lmap:B26} 证明 $\begin{pmatrix}1&0\\0&0\end{pmatrix}$ 与 $\begin{pmatrix}0&1\\0&0\end{pmatrix}$ 相抵但不相似. 从``线性映射 $V\to W$''与``线性变换 $V\to V$''的区别解释：为什么相抵只需看秩，而相似要复杂得多？
+			\item\label{ex:lmap:B27} 设 $\mathscr T$ 是 $V$ 上的线性变换，$\vv\alpha\in V$ 满足 $\mathscr T^{k-1}\vv\alpha\ne\zero$，$\mathscr T^k\vv\alpha=\zero$. 证明 $\vv\alpha,\mathscr T\vv\alpha,\ldots,\mathscr T^{k-1}\vv\alpha$ 线性无关. 若 $k=n=\dim V$，求 $\mathscr T$ 在基 $\mathscr T^{n-1}\vv\alpha,\ldots,\mathscr T\vv\alpha,\vv\alpha$ 下的矩阵.
 		\end{exB}
 		
 		\Cgroup
 		\begin{exC}
-			\item\label{ex:lmap:C1} （Fitting 分解）设 $\mathscr T$ 是 $n$ 维空间 $V$ 上的线性变换. 证明：
+			\item\label{ex:lmap:C1} （覆盖定理在有限``数系''上的失效）设 $p$ 是素数，$\mathbb{F}_p=\{0,1,\ldots,p-1\}$ 按模 $p$ 作加法和乘法（可以承认它对加、减、乘以及除以非零元素都封闭. 它不包含 $\mathbb{Q}$，所以不是本书意义下的数域；但第四章前五节中除定理~\ref{thm:Qsmallest} 与覆盖定理以外的定义和结论，在它上面照样成立）.
+			\begin{enumerate}
+				\item 证明 $\mathbb{F}_p^2$ 恰有 $p+1$ 个一维子空间，并且它们的并是整个 $\mathbb{F}_p^2$.
+				\item 证明 $\mathbb{F}_p^2$ 不能写成 $p$ 个真子空间的并.（提示：每个一维子空间恰含 $p-1$ 个非零向量，数一数.）
+				\item 指出定理~\ref{thm:cover} 的证明在 $\mathbb{F}_p$ 上从哪一步开始失效. 由第 2 问，``个数不超过 $p$ 时盖不住''，你能把正文的证明改写成这个``定量''的版本吗？
+			\end{enumerate}
+			\item\label{ex:lmap:C2} 证明 $\ln2,\ln3,\ln5$ 在 $\mathbb{Q}$ 上线性无关. 由此说明 $\mathbb{R}$ 作为 $\mathbb{Q}$ 上的线性空间不是有限维的.（提示：算术基本定理.）
+			\item\label{ex:lmap:C3} 证明：全体实数列构成的线性空间不是有限维的；而``只有有限项非零''的实数列全体是它的子空间，且 $\vv e_1,\vv e_2,\ldots$（第 $i$ 项为 $1$，其余为 $0$）是它的一组``基''——每个元素都能唯一地写成其中\textbf{有限个}向量的线性组合. 这组向量为什么不是全体实数列的基？
+			\item\label{ex:lmap:C4} （模律）设 $W_1,W_2,W_3$ 是 $V$ 的子空间. 证明 $(W_1\cap W_3)+(W_2\cap W_3)\subset(W_1+W_2)\cap W_3$，在 $\mathbb{R}^2$ 中举例说明等号可以不成立；再证明：若 $W_1\subset W_3$，则等号一定成立.
+			\item\label{ex:lmap:C5} （有限域上的线性空间）在只含 $0,1$ 两个元素、按模 $2$ 运算的``数系'' $\mathbb{F}_2$ 上考虑 $\mathbb{F}_2^3$. (1) 它有多少个向量？(2) 有多少个一维子空间、多少个二维子空间？(3) 它有多少组（有序）基？推广到 $\mathbb{F}_2^n$.
+			\item\label{ex:lmap:C6} （塔律）设 $\mathbb{F}\subset\mathbb{K}\subset\mathbb{L}$ 是三个数域，$\mathbb{L}$ 作为 $\mathbb{K}$ 上的线性空间是 $m$ 维的，$\mathbb{K}$ 作为 $\mathbb{F}$ 上的线性空间是 $n$ 维的. 证明 $\mathbb{L}$ 作为 $\mathbb{F}$ 上的线性空间是 $mn$ 维的. 用它重新计算 \ref{ex:lmap:B4} 中数域的维数.
+			\item\label{ex:lmap:C7} 证明 $\mathbb{Q}(\sqrt2+\sqrt3)=\mathbb{Q}(\sqrt2,\sqrt3)$，即包含 $\sqrt2+\sqrt3$ 的最小数域与包含 $\sqrt2,\sqrt3$ 的最小数域相同.（提示：计算 $(\sqrt2+\sqrt3)^3$.）
+			\item\label{ex:lmap:C8} 设 $V$ 是 $n$ 维空间，$W$ 是 $k$ 维子空间（$0<k<n$）. 证明 $W$ 有无穷多个补空间. 在 $\mathbb{F}_2^2$ 中，一维子空间有几个补空间？
+			\item\label{ex:lmap:C9} （Fibonacci 空间的另一组基）在 \ref{ex:lmap:B2} 的记号下，改为研究满足 $a_{n+2}=a_{n+1}+a_n$ 的数列空间. 求出两个公比 $q$ 使 $\{q^n\}$ 属于这个空间，证明它们构成一组基，并推出 Fibonacci 数列的通项（Binet 公式）. 第八章会从另一个角度再次得到它.
+			\item\label{ex:lmap:C10} （Fitting 分解）设 $\mathscr T$ 是 $n$ 维空间 $V$ 上的线性变换. 证明：
 			\begin{enumerate}
 				\item $\ker\mathscr T\subset\ker\mathscr T^2\subset\cdots$，$\imm\mathscr T\supset\imm\mathscr T^2\supset\cdots$，且两条链都在某一步之后不再变化；
 				\item $V=\ker\mathscr T^n\oplus\imm\mathscr T^n$，两者都是 $\mathscr T$ 的不变子空间，$\mathscr T$ 在前者上幂零，在后者上可逆.
 			\end{enumerate}
-			\item\label{ex:lmap:C2} （商空间）设 $W$ 是 $V$ 的子空间. 对 $\vv\alpha\in V$，称集合 $\vv\alpha+W$ 为 $\vv\alpha$ 所在的陪集，全体陪集记为 $V/W$. 定义 $(\vv\alpha+W)+(\vv\beta+W)=(\vv\alpha+\vv\beta)+W$，$k(\vv\alpha+W)=k\vv\alpha+W$.
+			\item\label{ex:lmap:C11} （商空间）设 $W$ 是 $V$ 的子空间. 对 $\vv\alpha\in V$，称集合 $\vv\alpha+W$ 为 $\vv\alpha$ 所在的陪集，全体陪集记为 $V/W$. 定义 $(\vv\alpha+W)+(\vv\beta+W)=(\vv\alpha+\vv\beta)+W$，$k(\vv\alpha+W)=k\vv\alpha+W$.
 			\begin{enumerate}
-				\item 证明这两个运算是良定义的，且 $V/W$ 构成向量空间；
+				\item 证明这两个运算是良定义的，且 $V/W$ 构成线性空间；
 				\item 证明 $\dim V/W=\dim V-\dim W$；
 				\item （第一同构定理/同态基本定理）对线性映射 $\mathscr T:V\to U$，证明 $V/\ker\mathscr T\cong\imm\mathscr T$. 这给出秩—零化度定理的另一种理解.
 			\end{enumerate}
-			\item\label{ex:lmap:C3} 把 $\mathbb{C}$ 看作 $\mathbb{R}$ 上的二维空间，基为 $1,\mathrm i$. (1) 求``乘以 $a+b\mathrm i$''这个变换的矩阵；(2) 求``取共轭''这个变换的矩阵；(3) 证明 $\mathbb{R}$-线性变换 $\begin{pmatrix}p&q\\r&s\end{pmatrix}$ 是``乘以某个复数''，当且仅当 $p=s$，$q=-r$.
-			\item\label{ex:lmap:C4} 证明：$n$ 维空间上的任一线性变换 $\mathscr T$，都存在次数不超过 $n^2$ 的非零多项式 $f$ 使 $f(\mathscr T)=\mathscr O$.（提示：$\mathscr I,\mathscr T,\ldots,\mathscr T^{n^2}$ 在 $L(V,V)$ 中线性相关. 第八章的 Cayley–Hamilton 定理会把 $n^2$ 改进为 $n$.）
-			\item\label{ex:lmap:C5} （Haar 小波）在 $\mathbb{R}^4$ 中取基 $\vv h_1=(1,1,1,1)^\trans$，$\vv h_2=(1,1,-1,-1)^\trans$，$\vv h_3=(1,-1,0,0)^\trans$，$\vv h_4=(0,0,1,-1)^\trans$. 求信号 $\vv x=(8,6,3,4)^\trans$ 在这组基下的坐标，并解释每个坐标的含义. 若把绝对值最小的坐标改为 $0$ 再变换回来，误差是多少？这是图像与音频压缩的思想之一.
-			\item\label{ex:lmap:C6} 设 $\mathscr T$ 是 $V$ 上的线性变换. 若 $\mathscr T$ 与 $V$ 上的一切线性变换都可交换，证明 $\mathscr T=c\mathscr I$. 若只要求与一切\textbf{可逆}线性变换可交换呢？
-			\item\label{ex:lmap:C7} 设 $\mathscr T:V\to V$ 线性，$\dim V=n$. 证明：$\rk\mathscr T^k-\rk\mathscr T^{k+1}$ 关于 $k$ 单调不增. 由此说明：若 $\rk\mathscr T=\rk\mathscr T^2$，则对一切 $k$，$\rk\mathscr T^k=\rk\mathscr T$.
-			\item\label{ex:lmap:C8} （差分算子）在全体实数列构成的空间上，定义左移 $\mathscr S(a_1,a_2,a_3,\ldots)=(a_2,a_3,\ldots)$. 证明 $\mathscr S$ 是线性的、满射但不是单射；满足 $a_{n+2}=a_{n+1}+a_n$ 的数列全体恰好是 $\ker(\mathscr S^2-\mathscr S-\mathscr I)$. 由第二章章末习题~\ref{ex:vs:C9}，这个核是二维的.
+			\item\label{ex:lmap:C12} 把 $\mathbb{C}$ 看作 $\mathbb{R}$ 上的二维空间，基为 $1,\mathrm i$. (1) 求``乘以 $a+b\mathrm i$''这个变换的矩阵；(2) 求``取共轭''这个变换的矩阵；(3) 证明 $\mathbb{R}$-线性变换 $\begin{pmatrix}p&q\\r&s\end{pmatrix}$ 是``乘以某个复数''，当且仅当 $p=s$，$q=-r$.
+			\item\label{ex:lmap:C13} 证明：$n$ 维空间上的任一线性变换 $\mathscr T$，都存在次数不超过 $n^2$ 的非零多项式 $f$ 使 $f(\mathscr T)=\mathscr O$.（提示：$\mathscr I,\mathscr T,\ldots,\mathscr T^{n^2}$ 在 $L(V,V)$ 中线性相关. 第八章的 Cayley–Hamilton 定理会把 $n^2$ 改进为 $n$.）
+			\item\label{ex:lmap:C14} （Haar 小波）在 $\mathbb{R}^4$ 中取基 $\vv h_1=(1,1,1,1)^\trans$，$\vv h_2=(1,1,-1,-1)^\trans$，$\vv h_3=(1,-1,0,0)^\trans$，$\vv h_4=(0,0,1,-1)^\trans$. 求信号 $\vv x=(8,6,3,4)^\trans$ 在这组基下的坐标，并解释每个坐标的含义. 若把绝对值最小的坐标改为 $0$ 再变换回来，误差是多少？这是图像与音频压缩的思想之一.
+			\item\label{ex:lmap:C15} 设 $\mathscr T$ 是 $V$ 上的线性变换. 若 $\mathscr T$ 与 $V$ 上的一切线性变换都可交换，证明 $\mathscr T=c\mathscr I$. 若只要求与一切\textbf{可逆}线性变换可交换呢？
+			\item\label{ex:lmap:C16} 设 $\mathscr T:V\to V$ 线性，$\dim V=n$. 证明：$\rk\mathscr T^k-\rk\mathscr T^{k+1}$ 关于 $k$ 单调不增. 由此说明：若 $\rk\mathscr T=\rk\mathscr T^2$，则对一切 $k$，$\rk\mathscr T^k=\rk\mathscr T$.
+			\item\label{ex:lmap:C17} （差分算子）在全体实数列构成的空间上，定义左移 $\mathscr S(a_1,a_2,a_3,\ldots)=(a_2,a_3,\ldots)$. 证明 $\mathscr S$ 是线性的、满射但不是单射；满足 $a_{n+2}=a_{n+1}+a_n$ 的数列全体恰好是 $\ker(\mathscr S^2-\mathscr S-\mathscr I)$. 由第四章章末习题~\ref{ex:lmap:C9}，这个核是二维的.
 		\end{exC}
+
 	}
 	
 	% =====================================================================
@@ -657,6 +659,47 @@
 			\item\label{ex:eig:C10} 证明：满足 $\vv A^2=-\vv I$ 的 $n$ 阶实方阵存在当且仅当 $n$ 为偶数，且这时 $\vv A$ 相似于 $\diag(\vv J,\ldots,\vv J)$，$\vv J=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$.
 		\end{exC}
 	}
+
+	% =====================================================================
+	% 第九章　λ-矩阵
+	% =====================================================================
+	\newcommand{\ExLambda}{%
+		\exsetheading
+		\Agroup
+		\begin{exA}
+			\item\label{ex:lam:A1} 用初等变换把下列 $\lambda$-矩阵化为 Smith 标准形：
+			(1) $\begin{pmatrix}\lambda&0\\0&\lambda+1\end{pmatrix}$；(2) $\begin{pmatrix}\lambda^2+\lambda&0\\0&\lambda^2\end{pmatrix}$；(3) $\begin{pmatrix}1-\lambda&2\lambda-1&\lambda\\\lambda&\lambda^2&-\lambda\\1+\lambda^2&\lambda^3+\lambda-1&-\lambda^2\end{pmatrix}$.
+			\item\label{ex:lam:A2} 求 $\begin{pmatrix}\lambda&-1&0\\0&\lambda&-1\\6&11&\lambda+6\end{pmatrix}$ 的各阶行列式因子与不变因子.
+			\item\label{ex:lam:A3} 判断下列 $\lambda$-矩阵是否可逆；若可逆，求出逆矩阵：(1) $\begin{pmatrix}\lambda+1&\lambda\\\lambda&\lambda-1\end{pmatrix}$；(2) $\begin{pmatrix}\lambda&1\\1&\lambda\end{pmatrix}$.
+			\item\label{ex:lam:A4} 设 $6$ 阶复方阵 $\vv A$ 的不变因子为 $1,1,1,1,(\lambda-1)(\lambda-2),(\lambda-1)^2(\lambda-2)^2$. 求 $\vv A$ 的初等因子、特征多项式、最小多项式与 Jordan 标准形.
+			\item\label{ex:lam:A5} 设 $7$ 阶复方阵的初等因子为 $\lambda,\ \lambda^2,\ (\lambda-1)^2,\ \lambda+1,\ \lambda+1$. 求它的不变因子.
+			\item\label{ex:lam:A6} 求 $\vv A=\begin{pmatrix}3&0&8\\3&-1&6\\-2&0&-5\end{pmatrix}$ 的不变因子与 Jordan 标准形，并判断它能否对角化.
+			\item\label{ex:lam:A7} 求 $\vv A=\begin{pmatrix}0&1&0\\0&0&1\\1&-3&3\end{pmatrix}$ 的不变因子与 Jordan 标准形.
+			\item\label{ex:lam:A8} 判断下列矩阵中哪些彼此相似：$\vv A=\begin{pmatrix}2&1&0\\0&2&0\\0&0&2\end{pmatrix}$，$\vv B=\begin{pmatrix}2&0&0\\0&2&1\\0&0&2\end{pmatrix}$，$\vv C=\begin{pmatrix}2&1&0\\0&2&1\\0&0&2\end{pmatrix}$，$\vv D=2\vv I_3$.
+			\item\label{ex:lam:A9} 用不变因子求 $\vv A=\begin{pmatrix}1&-3&3\\3&-5&3\\6&-6&4\end{pmatrix}$ 的最小多项式，并判断它能否对角化.
+			\item\label{ex:lam:A10} 设 $\vv A=\begin{pmatrix}3&1\\-1&1\end{pmatrix}$. 利用第~\ref{sec:jordan}~节的 Jordan 标准形与过渡矩阵，求 $\vv A^n$.
+		\end{exA}
+		
+		\Bgroup
+		\begin{exB}
+			\item\label{ex:lam:B1} 设 $\vv A$ 是 $n$ 阶幂零矩阵（存在 $k$ 使 $\vv A^k=\vv O$）. 证明 $\vv A$ 的 Jordan 块的对角元都是 $0$，从而 $\vv A^n=\vv O$；若还有 $\rk\vv A=n-1$，则 $\vv A$ 的 Jordan 标准形是 $\vv J_n(0)$.
+			\item\label{ex:lam:B2} 证明：若复方阵 $\vv A$ 满足 $\vv A^2=\vv A$ 或 $\vv A^2=\vv I$，则 $\vv A$ 可对角化.
+			\item\label{ex:lam:B3} 求与 $\vv J_3(0)$ 可交换的全部 $3$ 阶矩阵.
+			\item\label{ex:lam:B4} 设 $\vv P$ 是副对角线上全为 $1$、其余为 $0$ 的 $k$ 阶矩阵. 证明 $\vv P^{-1}\vv J_k(\lambda_0)\vv P=\vv J_k(\lambda_0)^\trans$. 由此对 Jordan 矩阵重新证明推论~\ref{cor:simfield}(2).
+			\item\label{ex:lam:B5} 证明：复方阵 $\vv A$ 可对角化，当且仅当对每个特征值 $\lambda_0$，$\rk(\vv A-\lambda_0\vv I)=\rk(\vv A-\lambda_0\vv I)^2$.
+			\item\label{ex:lam:B6} 证明：对 $n$ 阶方阵 $\vv A$，以下条件等价：(1) $\lambda\vv I-\vv A$ 的 $n-1$ 阶行列式因子为 $1$；(2) $\vv A$ 的最小多项式等于特征多项式；(3) （复方阵）每个特征值只对应一个 Jordan 块.
+			\item\label{ex:lam:B7} 设 $\lambda_0$ 是复方阵 $\vv A$ 的特征值，$r_k=\rk(\vv A-\lambda_0\vv I)^k$（$r_0=n$）. 证明：以 $\lambda_0$ 为对角元、阶数不小于 $k$ 的 Jordan 块的个数为 $r_{k-1}-r_k$. 由此说明 Jordan 标准形可以只用秩来确定.
+		\end{exB}
+		
+		\Cgroup
+		\begin{exC}
+			\item\label{ex:lam:C1} （有理标准形）首一多项式 $p(\lambda)=\lambda^m+a_{m-1}\lambda^{m-1}+\cdots+a_0$ 的\textbf{友矩阵}是
+			\[\vv C(p)=\begin{pmatrix}0&&&-a_0\\1&0&&-a_1\\&\ddots&\ddots&\vdots\\&&1&-a_{m-1}\end{pmatrix}.\]
+			证明 $\lambda\vv I-\vv C(p)$ 的不变因子为 $1,\ldots,1,p(\lambda)$. 由此证明：任一数域上的方阵都相似于 $\diag\big(\vv C(d_{k}),\ldots,\vv C(d_n)\big)$，其中 $d_k,\ldots,d_n$ 是它的次数为正的不变因子. 这个标准形不需要求特征值.
+			\item\label{ex:lam:C2} （整数矩阵）把正文的论证中的``多项式''换成``整数''，``首一''换成``正''. 证明每个整数矩阵都可以经过整数范围内可撤销的初等变换化为对角矩阵 $\diag(d_1,d_2,\ldots)$，$d_1\mid d_2\mid\cdots$. 求 $\begin{pmatrix}2&4\\6&8\end{pmatrix}$ 的这个标准形.
+			\item\label{ex:lam:C3} （矩阵指数）对方阵 $\vv A$ 定义 $\mathrm e^{t\vv A}=\sum_{k\ge0}\frac{t^k}{k!}\vv A^k$（可以承认它收敛）. 证明 $\mathrm e^{t\vv J_2(\lambda_0)}=\mathrm e^{\lambda_0t}\begin{pmatrix}1&t\\0&1\end{pmatrix}$，并由 \ref{ex:lam:A10} 的过渡矩阵写出微分方程组 $\vv x'(t)=\vv A\vv x(t)$ 的通解，其中 $\vv A=\begin{pmatrix}3&1\\-1&1\end{pmatrix}$.
+		\end{exC}
+	}
 	
 	% =====================================================================
 	% 第十章　内积空间
@@ -715,10 +758,9 @@
 			\item\label{ex:ip:C2} （Gram–Schmidt 的数值不稳定）设 $\varepsilon$ 很小，对 $\vv a_1=(1,\varepsilon,0,0)^\trans$，$\vv a_2=(1,0,\varepsilon,0)^\trans$，$\vv a_3=(1,0,0,\varepsilon)^\trans$ 作 Gram–Schmidt，在计算中把 $1+\varepsilon^2$ 舍入为 $1$. 证明所得的 $\vv e_2,\vv e_3$ 之间的夹角是 $60^\circ$ 而不是 $90^\circ$. 再用``修正的 Gram–Schmidt''（每得到一个 $\vv e_k$，立即从\textbf{剩余的}所有向量中减去它的分量）重做，比较结果.
 			\item\label{ex:ip:C3} （Legendre 多项式）令 $P_n(x)=\frac1{2^nn!}\frac{\mathrm d^n}{\mathrm dx^n}(x^2-1)^n$. 证明 $P_0,P_1,P_2,\ldots$ 在 $\langle f,g\rangle=\int_{-1}^1fg\,\mathrm dx$ 下两两正交，并求 $\|P_n\|$.
 			\item\label{ex:ip:C4} （Gauss–Markov 定理的线性代数部分）设 $\vv A$ 列满秩. 若 $\vv C\vv y$ 是参数 $\vv\beta$ 的``线性无偏估计''，即 $\vv{CA}=\vv I$. 令 $\vv C_0=(\vv A^\trans\vv A)^{-1}\vv A^\trans$（最小二乘）. 证明 $\vv C\vv C^\trans-\vv C_0\vv C_0^\trans$ 是半正定矩阵（第十三章）. 学过概率论后可以知道，这说明最小二乘估计的方差在一切线性无偏估计中最小.
-			\item\label{ex:ip:C5} （复内积空间）在 $\mathbb{C}^n$ 上定义 $\langle\vv x,\vv y\rangle=\sum x_i\bar y_i$. 证明它满足共轭对称性、对第一个变量线性、正定性；证明 Cauchy–Schwarz 不等式仍成立. 满足 $\bar{\vv U}^\trans\vv U=\vv I$ 的复矩阵称为\textbf{酉矩阵}，证明它保持这个内积.
-			\item\label{ex:ip:C6} 设 $f:\mathbb{R}^n\to\mathbb{R}^n$ 保持距离（$\|f(\vv x)-f(\vv y)\|=\|\vv x-\vv y\|$）且 $f(\zero)=\zero$. 证明 $f$ 保持内积，进而证明 $f$ 是线性的正交变换. 由此说明：保持距离的变换都可以分解为正交变换与平移的复合.
-			\item\label{ex:ip:C7} （伪逆）设 $\vv A$ 列满秩，$\vv A^+=(\vv A^\trans\vv A)^{-1}\vv A^\trans$. 验证 Penrose 四条件：$\vv{AA}^+\vv A=\vv A$，$\vv A^+\vv{AA}^+=\vv A^+$，$(\vv{AA}^+)^\trans=\vv{AA}^+$，$(\vv A^+\vv A)^\trans=\vv A^+\vv A$. 说明 $\vv{AA}^+$ 是向哪个子空间的正交投影.
-			\item\label{ex:ip:C8} 求空间中两条异面直线 $\vv x=\vv p+s\vv u$ 与 $\vv x=\vv q+t\vv v$ 之间的最短距离：把问题写成关于 $(s,t)$ 的最小二乘问题，并对 $\vv p=\zero$，$\vv u=(1,0,0)^\trans$，$\vv q=(0,1,1)^\trans$，$\vv v=(0,1,-1)^\trans$ 计算.
+			\item\label{ex:ip:C5} 设 $f:\mathbb{R}^n\to\mathbb{R}^n$ 保持距离（$\|f(\vv x)-f(\vv y)\|=\|\vv x-\vv y\|$）且 $f(\zero)=\zero$. 证明 $f$ 保持内积，进而证明 $f$ 是线性的正交变换. 由此说明：保持距离的变换都可以分解为正交变换与平移的复合.
+			\item\label{ex:ip:C6} （伪逆）设 $\vv A$ 列满秩，$\vv A^+=(\vv A^\trans\vv A)^{-1}\vv A^\trans$. 验证 Penrose 四条件：$\vv{AA}^+\vv A=\vv A$，$\vv A^+\vv{AA}^+=\vv A^+$，$(\vv{AA}^+)^\trans=\vv{AA}^+$，$(\vv A^+\vv A)^\trans=\vv A^+\vv A$. 说明 $\vv{AA}^+$ 是向哪个子空间的正交投影.
+			\item\label{ex:ip:C7} 求空间中两条异面直线 $\vv x=\vv p+s\vv u$ 与 $\vv x=\vv q+t\vv v$ 之间的最短距离：把问题写成关于 $(s,t)$ 的最小二乘问题，并对 $\vv p=\zero$，$\vv u=(1,0,0)^\trans$，$\vv q=(0,1,1)^\trans$，$\vv v=(0,1,-1)^\trans$ 计算.
 		\end{exC}
 	}
 	
@@ -776,13 +818,50 @@
 		\begin{exC}
 			\item\label{ex:dec:C1} （Eckart–Young 定理的证明）设 $\rk\vv B\le k$. 证明 $\ker\vv B$ 与 $\spn(\vv v_1,\ldots,\vv v_{k+1})$ 有非零公共向量 $\vv x$，由此证明 $\|\vv A-\vv B\|_2\ge\sigma_{k+1}$. 再借助 Weyl 不等式 $\sigma_{i+j-1}(\vv X+\vv Y)\le\sigma_i(\vv X)+\sigma_j(\vv Y)$（可承认）证明 Frobenius 范数的情形.
 			\item\label{ex:dec:C2} （Cauchy 交错定理）设实对称矩阵 $\vv A$ 的特征值为 $\lambda_1\ge\cdots\ge\lambda_n$，删去最后一行一列所得矩阵的特征值为 $\mu_1\ge\cdots\ge\mu_{n-1}$. 证明 $\lambda_1\ge\mu_1\ge\lambda_2\ge\mu_2\ge\cdots\ge\mu_{n-1}\ge\lambda_n$.（提示：Courant–Fischer 极小极大刻画.）
-			\item\label{ex:dec:C3} （复谱定理）证明：复方阵 $\vv A$ 可以被酉矩阵对角化（存在 $\vv U$ 使 $\bar{\vv U}^\trans\vv{AU}$ 为对角矩阵），当且仅当 $\vv A\bar{\vv A}^\trans=\bar{\vv A}^\trans\vv A$. 实对称矩阵、实正交矩阵、实反对称矩阵都满足这个条件.
-			\item\label{ex:dec:C4} （正交 Procrustes 问题）给定 $n\times k$ 矩阵 $\vv A,\vv B$，求正交矩阵 $\vv Q$ 使 $\|\vv{QA}-\vv B\|_F$ 最小. 证明：若 $\vv{BA}^\trans=\vv U\vv\Sigma\vv V^\trans$，则最优解为 $\vv Q=\vv{UV}^\trans$. 这个问题出现在比较两组测量数据、对齐两份词向量等场合.
-			\item\label{ex:dec:C5} （Ky Fan 定理）设实对称矩阵的特征值为 $\lambda_1\ge\cdots\ge\lambda_n$. 证明对任意列标准正交的 $n\times k$ 矩阵 $\vv X$，$\tr(\vv X^\trans\vv{AX})\le\lambda_1+\cdots+\lambda_k$. 由此说明前 $k$ 个主成分``一起''解释的方差也是最大的.
-			\item\label{ex:dec:C6} （幂迭代）设 $\vv A$ 可对角化，特征值满足 $|\lambda_1|>|\lambda_2|\ge\cdots$. 证明：对``一般的''初始向量 $\vv x_0$，$\vv x_k=\vv A^k\vv x_0/\|\vv A^k\vv x_0\|$ 收敛到属于 $\lambda_1$ 的单位特征向量（可能差一个符号），收敛速度由 $|\lambda_2/\lambda_1|$ 决定. 对 $\begin{pmatrix}2&1\\1&2\end{pmatrix}$ 从 $(1,0)^\trans$ 出发迭代五步验证.
-			\item\label{ex:dec:C7} （图的 Laplace 矩阵）设 $\vv L=\vv D-\vv A$ 是无向图的 Laplace 矩阵（见第五章章末习题~\ref{ex:det:C4}）. 证明 $\vv x^\trans\vv L\vv x=\sum_{\text{边 }ij}(x_i-x_j)^2$，因而 $\vv L$ 半正定；特征值 $0$ 的重数等于图的连通分支数. 第二小的特征值对应的特征向量（Fiedler 向量）的正负号常被用来把图``切''成两半——这就是谱聚类的思想.
-			\item\label{ex:dec:C8} （正交回归）对中心化数据点 $\vv z_1,\ldots,\vv z_n\in\mathbb{R}^2$，求过原点的直线使各点到直线的\textbf{垂直}距离平方和最小. 证明最优方向就是第一主成分方向. 与普通最小二乘（只看竖直方向的残差）比较，两条直线何时相同？
-			\item\label{ex:dec:C9} （扰动分析）设 $\vv A$ 可逆，$\vv{Ax}=\vv b$，$\vv A(\vv x+\delta\vv x)=\vv b+\delta\vv b$. 证明 $\dfrac{\|\delta\vv x\|}{\|\vv x\|}\le\kappa(\vv A)\dfrac{\|\delta\vv b\|}{\|\vv b\|}$，$\kappa(\vv A)=\sigma_1/\sigma_n$，并说明等号可以取到. 用它解释第六章病态方程组的例子.
+			\item\label{ex:dec:C3} （正交 Procrustes 问题）给定 $n\times k$ 矩阵 $\vv A,\vv B$，求正交矩阵 $\vv Q$ 使 $\|\vv{QA}-\vv B\|_F$ 最小. 证明：若 $\vv{BA}^\trans=\vv U\vv\Sigma\vv V^\trans$，则最优解为 $\vv Q=\vv{UV}^\trans$. 这个问题出现在比较两组测量数据、对齐两份词向量等场合.
+			\item\label{ex:dec:C4} （Ky Fan 定理）设实对称矩阵的特征值为 $\lambda_1\ge\cdots\ge\lambda_n$. 证明对任意列标准正交的 $n\times k$ 矩阵 $\vv X$，$\tr(\vv X^\trans\vv{AX})\le\lambda_1+\cdots+\lambda_k$. 由此说明前 $k$ 个主成分``一起''解释的方差也是最大的.
+			\item\label{ex:dec:C5} （幂迭代）设 $\vv A$ 可对角化，特征值满足 $|\lambda_1|>|\lambda_2|\ge\cdots$. 证明：对``一般的''初始向量 $\vv x_0$，$\vv x_k=\vv A^k\vv x_0/\|\vv A^k\vv x_0\|$ 收敛到属于 $\lambda_1$ 的单位特征向量（可能差一个符号），收敛速度由 $|\lambda_2/\lambda_1|$ 决定. 对 $\begin{pmatrix}2&1\\1&2\end{pmatrix}$ 从 $(1,0)^\trans$ 出发迭代五步验证.
+			\item\label{ex:dec:C6} （图的 Laplace 矩阵）设 $\vv L=\vv D-\vv A$ 是无向图的 Laplace 矩阵（见第五章章末习题~\ref{ex:det:C4}）. 证明 $\vv x^\trans\vv L\vv x=\sum_{\text{边 }ij}(x_i-x_j)^2$，因而 $\vv L$ 半正定；特征值 $0$ 的重数等于图的连通分支数. 第二小的特征值对应的特征向量（Fiedler 向量）的正负号常被用来把图``切''成两半——这就是谱聚类的思想.
+			\item\label{ex:dec:C7} （正交回归）对中心化数据点 $\vv z_1,\ldots,\vv z_n\in\mathbb{R}^2$，求过原点的直线使各点到直线的\textbf{垂直}距离平方和最小. 证明最优方向就是第一主成分方向. 与普通最小二乘（只看竖直方向的残差）比较，两条直线何时相同？
+			\item\label{ex:dec:C8} （扰动分析）设 $\vv A$ 可逆，$\vv{Ax}=\vv b$，$\vv A(\vv x+\delta\vv x)=\vv b+\delta\vv b$. 证明 $\dfrac{\|\delta\vv x\|}{\|\vv x\|}\le\kappa(\vv A)\dfrac{\|\delta\vv b\|}{\|\vv b\|}$，$\kappa(\vv A)=\sigma_1/\sigma_n$，并说明等号可以取到. 用它解释第六章病态方程组的例子.
+		\end{exC}
+	}
+
+	% =====================================================================
+	% 第十二章　酉空间
+	% =====================================================================
+	\newcommand{\ExUnitary}{%
+		\exsetheading
+		\Agroup
+		\begin{exA}
+			\item\label{ex:uni:A1} 判断下列 $\mathbb{C}^2$ 上的函数是否为复内积：(1) $\langle\vv x,\vv y\rangle=x_1\bar y_1+2x_2\bar y_2$；(2) $\langle\vv x,\vv y\rangle=x_1y_1+x_2y_2$；(3) $\langle\vv x,\vv y\rangle=x_1\bar y_1+\mathrm ix_2\bar y_2$.
+			\item\label{ex:uni:A2} 在 $\mathbb{C}^2$ 中取 $\vv x=(1+\mathrm i,2)^\trans$，$\vv y=(\mathrm i,1-\mathrm i)^\trans$. 求 $\langle\vv x,\vv y\rangle$，$\langle\vv y,\vv x\rangle$，$\|\vv x\|$.
+			\item\label{ex:uni:A3} 在 $\mathbb{C}^3$ 中把 $\vv\alpha_1=(1,0,\mathrm i)^\trans$，$\vv\alpha_2=(1,1,0)^\trans$ 正交化、单位化.
+			\item\label{ex:uni:A4} 设 $\vv A=\begin{pmatrix}1&\mathrm i\\2&1-\mathrm i\end{pmatrix}$，$\vv B=\begin{pmatrix}\mathrm i&0\\1&2\end{pmatrix}$. 计算 $\vv A^\herm$，并验证 $(\vv{AB})^\herm=\vv B^\herm\vv A^\herm$.
+			\item\label{ex:uni:A5} 判断下列矩阵是否为酉矩阵：(1) $\frac1{\sqrt2}\begin{pmatrix}1&\mathrm i\\\mathrm i&1\end{pmatrix}$；(2) $\begin{pmatrix}1&\mathrm i\\0&1\end{pmatrix}$；(3) $\frac1{\sqrt2}\begin{pmatrix}1&1\\\mathrm i&-\mathrm i\end{pmatrix}$.
+			\item\label{ex:uni:A6} 判断下列矩阵是否为 Hermite 矩阵、反 Hermite 矩阵、正规矩阵：(1) $\begin{pmatrix}1&2+\mathrm i\\2-\mathrm i&3\end{pmatrix}$；(2) $\begin{pmatrix}\mathrm i&1\\-1&\mathrm i\end{pmatrix}$；(3) $\begin{pmatrix}1&1\\0&1\end{pmatrix}$.
+			\item\label{ex:uni:A7} 求酉矩阵 $\vv U$，使 $\vv U^\herm\vv A\vv U$ 为对角矩阵：$\vv A=\begin{pmatrix}1&\mathrm i\\-\mathrm i&1\end{pmatrix}$.
+			\item\label{ex:uni:A8} 求 $\vv A=\begin{pmatrix}1&1\\-1&3\end{pmatrix}$ 的一个 Schur 分解.
+			\item\label{ex:uni:A9} 在 $\mathbb{C}^2$（标准内积）上，线性变换 $\mathscr T(x_1,x_2)^\trans=(x_1+\mathrm ix_2,\ 2x_2)^\trans$. 求伴随变换 $\mathscr T^*$，并验证 $\langle\mathscr T\vv e_2,\vv e_1\rangle=\langle\vv e_2,\mathscr T^*\vv e_1\rangle$.
+			\item\label{ex:uni:A10} 写出 $n=4$ 时的 Fourier 基 $\vv f_0,\ldots,\vv f_3$，并求 $(1,0,0,0)^\trans$ 与 $(1,1,1,1)^\trans$ 的离散 Fourier 变换.
+		\end{exA}
+		
+		\Bgroup
+		\begin{exB}
+			\item\label{ex:uni:B1} 设 $\vv A$ 是 $m\times n$ 复矩阵. 证明 $\vv A^\herm\vv A$ 是特征值非负的 Hermite 矩阵，$\ker(\vv A^\herm\vv A)=\ker\vv A$，从而 $\rk(\vv A^\herm\vv A)=\rk\vv A$；$\vv A^\herm\vv A$ 正定当且仅当 $\vv A$ 列满秩.
+			\item\label{ex:uni:B2} 证明：复方阵 $\vv A$ 是正规矩阵，当且仅当 $\|\vv A\vv x\|=\|\vv A^\herm\vv x\|$ 对一切 $\vv x$ 成立. 由此说明：若 $\vv A$ 正规且 $\vv A\vv x=\lambda\vv x$，则 $\vv A^\herm\vv x=\bar\lambda\vv x$.
+			\item\label{ex:uni:B3} 证明：两个可交换的正规矩阵可以被同一个酉矩阵对角化.（提示：一个矩阵的特征子空间是另一个的不变子空间.）
+			\item\label{ex:uni:B4} 证明：Hermite 矩阵 $\vv A$ 正定，当且仅当存在可逆矩阵 $\vv C$ 使 $\vv A=\vv C^\herm\vv C$.
+			\item\label{ex:uni:B5} （Cayley 变换）设 $\vv K$ 是反 Hermite 矩阵. 证明 $\vv I-\vv K$ 可逆，且 $(\vv I+\vv K)(\vv I-\vv K)^{-1}$ 是酉矩阵.
+			\item\label{ex:uni:B6} 设 $\vv U$ 是酉矩阵. 证明存在 Hermite 矩阵 $\vv H$，使 $\vv U$ 的每个特征向量都是 $\vv H$ 的特征向量，且 $\vv U$ 的特征值 $\mathrm e^{\mathrm i\theta}$ 对应 $\vv H$ 的特征值 $\theta$.（这是``$\vv U=\mathrm e^{\mathrm i\vv H}$''的雏形.）
+		\end{exB}
+		
+		\Cgroup
+		\begin{exC}
+			\item\label{ex:uni:C1} 设 $\vv F$ 是以 Fourier 基为列的 $n$ 阶矩阵. 证明 $\vv F^4=\vv I$，并求 $\vv F$ 的全部可能的特征值.
+			\item\label{ex:uni:C2} （循环矩阵）形如 $\begin{pmatrix}c_0&c_{n-1}&\cdots&c_1\\c_1&c_0&\cdots&c_2\\\vdots&&\ddots&\vdots\\c_{n-1}&c_{n-2}&\cdots&c_0\end{pmatrix}$ 的矩阵称为循环矩阵. 证明每个 Fourier 基向量都是它的特征向量，从而所有 $n$ 阶循环矩阵都能被 $\vv F$ 同时对角化.
+			\item\label{ex:uni:C3} 证明：可逆复方阵的极分解 $\vv A=\vv W\vv P$ 是唯一的（$\vv P$ 取正定 Hermite 矩阵）.
+			\item\label{ex:uni:C4} 证明 Schur 分解的实数版本：每个实方阵都正交相似于一个分块上三角矩阵，对角线上的块是一阶或二阶的.
 		\end{exC}
 	}
 	

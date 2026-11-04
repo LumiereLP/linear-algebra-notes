@@ -20,7 +20,7 @@
 	
 	\paragraph*{前置知识}
 	
-	第三章（初等变换与初等矩阵）；第四章（基变换与相似矩阵）；第五章（伴随矩阵、子式）；第七章（整除、最大公因式、最小多项式）；第八章（特征多项式、相似对角化、Cayley–Hamilton 定理）.
+	第三章（初等变换与初等矩阵）；第四章（基变换与相似矩阵）；第五章（伴随矩阵、子式）；第七章（整除、最大公因式、最小多项式）；第八章（特征多项式、相似对角化）. 本章不依赖第八章的 Cayley–Hamilton 定理一节（96 学时方案），反而会给出它的一个新证明.
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
@@ -78,7 +78,7 @@
 		$\vv M(\lambda)-(\lambda\vv I-\vv A)\vv M_m\lambda^{m-1}$ 的次数低于 $m$，对它用归纳假设即可.
 	\end{proof}
 	
-	这正是第七章带余除法的``逐次消去首项''，只是要注意矩阵乘法不可交换，所以除式写在左边与写在右边要分别处理. 第八章 Cayley–Hamilton 定理的证明（定理~\ref{thm:cayleyhamilton}）中，把伴随矩阵 $\vv B(\lambda)$ 按 $\lambda$ 的幂次展开，用的就是这里的写法.
+	这正是第七章带余除法的``逐次消去首项''，只是要注意矩阵乘法不可交换，所以除式写在左边与写在右边要分别处理. 读过第八章 Cayley–Hamilton 定理一节（96 学时方案）的读者会发现，那里把伴随矩阵 $\vv B(\lambda)$ 按 $\lambda$ 的幂次展开，用的就是这里的写法.
 	
 	\section{\hB 多项式矩阵的初等变换}\label{sec:lambdaelem}
 	
@@ -293,12 +293,14 @@
 	\begin{proof}
 		设 $\operatorname{adj}(\lambda\vv I-\vv A)$ 的全部元素（即 $\lambda\vv I-\vv A$ 的全部 $n-1$ 阶子式，至多差符号）的首一最大公因式为 $D_{n-1}$，写 $\operatorname{adj}(\lambda\vv I-\vv A)=D_{n-1}(\lambda)\vv C(\lambda)$，其中 $\vv C(\lambda)$ 的全部元素互素. 由 $(\lambda\vv I-\vv A)\operatorname{adj}(\lambda\vv I-\vv A)=f_{\vv A}(\lambda)\vv I=D_{n-1}(\lambda)d_n(\lambda)\vv I$，约去 $D_{n-1}$ 得
 		\[(\lambda\vv I-\vv A)\vv C(\lambda)=d_n(\lambda)\vv I.\]
-		与 Cayley–Hamilton 定理的证明完全相同地比较系数，得 $d_n(\vv A)=\vv O$，所以 $m_{\vv A}\mid d_n$.
+		把 $\vv C(\lambda)$ 按 $\lambda$ 的幂次写成 $\vv C_s\lambda^s+\cdots+\vv C_1\lambda+\vv C_0$（$s=\deg d_n-1$），记 $d_n(\lambda)=\lambda^{s+1}+c_s\lambda^s+\cdots+c_0$. 比较上式两边 $\lambda^{s+1},\lambda^s,\ldots,\lambda^0$ 的系数，得
+		\[\vv C_s=\vv I,\qquad \vv C_{k-1}-\vv A\vv C_k=c_k\vv I\ \ (1\le k\le s),\qquad -\vv A\vv C_0=c_0\vv I.\]
+		把第一式左乘 $\vv A^{s+1}$，含 $c_k$ 的式子左乘 $\vv A^k$，再全部相加，左边逐项相消为 $\vv O$，右边为 $d_n(\vv A)$. 所以 $d_n(\vv A)=\vv O$，$m_{\vv A}\mid d_n$.
 		
 		反过来，记 $m=m_{\vv A}$. 由 $\lambda^k\vv I-\vv A^k=(\lambda\vv I-\vv A)(\lambda^{k-1}\vv I+\lambda^{k-2}\vv A+\cdots+\vv A^{k-1})$，得 $m(\lambda)\vv I=m(\lambda)\vv I-m(\vv A)=(\lambda\vv I-\vv A)\vv K(\lambda)$，其中 $\vv K(\lambda)$ 是某个 $\lambda$-矩阵. 两边左乘 $\operatorname{adj}(\lambda\vv I-\vv A)$，得 $m(\lambda)D_{n-1}\vv C=D_{n-1}d_n\vv K$，即 $m(\lambda)\vv C(\lambda)=d_n(\lambda)\vv K(\lambda)$. 作带余除法 $m=qd_n+r$，$\deg r<\deg d_n$，则 $r\vv C=d_n(\vv K-q\vv C)$，$d_n$ 整除 $r$ 乘以 $\vv C$ 的每个元素. $\vv C$ 的元素互素，Bézout 等式对多个多项式同样成立（证明与定理~\ref{thm:bezout} 相同，只需把集合 $\{uf+vg\}$ 换成 $\{\sum u_if_i\}$），所以它们的某个多项式组合等于 $1$，于是 $d_n\mid r$，只能 $r=0$. 所以 $d_n\mid m$. 两者都首一，故相等.
 	\end{proof}
 	
-	这样，第七章的最小多项式与第八章的特征多项式都可以从不变因子中读出：特征多项式是全部不变因子之积，最小多项式是最后一个不变因子. Cayley–Hamilton 定理（$m_{\vv A}\mid f_{\vv A}$）于是一目了然.
+	这样，第七章的最小多项式与第八章的特征多项式都可以从不变因子中读出：特征多项式是全部不变因子之积，最小多项式是最后一个不变因子. 由此还得到 Cayley–Hamilton 定理（第八章）的一个新证明：$m_{\vv A}=d_n$ 整除 $d_1d_2\cdots d_n=f_{\vv A}$，所以 $f_{\vv A}(\vv A)=\vv O$.
 	
 	\begin{corollary}\label{cor:simfield}
 		\begin{enumerate}
@@ -342,7 +344,7 @@
 		\item 这些块的\textbf{个数}，等于 $\lambda_0$ 的几何重数（$\vv J_k(\lambda_0)-\lambda_0\vv I$ 的秩为 $k-1$，而其他特征值的块减去 $\lambda_0\vv I$ 后可逆，所以 $\vv J-\lambda_0\vv I$ 的零空间维数等于以 $\lambda_0$ 为对角元的块数）；
 		\item 其中\textbf{最大的阶数}，等于 $\lambda_0$ 在最小多项式中的重数（由推论~\ref{cor:minpolyinvfactor}，最小多项式 $d_n$ 是各特征值最高次方幂之积）.
 	\end{itemize}
-	特别地，\textbf{复方阵可对角化，当且仅当它的初等因子全是一次的，当且仅当它的最小多项式没有重根}. 这与第八章的定理~\ref{thm:minpolydiag} 一致.
+	特别地，\textbf{复方阵可对角化，当且仅当它的初等因子全是一次的，当且仅当它的最小多项式没有重根}. 这与第八章的定理~\ref{thm:minpolydiag}（96 学时方案）一致，这里给出了它的另一个证明.% tier-ok
 	
 	\begin{example}\label{eg:jordan3}
 		求 $\vv A=\begin{pmatrix}-1&1&0\\-4&3&0\\1&0&2\end{pmatrix}$ 的 Jordan 标准形.
@@ -417,3 +419,4 @@
 	\end{historybox}
 	
 	\newpage
+	\ExLambda

@@ -2,7 +2,7 @@
 %% answers.tex　附录：章末习题 A 组答案与 B 组提示
 %% 用法：在 document.tex 的 \appendix 之后 \input{answers}（须在 \input{exercises} 之后，
 %%      exercises.tex 中每道题都有标签 ex:<章键>:<组号>，本文件按标签引用题号）.
-%% 章键：elim vs mat lmap det sol poly eig ip dec quad bil（依次为第一至十四章）.
+%% 章键：elim vs mat lmap det sol poly eig lam ip dec uni quad bil（依次为第一至十四章）.
 %% =====================================================================
 
 \providecommand{\ans}[2]{\par\smallskip\noindent\textbf{\ref{#1}.}\ #2\par}
@@ -108,45 +108,27 @@
 
 \subsection*{A 组答案}
 
-\ans{ex:vs:A1}{(1) 是. (2) 不是：$\frac12\cdot\sqrt2=\frac{\sqrt2}2$ 的 $\sqrt2$ 系数不是整数，乘法不封闭. (3) 不是：不含 $1$，也不对除法封闭. (4) 不是：$\sqrt[3]2\cdot\sqrt[3]2=\sqrt[3]4$ 不在其中. (5) 不是：$\mathrm i\cdot\mathrm i=-1$ 不是纯虚数.}
+\ans{ex:vs:A1}{$\vv\beta=\frac54\vv\alpha_1+\frac14\vv\alpha_2-\frac14\vv\alpha_3-\frac14\vv\alpha_4$. （这四个向量两两``对应分量乘积之和''为零，每个系数都可以直接算出.）}
 
-\ans{ex:vs:A2}{(1) 是. (2) 不是：$(1,0)^\trans$ 的负向量不在其中. (3) 不是：不含零多项式，且两个 $n$ 次多项式之和可能降次. (4) 是. (5) 是. (6) 不是：不含零向量.}
+\ans{ex:vs:A2}{以三个向量为列作矩阵并消元：$r_2-r_1$ 得 $(0,2,-2)$，再 $r_3+\frac12r_2$ 得 $(0,0,t-1)$. $t=1$ 时出现自由变量，线性相关；$t\ne1$ 时线性无关.（学完第五章后，可用行列式 $2t-2$ 验证.）}
 
-\ans{ex:vs:A3}{(1) 线性相关：$(4,1,-1)^\trans=2(1,2,-1)^\trans+(2,-3,1)^\trans$. (2) 线性无关. (3) 线性相关：$\mathbb{R}[x]_3$ 是三维的，四个向量必相关. (4) 线性相关：全 $1$ 矩阵等于前两个之和.}
+\ans{ex:vs:A3}{秩为 $3$，一个极大无关组为 $\vv\alpha_1,\vv\alpha_2,\vv\alpha_4$；$\vv\alpha_3=3\vv\alpha_1+\vv\alpha_2$，$\vv\alpha_5=\vv\alpha_1+\vv\alpha_2+\vv\alpha_4$.}
 
-\ans{ex:vs:A4}{$\vv\beta=\frac54\vv\alpha_1+\frac14\vv\alpha_2-\frac14\vv\alpha_3-\frac14\vv\alpha_4$. （这四个向量两两``对应分量乘积之和''为零，每个系数都可以直接算出.）}
+\ans{ex:vs:A4}{(1) 线性相关：三者之和为 $\zero$. (2) 线性无关. (3) 线性无关：设 $k_1(\vv\alpha_1+2\vv\alpha_2)+k_2(\vv\alpha_2+2\vv\alpha_3)+k_3(\vv\alpha_3+2\vv\alpha_1)=\zero$，由 $\vv\alpha_i$ 线性无关得 $k_1+2k_3=0$，$2k_1+k_2=0$，$2k_2+k_3=0$. 依次代入得 $k_1=-2k_3$，$k_2=4k_3$，$k_3=-8k_3$，故 $k_3=0$，从而 $k_1=k_2=0$.}
 
-\ans{ex:vs:A5}{以三个向量为列作矩阵并消元：$r_2-r_1$ 得 $(0,2,-2)$，再 $r_3+\frac12r_2$ 得 $(0,0,t-1)$. $t=1$ 时出现自由变量，线性相关；$t\ne1$ 时线性无关.（学完第五章后，可用行列式 $2t-2$ 验证.）}
+\ans{ex:vs:A5}{$1\cdot\zero=\zero$ 是系数不全为零的组合；$\vv\alpha-\vv\alpha=\zero$ 同理；$k\vv\alpha=\zero$ 且 $\vv\alpha\ne\zero$ 时，$\vv\alpha$ 有一个分量不为零，比较这个分量得 $k=0$.}
 
-\ans{ex:vs:A6}{秩为 $3$，一个极大无关组为 $\vv\alpha_1,\vv\alpha_2,\vv\alpha_4$；$\vv\alpha_3=3\vv\alpha_1+\vv\alpha_2$，$\vv\alpha_5=\vv\alpha_1+\vv\alpha_2+\vv\alpha_4$.}
+\ans{ex:vs:A6}{由定理~\ref{thm:relvandexp}，两个向量相关当且仅当其中一个可由另一个表出，即是另一个的倍数. 三个向量时只能说``其中一个是另两个的线性组合''，不一定是某一个的倍数，例如 $\vv e_1,\vv e_2,\vv e_1+\vv e_2$.}
 
-\ans{ex:vs:A7}{(1) 线性相关：三者之和为 $\zero$. (2) 线性无关. (3) 线性无关：设 $k_1(\vv\alpha_1+2\vv\alpha_2)+k_2(\vv\alpha_2+2\vv\alpha_3)+k_3(\vv\alpha_3+2\vv\alpha_1)=\zero$，由 $\vv\alpha_i$ 线性无关得 $k_1+2k_3=0$，$2k_1+k_2=0$，$2k_2+k_3=0$. 依次代入得 $k_1=-2k_3$，$k_2=4k_3$，$k_3=-8k_3$，故 $k_3=0$，从而 $k_1=k_2=0$.}
+\ans{ex:vs:A7}{(1) 不是：$(1,0)^\trans$ 的负向量不在其中. (2) 不是：不含零向量. (3) 是. (4) 不是：$(1,0,0)^\trans+(0,1,0)^\trans$ 不在其中. (5) 不是：对实数的数乘不封闭，例如 $\sqrt2(1,0,0)^\trans$. (6) 是，它由 $(1,1,1)^\trans$ 张成，维数为 $1$.}
 
-\ans{ex:vs:A8}{$1\cdot\zero=\zero$ 是系数不全为零的组合；$\vv\alpha-\vv\alpha=\zero$ 同理；$k\vv\alpha=\zero$ 且 $\vv\alpha\ne\zero$ 时由命题~\ref{prop:linspc}(5) 得 $k=0$.}
+\ans{ex:vs:A8}{$\dim=3$，一组基为 $(-1,1,0,0)^\trans$，$(1,0,1,0)^\trans$，$(1,0,0,1)^\trans$（以 $x_2,x_3,x_4$ 为自由变量）.}
 
-\ans{ex:vs:A9}{由定理~\ref{thm:relvandexp}，两个向量相关当且仅当其中一个可由另一个表出，即是另一个的倍数. 三个向量时只能说``其中一个是另两个的线性组合''，不一定是某一个的倍数，例如 $\vv e_1,\vv e_2,\vv e_1+\vv e_2$.}
+\ans{ex:vs:A9}{维数为 $3$，一组基为 $\vv\alpha_1,\vv\alpha_2,\vv\alpha_4$（$\vv\alpha_3=\vv\alpha_1+\vv\alpha_2$）.}
 
-\ans{ex:vs:A10}{(1) $\vv\alpha+\vv\alpha=1\vv\alpha+1\vv\alpha=(1+1)\vv\alpha$. (2) 两边乘 $k^{-1}$. (3) $-\vv\alpha$ 与 $\vv\alpha$ 之和为零，由负向量的唯一性.}
+\ans{ex:vs:A10}{$\vv\alpha_3=\vv\alpha_1+\vv\alpha_2$，而 $\vv\alpha_1,\vv\alpha_2$ 不成比例，所以维数为 $2$，一组基为 $\vv\alpha_1,\vv\alpha_2$. $(2,3,1)^\trans=2\vv\alpha_1+\vv\alpha_2$，属于它.}
 
-\ans{ex:vs:A11}{(1) $\dim=3$，基 $(-1,1,0,0)^\trans$，$(1,0,1,0)^\trans$，$(1,0,0,1)^\trans$. (2) $\dim=\frac{n(n+1)}2$，基 $\vv E_{ij}$（$i\le j$）. (3) $\dim=n^2-1$，基 $\vv E_{ij}$（$i\ne j$）与 $\vv E_{11}-\vv E_{ii}$（$i=2,\ldots,n$）. (4) $\dim=3$，基 $x-1$，$(x-1)^2$，$(x-1)^3$.}
-
-\ans{ex:vs:A12}{(1) 是. (2) 不是：$(1,0,0)^\trans+(0,1,0)^\trans$ 不在其中. (3) 不是：对实数数乘不封闭. (4) 是.}
-
-\ans{ex:vs:A13}{维数为 $3$，一组基为 $\vv\alpha_1,\vv\alpha_2,\vv\alpha_4$（$\vv\alpha_3=\vv\alpha_1+\vv\alpha_2$）.}
-
-\ans{ex:vs:A14}{$2x^2-x+3=4+3(x-1)+2(x-1)^2$，坐标为 $(4,3,2)^\trans$.}
-
-\ans{ex:vs:A15}{坐标为 $(-1,4,-5,4)^\trans$（从右下角元素开始依次确定）.}
-
-\ans{ex:vs:A16}{(1) 是. (2) 不是：$\mathbb{Q}$ 对实数的数乘不封闭. (3) 作为 $\mathbb{R}$ 上的空间是 $2$ 维，作为 $\mathbb{C}$ 上的空间是 $1$ 维.}
-
-\ans{ex:vs:A17}{例如 $a_0+a_1x+\cdots+a_{n-1}x^{n-1}\mapsto(a_0,\ldots,a_{n-1})^\trans$；$\begin{pmatrix}a&b\\c&d\end{pmatrix}\mapsto(a,b,c,d)^\trans$. 两者都是取坐标的映射，保持线性运算.}
-
-\ans{ex:vs:A18}{$W_1+W_2$ 是直和（$(1,1,1)^\trans\notin W_1$，交为零），等于 $\mathbb{R}^3$，维数 $3$；$W_3\subset W_1$，$W_1+W_3=W_1$ 不是直和，维数 $2$.}
-
-\ans{ex:vs:A19}{$\dim(W_1+W_2)=3$，$\dim(W_1\cap W_2)=1$：$(0,-1,1,1)^\trans=-(1,1,0,0)^\trans+(1,0,1,1)^\trans$ 同属两者. $2+2-1=3$，与维数公式一致.}
-
-\ans{ex:vs:A20}{它们都可由一个含 $r$ 个向量的极大无关组线性表出，由基本引理任意 $r+1$ 个相关. 任意 $r$ 个无关的向量再添一个就相关，由引理~\ref{lem:addone} 的逆否形式，组中每个向量都可由它们线性表出.}
+\ans{ex:vs:A11}{它们都可由一个含 $r$ 个向量的极大无关组线性表出，由基本引理任意 $r+1$ 个相关. 任意 $r$ 个无关的向量再添一个就相关，由引理~\ref{lem:addone} 的逆否形式，组中每个向量都可由它们线性表出.}
 
 \subsection*{B 组提示}
 
@@ -154,21 +136,8 @@
 \ans{ex:vs:B2}{取 (II) 的一个极大无关组，它含 $r$ 个向量且可由 (I) 的极大无关组表出，二者秩相同，用定理~\ref{thm:ndimbasis}(2) 在 (I) 张成的空间中论证.}
 \ans{ex:vs:B3}{(III) 可由两者的极大无关组合并表出. 第二个不等式：左边的每个向量可由两组的极大无关组合并表出.}
 \ans{ex:vs:B4}{新组含 $n$ 个向量，只需证明它能表出 $\vv\alpha_j$：$a_j\ne0$ 时 $\vv\alpha_j=\frac1{a_j}(\vv\beta-\sum_{i\ne j}a_i\vv\alpha_i)$；$a_j=0$ 时新组线性相关.}
-\ans{ex:vs:B5}{按次数从高到低比较系数，证明线性无关；个数等于维数 $n$.}
-\ans{ex:vs:B6}{$a_1,a_2$ 确定整个数列，映射 $\{a_n\}\mapsto(a_1,a_2)$ 是同构. 代入验证 $2^n$ 与 $(-1)^n$ 满足递推且线性无关. $a_1=a_2=1$ 时 $a_n=\frac13\big(2^n-(-1)^n\big)$.}
-\ans{ex:vs:B7}{(1) 设组合为零，令 $x=0$ 并逐次求导，或除以 $\mathrm e^{3x}$ 后令 $x\to+\infty$. (2) $\sin(x+1)=\cos1\cdot\sin x+\sin1\cdot\cos x$. (3) 秩为 $3$：$\cos2x=2\cos^2x-1$.}
-\ans{ex:vs:B8}{证明对加、减、乘封闭，再对除法用两次``分母有理化''. 线性无关可设 $a+b\sqrt2=-(c+d\sqrt2)\sqrt3$ 后平方，利用 $\sqrt2,\sqrt3,\sqrt6$ 都是无理数. 维数为 $4$.}
-\ans{ex:vs:B9}{按维数分：$\{\zero\}$；过原点的直线；（$\mathbb{R}^3$ 中）过原点的平面；整个空间.}
-\ans{ex:vs:B10}{用维数公式：$\dim(W_1\cap W_2)=k_1+k_2-\dim(W_1+W_2)\ge k_1+k_2-n>0$.}
-\ans{ex:vs:B11}{$f=f(a)+(f-f(a))$. 交为零：常数多项式在 $a$ 处为零只能是零.}
-\ans{ex:vs:B12}{$f(x)=\frac{f(x)+f(-x)}2+\frac{f(x)-f(-x)}2$；$\mathrm e^x=\cosh x+\sinh x$.}
-\ans{ex:vs:B13}{对 $k$ 归纳，反复使用维数公式：$\dim(U\cap W)\ge\dim U+\dim W-n$.}
-\ans{ex:vs:B14}{这 $n-1$ 个向量线性无关（用坐标验证），$\dim W=n-1$. 补空间可取 $\spn(\vv\alpha_n)$（需验证 $\vv\alpha_n\notin W$：$W$ 中向量的坐标交错和为零）.}
-\ans{ex:vs:B15}{$\vv x=x_1(1,\ldots,1)^\trans+(\vv x-x_1(1,\ldots,1)^\trans)$. 两种分解都是直和；与 $V_1$ 互补的子空间有无穷多个，第十章会说明例~\ref{eg:pricedecomp} 中的 $R$ 是其中``垂直''的那一个.}
-\ans{ex:vs:B16}{每个矩阵唯一地拆成``对角线及以上''与``对角线以下''两部分. $\dim W_1=\frac{n(n+1)}2$.}
-\ans{ex:vs:B17}{(1) 设 $W$ 的基为 $\vv\varepsilon_1,\ldots,\vv\varepsilon_k$（$k<n$），扩充为 $\mathbb{R}^n$ 的基 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$. ``取 $\vv x$ 在这组基下的第 $n$ 个坐标''是 $x_1,\ldots,x_n$ 的一次齐次式（解一个线性方程组即可写出），它在 $W$ 上恒为零，又在 $\vv\varepsilon_n$ 处为 $1$，系数不全为零. (2) 条件是 $a_1+a_2t+\cdots+a_nt^{n-1}=0$，这是一个次数不超过 $n-1$ 的非零多项式，至多 $n-1$ 个根. (3) 例如 $t=2$：$\vv v(2)=(1,2,4)^\trans$ 不满足三个方程中的任何一个.}
-
-\ans{ex:vs:B18}{对 $k$ 归纳. 已选好线性无关的 $\vv\varepsilon_1,\ldots,\vv\varepsilon_{k-1}$（$k\le n$）后，$U=\spn(\vv\varepsilon_1,\ldots,\vv\varepsilon_{k-1})$ 的维数 $k-1<n$，也是真子空间. 由覆盖定理取 $\vv\varepsilon_k\notin W_1\cup\cdots\cup W_s\cup U$；由引理~\ref{lem:addone}，$\vv\varepsilon_1,\ldots,\vv\varepsilon_k$ 仍线性无关. 选满 $n$ 个即得一组基.}
+\ans{ex:vs:B5}{按维数分：$\{\zero\}$；过原点的直线；（$\mathbb{R}^3$ 中）过原点的平面；整个空间.}
+\ans{ex:vs:B6}{设两个向量空间的基分别含 $k_1$、$k_2$ 个向量. 合起来共 $k_1+k_2>n$ 个 $n$ 维向量，必线性相关. 把一个非平凡的零组合按两组拆开，得到一个同时属于两者的非零向量.}
 
 \section{第三章　矩阵}
 
@@ -241,67 +210,103 @@ $\begin{pmatrix}0&0&0&\frac14\\0&0&\frac13&0\\0&\frac12&0&0\\1&0&0&0\end{pmatrix
 \ans{ex:mat:B15}{秩为 $2$. 先用行变换化为阶梯形（记录 $\vv P$），再用列变换（记录 $\vv Q$）. 答案不唯一，可用 $\vv{PAQ}$ 直接检验.}
 \ans{ex:mat:B16}{$(\vv I+\vv A)(\vv I-\vv A+\vv A^2-\cdots+(-1)^{k-1}\vv A^{k-1})=\vv I$. 若 $\vv A^2=2\vv A$，则 $(\vv I-\vv A)^2=\vv I$，可逆且逆为自身.}
 
-\section{第四章　线性映射}
+\section{第四章　线性空间与线性变换}
 
 \subsection*{A 组答案}
 
-\ans{ex:lmap:A1}{(1) 线性，核为 $\{\zero\}$. (2) 不线性：$\zero\mapsto(1,0)^\trans$. (3) 不线性：$(-1,0)^\trans$ 与 $(1,0)^\trans$ 之和的像不等于像之和. (4) 线性，核为 $\{0\}$. (5) 线性，核为常数多项式全体. (6) 线性，核为 $\{\vv O\}$. (7) 不线性：$\det(2\vv X)=4\det\vv X$.}
+\ans{ex:lmap:A1}{(1) 是. (2) 不是：$\frac12\cdot\sqrt2=\frac{\sqrt2}2$ 的 $\sqrt2$ 系数不是整数，乘法不封闭. (3) 不是：不含 $1$，也不对除法封闭. (4) 不是：$\sqrt[3]2\cdot\sqrt[3]2=\sqrt[3]4$ 不在其中. (5) 不是：$\mathrm i\cdot\mathrm i=-1$ 不是纯虚数.}
 
-\ans{ex:lmap:A2}{第一个：核的基 $(-2,1,0)^\trans$，$(1,0,1)^\trans$；像的基 $(1,2)^\trans$；$3=2+1$. 第二个：核的基 $(-2,1,1,0)^\trans$，$(-1,-1,0,1)^\trans$；像的基 $(1,0,1)^\trans$，$(0,1,1)^\trans$；$4=2+2$.}
+\ans{ex:lmap:A2}{(1) 是. (2) 不是：$(1,0)^\trans$ 的负向量不在其中. (3) 不是：不含零多项式，且两个 $n$ 次多项式之和可能降次. (4) 是. (5) 是. (6) 不是：不含零向量.}
 
-\ans{ex:lmap:A3}{$\begin{pmatrix}1&-2&1\\0&3&4\end{pmatrix}$.}
+\ans{ex:lmap:A3}{(1) 线性相关：$(4,1,-1)^\trans=2(1,2,-1)^\trans+(2,-3,1)^\trans$. (2) 线性无关. (3) 线性相关：$\mathbb{R}[x]_3$ 是三维的，四个向量必相关. (4) 线性相关：全 $1$ 矩阵等于前两个之和.}
 
-\ans{ex:lmap:A4}{(1) $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$. (2) $\begin{pmatrix}0&1\\1&0\end{pmatrix}$，平方为 $\vv I$：反射两次回到原处. (3) $\frac12\begin{pmatrix}1&1\\1&1\end{pmatrix}$，平方等于自身：投影两次与投影一次相同. (4) $\begin{pmatrix}1&2\\0&1\end{pmatrix}$.}
+\ans{ex:lmap:A4}{(1) $\vv\alpha+\vv\alpha=1\vv\alpha+1\vv\alpha=(1+1)\vv\alpha$. (2) 两边乘 $k^{-1}$. (3) $-\vv\alpha$ 与 $\vv\alpha$ 之和为零，由负向量的唯一性.}
 
-\ans{ex:lmap:A5}{两组基下的矩阵都是 $\begin{pmatrix}0&1&0\\0&0&2\\0&0&0\end{pmatrix}$：$\mathscr D(x-1)=1$，$\mathscr D(x-1)^2=2(x-1)$.}
+\ans{ex:lmap:A5}{(1) $\dim=3$，基 $(-1,1,0,0)^\trans$，$(1,0,1,0)^\trans$，$(1,0,0,1)^\trans$. (2) $\dim=\frac{n(n+1)}2$，基 $\vv E_{ij}$（$i\le j$）. (3) $\dim=n^2-1$，基 $\vv E_{ij}$（$i\ne j$）与 $\vv E_{11}-\vv E_{ii}$（$i=2,\ldots,n$）. (4) $\dim=3$，基 $x-1$，$(x-1)^2$，$(x-1)^3$.}
 
-\ans{ex:lmap:A6}{$\begin{pmatrix}1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1\end{pmatrix}$，它的平方是 $\vv I_4$.}
+\ans{ex:lmap:A6}{(1) 是. (2) 不是：$(1,0,0)^\trans+(0,1,0)^\trans$ 不在其中. (3) 不是：对实数数乘不封闭. (4) 是.}
 
-\ans{ex:lmap:A7}{过渡矩阵 $\vv P=\begin{pmatrix}-1&-1&-4\\1&0&6\\1&3&1\end{pmatrix}$. $\vv\alpha$ 在 $\vv\varepsilon$ 下的坐标为 $(-1,2,2)^\trans$，在 $\vv\eta$ 下的坐标为 $(-16,5,3)^\trans$. 可用 $\vv x=\vv P\vv x'$ 检验.}
+\ans{ex:lmap:A7}{$2x^2-x+3=4+3(x-1)+2(x-1)^2$，坐标为 $(4,3,2)^\trans$.}
 
-\ans{ex:lmap:A8}{$\diag(3,1)$. 过渡矩阵 $\vv P=\begin{pmatrix}1&1\\1&-1\end{pmatrix}$，也可以直接看出 $\mathscr T\vv\eta_1=3\vv\eta_1$，$\mathscr T\vv\eta_2=\vv\eta_2$.}
+\ans{ex:lmap:A8}{坐标为 $(-1,4,-5,4)^\trans$（从右下角元素开始依次确定）.}
 
-\ans{ex:lmap:A9}{$\mathscr S\mathscr T(a\vv\alpha+b\vv\beta)=\mathscr S(a\mathscr T\vv\alpha+b\mathscr T\vv\beta)=a\mathscr{ST}\vv\alpha+b\mathscr{ST}\vv\beta$. 逆映射：设 $\vv\alpha=\mathscr T\vv\alpha'$，$\vv\beta=\mathscr T\vv\beta'$，则 $\mathscr T^{-1}(a\vv\alpha+b\vv\beta)=\mathscr T^{-1}\mathscr T(a\vv\alpha'+b\vv\beta')=a\mathscr T^{-1}\vv\alpha+b\mathscr T^{-1}\vv\beta$.}
+\ans{ex:lmap:A9}{(1) 是. (2) 不是：$\mathbb{Q}$ 对实数的数乘不封闭. (3) 作为 $\mathbb{R}$ 上的空间是 $2$ 维，作为 $\mathbb{C}$ 上的空间是 $1$ 维.}
 
-\ans{ex:lmap:A10}{若 $\sum k_i\mathscr T\vv\alpha_i=\zero$，则 $\sum k_i\vv\alpha_i\in\ker\mathscr T=\{\zero\}$. 反之，若 $\mathscr T\vv\alpha=\zero$ 而 $\vv\alpha\ne\zero$，则线性无关组 $\{\vv\alpha\}$ 被映为相关组 $\{\zero\}$.}
+\ans{ex:lmap:A10}{例如 $a_0+a_1x+\cdots+a_{n-1}x^{n-1}\mapsto(a_0,\ldots,a_{n-1})^\trans$；$\begin{pmatrix}a&b\\c&d\end{pmatrix}\mapsto(a,b,c,d)^\trans$. 两者都是取坐标的映射，保持线性运算.}
 
-\ans{ex:lmap:A11}{(1) 存在：前两个向量是基，$\mathscr T(x,y)^\trans=\big(\frac{x+y}2,\frac{x-y}2\big)^\trans$，它恰好满足第三个条件. (2) 不存在：$(2,0)^\trans=(1,1)^\trans+(1,-1)^\trans$，线性性要求 $\mathscr T(2,0)^\trans=(1,1)^\trans$.}
+\ans{ex:lmap:A11}{$W_1+W_2$ 是直和（$(1,1,1)^\trans\notin W_1$，交为零），等于 $\mathbb{R}^3$，维数 $3$；$W_3\subset W_1$，$W_1+W_3=W_1$ 不是直和，维数 $2$.}
 
-\ans{ex:lmap:A12}{(1) $5-3=2$. (2) 都不存在：像的维数 $\le3<5$；核的维数 $\ge5-3=2>0$.}
+\ans{ex:lmap:A12}{$\dim(W_1+W_2)=3$，$\dim(W_1\cap W_2)=1$：$(0,-1,1,1)^\trans=-(1,1,0,0)^\trans+(1,0,1,1)^\trans$ 同属两者. $2+2-1=3$，与维数公式一致.}
 
-\ans{ex:lmap:A13}{$\mathscr T\vv\alpha=\zero\Rightarrow\mathscr{ST}\vv\alpha=\zero$；$\mathscr{ST}\vv\alpha=\mathscr S(\mathscr T\vv\alpha)$. 由前者 $\rk(\mathscr{ST})=\dim U-\dim\ker(\mathscr{ST})\le\dim U-\dim\ker\mathscr T=\rk\mathscr T$，由后者 $\rk(\mathscr{ST})\le\rk\mathscr S$.}
+\ans{ex:lmap:A13}{(1) 线性，核为 $\{\zero\}$. (2) 不线性：$\zero\mapsto(1,0)^\trans$. (3) 不线性：$(-1,0)^\trans$ 与 $(1,0)^\trans$ 之和的像不等于像之和. (4) 线性，核为 $\{0\}$. (5) 线性，核为常数多项式全体. (6) 线性，核为 $\{\vv O\}$. (7) 不线性：$\det(2\vv X)=4\det\vv X$.}
 
-\ans{ex:lmap:A14}{$\tr$ 是满射（$\tr(c\vv E_{11})=c$），由秩—零化度定理 $\dim\ker\tr=n^2-1$.}
+\ans{ex:lmap:A14}{第一个：核的基 $(-2,1,0)^\trans$，$(1,0,1)^\trans$；像的基 $(1,2)^\trans$；$3=2+1$. 第二个：核的基 $(-2,1,1,0)^\trans$，$(-1,-1,0,1)^\trans$；像的基 $(1,0,1)^\trans$，$(0,1,1)^\trans$；$4=2+2$.}
 
-\ans{ex:lmap:A15}{$\tr(\vv P^{-1}\vv{AP})=\tr(\vv{AP}\vv P^{-1})=\tr\vv A$. 两矩阵迹分别为 $4$ 与 $3$，不相似.}
+\ans{ex:lmap:A15}{$\begin{pmatrix}1&-2&1\\0&3&4\end{pmatrix}$.}
 
-\ans{ex:lmap:A16}{$\vv P^{-1}\vv I\vv P=\vv I$. 由于 $\begin{pmatrix}1&1\\0&1\end{pmatrix}\ne\vv I$，它与 $\vv I$ 不相似.}
+\ans{ex:lmap:A16}{(1) $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$. (2) $\begin{pmatrix}0&1\\1&0\end{pmatrix}$，平方为 $\vv I$：反射两次回到原处. (3) $\frac12\begin{pmatrix}1&1\\1&1\end{pmatrix}$，平方等于自身：投影两次与投影一次相同. (4) $\begin{pmatrix}1&2\\0&1\end{pmatrix}$.}
 
-\ans{ex:lmap:A17}{矩阵为 $\begin{pmatrix}1&0&0\\1&1&1\\1&2&4\end{pmatrix}$. 依次做 $r_2-r_1$，$r_3-r_1$，$r_3-2r_2$，得 $\begin{pmatrix}1&0&0\\0&1&1\\0&0&2\end{pmatrix}$，有 $3$ 个主元，由定理~\ref{thm:invertible} 矩阵可逆，故 $\mathscr E$ 是同构.（第五章会看到，它的行列式是 Vandermonde 型的.）}
+\ans{ex:lmap:A17}{两组基下的矩阵都是 $\begin{pmatrix}0&1&0\\0&0&2\\0&0&0\end{pmatrix}$：$\mathscr D(x-1)=1$，$\mathscr D(x-1)^2=2(x-1)$.}
 
-\ans{ex:lmap:A18}{$\mathscr T(x_1,x_2,x_3)^\trans=(x_1+x_3,\ x_1+x_2+2x_3,\ x_2+x_3)^\trans$. $\ker\mathscr T=\spn\big((1,1,-1)^\trans\big)$，$\imm\mathscr T=\spn\big((1,1,0)^\trans,(0,1,1)^\trans\big)$.}
+\ans{ex:lmap:A18}{$\begin{pmatrix}1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1\end{pmatrix}$，它的平方是 $\vv I_4$.}
 
-\ans{ex:lmap:A19}{$\vv A_2(\vv A_1\vv x+\vv b_1)+\vv b_2=(\vv A_2\vv A_1)\vv x+(\vv A_2\vv b_1+\vv b_2)$. 仿射变换线性当且仅当把 $\zero$ 映为 $\zero$，即 $\vv b=\zero$.}
+\ans{ex:lmap:A19}{过渡矩阵 $\vv P=\begin{pmatrix}-1&-1&-4\\1&0&6\\1&3&1\end{pmatrix}$. $\vv\alpha$ 在 $\vv\varepsilon$ 下的坐标为 $(-1,2,2)^\trans$，在 $\vv\eta$ 下的坐标为 $(-16,5,3)^\trans$. 可用 $\vv x=\vv P\vv x'$ 检验.}
 
-\ans{ex:lmap:A20}{第一列是 $\vv e_1$ 转 $\theta$ 后的位置 $(\cos\theta,\sin\theta)^\trans$，第二列同理. 复合``先转 $\beta$ 再转 $\alpha$''的矩阵是 $\vv R(\alpha)\vv R(\beta)$（定理~\ref{thm:composition}），比较 $(1,1)$ 元与 $(2,1)$ 元，得 $\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta$，$\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$.}
+\ans{ex:lmap:A20}{$\diag(3,1)$. 过渡矩阵 $\vv P=\begin{pmatrix}1&1\\1&-1\end{pmatrix}$，也可以直接看出 $\mathscr T\vv\eta_1=3\vv\eta_1$，$\mathscr T\vv\eta_2=\vv\eta_2$.}
+
+\ans{ex:lmap:A21}{$\mathscr S\mathscr T(a\vv\alpha+b\vv\beta)=\mathscr S(a\mathscr T\vv\alpha+b\mathscr T\vv\beta)=a\mathscr{ST}\vv\alpha+b\mathscr{ST}\vv\beta$. 逆映射：设 $\vv\alpha=\mathscr T\vv\alpha'$，$\vv\beta=\mathscr T\vv\beta'$，则 $\mathscr T^{-1}(a\vv\alpha+b\vv\beta)=\mathscr T^{-1}\mathscr T(a\vv\alpha'+b\vv\beta')=a\mathscr T^{-1}\vv\alpha+b\mathscr T^{-1}\vv\beta$.}
+
+\ans{ex:lmap:A22}{若 $\sum k_i\mathscr T\vv\alpha_i=\zero$，则 $\sum k_i\vv\alpha_i\in\ker\mathscr T=\{\zero\}$. 反之，若 $\mathscr T\vv\alpha=\zero$ 而 $\vv\alpha\ne\zero$，则线性无关组 $\{\vv\alpha\}$ 被映为相关组 $\{\zero\}$.}
+
+\ans{ex:lmap:A23}{(1) 存在：前两个向量是基，$\mathscr T(x,y)^\trans=\big(\frac{x+y}2,\frac{x-y}2\big)^\trans$，它恰好满足第三个条件. (2) 不存在：$(2,0)^\trans=(1,1)^\trans+(1,-1)^\trans$，线性性要求 $\mathscr T(2,0)^\trans=(1,1)^\trans$.}
+
+\ans{ex:lmap:A24}{(1) $5-3=2$. (2) 都不存在：像的维数 $\le3<5$；核的维数 $\ge5-3=2>0$.}
+
+\ans{ex:lmap:A25}{$\mathscr T\vv\alpha=\zero\Rightarrow\mathscr{ST}\vv\alpha=\zero$；$\mathscr{ST}\vv\alpha=\mathscr S(\mathscr T\vv\alpha)$. 由前者 $\rk(\mathscr{ST})=\dim U-\dim\ker(\mathscr{ST})\le\dim U-\dim\ker\mathscr T=\rk\mathscr T$，由后者 $\rk(\mathscr{ST})\le\rk\mathscr S$.}
+
+\ans{ex:lmap:A26}{$\tr$ 是满射（$\tr(c\vv E_{11})=c$），由秩—零化度定理 $\dim\ker\tr=n^2-1$.}
+
+\ans{ex:lmap:A27}{$\tr(\vv P^{-1}\vv{AP})=\tr(\vv{AP}\vv P^{-1})=\tr\vv A$. 两矩阵迹分别为 $4$ 与 $3$，不相似.}
+
+\ans{ex:lmap:A28}{$\vv P^{-1}\vv I\vv P=\vv I$. 由于 $\begin{pmatrix}1&1\\0&1\end{pmatrix}\ne\vv I$，它与 $\vv I$ 不相似.}
+
+\ans{ex:lmap:A29}{矩阵为 $\begin{pmatrix}1&0&0\\1&1&1\\1&2&4\end{pmatrix}$. 依次做 $r_2-r_1$，$r_3-r_1$，$r_3-2r_2$，得 $\begin{pmatrix}1&0&0\\0&1&1\\0&0&2\end{pmatrix}$，有 $3$ 个主元，由定理~\ref{thm:invertible} 矩阵可逆，故 $\mathscr E$ 是同构.（第五章会看到，它的行列式是 Vandermonde 型的.）}
+
+\ans{ex:lmap:A30}{$\mathscr T(x_1,x_2,x_3)^\trans=(x_1+x_3,\ x_1+x_2+2x_3,\ x_2+x_3)^\trans$. $\ker\mathscr T=\spn\big((1,1,-1)^\trans\big)$，$\imm\mathscr T=\spn\big((1,1,0)^\trans,(0,1,1)^\trans\big)$.}
+
+\ans{ex:lmap:A31}{$\vv A_2(\vv A_1\vv x+\vv b_1)+\vv b_2=(\vv A_2\vv A_1)\vv x+(\vv A_2\vv b_1+\vv b_2)$. 仿射变换线性当且仅当把 $\zero$ 映为 $\zero$，即 $\vv b=\zero$.}
+
+\ans{ex:lmap:A32}{第一列是 $\vv e_1$ 转 $\theta$ 后的位置 $(\cos\theta,\sin\theta)^\trans$，第二列同理. 复合``先转 $\beta$ 再转 $\alpha$''的矩阵是 $\vv R(\alpha)\vv R(\beta)$（定理~\ref{thm:composition}），比较 $(1,1)$ 元与 $(2,1)$ 元，得 $\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta$，$\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$.}
 
 \subsection*{B 组提示}
 
-\ans{ex:lmap:B1}{取定基后 $\mathscr T\mapsto$ 矩阵是 $L(V,W)$ 到 $M_{m\times n}(\mathbb{F})$ 的同构.}
-\ans{ex:lmap:B2}{$\mathscr T^2=\mathscr O$ 即 $\mathscr T(\mathscr T\vv\alpha)=\zero$. 取 $\imm\mathscr T$ 的基 $\vv\beta_1,\ldots,\vv\beta_r$，$\vv\beta_i=\mathscr T\vv\alpha_i$，证明 $\vv\beta_1,\vv\alpha_1,\ldots,\vv\beta_r,\vv\alpha_r$ 线性无关，再用 $\ker\mathscr T$ 中的向量补成基.}
-\ans{ex:lmap:B3}{对 $\mathscr T|_{\ker(\mathscr{ST})}$ 用秩—零化度定理：它的像含于 $\ker\mathscr S$，核含于 $\ker\mathscr T$.}
-\ans{ex:lmap:B4}{$\mathscr{ST}=\mathscr I$ 说明 $\mathscr T$ 是单射，有限维时由推论~\ref{cor:nullity} 它是双射，于是 $\mathscr S=\mathscr T^{-1}$.}
-\ans{ex:lmap:B5}{$\mathscr{JD}(1)=0$. 不矛盾：B4 依赖有限维，$\mathbb{R}[x]$ 是无限维的.}
-\ans{ex:lmap:B6}{$\tr(\vv{AX}-\vv{XA})=0$. 后半句：$\vv A^k$ 与 $\vv A$ 可交换.}
-\ans{ex:lmap:B7}{逐个计算 $\vv A\vv E_{11}$ 等并取坐标. $\vv X\mapsto\vv{AX}$ 的矩阵为 $\begin{pmatrix}\vv A&\vv O\\ \vv O&\vv A\end{pmatrix}$（在给定的基序下）；$\vv X\mapsto\vv{XA}$ 的矩阵为 $\begin{pmatrix}a\vv I&c\vv I\\ b\vv I&d\vv I\end{pmatrix}$.}
-\ans{ex:lmap:B8}{证明 $V=\imm\mathscr P\oplus\ker\mathscr P$：$\vv\alpha=\mathscr P\vv\alpha+(\vv\alpha-\mathscr P\vv\alpha)$，且 $\mathscr P$ 在 $\imm\mathscr P$ 上是恒等. 合并两者的基.}
-\ans{ex:lmap:B9}{按提示分解，并验证两部分分别在 $\ker(\mathscr T\mp\mathscr I)$ 中；交为零是因为 $\mathscr T\vv\alpha=\vv\alpha=-\vv\alpha$ 推出 $\vv\alpha=\zero$.}
-\ans{ex:lmap:B10}{对 $\mathscr T|_U$ 用秩—零化度定理.}
-\ans{ex:lmap:B11}{在基 $\mathrm e^x\cos x$，$\mathrm e^x\sin x$ 下 $\mathscr D$ 的矩阵为 $\begin{pmatrix}1&1\\-1&1\end{pmatrix}$，逆为 $\frac12\begin{pmatrix}1&-1\\1&1\end{pmatrix}$，故 $\int\mathrm e^x\sin x\,\mathrm dx=\frac12\mathrm e^x(\sin x-\cos x)+C$.}
-\ans{ex:lmap:B12}{平移的矩阵为 $\begin{pmatrix}1&0&a\\0&1&b\\0&0&1\end{pmatrix}$. 两种顺序的矩阵不相等：先转后移把原点送到 $(1,2)$，先移后转把原点送到 $(-2,1)$.}
-\ans{ex:lmap:B13}{$\vv P^{-1}\vv A^k\vv P=(\vv P^{-1}\vv{AP})^k$；转置时用 $\vv Q=(\vv P^{-1})^\trans$.}
-\ans{ex:lmap:B14}{两者秩都为 $1$，故相抵. 若相似，则 $\vv P^{-1}\vv E_{11}\vv P$ 是幂等的，而 $\vv E_{12}^2=\vv O\ne\vv E_{12}$. 相抵允许在定义域与陪域中各自换基，相似必须在同一个空间中用同一组基.}
-\ans{ex:lmap:B15}{设 $\sum c_i\mathscr T^i\vv\alpha=\zero$，依次施以 $\mathscr T^{k-1},\mathscr T^{k-2},\ldots$. 所求矩阵是主对角线之上一条斜线全为 $1$、其余为 $0$ 的矩阵.}
+\ans{ex:lmap:B1}{按次数从高到低比较系数，证明线性无关；个数等于维数 $n$.}
+\ans{ex:lmap:B2}{$a_1,a_2$ 确定整个数列，映射 $\{a_n\}\mapsto(a_1,a_2)$ 是同构. 代入验证 $2^n$ 与 $(-1)^n$ 满足递推且线性无关. $a_1=a_2=1$ 时 $a_n=\frac13\big(2^n-(-1)^n\big)$.}
+\ans{ex:lmap:B3}{(1) 设组合为零，令 $x=0$ 并逐次求导，或除以 $\mathrm e^{3x}$ 后令 $x\to+\infty$. (2) $\sin(x+1)=\cos1\cdot\sin x+\sin1\cdot\cos x$. (3) 秩为 $3$：$\cos2x=2\cos^2x-1$.}
+\ans{ex:lmap:B4}{证明对加、减、乘封闭，再对除法用两次``分母有理化''. 线性无关可设 $a+b\sqrt2=-(c+d\sqrt2)\sqrt3$ 后平方，利用 $\sqrt2,\sqrt3,\sqrt6$ 都是无理数. 维数为 $4$.}
+\ans{ex:lmap:B5}{$f=f(a)+(f-f(a))$. 交为零：常数多项式在 $a$ 处为零只能是零.}
+\ans{ex:lmap:B6}{$f(x)=\frac{f(x)+f(-x)}2+\frac{f(x)-f(-x)}2$；$\mathrm e^x=\cosh x+\sinh x$.}
+\ans{ex:lmap:B7}{对 $k$ 归纳，反复使用维数公式：$\dim(U\cap W)\ge\dim U+\dim W-n$.}
+\ans{ex:lmap:B8}{这 $n-1$ 个向量线性无关（用坐标验证），$\dim W=n-1$. 补空间可取 $\spn(\vv\alpha_n)$（需验证 $\vv\alpha_n\notin W$：$W$ 中向量的坐标交错和为零）.}
+\ans{ex:lmap:B9}{$\vv x=x_1(1,\ldots,1)^\trans+(\vv x-x_1(1,\ldots,1)^\trans)$. 两种分解都是直和；与 $V_1$ 互补的子空间有无穷多个，第十章会说明例~\ref{eg:pricedecomp} 中的 $R$ 是其中``垂直''的那一个.}
+\ans{ex:lmap:B10}{每个矩阵唯一地拆成``对角线及以上''与``对角线以下''两部分. $\dim W_1=\frac{n(n+1)}2$.}
+\ans{ex:lmap:B11}{(1) 设 $W$ 的基为 $\vv\varepsilon_1,\ldots,\vv\varepsilon_k$（$k<n$），扩充为 $\mathbb{R}^n$ 的基 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$. ``取 $\vv x$ 在这组基下的第 $n$ 个坐标''是 $x_1,\ldots,x_n$ 的一次齐次式（解一个线性方程组即可写出），它在 $W$ 上恒为零，又在 $\vv\varepsilon_n$ 处为 $1$，系数不全为零. (2) 条件是 $a_1+a_2t+\cdots+a_nt^{n-1}=0$，这是一个次数不超过 $n-1$ 的非零多项式，至多 $n-1$ 个根. (3) 例如 $t=2$：$\vv v(2)=(1,2,4)^\trans$ 不满足三个方程中的任何一个.}
+\ans{ex:lmap:B12}{对 $k$ 归纳. 已选好线性无关的 $\vv\varepsilon_1,\ldots,\vv\varepsilon_{k-1}$（$k\le n$）后，$U=\spn(\vv\varepsilon_1,\ldots,\vv\varepsilon_{k-1})$ 的维数 $k-1<n$，也是真子空间. 由覆盖定理取 $\vv\varepsilon_k\notin W_1\cup\cdots\cup W_s\cup U$；由引理~\ref{lem:addone}，$\vv\varepsilon_1,\ldots,\vv\varepsilon_k$ 仍线性无关. 选满 $n$ 个即得一组基.}
+\ans{ex:lmap:B13}{取定基后 $\mathscr T\mapsto$ 矩阵是 $L(V,W)$ 到 $M_{m\times n}(\mathbb{F})$ 的同构.}
+\ans{ex:lmap:B14}{$\mathscr T^2=\mathscr O$ 即 $\mathscr T(\mathscr T\vv\alpha)=\zero$. 取 $\imm\mathscr T$ 的基 $\vv\beta_1,\ldots,\vv\beta_r$，$\vv\beta_i=\mathscr T\vv\alpha_i$，证明 $\vv\beta_1,\vv\alpha_1,\ldots,\vv\beta_r,\vv\alpha_r$ 线性无关，再用 $\ker\mathscr T$ 中的向量补成基.}
+\ans{ex:lmap:B15}{对 $\mathscr T|_{\ker(\mathscr{ST})}$ 用秩—零化度定理：它的像含于 $\ker\mathscr S$，核含于 $\ker\mathscr T$.}
+\ans{ex:lmap:B16}{$\mathscr{ST}=\mathscr I$ 说明 $\mathscr T$ 是单射，有限维时由推论~\ref{cor:nullity} 它是双射，于是 $\mathscr S=\mathscr T^{-1}$.}
+\ans{ex:lmap:B17}{$\mathscr{JD}(1)=0$. 不矛盾：\ref{ex:lmap:B16} 依赖有限维，$\mathbb{R}[x]$ 是无限维的.}
+\ans{ex:lmap:B18}{$\tr(\vv{AX}-\vv{XA})=0$. 后半句：$\vv A^k$ 与 $\vv A$ 可交换.}
+\ans{ex:lmap:B19}{逐个计算 $\vv A\vv E_{11}$ 等并取坐标. $\vv X\mapsto\vv{AX}$ 的矩阵为 $\begin{pmatrix}\vv A&\vv O\\ \vv O&\vv A\end{pmatrix}$（在给定的基序下）；$\vv X\mapsto\vv{XA}$ 的矩阵为 $\begin{pmatrix}a\vv I&c\vv I\\ b\vv I&d\vv I\end{pmatrix}$.}
+\ans{ex:lmap:B20}{证明 $V=\imm\mathscr P\oplus\ker\mathscr P$：$\vv\alpha=\mathscr P\vv\alpha+(\vv\alpha-\mathscr P\vv\alpha)$，且 $\mathscr P$ 在 $\imm\mathscr P$ 上是恒等. 合并两者的基.}
+\ans{ex:lmap:B21}{按提示分解，并验证两部分分别在 $\ker(\mathscr T\mp\mathscr I)$ 中；交为零是因为 $\mathscr T\vv\alpha=\vv\alpha=-\vv\alpha$ 推出 $\vv\alpha=\zero$.}
+\ans{ex:lmap:B22}{对 $\mathscr T|_U$ 用秩—零化度定理.}
+\ans{ex:lmap:B23}{在基 $\mathrm e^x\cos x$，$\mathrm e^x\sin x$ 下 $\mathscr D$ 的矩阵为 $\begin{pmatrix}1&1\\-1&1\end{pmatrix}$，逆为 $\frac12\begin{pmatrix}1&-1\\1&1\end{pmatrix}$，故 $\int\mathrm e^x\sin x\,\mathrm dx=\frac12\mathrm e^x(\sin x-\cos x)+C$.}
+\ans{ex:lmap:B24}{平移的矩阵为 $\begin{pmatrix}1&0&a\\0&1&b\\0&0&1\end{pmatrix}$. 两种顺序的矩阵不相等：先转后移把原点送到 $(1,2)$，先移后转把原点送到 $(-2,1)$.}
+\ans{ex:lmap:B25}{$\vv P^{-1}\vv A^k\vv P=(\vv P^{-1}\vv{AP})^k$；转置时用 $\vv Q=(\vv P^{-1})^\trans$.}
+\ans{ex:lmap:B26}{两者秩都为 $1$，故相抵. 若相似，则 $\vv P^{-1}\vv E_{11}\vv P$ 是幂等的，而 $\vv E_{12}^2=\vv O\ne\vv E_{12}$. 相抵允许在定义域与陪域中各自换基，相似必须在同一个空间中用同一组基.}
+\ans{ex:lmap:B27}{设 $\sum c_i\mathscr T^i\vv\alpha=\zero$，依次施以 $\mathscr T^{k-1},\mathscr T^{k-2},\ldots$. 所求矩阵是主对角线之上一条斜线全为 $1$、其余为 $0$ 的矩阵.}
 
 \section{第五章　行列式}
 
@@ -575,6 +580,40 @@ $\vv A^n=\begin{pmatrix}2\cdot3^n-2^n&2^{n+1}-2\cdot3^n\\3^n-2^n&2^{n+1}-3^n\end
 	\begin{pmatrix}\vv I_m&\vv O\\ -\vv B&\lambda\vv I_n\end{pmatrix}\begin{pmatrix}\lambda\vv I_m&\vv A\\ \vv B&\vv I_n\end{pmatrix}=\begin{pmatrix}\lambda\vv I_m&\vv A\\ \vv O&\lambda\vv I_n-\vv{BA}\end{pmatrix}.\]
 	记中间矩阵的行列式为 $D$. 对两式取行列式（第五章章末习题~\ref{ex:det:A17}），得 $\lambda^nD=\lambda^n\det(\lambda\vv I_m-\vv{AB})$ 与 $\lambda^nD=\lambda^m\det(\lambda\vv I_n-\vv{BA})$，因此 $\lambda^n\det(\lambda\vv I_m-\vv{AB})=\lambda^m\det(\lambda\vv I_n-\vv{BA})$. 两边作为 $\lambda$ 的多项式相等，因子 $\lambda^n$、$\lambda^m$ 只影响根 $0$ 的重数，所以两个特征多项式的非零根（连同重数）相同.}
 
+\section{第九章　$\lambda$-矩阵}
+
+\subsection*{A 组答案}
+
+\ans{ex:lam:A1}{(1) $\diag\big(1,\lambda(\lambda+1)\big)$：$\lambda$ 与 $\lambda+1$ 互素（引理~\ref{lem:coprimesplit}）. (2) $D_1=\gcd(\lambda^2+\lambda,\lambda^2)=\lambda$，$D_2=\lambda^3(\lambda+1)$，标准形为 $\diag\big(\lambda,\lambda^2(\lambda+1)\big)$. (3) $D_1=1$，$D_2=\lambda$，$D_3=\lambda^2(\lambda+1)$，标准形为 $\diag\big(1,\lambda,\lambda(\lambda+1)\big)$（与例~\ref{eg:smithcalc} 的做法相同，先把第三列加到第一列）.}
+
+\ans{ex:lam:A2}{划去第一列与最后一行得二阶子式 $1$，故 $D_1=D_2=1$；按第一列展开，$D_3=\lambda^3+6\lambda^2+11\lambda+6=(\lambda+1)(\lambda+2)(\lambda+3)$. 不变因子为 $1,1,(\lambda+1)(\lambda+2)(\lambda+3)$.}
+
+\ans{ex:lam:A3}{(1) 行列式为 $-1$，可逆，逆矩阵为 $\begin{pmatrix}1-\lambda&\lambda\\\lambda&-\lambda-1\end{pmatrix}$. (2) 行列式 $\lambda^2-1$ 不是常数，不可逆.}
+
+\ans{ex:lam:A4}{初等因子 $\lambda-1,\ \lambda-2,\ (\lambda-1)^2,\ (\lambda-2)^2$；特征多项式 $(\lambda-1)^3(\lambda-2)^3$；最小多项式 $(\lambda-1)^2(\lambda-2)^2$；Jordan 标准形 $\diag\big(1,\ 2,\ \vv J_2(1),\ \vv J_2(2)\big)$.}
+
+\ans{ex:lam:A5}{$d_7=\lambda^2(\lambda-1)^2(\lambda+1)$，$d_6=\lambda(\lambda+1)$，$d_1=\cdots=d_5=1$. 检验：次数之和 $5+2=7$.}
+
+\ans{ex:lam:A6}{特征多项式 $(\lambda+1)^3$. $\lambda\vv I-\vv A$ 含常数元素 $-3$，$D_1=1$；它的二阶子式都被 $\lambda+1$ 整除，且有一个恰为 $-2(\lambda+1)$，故 $D_2=\lambda+1$. 不变因子 $1,\ \lambda+1,\ (\lambda+1)^2$，Jordan 标准形 $\diag\big(\vv J_2(-1),-1\big)$，不能对角化.}
+
+\ans{ex:lam:A7}{这是 $(\lambda-1)^3=\lambda^3-3\lambda^2+3\lambda-1$ 的友矩阵（见 \ref{ex:lam:C1}），不变因子 $1,1,(\lambda-1)^3$，Jordan 标准形 $\vv J_3(1)$.}
+
+\ans{ex:lam:A8}{$\vv A$ 与 $\vv B$ 相似：初等因子都是 $(\lambda-2)^2,\ \lambda-2$. $\vv C$ 的初等因子为 $(\lambda-2)^3$，$\vv D$ 的为三个 $\lambda-2$，它们与其余矩阵都不相似.}
+
+\ans{ex:lam:A9}{不变因子 $1,\ \lambda+2,\ (\lambda+2)(\lambda-4)$，最小多项式 $(\lambda+2)(\lambda-4)$ 没有重根，可以对角化.}
+
+\ans{ex:lam:A10}{$\vv P=\begin{pmatrix}1&1\\-1&0\end{pmatrix}$，$\vv A^n=\vv P\vv J_2(2)^n\vv P^{-1}=2^{n-1}\begin{pmatrix}n+2&n\\-n&2-n\end{pmatrix}$. 检验：$n=1$ 时得 $\vv A$.}
+
+\subsection*{B 组提示}
+
+\ans{ex:lam:B1}{幂零矩阵的特征值只能是 $0$. $\vv J_k(0)^k=\vv O$ 且 $k\le n$. $\rk\vv A=n-1$ 时以 $0$ 为对角元的块只有 $n-\rk\vv A=1$ 个.}
+\ans{ex:lam:B2}{最小多项式整除 $\lambda(\lambda-1)$ 或 $(\lambda-1)(\lambda+1)$，没有重根. 也可直接验证：$\vv J_k(\lambda_0)^2=\vv J_k(\lambda_0)$ 或 $\vv I$ 只在 $k=1$ 时可能.}
+\ans{ex:lam:B3}{设 $\vv X=(x_{ij})$，比较 $\vv X\vv N$ 与 $\vv N\vv X$（$\vv N=\vv J_3(0)$），得 $\vv X=a\vv I+b\vv N+c\vv N^2$，即上三角且每条斜线上元素相同.}
+\ans{ex:lam:B4}{$\vv P^{-1}=\vv P$，左乘 $\vv P$ 把行倒序，右乘把列倒序. 对 Jordan 矩阵逐块使用.}
+\ans{ex:lam:B5}{$\rk(\vv J_k(0))=k-1$，$\rk(\vv J_k(0)^2)=\max(k-2,0)$；二者相等当且仅当 $k=1$. 其他特征值的块减去 $\lambda_0\vv I$ 后可逆，不影响秩的差.}
+\ans{ex:lam:B6}{(1)$\Leftrightarrow$(2)：$D_{n-1}=1$ 当且仅当 $d_1=\cdots=d_{n-1}=1$，当且仅当 $d_n=f_{\vv A}$，再用推论~\ref{cor:minpolyinvfactor}. (2)$\Leftrightarrow$(3)：最小多项式中 $\lambda_0$ 的重数是最大块的阶数，特征多项式中是块的阶数之和.}
+\ans{ex:lam:B7}{只需对一个 Jordan 块 $\vv J_m(\lambda_0)$ 计算：$\rk(\vv J_m(\lambda_0)-\lambda_0\vv I)^k=\max(m-k,0)$，于是 $r_{k-1}-r_k$ 对每个阶数 $\ge k$ 的块贡献 $1$，对其余块贡献 $0$.}
+
 \section{第十章　内积空间}
 
 \subsection*{A 组答案}
@@ -710,6 +749,39 @@ $\vv A^n=\begin{pmatrix}2\cdot3^n-2^n&2^{n+1}-2\cdot3^n\\3^n-2^n&2^{n+1}-3^n\end
 \ans{ex:dec:B13}{第一句由第八章章末习题~\ref{ex:eig:B6}（特征值为实数）. 第二句取 $\vv x=\vv e_i$ 用定理~\ref{thm:rayleigh}.}
 \ans{ex:dec:B14}{$k=1$ 时每份文书只剩一个数，查询与四份文书中三份合同类文书的相似度都是 $1$，与第四份为 $0$——同 $k=2$ 时的结果，但``合同''内部的差别完全消失，信息损失更多.}
 \ans{ex:dec:B15}{$\vv x^\trans(\vv A-a\vv I)\vv x\ge0$ 对一切 $\vv x$ 成立当且仅当 $\vv A-a\vv I$ 的特征值 $\lambda_i-a\ge0$.}
+
+\section{第十二章　酉空间}
+
+\subsection*{A 组答案}
+
+\ans{ex:uni:A1}{(1) 是. (2) 不是：$\langle(\mathrm i,0)^\trans,(\mathrm i,0)^\trans\rangle=-1<0$. (3) 不是：$\langle\vv e_2,\vv e_2\rangle=\mathrm i$ 不是实数，也不满足共轭对称性.}
+
+\ans{ex:uni:A2}{$\langle\vv x,\vv y\rangle=(1+\mathrm i)(-\mathrm i)+2(1+\mathrm i)=3+\mathrm i$，$\langle\vv y,\vv x\rangle=3-\mathrm i$，$\|\vv x\|=\sqrt{2+4}=\sqrt6$.}
+
+\ans{ex:uni:A3}{$\vv\beta_1=\vv\alpha_1$，$\langle\vv\alpha_2,\vv\beta_1\rangle=1$，$\vv\beta_2=\vv\alpha_2-\frac12\vv\beta_1=(\frac12,1,-\frac{\mathrm i}2)^\trans$；$\vv e_1=\frac1{\sqrt2}(1,0,\mathrm i)^\trans$，$\vv e_2=\frac1{\sqrt6}(1,2,-\mathrm i)^\trans$.}
+
+\ans{ex:uni:A4}{$\vv A^\herm=\begin{pmatrix}1&2\\-\mathrm i&1+\mathrm i\end{pmatrix}$. $\vv{AB}=\begin{pmatrix}2\mathrm i&2\mathrm i\\1+\mathrm i&2-2\mathrm i\end{pmatrix}$，两边都等于 $\begin{pmatrix}-2\mathrm i&1-\mathrm i\\-2\mathrm i&2+2\mathrm i\end{pmatrix}$.}
+
+\ans{ex:uni:A5}{(1) 是. (2) 不是：第二列长度为 $\sqrt2$. (3) 是：两列都是单位向量，内积 $\frac12\big(1+\mathrm i\cdot\overline{(-\mathrm i)}\big)=\frac12(1+\mathrm i^2)=0$.}
+
+\ans{ex:uni:A6}{(1) Hermite 矩阵，从而正规. (2) 反 Hermite 矩阵（$\vv A^\herm=-\vv A$），从而正规. (3) 都不是：$\vv A\vv A^\herm=\begin{pmatrix}2&1\\1&1\end{pmatrix}\ne\begin{pmatrix}1&1\\1&2\end{pmatrix}=\vv A^\herm\vv A$.}
+
+\ans{ex:uni:A7}{特征值 $0$ 与 $2$，单位特征向量 $\frac1{\sqrt2}(1,\mathrm i)^\trans$ 与 $\frac1{\sqrt2}(1,-\mathrm i)^\trans$；$\vv U=\frac1{\sqrt2}\begin{pmatrix}1&1\\\mathrm i&-\mathrm i\end{pmatrix}$，$\vv U^\herm\vv A\vv U=\diag(0,2)$.}
+
+\ans{ex:uni:A8}{特征值 $2$（二重），单位特征向量 $\frac1{\sqrt2}(1,1)^\trans$，扩充为 $\vv U=\frac1{\sqrt2}\begin{pmatrix}1&-1\\1&1\end{pmatrix}$，$\vv U^\herm\vv A\vv U=\begin{pmatrix}2&2\\0&2\end{pmatrix}$.}
+
+\ans{ex:uni:A9}{$\mathscr T$ 在标准基下的矩阵为 $\begin{pmatrix}1&\mathrm i\\0&2\end{pmatrix}$，$\mathscr T^*$ 的矩阵是它的共轭转置 $\begin{pmatrix}1&0\\-\mathrm i&2\end{pmatrix}$，即 $\mathscr T^*(y_1,y_2)^\trans=(y_1,\ -\mathrm iy_1+2y_2)^\trans$. 两边都等于 $\mathrm i$.}
+
+\ans{ex:uni:A10}{$\omega=\mathrm i$，$\vv f_k=\frac12(1,\mathrm i^k,\mathrm i^{2k},\mathrm i^{3k})^\trans$. $(1,0,0,0)^\trans$ 的变换为 $\frac12(1,1,1,1)$；$(1,1,1,1)^\trans$ 的变换为 $(2,0,0,0)$.}
+
+\subsection*{B 组提示}
+
+\ans{ex:uni:B1}{$\vv x^\herm\vv A^\herm\vv A\vv x=\|\vv A\vv x\|^2$. 若 $\vv A^\herm\vv A\vv x=\zero$，左乘 $\vv x^\herm$ 得 $\vv A\vv x=\zero$.}
+\ans{ex:uni:B2}{$\|\vv A\vv x\|^2-\|\vv A^\herm\vv x\|^2=\vv x^\herm(\vv A^\herm\vv A-\vv A\vv A^\herm)\vv x$，再用命题~\ref{prop:hermitianform}(1) 的证明方法. 后半句：$\vv A-\lambda\vv I$ 也是正规的.}
+\ans{ex:uni:B3}{在 $\vv A$ 的每个特征子空间上，$\vv B$ 的限制仍是正规的（用标准正交基写出矩阵），对它用正规矩阵的谱定理.}
+\ans{ex:uni:B4}{$\vv A=\vv U\vv D\vv U^\herm$，$\vv D$ 的对角元为正，取 $\vv C=\vv D^{1/2}\vv U^\herm$. 反之 $\vv x^\herm\vv C^\herm\vv C\vv x=\|\vv C\vv x\|^2>0$.}
+\ans{ex:uni:B5}{$\vv K$ 的特征值是纯虚数，$1$ 不是它的特征值. 验证 $\vv W^\herm\vv W=\vv I$ 时注意 $\vv I+\vv K$ 与 $(\vv I-\vv K)^{-1}$ 可交换.}
+\ans{ex:uni:B6}{$\vv U=\vv V\diag(\mathrm e^{\mathrm i\theta_1},\ldots)\vv V^\herm$，取 $\vv H=\vv V\diag(\theta_1,\ldots)\vv V^\herm$.}
 
 \section{第十三章　二次型}
 
