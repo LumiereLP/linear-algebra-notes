@@ -2897,8 +2897,8 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\begin{introduction}[学习目标]
 		\item 计算排列的逆序数，按定义写出低阶行列式的展开式
-		\item 运用行列式的性质把行列式化为三角形计算，运用按行（列）展开计算行列式
-		\item 运用乘积公式以及``方阵可逆当且仅当行列式不为零''解决问题
+		\item 运用行列式的性质把行列式化为三角形计算，运用按行（列）展开与 Laplace 定理计算行列式
+		\item 运用乘积公式、Cauchy–Binet 公式以及``方阵可逆当且仅当行列式不为零''解决问题
 		\item 求伴随矩阵，用伴随矩阵求逆矩阵，用 Cramer 法则解方程组
 		\item 用子式判断矩阵的秩
 	\end{introduction}
@@ -3123,7 +3123,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		在 $n$ 阶行列式中划去第 $i$ 行、第 $j$ 列，余下元素按原顺序组成的 $n-1$ 阶行列式记为 $M_{ij}$，称为 $a_{ij}$ 的\textbf{余子式}\index{yu2zi3shi4@余子式}；$A_{ij}=(-1)^{i+j}M_{ij}$ 称为 $a_{ij}$ 的\textbf{代数余子式}\index{dai4shu4 yu2zi3shi4@代数余子式}.
 	\end{definition}
 	
-	\begin{theorem}[Laplace 展开]\label{thm:expansion}\index{laplace zhan3kai1@Laplace 展开}
+	\begin{theorem}[按行（列）展开]\label{thm:expansion}\index{an4hang2 zhan3kai1@按行（列）展开}
 		对任意 $i,j$，
 		\[
 		\det\vv A=\sum_{k=1}^n a_{ik}A_{ik}\ \ (\text{按第 } i \text{ 行展开})=\sum_{k=1}^n a_{kj}A_{kj}\ \ (\text{按第 } j \text{ 列展开}).
@@ -3160,6 +3160,67 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\]
 		证明：从最后一行起，每一行减去上一行的 $x_1$ 倍，再按第一列展开，并提出各列公因子 $(x_j-x_1)$，得到一个 $n-1$ 阶 Vandermonde 行列式，然后归纳. 细节留作练习.
 	\end{example}
+	
+	\subsection{Laplace 定理}\label{sec:laplace}
+	
+	按一行展开，是把行列式写成这一行的 $n$ 个元素与各自代数余子式的乘积之和. 把``一行''换成``若干行''，就得到更一般的展开.
+	
+	\begin{definition}
+		在 $n$ 阶方阵 $\vv A$ 中任取 $k$ 行 $i_1<\cdots<i_k$ 与 $k$ 列 $j_1<\cdots<j_k$（$1\le k<n$），位于这些行、列交叉处的元素按原来的相对位置组成的 $k$ 阶行列式，称为 $\vv A$ 的一个 \textbf{$k$ 阶子式}\index{zi3shi4@子式}，记为
+		\[
+		\vv A\binom{i_1\,\cdots\,i_k}{j_1\,\cdots\,j_k}.
+		\]
+		划去这 $k$ 行、$k$ 列后，余下元素按原来的相对位置组成的 $n-k$ 阶行列式 $M$ 称为这个子式的\textbf{余子式}；$(-1)^{(i_1+\cdots+i_k)+(j_1+\cdots+j_k)}M$ 称为它的\textbf{代数余子式}.
+	\end{definition}
+	
+	$k=1$ 时，一阶子式就是元素 $a_{ij}$ 本身，余子式与代数余子式就是前面的 $M_{ij}$ 与 $A_{ij}$.
+	
+	\begin{theorem}[Laplace 定理]\label{thm:laplace}\index{laplace ding4li3@Laplace 定理}
+		在 $n$ 阶行列式中任意取定 $k$ 行 $i_1<\cdots<i_k$（$1\le k<n$）. 由这 $k$ 行元素组成的全部 $\binom nk$ 个 $k$ 阶子式与各自的代数余子式的乘积之和，等于行列式本身：
+		\begin{equation}\label{eq:laplace}
+			\det\vv A=\sum_{1\le j_1<\cdots<j_k\le n}\vv A\binom{i_1\,\cdots\,i_k}{j_1\,\cdots\,j_k}\cdot(-1)^{(i_1+\cdots+i_k)+(j_1+\cdots+j_k)}M_{j_1\cdots j_k},
+		\end{equation}
+		其中 $M_{j_1\cdots j_k}$ 是相应子式的余子式. 取定 $k$ 列时有同样的结论.
+	\end{theorem}
+	\begin{proof}
+		先说明一个事实：交换相邻的两行（或两列）后，原行列式的每一项 $(-1)^{\tau(p_1\cdots p_n)}a_{1p_1}\cdots a_{np_n}$ 中的元素乘积，仍是新行列式的一项，但符号相反. 事实上，交换第 $r$、$r+1$ 行时，这个乘积在新行列式中对应的列号排列是把 $p_r$ 与 $p_{r+1}$ 互换；交换第 $c$、$c+1$ 列时，对应的列号排列是把数 $c$ 与 $c+1$ 互换. 由引理~\ref{lem:transposition}，两种情形下排列的奇偶性都改变.
+		
+		\textbf{第一步：取定前 $k$ 行与前 $k$ 列.} 设 $i_s=j_s=s$（$s=1,\ldots,k$），子式为 $N$，余子式为 $M$. 在 $\det\vv A$ 的各项中，考察前 $k$ 行的元素恰好取自前 $k$ 列的那些项. 这时 $\{p_1,\ldots,p_k\}=\{1,\ldots,k\}$，$\{p_{k+1},\ldots,p_n\}=\{k+1,\ldots,n\}$. 前段的每个数都小于后段的每个数，两段之间没有逆序，所以
+		\[
+		\tau(p_1\cdots p_n)=\tau(p_1\cdots p_k)+\tau(p_{k+1}\cdots p_n),
+		\]
+		这样的一项等于
+		\[
+		\Big[(-1)^{\tau(p_1\cdots p_k)}a_{1p_1}\cdots a_{kp_k}\Big]\cdot\Big[(-1)^{\tau(p_{k+1}\cdots p_n)}a_{k+1,p_{k+1}}\cdots a_{np_n}\Big].
+		\]
+		让 $p_1\cdots p_k$ 取遍 $1,\ldots,k$ 的全部排列、$p_{k+1}\cdots p_n$ 取遍 $k+1,\ldots,n$ 的全部排列，前一个方括号之和是 $N$，后一个方括号之和是 $M$（把 $k+1,\ldots,n$ 重新编号为 $1,\ldots,n-k$ 不改变逆序数）. 所以这些项之和为 $NM$. 此时 $(-1)^{(1+\cdots+k)+(1+\cdots+k)}=1$，结论成立.
+		
+		\textbf{第二步：一般的 $k$ 行与 $k$ 列.} 把第 $i_1$ 行经 $i_1-1$ 次相邻交换移到第 $1$ 行，再把第 $i_2$ 行经 $i_2-2$ 次相邻交换移到第 $2$ 行……共交换 $\sum_s(i_s-s)$ 次；对第 $j_1,\ldots,j_k$ 列同样操作，共交换 $\sum_s(j_s-s)$ 次. 其余各行、各列的相对顺序不变，所以新矩阵左上角的 $k$ 阶子式仍是 $\vv A\binom{i_1\,\cdots\,i_k}{j_1\,\cdots\,j_k}$，它的余子式仍是 $M_{j_1\cdots j_k}$. 由开头的事实，$\det\vv A$ 中``第 $i_1,\ldots,i_k$ 行的元素取自第 $j_1,\ldots,j_k$ 列''的那些项，变为新行列式中``前 $k$ 行的元素取自前 $k$ 列''的那些项，符号相差
+		\[
+		(-1)^{\sum_s(i_s-s)+\sum_s(j_s-s)}=(-1)^{(i_1+\cdots+i_k)+(j_1+\cdots+j_k)}.
+		\]
+		由第一步，前者之和等于 $\vv A\binom{i_1\,\cdots\,i_k}{j_1\,\cdots\,j_k}\cdot(-1)^{(i_1+\cdots+i_k)+(j_1+\cdots+j_k)}M_{j_1\cdots j_k}$.
+		
+		\textbf{第三步：求和.} $\det\vv A$ 的每一项中，第 $i_1,\ldots,i_k$ 行的元素恰好取自某 $k$ 个不同的列. 把 $\det\vv A$ 的 $n!$ 项按这 $k$ 列分组，每组之和由第二步给出，对全部 $\binom nk$ 种取法求和即得 \eqref{eq:laplace}. 取定 $k$ 列的情形，对 $\vv A^\trans$ 用已证的结论，再用性质~\ref{prop:det-transpose}.
+	\end{proof}
+	
+	$k=1$ 时，Laplace 定理就是定理~\ref{thm:expansion} 中的按行（列）展开. Laplace 定理适用于某几行的零元素很多、非零的 $k$ 阶子式很少的情形.
+	
+	\begin{example}
+		计算 $D=\begin{vmatrix}1&0&2&0\\3&0&4&0\\5&6&7&8\\1&2&3&4\end{vmatrix}$.
+	\end{example}
+	\begin{solution}
+		取定第 $1,2$ 行. 这两行的元素只在第 $1,3$ 列不为零，在它们组成的 $\binom42=6$ 个二阶子式中，只要含第 $2$ 列或第 $4$ 列，就有一列全为零. 所以只有取第 $1,3$ 列的子式可能不为零：
+		\[
+		\vv A\binom{1\,2}{1\,3}=\begin{vmatrix}1&2\\3&4\end{vmatrix}=-2.
+		\]
+		它的余子式由第 $3,4$ 行、第 $2,4$ 列组成，$M=\begin{vmatrix}6&8\\2&4\end{vmatrix}=8$，符号为 $(-1)^{(1+2)+(1+3)}=-1$. 于是
+		\[
+		D=(-2)\cdot(-1)\cdot8=16.
+		\]
+	\end{solution}
+	
+	用同样的方法按前 $m$ 行展开，立即得到分块三角矩阵的行列式公式（章末习题~\ref{ex:det:A17}）：前 $m$ 行中只有前 $m$ 列组成的子式可能不为零.
 	
 	\section{乘积公式与可逆性}
 	
@@ -3207,12 +3268,60 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{remark}
 		Cramer 法则的理论意义大于计算意义：它说明解``连续地依赖于''系数，并给出了显式公式. 但实际求解时，计算 $n+1$ 个行列式远不如一次消元划算.
 	\end{remark}
+	
+	\subsection{Cauchy–Binet 公式}
+	
+	乘积公式要求 $\vv A,\vv B$ 都是方阵. 若 $\vv A$ 是 $m\times n$ 矩阵、$\vv B$ 是 $n\times m$ 矩阵，乘积 $\vv{AB}$ 仍是 $m$ 阶方阵，它的行列式可以用 $\vv A,\vv B$ 的 $m$ 阶子式表示. 下面沿用第~\ref{sec:laplace}~小节的记号：$\vv A\binom{1\,\cdots\,m}{j_1\,\cdots\,j_m}$ 是 $\vv A$ 的第 $j_1,\ldots,j_m$ 列组成的 $m$ 阶行列式，$\vv B\binom{j_1\,\cdots\,j_m}{1\,\cdots\,m}$ 是 $\vv B$ 的第 $j_1,\ldots,j_m$ 行组成的 $m$ 阶行列式.
+	
+	\begin{theorem}[Cauchy–Binet 公式]\label{thm:cauchybinet}\index{cauchy binet gong1shi4@Cauchy–Binet 公式}
+		设 $\vv A$ 是 $m\times n$ 矩阵，$\vv B$ 是 $n\times m$ 矩阵.
+		\begin{enumerate}
+			\item 若 $m>n$，则 $\det(\vv{AB})=0$；
+			\item 若 $m\le n$，则
+			\begin{equation}\label{eq:cauchybinet}
+				\det(\vv{AB})=\sum_{1\le j_1<\cdots<j_m\le n}\vv A\binom{1\,\cdots\,m}{j_1\,\cdots\,j_m}\vv B\binom{j_1\,\cdots\,j_m}{1\,\cdots\,m}.
+			\end{equation}
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		由性质~\ref{prop:det-transpose}，行列式的各条性质对列同样成立. 记 $\vv A$ 的第 $l$ 列为 $\vv a_l$. $\vv{AB}$ 的第 $k$ 列是 $\vv A$ 的各列以 $\vv B$ 的第 $k$ 列为系数的线性组合：$\sum_{l=1}^nb_{lk}\vv a_l$. 由行列式对各列的线性（性质~\ref{prop:det-linear}），把 $m$ 列逐一拆开，得
+		\[
+		\det(\vv{AB})=\det\Big(\sum_{l_1}b_{l_11}\vv a_{l_1},\ \ldots,\ \sum_{l_m}b_{l_mm}\vv a_{l_m}\Big)=\sum_{l_1,\ldots,l_m=1}^nb_{l_11}\cdots b_{l_mm}\det(\vv a_{l_1},\ldots,\vv a_{l_m}).
+		\]
+		若 $l_1,\ldots,l_m$ 中有两个相同，行列式有两列相同，等于零（性质~\ref{prop:det-equalrows}）. 当 $m>n$ 时，$m$ 个取自 $\{1,\ldots,n\}$ 的数必有两个相同，于是 $\det(\vv{AB})=0$.
+		
+		设 $m\le n$. 剩下的是 $l_1,\ldots,l_m$ 互不相同的项. 按集合 $\{l_1,\ldots,l_m\}$ 分组：设它从小到大是 $j_1<\cdots<j_m$，则 $l_k=j_{\sigma_k}$，其中 $\sigma_1\cdots\sigma_m$ 是 $1,\ldots,m$ 的一个排列. 把列 $\vv a_{l_1},\ldots,\vv a_{l_m}$ 重新排成 $\vv a_{j_1},\ldots,\vv a_{j_m}$，可以经过若干次对换完成，对换次数的奇偶性与 $\tau(\sigma_1\cdots\sigma_m)$ 相同（引理~\ref{lem:transposition}），每次对换改变行列式的符号（性质~\ref{prop:det-swap}），所以
+		\[
+		\det(\vv a_{l_1},\ldots,\vv a_{l_m})=(-1)^{\tau(\sigma_1\cdots\sigma_m)}\vv A\binom{1\,\cdots\,m}{j_1\,\cdots\,j_m}.
+		\]
+		于是 $j_1<\cdots<j_m$ 这一组之和为
+		\[
+		\vv A\binom{1\,\cdots\,m}{j_1\,\cdots\,j_m}\sum_{\sigma_1\cdots\sigma_m}(-1)^{\tau(\sigma_1\cdots\sigma_m)}b_{j_{\sigma_1}1}b_{j_{\sigma_2}2}\cdots b_{j_{\sigma_m}m}.
+		\]
+		记 $\vv C$ 为 $\vv B$ 的第 $j_1,\ldots,j_m$ 行组成的 $m$ 阶方阵，$c_{sk}=b_{j_sk}$，则后面的和是 $\sum(-1)^{\tau(\sigma_1\cdots\sigma_m)}c_{\sigma_11}\cdots c_{\sigma_mm}=\det\vv C^\trans=\det\vv C$，即 $\vv B\binom{j_1\,\cdots\,j_m}{1\,\cdots\,m}$. 对全部 $\binom nm$ 组求和即得 \eqref{eq:cauchybinet}.
+	\end{proof}
+	
+	$m=n$ 时，\eqref{eq:cauchybinet} 右边只有一项，就是乘积公式 $\det(\vv{AB})=\det\vv A\det\vv B$；$m=1$ 时，它是数量积的公式 $\vv a^\trans\vv b=\sum_ja_jb_j$. Cauchy–Binet 公式介于两者之间. (1) 也可以从秩看出：$\rk(\vv{AB})\le\rk\vv A\le n<m$，$m$ 阶方阵 $\vv{AB}$ 不满秩.
+	
+	\begin{example}\label{eg:lagrangeid}
+		设 $\vv a=(a_1,a_2,a_3)^\trans$，$\vv b=(b_1,b_2,b_3)^\trans$ 是 $\mathbb{R}^3$ 中的向量，令 $\vv A=\begin{pmatrix}\vv a^\trans\\\vv b^\trans\end{pmatrix}$（$2\times3$ 矩阵），$\vv B=\vv A^\trans$. 由 Cauchy–Binet 公式，
+		\[
+		\det(\vv A\vv A^\trans)=\begin{vmatrix}\vv a^\trans\vv a&\vv a^\trans\vv b\\\vv b^\trans\vv a&\vv b^\trans\vv b\end{vmatrix}=\begin{vmatrix}a_1&a_2\\b_1&b_2\end{vmatrix}^2+\begin{vmatrix}a_1&a_3\\b_1&b_3\end{vmatrix}^2+\begin{vmatrix}a_2&a_3\\b_2&b_3\end{vmatrix}^2.
+		\]
+		左边是 $|\vv a|^2|\vv b|^2-(\vv a\cdot\vv b)^2=|\vv a|^2|\vv b|^2\sin^2\theta$，即以 $\vv a,\vv b$ 为邻边的平行四边形面积的平方；右边三个二阶行列式，分别是这个平行四边形在三个坐标平面上的投影的有向面积. 所以这个等式是\textbf{面积的勾股定理}：平行四边形面积的平方，等于它在三个坐标平面上的投影面积的平方和. 例如 $\vv a=(1,2,0)^\trans$，$\vv b=(0,1,3)^\trans$ 时，左边为 $5\times10-2^2=46$，右边为 $1^2+3^2+6^2=46$.
+	\end{example}
+	
+	一般地，对实的 $m\times n$ 矩阵 $\vv A$（$m\le n$），取 $\vv B=\vv A^\trans$，得
+	\[
+	\det(\vv A\vv A^\trans)=\sum_{1\le j_1<\cdots<j_m\le n}\vv A\binom{1\,\cdots\,m}{j_1\,\cdots\,j_m}^2\ge0,
+	\]
+	等号成立当且仅当 $\vv A$ 的 $m$ 阶子式全为零，即（由第~\ref{sec:minorrank}~节）$\rk\vv A<m$. $m=2$ 时，$\det(\vv A\vv A^\trans)\ge0$ 正是 Cauchy–Schwarz 不等式 $(\vv a\cdot\vv b)^2\le|\vv a|^2|\vv b|^2$（第十章将在一般的内积空间中证明它）.
 		\section{子式与矩阵的秩}\label{sec:minorrank}
 	
 	第三章用行（列）向量组的秩定义了矩阵的秩，求秩要做初等变换. 行列式给出了另一种刻画：看矩阵里``藏着''多大的非零行列式.
 	
 	\begin{definition}
-		设 $\vv A$ 是 $m\times n$ 矩阵，$1\le k\le\min\{m,n\}$. 任取 $\vv A$ 的 $k$ 行与 $k$ 列，位于这些行、列交叉处的 $k^2$ 个元素按原来的相对位置组成的 $k$ 阶行列式，称为 $\vv A$ 的一个 $k$ 阶\textbf{子式}\index{zi3shi4@子式}(minor). 当 $\vv A$ 是方阵且所取的行号与列号相同时，称为\textbf{主子式}\index{zhu3zi3shi4@主子式}(principal minor)；若所取的恰是前 $k$ 行与前 $k$ 列，称为 $k$ 阶\textbf{顺序主子式}\index{shun4xu4 zhu3zi3shi4@顺序主子式}(leading principal minor).
+		设 $\vv A$ 是 $m\times n$ 矩阵，$1\le k\le\min\{m,n\}$. 与第~\ref{sec:laplace}~小节对方阵的定义一样，任取 $\vv A$ 的 $k$ 行与 $k$ 列，位于这些行、列交叉处的 $k^2$ 个元素按原来的相对位置组成的 $k$ 阶行列式，称为 $\vv A$ 的一个 $k$ 阶\textbf{子式}(minor). 当 $\vv A$ 是方阵且所取的行号与列号相同时，称为\textbf{主子式}\index{zhu3zi3shi4@主子式}(principal minor)；若所取的恰是前 $k$ 行与前 $k$ 列，称为 $k$ 阶\textbf{顺序主子式}\index{shun4xu4 zhu3zi3shi4@顺序主子式}(leading principal minor).
 	\end{definition}
 	
 	例如，余子式 $M_{ij}$ 就是 $n$ 阶方阵的一个 $n-1$ 阶子式.
