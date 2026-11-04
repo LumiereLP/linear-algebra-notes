@@ -148,6 +148,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \newcommand{\vv}[1]{\boldsymbol{#1}}
 \newcommand{\zero}{\boldsymbol{0}}          % 零向量（全书统一，不再混用 \mathbf{0}）
 \newcommand{\trans}{\mathrm{T}}             % 转置：A^{\trans}
+\newcommand{\herm}{\mathrm{H}}              % 共轭转置：A^{\herm}（第十二章；A^* 已表示伴随矩阵）
 \newcommand{\spn}{\operatorname{span}}      % 张成：\spn(\vv\alpha_1,\ldots)
 \newcommand{\rk}{\operatorname{rank}}       % 秩
 \newcommand{\imm}{\operatorname{Im}}        % 像
@@ -155,11 +156,11 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \providecommand{\tr}{\operatorname{tr}}     % 迹（正文、习题与答案统一使用）
 
 % ---------- 学时标记（含义见``本书记号约定''） ----------
-% 不加标记：48 学时方案即讲授；\hB：64 学时及以上讲授；\hC：72 学时讲授；* ：选读.
+% 不加标记：48 学时方案即讲授；\hB：72 学时及以上讲授；\hC：96 学时讲授；* ：选读.
 \newcommand{\hB}{\texorpdfstring{\textdagger}{†}}
 \newcommand{\hC}{\texorpdfstring{\textdaggerdbl}{‡}}
 \newcommand{\chapterhours}[3]{%
-	\par\smallskip\noindent{\small\sffamily 建议学时：48 学时方案 #1\quad 64 学时方案 #2\quad 72 学时方案 #3}\par\smallskip}
+	\par\smallskip\noindent{\small\sffamily 建议学时：48 学时方案 #1\quad 72 学时方案 #2\quad 96 学时方案 #3}\par\smallskip}
 
 % ---------- 索引与长表格 ----------
 % 索引条目用 \index{拼音@中文} 的形式按拼音排序；编译时需运行 makeindex
@@ -410,7 +411,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 
 		不过，既然我能以编者的身份站在这里，说明事情出现了转机。我已经讲不清自己现在对于数学的热情是因为什么具体的事件而产生了，但是这份热情能够维持至今并仍然熊熊燃烧的原因，我很清楚。
 
-		\textbf{数学是实用的。}一家企业安排下个月的生产计划，要算清每种产品各需要多少零部件、多少原料，而各部门之间又互相消耗彼此的产出——这是一张 “表” 乘上一列 “数” 的问题。一个法律检索系统要从上万条法条中找出与一段案情描述最相近的几条——它把每条法条变成一个高维向量，再比较向量之间的 “夹角”。一个搜索引擎要给数以亿计的网页排出先后——它求的是一个巨大矩阵的特征向量。这三件事分别对应本书的第三章、第九章和第八章。
+		\textbf{数学是实用的。}一家企业安排下个月的生产计划，要算清每种产品各需要多少零部件、多少原料，而各部门之间又互相消耗彼此的产出——这是一张 “表” 乘上一列 “数” 的问题。一个法律检索系统要从上万条法条中找出与一段案情描述最相近的几条——它把每条法条变成一个高维向量，再比较向量之间的 “夹角”。一个搜索引擎要给数以亿计的网页排出先后——它求的是一个巨大矩阵的特征向量。这三件事分别对应本书的第三章、第十章和第八章。
 		\sidefig[0.3\linewidth]{image/heisenberg.jpg}{维尔纳·海森堡}[fig:portraitheisenberg]
 		但是，我们在学习数学时，总会问出 “我买菜又用不到三角函数，为什么要学” 这样的问题。这是因为，数学常常走在它的用途前面。1858 年，英国数学家凯莱（Cayley）发表了《矩阵理论研究报告》（\textit{A Memoir on the Theory of Matrices}），系统地规定了矩阵的加法与乘法。他定义的乘法有一个古怪之处：$AB$ 与 $BA$ 一般并不相等。在当时看来，这不过是代数学家摆弄符号的又一种游戏，看不出有什么实际用处。六十七年后的 1925 年夏天，年轻的德国物理学家海森堡（Heisenberg）为了躲避花粉症，独自来到北海的黑尔戈兰岛，试图写出描述原子内部的新力学。他在计算中造出了一种奇怪的乘法——两个量相乘，先后次序一交换，结果就变了——这让他自己也颇为不安。回到哥廷根后，玻恩（Born）反复琢磨这份手稿，终于认出：这正是他学生时代学过的矩阵乘法。不久，玻恩与约当（Jordan）用矩阵的语言重写了海森堡的理论，量子力学的第一种完整形式——矩阵力学——由此诞生。刻画位置与动量 “不可交换” 的关系式 $pq-qp=\dfrac{h}{2\pi \mathrm{i}}$ 后来被刻在了玻恩的墓碑上，而这个式子之所以能够成立，靠的正是凯莱那个 “古怪” 的乘法。一个在纸面上沉睡了六十多年的定义，最终成了描述微观世界的语言。
 
@@ -462,6 +463,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			ch/.style={draw=figblue,thick,fill=accent!14,rounded corners=3pt,
 				text width=27mm,minimum height=17mm,align=center,inner sep=2pt},
 			opt48/.style={ch,dashed,fill=accent!4},
+			opt96/.style={ch,dash pattern=on 4pt off 1.5pt on 1pt off 1.5pt,fill=white},
 			sel/.style={ch,densely dotted,draw=gray!70,fill=gray!6},
 			app/.style={ch,draw=gray!70,fill=white},
 			num/.style={font=\sffamily\bfseries\small,text=figblue},
@@ -484,23 +486,25 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\node[ch] (c1) at (0,0)      {{\sffamily\bfseries 第一章}\\[2pt]线性方程组\\与消元法};
 			\node[ch] (c2) at (3.7,0)    {{\sffamily\bfseries 第二章}\\[2pt]向量空间};
 			\node[ch] (c3) at (7.4,0)    {{\sffamily\bfseries 第三章}\\[2pt]矩阵};
-			\node[ch] (c4) at (3.7,-2.8) {{\sffamily\bfseries 第四章}\\[2pt]线性映射};
+			\node[ch] (c4) at (3.7,-2.8) {{\sffamily\bfseries 第四章}\\[2pt]线性空间\\与线性变换};
 			\node[ch] (c6) at (7.4,-2.8) {{\sffamily\bfseries 第六章}\\[2pt]线性方程组\\解的结构};
 			\node[ch] (c5) at (11.1,-2.8){{\sffamily\bfseries 第五章}\\[2pt]行列式};
 			
-			\node[ch] (c9) at (0,-6.2)     {{\sffamily\bfseries 第九章}\\[2pt]内积空间};
+			\node[ch] (c9) at (0,-6.2)     {{\sffamily\bfseries 第十章}\\[2pt]内积空间};
 			\node[opt48] (c7) at (3.7,-6.2){{\sffamily\bfseries 第七章}\\[2pt]多项式};
 			\node[ch] (c8) at (7.4,-6.2)   {{\sffamily\bfseries 第八章}\\[2pt]特征值\\与特征向量};
 			\node[app] (pa) at (11.1,-6.2) {{\sffamily\bfseries 附录 A}\\[2pt]预备知识};
-			\node[ch] (c10) at (3.7,-8.9)  {{\sffamily\bfseries 第十章}\\[2pt]矩阵分解};
+			\node[ch] (c10) at (3.7,-8.9)  {{\sffamily\bfseries 第十一章}\\[2pt]矩阵分解};
+			\node[opt48] (clam) at (7.4,-8.9) {{\sffamily\bfseries 第九章}\\[2pt]$\lambda$-矩阵};
+			\node[opt96] (cuni) at (0,-8.9)   {{\sffamily\bfseries 第十二章}\\[2pt]酉空间};
 			
-			\node[ch] (c11) at (3.7,-12.0) {{\sffamily\bfseries 第十一章}\\[2pt]二次型};
-			\node[sel] (c12) at (7.4,-12.0){{\sffamily\bfseries 第十二章}\\[2pt]*对偶空间\\与双线性型};
+			\node[ch] (c11) at (3.7,-12.0) {{\sffamily\bfseries 第十三章}\\[2pt]二次型};
+			\node[sel] (c12) at (7.4,-12.0){{\sffamily\bfseries 第十四章}\\[2pt]*对偶空间\\与双线性型};
 			\node[app] (pb) at (11.1,-12.0){{\sffamily\bfseries 附录 B}\\[2pt]运筹学初步};
 			
-			% ---------- 学时（48·64·72） ----------
-			\foreach \n/\h in {c1/{3·3·3},c2/{6·7·9},c3/{6·7·7},c4/{4·5·6},c5/{4·5·5},c6/{4·5·6},
-				c7/{—·3·4},c8/{6·8·9},c9/{3·5·6},c10/{3·5·6},c11/{5·7·7}}{
+			% ---------- 学时（48·72·96） ----------
+			\foreach \n/\h in {c1/{3·3·3},c2/{5·6·7},c3/{6·7·8},c4/{5·7·9},c5/{4·5·6},c6/{4·5·7},
+				c7/{—·4·6},c8/{6·7·9},clam/{—·4·6},c9/{3·6·7},c10/{3·5·7},cuni/{—·—·6},c11/{5·7·8}}{
 				\node[hrs,anchor=north east] at ([yshift=-1pt]\n.south east) {\h};
 			}
 			
@@ -535,6 +539,9 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\node[font=\scriptsize,text=gray,anchor=north] at ([yshift=-1pt]pa.south) {48 学时方案用它代替第七章};
 			\draw[dep] (c9.south east) -- (c10.north west);
 			\draw[dep] (c8.south west) -- (c10.north east);
+			\draw[dep] (c8) -- (clam);
+			\draw[dep] (c9) -- (cuni);
+			\draw[dep] (c10) -- (cuni);
 			\draw[dep] (c10) -- (c11);
 			\draw[dep] (c11) -- (c12);
 			
@@ -544,9 +551,11 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 				\node[anchor=west] at (0.75,0) {各方案都讲};
 				\node[opt48,text width=6mm,minimum height=4mm] at (3.3,0) {};
 				\node[anchor=west] at (3.75,0) {48 学时不讲};
-				\node[sel,text width=6mm,minimum height=4mm] at (6.5,0) {};
-				\node[anchor=west] at (6.95,0) {选读};
-				\node[anchor=west,hrs] at (8.4,0) {3·3·3 = 48·64·72 学时方案的建议学时};
+				\node[opt96,text width=6mm,minimum height=4mm] at (6.5,0) {};
+				\node[anchor=west] at (6.95,0) {仅 96 学时讲};
+				\node[sel,text width=6mm,minimum height=4mm] at (9.7,0) {};
+				\node[anchor=west] at (10.15,0) {选读};
+				\node[anchor=west,hrs] at (0.1,-1.1) {3·3·3 = 48·72·96 学时方案的建议学时};
 				\node[cs=caseA] at (0.3,-0.55) {};   \node[anchor=west] at (0.45,-0.55) {投入产出};
 				\node[cs=caseB] at (2.4,-0.55) {}; \node[anchor=west] at (2.55,-0.55) {物流网络};
 				\node[cs=caseC] at (4.5,-0.55) {};    \node[anchor=west] at (4.65,-0.55) {判例引证与法条检索};
@@ -930,18 +939,16 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\paragraph*{本章地位}
 	
-	第一章给出了求解方程组的方法，但没有回答解集具有怎样的结构. 要回答这一问题，需要把一组数作为整体来研究. 本章从数域出发，用八条运算律定义向量空间，并建立线性相关、秩、子空间、基与维数等概念. 这套语言是全书的基础，此后关于矩阵、方程组和线性映射的讨论都在它之上展开. 本章最后证明，同一数域上维数相同的有限维向量空间都同构于 $\mathbb{F}^n$.
+	第一章给出了求解方程组的方法，但没有回答解集具有怎样的结构. 要回答这一问题，需要把一组数作为整体来研究. 本章研究 $n$ 维向量：先考察一组向量之间有没有``冗余''，即线性相关性；再用极大无关组与秩度量一个向量组中真正独立的方向有多少. 本章最后把这些结论收拢成``向量空间''的概念，并说明一个向量组的秩，就是它所张成的向量空间的维数. 一般的线性空间，即把这套语言推广到多项式、矩阵、函数等对象上，留到第四章.
 	
-	\chapterhours{6}{7}{9}
+	\chapterhours{5}{6}{7}
 	
 	\begin{introduction}[学习目标]
-		\item 验证一个集合关于给定的运算是否构成数域、向量空间或子空间
-		\item 判断向量组的线性相关性，求向量组的秩与一个极大无关组
+		\item 判断向量组的线性相关性，把它归结为齐次方程组是否有非零解
+		\item 求向量组的秩与一个极大无关组
 		\item 说明极大无关组所含向量的个数为什么与选取方式无关
-		\item 求向量空间或子空间的基与维数，把线性无关组扩充为基
-		\item 求向量在给定基下的坐标，说明有限维向量空间与 $\mathbb{F}^n$ 同构
-		\item \hC 覆盖定理的叙述与证明
-		\item \hC 空间的直和与直和分解
+		\item 判断 $\mathbb{F}^n$ 的子集是否为向量空间，求向量空间的基与维数
+		\item 说明向量组的秩等于它张成的向量空间的维数
 	\end{introduction}
 	
 	\paragraph*{前置知识}
@@ -950,71 +957,30 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
-		\item 本章是全书从具体走向抽象的第一步. 向量空间由运算规则定义，而不由元素的具体形态定义. 遇到抽象概念时，应在数组、多项式、函数等具体空间中加以检验.
+		\item 本章的对象都是具体的数组. 遇到一个结论时，可以先在 $\mathbb{R}^2$、$\mathbb{R}^3$ 中画图检验，再看它在 $\mathbb{F}^n$ 中的一般形式.
 		\item 本章关于``个数''的结论，包括秩、维数与基所含向量的个数，都依赖于基本引理，而基本引理又依赖于第一章关于齐次方程组的结论. 理清这一推理顺序，就把握了本章的结构.
-		\item 极大无关组、基、维数与秩是从不同角度描述同一个量：一个向量组或一个空间中线性无关的向量最多有几个. 学完本章后，应能说明它们之间的关系.
+		\item 极大无关组、秩、基与维数是从不同角度描述同一个量：一个向量组或一个向量空间中线性无关的向量最多有几个. 学完本章后，应能说明它们之间的关系.
 	\end{itemize}
 	
 	\newpage
 	
-	\begin{tcolorbox}[epigraph, epigraph image*={0.25\linewidth}{image/poincare.jpg}{亨利·庞加莱}{fig:poincare}]
-		\begin{quote}\textit{La mathématique est l'art de donner le même nom à des choses différentes.}\end{quote}
-		\begin{flushright}——Henri Poincaré, \textit{Science et méthode}\end{flushright}
-		\begin{quote}数学是给不同的东西以相同名称的艺术.\end{quote}
-		\begin{flushright}——亨利·庞加莱\footnotemark\end{flushright}
+	\begin{tcolorbox}[epigraph]
+		\begin{quote}数与形，本是相倚依，焉能分作两边飞. 数缺形时少直观，形少数时难入微.\end{quote}
+		\begin{flushright}——华罗庚\footnotemark\end{flushright}
 	\end{tcolorbox}
-	\footnotetext{亨利·庞加莱（1854—1912），法国数学家、物理学家、科学哲学家，在微分方程、天体力学、拓扑学等领域有奠基性贡献. 这句话出自其科学哲学著作《科学与方法》（1908）.}
+	\footnotetext{华罗庚（1910—1985），中国数学家，在解析数论、多复变函数论、矩阵几何等领域有重要贡献，并长期致力于数学普及. 引文出自其《谈谈与蜂房结构有关的数学问题》（1964）. 本章的向量既是一列数，也是平面或空间中的箭头，两种看法应当相互印证.}
 	
-	\section{数域}
-	
-	中学里，``代数''几乎就是``解方程''：用字母表示未知的数，按规则变形，直到求出它. 不妨回头看看，这些变形依靠的究竟是什么. 解 $3x+2=8$ 时，我们两边减去 $2$，再两边除以 $3$. 这里用到的，是``可以做减法''``可以除以非零数''这样的\textbf{运算规则}，而不是 $3$、$2$、$8$ 这几个数本身. 换一批数，只要同样的运算能做、同样的规则成立，解法就原封不动；反过来，若只允许使用整数，$3x=2$ 就无解了——缺的不是某个数，而是``除法''这条规则.
-	
-	这提示我们换一个角度看代数学：与其盯着具体的数，不如研究运算本身，以及运算所遵守的规则. 一个集合，配上若干种运算，运算满足一定的规则，就称为一个\textbf{代数结构}. 代数学研究的，是代数结构以及它们之间的关系. 本书从最简单的一种代数结构开始：能自由地做四则运算的数集.
-	
-	\begin{definition}
-		设 $\mathbb{F}$ 是复数集的子集，且至少含有两个不同的元素. 若 $\mathbb{F}$ 中任意两个数的和、差、积、商（除数不为零）仍在 $\mathbb{F}$ 中，就称 $\mathbb{F}$ 是一个\textbf{数域}\index{shu4yu4@数域}(number field).
-	\end{definition}
-	
-	有理数集 $\mathbb{Q}$、实数集 $\mathbb{R}$、复数集 $\mathbb{C}$ 都是数域. 整数集 $\mathbb{Z}$ 不是数域，因为 $1\div 2\notin\mathbb{Z}$.
-	
-	\begin{example}
-		证明：$\mathbb{Q}(\sqrt{2}) = \{ a+b\sqrt{2} \mid a,b \in \mathbb{Q} \}$ 是数域.
-	\end{example}
-	\begin{proof}
-		和、差、积仍为 $a+b\sqrt2$ 型是直接验证的. 对于商，设 $c+d\sqrt{2}\ne 0$（$c,d\in\mathbb{Q}$）. 先说明 $c-d\sqrt2\neq 0$：否则 $c=d\sqrt2$，若 $d\ne0$ 则 $\sqrt2=c/d$ 是有理数，矛盾；若 $d=0$ 则 $c=0$，与 $c+d\sqrt2\ne0$ 矛盾. 于是可以分母有理化：
-		\[
-		\frac{a+b\sqrt{2}}{c+d\sqrt{2}}=\frac{(a+b\sqrt{2})(c-d\sqrt{2})}{c^2-2d^2}=\frac{ac-2bd}{c^2-2d^2}+\frac{bc-ad}{c^2-2d^2}\sqrt{2}\in\mathbb{Q}(\sqrt2).
-		\]
-	\end{proof}
-	
-	\begin{note}
-		任何数学定义提出之后，都应当\textbf{验证满足定义的对象确实存在}. 研究一个空洞的概念是没有意义的——在数理逻辑中，从矛盾的前提可以推出任何结论. 
-		
-		举一个例子. 设 $N$ 是最大的正整数. 由于 $N^2$ 也是正整数，而 $N$ 最大，故 $N^2\le N$；又 $N\ge1$，故 $N^2\ge N$. 于是 $N^2=N$，得 $N=1$——``最大的正整数是 $1$''. 推理的每一步都无懈可击，错在第一句：最大的正整数根本不存在.
-	\end{note}
-	
-	\begin{theorem}\label{thm:Qsmallest}
-		任何数域都包含有理数域. 即有理数域是最小的数域.
-	\end{theorem}
-	\begin{proof}
-		设 $\mathbb{F}$ 是数域. 由于 $\mathbb{F}$ 至少有两个不同元素，其中必有非零数 $a$. 于是 $1=a\div a\in\mathbb{F}$，$0=a-a\in\mathbb{F}$. 由 $1$ 反复相加、相减得到全部整数，再作商得到全部有理数 $m/n$（$n\ne0$）. 故 $\mathbb{Q}\subset\mathbb{F}$.
-	\end{proof}
-	
-	\begin{exercise}
-		\begin{enumerate}
-			\item 证明：$\{a+b\sqrt[3]{2}+c\sqrt[3]{4}\mid a,b,c\in\mathbb{Q}\}$ 是数域.（提示：除法是难点，可先证明非零元都有逆元.）
-			\item $\{a+b\mathrm{i}\mid a,b\in\mathbb{Q}\}$ 是否是数域？$\{a+b\sqrt2\mid a,b\in\mathbb{Z}\}$ 呢？
-			\item 证明：若 $\mathbb{F}_1,\mathbb{F}_2$ 是数域，则 $\mathbb{F}_1\cap\mathbb{F}_2$ 也是数域.
-		\end{enumerate}
-	\end{exercise}
-	
-	\section{\texorpdfstring{$n$}{n} 维向量}
+	\section{\texorpdfstring{$n$}{n} 维向量}\label{sec:nvec}	
+
+	我们已经知道：现实世界中的一些量既有大小又有方向，这一类量我们称之为向量. 中学我们已经学习过平面向量和空间向量，但是有一个问题没有解决：方向这个属性究竟具有怎样的数学本质？为了讨论清楚这个问题，我们不妨对一般的向量进行研究.
 	
 	\begin{definition}\label{def:vec}
-		数域 $\mathbb{F}$ 中的 $n$ 个数 $a_1,a_2,\ldots,a_n$ 排成的有序数组
+		数集 $\mathbb{F}$ 中的 $n$ 个数 $a_1,a_2,\ldots,a_n$ 排成的有序数组
 		\[\vv{\alpha}=\begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{pmatrix}\]
 		称为 $\mathbb{F}$ 上的 $n$ 维\textbf{列向量}\index{lie4 xiang4liang4@列向量}，$a_i$ 称为它的第 $i$ 个分量. 排成一行的 $(a_1,a_2,\ldots,a_n)$ 称为 $n$ 维\textbf{行向量}\index{hang2 xiang4liang4@行向量}. 全体 $n$ 维列向量的集合记为 $\mathbb{F}^n$.
 	\end{definition}
+	
+	本章和第三章中，$\mathbb{F}$ 表示有理数集 $\mathbb{Q}$、实数集 $\mathbb{R}$ 或复数集 $\mathbb{C}$ 中的一个. 这三个数集的共同特点是：其中的数可以自由地做加、减、乘、除（除数不为零），结果仍在其中. 第四章将把这一特点概括为``数域''.	
 	
 	\begin{pitfallbox}
 		\begin{enumerate}
@@ -1040,6 +1006,8 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\item $k(\vv{\alpha}+\vv{\beta})=k\vv{\alpha}+k\vv{\beta}$；
 		\item $(k+l)\vv{\alpha}=k\vv{\alpha}+l\vv{\alpha}$.
 	\end{enumerate}
+	这八条性质都是逐个分量验证的，并不神秘. 但值得把它们单独列出来：本章之后所有关于线性组合的计算，用到的都只是这八条. 第四章将以它们为出发点，定义一般的线性空间.
+	
 	\begin{figure}[htbp]
 		\centering
 		\begin{tikzpicture}[
@@ -1068,81 +1036,17 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\caption{平面向量的线性运算.}
 		\label{fig:vecops}
 	\end{figure}
-	\section{向量空间}
-	
-	研究函数时，我们关心的往往是一类函数共同的性质；研究向量也是如此. 上面八条运算律并不依赖``向量是一列数''这件事——许多别的对象也满足它们. 于是我们把这八条规则本身作为定义.
-	
-	\begin{definition}
-		设 $\mathbb{F}$ 是数域，$V$ 是非空集合. 若在 $V$ 上定义了
-		\begin{itemize}
-			\item \textbf{加法}：对任意 $\vv{\alpha}, \vv{\beta} \in V$，有唯一的 $\vv{\alpha} + \vv{\beta} \in V$；
-			\item \textbf{数乘}：对任意 $k \in \mathbb{F}$ 和 $\vv{\alpha} \in V$，有唯一的 $k \vv{\alpha} \in V$，
-		\end{itemize}
-		且它们满足上一节列出的八条运算律（其中第 3、4 条理解为：\textbf{存在}某个元素 $\zero\in V$ 使第 3 条对一切 $\vv\alpha$ 成立；对每个 $\vv\alpha$ \textbf{存在}某个 $-\vv\alpha\in V$ 使第 4 条成立），则称 $V$ 是数域 $\mathbb{F}$ 上的\textbf{向量空间}\index{xiang4liang4 kong1jian1@向量空间}(vector space)，也称\textbf{线性空间}\index{xian4xing4 kong1jian1@线性空间}. $V$ 中的元素称为向量.
-	\end{definition}
-	
-	这个定义冗长但好理解：向量空间就是一个配备了两种运算、遵守八条规则的集合. 下面的例子说明，许多看似无关的对象都是向量空间.
-	
-	\begin{example}
-		$\mathbb{F}^n$ 关于上一节的运算是 $\mathbb{F}$ 上的向量空间. 特别地有 $\mathbb{R}^n$.
-	\end{example}
-	
-	\begin{example}
-		系数属于 $\mathbb{F}$ 的一元多项式全体 $\mathbb{F}[x]$，关于多项式的加法和数乘构成向量空间. 次数小于 $n$ 的多项式（含零多项式）全体 $\mathbb{F}[x]_n$ 也构成向量空间.
-	\end{example}
-	
-	\begin{example}
-		复数集 $\mathbb{C}$ 关于复数加法和``实数乘复数''构成 $\mathbb{R}$ 上的向量空间.
-	\end{example}
-	
-	\begin{example}
-		闭区间 $[a,b]$ 上的实值连续函数全体 $C[a,b]$，关于 $(f+g)(x)=f(x)+g(x)$，$(kf)(x)=kf(x)$ 构成 $\mathbb{R}$ 上的向量空间.
-	\end{example}
 	
 	\begin{linkbox}{价格与数量}
 		一家超市销售 $n$ 种商品. 一张购物清单是一个 $n$ 维向量（各商品的购买数量），一张价目表也是一个 $n$ 维向量. 两张清单合并就是向量相加，``全部翻倍''就是数乘. 经济学中的``商品空间''正是 $\mathbb{R}^n$.
 	\end{linkbox}
 	
-	下面推导向量空间的基本性质. 注意：我们\textbf{只能使用八条公理}，而不能使用``分量''之类的具体结构——这正是公理化方法的训练.
-	
-	\begin{theorem}
-		向量空间中的零向量是唯一的；每个向量的负向量也是唯一的.
-	\end{theorem}
-	\begin{proof}
-		设 $\zero_1,\zero_2$ 都是零向量，则 $\zero_1=\zero_1+\zero_2=\zero_2+\zero_1=\zero_2$.
-		
-		设 $\vv\beta,\vv\gamma$ 都是 $\vv\alpha$ 的负向量，则
-		$\vv\beta=\vv\beta+\zero=\vv\beta+(\vv\alpha+\vv\gamma)=(\vv\beta+\vv\alpha)+\vv\gamma=\zero+\vv\gamma=\vv\gamma.$
-	\end{proof}
-	
-	\begin{proposition}\label{prop:linspc}
-		设 $V$ 是 $\mathbb{F}$ 上的向量空间，$k\in\mathbb{F}$，$\vv{\alpha},\vv{\beta},\vv{\gamma}\in V$，则
-		\begin{enumerate}
-			\item （消去律）若 $\vv{\alpha}+\vv{\beta}=\vv{\alpha}+\vv{\gamma}$，则 $\vv{\beta}=\vv{\gamma}$；
-			\item $0\vv{\alpha}=\zero$；
-			\item $k\zero=\zero$；
-			\item $(-1)\vv{\alpha}=-\vv{\alpha}$；
-			\item 若 $k\vv{\alpha}=\zero$，则 $k=0$ 或 $\vv{\alpha}=\zero$.
-		\end{enumerate}
-	\end{proposition}
-	\begin{proof}
-		(1) 两边加上 $-\vv\alpha$ 并用结合律. (2) $0\vv\alpha=(0+0)\vv\alpha=0\vv\alpha+0\vv\alpha$，由 (1) 得 $0\vv\alpha=\zero$. (3) 同理. (4) $\vv\alpha+(-1)\vv\alpha=(1+(-1))\vv\alpha=0\vv\alpha=\zero$，由负向量唯一性得证. (5) 若 $k\ne0$，则 $\vv\alpha=1\vv\alpha=(k^{-1}k)\vv\alpha=k^{-1}(k\vv\alpha)=k^{-1}\zero=\zero$.
-	\end{proof}
-	
-	\begin{exercise}
-		\begin{enumerate}
-			\item 以 $0$ 为极限的实数列全体 $V$，按 $\{a_n\}+\{b_n\}=\{a_n+b_n\}$，$k\{a_n\}=\{ka_n\}$ 定义运算，证明 $V$ 是 $\mathbb{R}$ 上的向量空间.
-			\item 在正实数集 $\mathbb{R}^+$ 上定义``加法''$a\oplus b=ab$、``数乘''$k\circ a=a^k$（$k\in\mathbb{R}$）. 证明 $\mathbb{R}^+$ 是 $\mathbb{R}$ 上的向量空间，并指出它的``零向量''是什么.
-			\item 在 $\mathbb{R}^2$ 上保留通常加法，定义数乘为 $k\circ(a,b)^\trans=(ka,0)^\trans$. 八条公理中哪一条不成立？
-		\end{enumerate}
-	\end{exercise}
-	
-	\section{线性相关性}
+	\section{向量组的线性相关性}\label{sec:lindep}
 	
 	\subsection{线性组合与线性相关}
 	
 	\begin{definition}
-		设 $\vv\alpha_1,\ldots,\vv\alpha_s\in V$（称为一个\textbf{向量组}\index{xiang4liang4zu3@向量组}），$k_1,\ldots,k_s\in\mathbb{F}$，称
+		设 $\vv\alpha_1,\ldots,\vv\alpha_s\in\mathbb{F}^n$（称为一个\textbf{向量组}\index{xiang4liang4zu3@向量组}），$k_1,\ldots,k_s\in\mathbb{F}$，称
 		\[k_1\vv\alpha_1+k_2\vv\alpha_2+\cdots+k_s\vv\alpha_s\]
 		为它们的一个\textbf{线性组合}\index{xian4xing4 zu3he2@线性组合}. 若 $\vv\beta$ 等于某个线性组合，称 $\vv\beta$ 可由 $\vv\alpha_1,\ldots,\vv\alpha_s$ \textbf{线性表出}\index{xian4xing4 biao3chu1@线性表出}. 全部线性组合构成的集合称为它们的\textbf{张成}\index{zhang1cheng2@张成}(span)，记为 $\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$. 约定空向量组的张成为 $\{\zero\}$.
 	\end{definition}
@@ -1270,7 +1174,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		直觉上，``用 $s$ 个向量造不出多于 $s$ 个独立的方向''. 证明的妙处在于把一个关于抽象向量的问题，转化为一个关于\textbf{数}的方程组问题——抽象空间里的事，最终靠具体计算来落地. 这也是本书把方程组放在第一章的原因.
+		直觉上，``用 $s$ 个向量造不出多于 $s$ 个独立的方向''. 证明的妙处在于把一个关于向量的问题，转化为一个关于\textbf{数}的方程组问题——抽象空间里的事，最终靠具体计算来落地. 这也是本书把方程组放在第一章的原因.
 	\end{motivebox}
 	
 	\begin{corollary}
@@ -1280,7 +1184,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		它们都可由 $\vv e_1,\ldots,\vv e_n$ 线性表出.
 	\end{proof}
 	
-	\subsection{极大无关组与秩}
+	\section{向量组的秩}\label{sec:rank}
 	
 	线性相关的向量组里仍然可能藏着线性无关的``骨干''. 我们希望把骨干挑出来，并用它的大小来度量向量组的``有效信息量''.
 	
@@ -1308,7 +1212,13 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		若向量组 $A$ 中每个向量都可由向量组 $B$ 线性表出，反之亦然，则称 $A$ 与 $B$ \textbf{等价}\index{deng3jia4@等价（向量组的）}.
 	\end{definition}
 	
-	向量组的等价满足：(1) 反身性，$A$ 与 $A$ 等价；(2) 对称性，由定义显然；(3) 传递性，若 $A$ 中向量可由 $B$ 线性表出、$B$ 中向量可由 $C$ 线性表出，把后者的表达式代入前者，即知 $A$ 中向量可由 $C$ 线性表出. 因此这是一个\textbf{等价关系}\index{deng3jia4 guan1xi4@等价关系}，它把所有向量组分成互不相交的类.
+	向量组的等价满足：(1) 反身性，$A$ 与 $A$ 等价；(2) 对称性，由定义显然；(3) 传递性，若 $A$ 中向量可由 $B$ 线性表出、$B$ 中向量可由 $C$ 线性表出，把后者的表达式代入前者，即知 $A$ 中向量可由 $C$ 线性表出. 因此这是一个\textbf{等价关系}\index{deng3jia4 guan1xi4@等价关系}.
+	
+	\begin{motivebox}
+		数学的等价关系不仅仅在于告诉我们“一个事物和另外一个事物相似”这么简单.
+		
+		中学在研究任意角时，我们就已经自动将 $\alpha$ 和 $\alpha + 2k\pi$（$k$ 是整数）这两个终边相同的角当作同一个角进行看待. 这里也可以看到相差 $2k\pi$ 的角之间等价，这告诉我们一个重要的方法：\textbf{等价关系给出对于事物分类的依据}. 向量组的等价也是如此：等价的向量组可以互相代替，因为下一节的``秩''是同一类向量组共有的量，换一个代表，它不会改变.
+	\end{motivebox}
 	
 	\begin{theorem}\label{thm:rankwelldef}
 		等价的两个线性无关向量组所含向量个数相同. 特别地，同一向量组的任意两个极大无关组所含向量个数相同.
@@ -1346,26 +1256,21 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\end{enumerate}
 	\end{exercise}
 	
-	\section{子空间}
-	\subsection{子空间的定义}
-	\begin{definition}
-		设 $V$ 是 $\mathbb{F}$ 上的向量空间，$W$ 是 $V$ 的非空子集. 若 $W$ 对 $V$ 的加法和数乘封闭，即对任意 $\vv\alpha,\vv\beta\in W$，$k\in\mathbb{F}$，都有 $\vv\alpha+\vv\beta\in W$，$k\vv\alpha\in W$，则称 $W$ 是 $V$ 的\textbf{子空间}\index{zi3kong1jian1@子空间}(subspace).
+	\section{向量空间}\label{sec:vecspace}
+	
+	前两节研究的是给定的有限个向量. 本节换一个角度，研究由向量构成的集合. 最重要的例子是一个向量组的全部线性组合，以及齐次方程组的全部解.
+	
+	\begin{definition}\label{def:vecspace}
+		设 $V$ 是 $\mathbb{F}^n$ 的非空子集. 若 $V$ 对加法和数乘封闭，即对任意 $\vv\alpha,\vv\beta\in V$，$k\in\mathbb{F}$，都有 $\vv\alpha+\vv\beta\in V$，$k\vv\alpha\in V$，则称 $V$ 是一个\textbf{向量空间}\index{xiang4liang4 kong1jian1@向量空间}(vector space).
 	\end{definition}
 	
-	\begin{proposition}
-		子空间关于 $V$ 的运算本身是一个向量空间.
-	\end{proposition}
-	\begin{proof}
-		运算律 1、2、5—8 对 $V$ 中所有向量成立，自然对 $W$ 中向量成立. 只需检查零向量与负向量是否落在 $W$ 内：任取 $\vv\alpha\in W$，由封闭性和命题~\ref{prop:linspc}，$\zero=0\vv\alpha\in W$，$-\vv\alpha=(-1)\vv\alpha\in W$.
-	\end{proof}
+	向量空间对线性组合封闭：$V$ 中任意有限个向量的任意线性组合仍在 $V$ 中. 取 $k=0$ 可知，向量空间一定含零向量. 所以 $\{\zero\}$ 是最小的向量空间，$\mathbb{F}^n$ 本身是最大的向量空间.
 	
 	\begin{example}
 		\begin{enumerate}
-			\item $\{\zero\}$ 和 $V$ 本身是 $V$ 的子空间，称为平凡子空间.
-			\item 任意向量组的张成 $\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$ 是子空间（两个线性组合之和、线性组合的倍数仍是线性组合），并且它是包含 $\vv\alpha_1,\ldots,\vv\alpha_s$ 的\textbf{最小}子空间：任何包含这些向量的子空间，由封闭性必然包含它们的全部线性组合.
-			\item 齐次方程组的解集是 $\mathbb{F}^n$ 的子空间（第一章章末习题~\ref{ex:elim:B12}），称为\textbf{解空间}\index{jie3 kong1jian1@解空间}.
-			\item 非齐次方程组的解集\textbf{不是}子空间：它不含零向量.
-			\item 平面 $\mathbb{R}^2$ 中过原点的直线是子空间；不过原点的直线不是.
+			\item 在 $\mathbb{R}^2$ 中，过原点的直线是向量空间；不过原点的直线不是，它不含零向量；两条不同的过原点直线之并也不是，它对加法不封闭（图~\ref{fig:subspace}）.
+			\item 在 $\mathbb{R}^3$ 中，过原点的直线与过原点的平面都是向量空间.
+			\item 齐次方程组 $\vv A\vv x=\zero$ 的全部解构成 $\mathbb{F}^n$ 中的向量空间（第一章章末习题~\ref{ex:elim:B12}），称为\textbf{解空间}\index{jie3 kong1jian1@解空间}；非齐次方程组的解集不含零向量，不是向量空间. 解空间的结构是第六章的主题.
 		\end{enumerate}
 	\end{example}
 	\begin{figure}[htbp]
@@ -1395,399 +1300,43 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\end{tikzpicture}
 		\caption{子空间必须含零向量，并且对加法、数乘封闭.}
 		\label{fig:subspace}
-	\end{figure}
-	\begin{proposition}
-		设 $W_1,W_2$ 是 $V$ 的子空间，则交 $W_1\cap W_2$ 与和 $W_1+W_2=\{\vv\alpha_1+\vv\alpha_2\mid \vv\alpha_1\in W_1,\vv\alpha_2\in W_2\}$ 都是 $V$ 的子空间. 但并集 $W_1\cup W_2$ 一般不是.
-	\end{proposition}
-	
-	证明留作练习. 并集的反例：$\mathbb{R}^2$ 中两条不同的过原点直线之并.
-	
-	\subsection{\hC 覆盖定理}\label{sec:cover}
-	
-	若 $W$ 是 $V$ 的子空间且 $W\ne V$，称 $W$ 是 $V$ 的\textbf{真子空间}\index{zhen1 zi3kong1jian1@真子空间}(proper subspace).
-	
-	\begin{motivebox}
-		两条过原点的直线合起来不是子空间. 那么换一个问题：它们合起来有\textbf{多大}？三条、十条、一百条直线呢？能不能用有限条直线把整个平面``铺满''？
-		
-		直觉说不能：一条直线是``细''的，有限条细线不可能盖住一整张纸. 但``细''是一个关于面积的说法，而向量空间里并没有面积——我们只有加法和数乘. 本节要说明，仅凭这两种运算，就能把这个直觉变成定理；而定理成立的真正原因，藏在``数域''的定义里.
-	\end{motivebox}
-	
-	\begin{theorem}[覆盖定理]\label{thm:cover}\index{fu4gai4 ding4li3@覆盖定理}
-		设 $V$ 是数域 $\mathbb{F}$ 上的向量空间，$W_1,\ldots,W_s$（$s\ge1$）都是 $V$ 的真子空间，则
-		\[W_1\cup W_2\cup\cdots\cup W_s\ne V.\]
-		换言之，$V$ 中总有一个向量不属于其中任何一个 $W_i$.
-	\end{theorem}
-	\begin{proof}
-		用反证法. 假设存在有限个真子空间，它们的并等于 $V$. 在所有这样的组中取一组\textbf{个数最少}的，记为 $W_1,\ldots,W_s$.
-		
-		$s=1$ 是不可能的，因为 $W_1\ne V$. 所以 $s\ge2$. 由 $s$ 的最小性，去掉 $W_1$ 后剩下的 $s-1$ 个子空间盖不住 $V$；而 $W_2,\ldots,W_s$ 之外的向量只能落在 $W_1$ 中. 于是可以取
-		\[\vv\alpha\in W_1,\qquad\vv\alpha\notin W_2\cup\cdots\cup W_s.\]
-		又因为 $W_1$ 是真子空间，可以取 $\vv\beta\notin W_1$. 考察无穷多个向量
-		\[\vv\beta+k\vv\alpha\qquad(k\in\mathbb{F}).\]
-		\begin{itemize}
-			\item 它们都不在 $W_1$ 中：否则 $\vv\beta=(\vv\beta+k\vv\alpha)-k\vv\alpha\in W_1$，矛盾.
-			\item 每个 $W_i$（$i\ge2$）\textbf{至多}含其中一个：若 $k\ne k'$ 而 $\vv\beta+k\vv\alpha$ 与 $\vv\beta+k'\vv\alpha$ 都在 $W_i$ 中，则二者之差 $(k-k')\vv\alpha\in W_i$，再乘以 $(k-k')^{-1}$ 得 $\vv\alpha\in W_i$，与 $\vv\alpha$ 的取法矛盾.
-		\end{itemize}
-		所以 $W_1\cup\cdots\cup W_s$ 至多含这些向量中的 $s-1$ 个. 但由定理~\ref{thm:Qsmallest}，数域 $\mathbb{F}$ 包含 $\mathbb{Q}$，有无穷多个元素，$k$ 可以取无穷多个不同的值，这些向量两两不同（$\vv\alpha\ne\zero$，因为 $\zero\in W_2$）. 有限个子空间装不下无穷多个向量，与 $W_1\cup\cdots\cup W_s=V$ 矛盾.
-	\end{proof}
-	
-	\begin{motivebox}
-		证明的图像是这样的：过 $\vv\beta$ 作一条平行于 $\vv\alpha$ 的``直线'' $\{\vv\beta+k\vv\alpha\}$（它不过原点，所以不是子空间）. 这条直线完全躲开了 $W_1$，而与其余每个 $W_i$ 至多交于一点. 一条直线上有无穷多个点，有限个子空间只能各``扎''它一下.
-		
-		请注意定理只用到了三件事：子空间对加法封闭；子空间对数乘封闭；$\mathbb{F}$ 有无穷多个元素. 定理对无限维空间同样成立，证明中没有出现维数.
-	\end{motivebox}
-	
-	\begin{pitfallbox}
-		``$\mathbb{F}$ 有无穷多个元素''这个条件\textbf{不能去掉}. 在只含 $0,1$、按模 $2$ 运算的``数系'' $\mathbb{F}_2$ 上（第二章章末习题~\ref{ex:vs:C5}，以及本书讲 Hamming 码时用的正是它），$\mathbb{F}_2^2$ 一共只有四个向量：
-		\[\zero,\quad\vv e_1,\quad\vv e_2,\quad\vv e_1+\vv e_2,\]
-		而三个一维子空间 $\{\zero,\vv e_1\}$，$\{\zero,\vv e_2\}$，$\{\zero,\vv e_1+\vv e_2\}$ 恰好把它们全部盖住. 在那里，证明中的``直线'' $\{\vv\beta+k\vv\alpha\}$ 只有两个点，扎两下就扎完了. 本书一直要求数域包含 $\mathbb{Q}$，这个要求在这里第一次真正派上了用场.
-	\end{pitfallbox}
-	
-	定理最常用的形式是它的``构造版''：给定有限个``坏''的子空间，总能找到一个躲开它们全部的``好''向量. 在 $\mathbb{F}^n$ 中，``坏''的子空间最常见的来源是一个齐次线性方程.
-	
-	\begin{corollary}\label{cor:avoid}
-		设 $\vv c_1,\ldots,\vv c_m$ 是 $\mathbb{F}^n$ 中的非零向量，$\vv c_i=(c_{i1},\ldots,c_{in})^\trans$. 则存在 $\vv w=(w_1,\ldots,w_n)^\trans\in\mathbb{F}^n$，使
-		\[w_1c_{i1}+w_2c_{i2}+\cdots+w_nc_{in}\ne0\qquad\text{对每个}\ i=1,\ldots,m\ \text{成立}.\]
-		若 $\vv c_i$ 都是实向量，$\vv w$ 还可以取为整数向量.
-	\end{corollary}
-	\begin{proof}
-		令 $H_i=\{\vv w\in\mathbb{F}^n\mid w_1c_{i1}+\cdots+w_nc_{in}=0\}$. 它是一个齐次方程的解集，是子空间（第一章章末习题~\ref{ex:elim:B12}）. 由于 $\vv c_i\ne\zero$，有某个 $c_{ij}\ne0$，于是标准单位向量 $\vv e_j\notin H_i$，$H_i$ 是真子空间. 由覆盖定理，存在 $\vv w\notin H_1\cup\cdots\cup H_m$.
-		
-		对最后一句，把同样的论证用在 $\mathbb{Q}$ 上的向量空间 $\mathbb{Q}^n$ 上：$H_i\cap\mathbb{Q}^n$ 对加法和有理数数乘封闭，是 $\mathbb{Q}^n$ 的子空间，并且仍不含 $\vv e_j$. 于是有有理向量 $\vv w$ 躲开所有 $H_i$；乘以各分量分母的公倍数，得到整数向量，条件``$\ne0$''不受影响.
-	\end{proof}
-	
-	像 $H_i$ 这样由一个非平凡的齐次方程定义的子空间，称为\textbf{超平面}. 在 $\mathbb{R}^2$ 中它是过原点的直线，在 $\mathbb{R}^3$ 中是过原点的平面. 推论说：有限个超平面之外，总有立足之地.
-	
-	\begin{linkbox}{综合指数为什么几乎不会``并列''}
-		本书多次用加权求和给对象打分：价目表给购物篮定价，词频给法条打分，第十章还会用主成分给地区编制综合指数. 设 $n$ 个地区各有 $p$ 个指标，第 $i$ 个地区的数据为 $\vv x_i=(x_{i1},\ldots,x_{ip})^\trans$，且任意两个地区的数据不完全相同. 给定权重 $\vv w$，地区 $i$ 的得分为 $w_1x_{i1}+\cdots+w_px_{ip}$.
-		
-		地区 $i$ 与 $j$ 得分相同，恰好是 $\vv w$ 落在超平面
-		\[\{\vv w\mid w_1(x_{i1}-x_{j1})+\cdots+w_p(x_{ip}-x_{jp})=0\}\]
-		上. 一共只有 $\binom n2$ 个这样的超平面. 由推论~\ref{cor:avoid}，\textbf{总存在一组权重，使所有地区的得分两两不同}，而且可以取整数权重.
-		
-		更进一步，在 $\mathbb{R}^p$ 中，``坏''的权重全都挤在有限个超平面上，而超平面在 $\mathbb{R}^p$ 中``没有体积''. 所以若权重是从某个连续的范围里随意选取的，出现并列几乎是不可能的. 这个直觉的严格表述需要概率论或测度论，这里不作证明.
-		
-		不过，``能排出不并列的名次''与``名次有意义''是两回事. 覆盖定理只保证前者；后者取决于权重是否反映了我们真正在乎的东西——这正是第十章主成分分析建模实验中``局限''一栏讨论的问题.
-	\end{linkbox}
-	
-	
-	\section{基与维数}
-	
+	\end{figure}	
 	\begin{definition}
-		若 $V=\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$，称 $\vv\alpha_1,\ldots,\vv\alpha_s$ \textbf{生成}\index{sheng1cheng2@生成} $V$. 能被有限个向量生成的向量空间称为\textbf{有限维}\index{you3xian4 wei2@有限维}的. 若 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$ 线性无关且生成 $V$，则称它为 $V$ 的一组\textbf{基}\index{ji1@基}(basis).
+		向量组 $\vv\alpha_1,\ldots,\vv\alpha_s$ 的全部线性组合构成的集合 $\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$（见第~\ref{sec:lindep} 节）称为由它们\textbf{张成}\index{zhang1cheng2 kong1jian1@张成（向量空间）}的向量空间.
 	\end{definition}
 	
-	基就是``既不多余（线性无关）、又不缺少（能生成）''的向量组，是整个空间的骨架.
+	两个线性组合之和、一个线性组合的倍数仍是线性组合，所以 $\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$ 确实是向量空间. 而且它是包含 $\vv\alpha_1,\ldots,\vv\alpha_s$ 的\textbf{最小}的向量空间：任何包含这些向量的向量空间，由封闭性必然包含它们的全部线性组合. 例如，第一章物流网络的全部解可以写成
+	\[
+	(0,50,0,0,50)^\trans+s(1,-1,1,0,0)^\trans+t(1,-1,0,1,-1)^\trans\qquad(s,t\ \text{任意}),
+	\]
+	后两项取遍的集合 $\spn\big((1,-1,1,0,0)^\trans,(1,-1,0,1,-1)^\trans\big)$ 正是对应齐次方程组的解空间.
 	
-	\begin{theorem}
-		有限维向量空间都有基，且任意两组基所含向量个数相同.
-	\end{theorem}
-	\begin{proof}
-		设 $V=\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$. 由定理~\ref{thm:maxexist} 取 $\vv\alpha_1,\ldots,\vv\alpha_s$ 的一个极大无关组，它线性无关，且每个 $\vv\alpha_i$ 都可由它线性表出，从而 $V$ 中每个向量都可由它线性表出——它是一组基. 任意两组基互相线性表出，即彼此等价，由定理~\ref{thm:rankwelldef} 所含向量个数相同.
-	\end{proof}
+	向量空间一般含有无穷多个向量，但它总可以由有限个向量张成. 设 $V\ne\{\zero\}$. 在 $V$ 中依次选取向量：第一个取 $V$ 中任一非零向量；之后每一步，若已选出的向量还不能张成 $V$，就再取一个不在它们张成范围内的向量. 由引理~\ref{lem:addone}，选出的向量始终线性无关；而 $\mathbb{F}^n$ 中线性无关的向量至多 $n$ 个，所以这一过程至多 $n$ 步就会停止. 停止时，选出的向量线性无关且张成 $V$.
 	
-	\begin{definition}
-		有限维向量空间 $V$ 的基所含向量个数称为 $V$ 的\textbf{维数}\index{wei2shu4@维数}(dimension)，记为 $\dim_{\mathbb{F}} V$，在不致混淆时简记为 $\dim V$. 规定 $\dim\{\zero\}=0$.
+	\begin{definition}\label{def:vecbasis}
+		设 $V$ 是向量空间. 若 $V$ 中的向量 $\vv\varepsilon_1,\ldots,\vv\varepsilon_r$ 线性无关，且 $V=\spn(\vv\varepsilon_1,\ldots,\vv\varepsilon_r)$，则称它们是 $V$ 的一组\textbf{基}\index{ji1@基}(basis)；基所含向量的个数 $r$ 称为 $V$ 的\textbf{维数}\index{wei2shu4@维数}(dimension)，记为 $\dim V$. 规定 $\dim\{\zero\}=0$.
 	\end{definition}
+	
+	上面的选取过程说明基总是存在的. 换一种说法，基就是 $V$ 的一个极大无关组：它线性无关，并且 $V$ 中每个向量都可由它线性表出. 由定理~\ref{thm:rankwelldef}，$V$ 的任意两组基彼此等价，所含向量个数相同，所以维数与基的选取无关.
 	
 	\begin{example}
-		\begin{enumerate}
-			\item $\dim\mathbb{F}^n=n$，$\vv e_1,\ldots,\vv e_n$ 是一组基，称为\textbf{标准基}\index{biao1zhun3 ji1@标准基}.
-			\item $\dim\mathbb{F}[x]_n=n$，$1,x,\ldots,x^{n-1}$ 是一组基.
-			\item $\dim_{\mathbb{R}}\mathbb{C}=2$：$1,\mathrm{i}$ 生成 $\mathbb{C}$；若 $a+b\mathrm{i}=0$（$a,b\in\mathbb{R}$）则 $a=b=0$，故线性无关. 这说明用``复平面''表示复数是合理的. 注意 $\dim_{\mathbb{C}}\mathbb{C}=1$——维数依赖于基域.
-			\item 向量组 $(1,0,0)^\trans,(1,2,0)^\trans,(0,1,0)^\trans$ 张成的子空间维数为 $2$.
-		\end{enumerate}
+		$\mathbb{F}^n$ 的标准单位向量 $\vv e_1,\ldots,\vv e_n$ 是它的一组基，称为\textbf{标准基}\index{biao1zhun3 ji1@标准基}，所以 $\dim\mathbb{F}^n=n$. 在 $\mathbb{R}^3$ 中，过原点的直线是一维的，过原点的平面是二维的. 维数正是我们直观上的``方向的个数''.
 	\end{example}
 	
-	\begin{remark}
-		$\mathbb{F}[x]$ 不是有限维的：任给有限个多项式，设其最高次数为 $d$，则 $x^{d+1}$ 不在它们的张成中. 同样，$C[a,b]$ 也不是有限维的. 在无限维空间中，``无穷多个向量相加''\footnote{即使只问``无限维空间有没有基''这样纯代数的问题，答案也依赖集合论中的选择公理：在选择公理下，每个向量空间都有基，但对 $C[a,b]$ 这样的空间，没有人能具体写出它的一组基.}必须先说明在什么意义下收敛，这需要分析学的极限理论与拓扑学对``接近''的刻画；把这些工具与线性代数结合起来研究无限维空间的学科称为\textbf{泛函分析}，超出了本课程的范围. \textbf{此后除特别说明外，本书讨论的向量空间都是有限维的.}
-	\end{remark}
+	下面的定理把本章的两个主角联系起来.
 	
-	\begin{theorem}\label{thm:ndimbasis}
-		设 $\dim V=n$. 则
-		\begin{enumerate}
-			\item $V$ 中任意 $n+1$ 个向量线性相关；
-			\item $V$ 中任意 $n$ 个线性无关的向量构成一组基；
-			\item $V$ 中任意 $n$ 个生成 $V$ 的向量构成一组基.
-		\end{enumerate}
+	\begin{theorem}\label{thm:dimrank}
+		$\dim\spn(\vv\alpha_1,\ldots,\vv\alpha_s)=\rk(\vv\alpha_1,\ldots,\vv\alpha_s)$.
 	\end{theorem}
 	\begin{proof}
-		(1) 它们可由一组基（$n$ 个向量）线性表出，用基本引理.
-		(2) 若它们不能生成 $V$，取 $\vv\beta$ 不在其张成中，由引理~\ref{lem:addone} 得到 $n+1$ 个线性无关的向量，与 (1) 矛盾.
-		(3) 取它们的极大无关组，这是一组基，必含 $n$ 个向量，即全体.
+		取 $\vv\alpha_1,\ldots,\vv\alpha_s$ 的一个极大无关组. 它线性无关；每个 $\vv\alpha_i$ 都可由它线性表出，从而 $\vv\alpha_1,\ldots,\vv\alpha_s$ 的每个线性组合也可由它线性表出. 所以它是 $\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$ 的一组基，所含向量个数既是秩，也是维数.
 	\end{proof}
 	
-	\begin{theorem}[基扩张定理]\index{ji1 kuo4zhang1 ding4li3@基扩张定理}
-		设 $\dim V=n$，$\vv{\alpha}_1,\ldots,\vv{\alpha}_m$ 线性无关，$\vv\beta_1,\ldots,\vv\beta_n$ 是 $V$ 的一组基. 则可从 $\vv\beta_1,\ldots,\vv\beta_n$ 中选出 $n-m$ 个向量，与 $\vv{\alpha}_1,\ldots,\vv{\alpha}_m$ 一起构成 $V$ 的一组基.
-	\end{theorem}
-	\begin{proof}
-		对向量组 $\vv\alpha_1,\ldots,\vv\alpha_m,\vv\beta_1,\ldots,\vv\beta_n$ 按定理~\ref{thm:maxexist} 证明中的方法依次挑选. 因为 $\vv\alpha_1,\ldots,\vv\alpha_m$ 线性无关，它们全部被选中；选出的组线性无关，且每个 $\vv\beta_j$ 都可由它线性表出，从而它生成 $V$，是一组基. 它含 $n$ 个向量，所以恰好从 $\vv\beta_j$ 中选出了 $n-m$ 个.
-	\end{proof}
-	
-	\begin{corollary}
-		若 $W$ 是 $n$ 维空间 $V$ 的子空间，则 $\dim W\le n$，且等号成立当且仅当 $W=V$.
-	\end{corollary}
-	
-	\begin{note}
-		至此可以把本章的几个数串起来：\textbf{向量组张成的子空间的维数 $=$ 向量组的秩 $=$ 极大无关组的向量个数 $\le$ 向量组的向量个数}. 这类``多个指标相等''的结论是线性代数的筋络，请主动把它们整理进自己的知识图谱.
-	\end{note}
-	
-	\section{坐标与同构}
-	
-	\begin{definition}
-		设 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$ 是 $V$ 的一组（有序）基. 对 $\vv\alpha\in V$，若
-		\[\vv{\alpha}=a_1\vv{\varepsilon}_1+a_2 \vv{\varepsilon}_2+\cdots+a_n\vv{\varepsilon}_n,\]
-		则称列向量 $(a_1,\ldots,a_n)^\trans\in\mathbb{F}^n$ 为 $\vv\alpha$ 在这组基下的\textbf{坐标}\index{zuo4biao1@坐标}.
-	\end{definition}
-	
-	由于基生成 $V$，坐标存在；由于基线性无关，由定理~\ref{thm:uniquerep} 坐标唯一. 因此取定一组有序基后，就得到一个双射
-	\[
-	\varphi: V\to\mathbb{F}^n,\qquad \vv\alpha\mapsto \vv\alpha\text{ 的坐标}.
-	\]
-	设 $\vv\alpha,\vv\beta$ 的坐标分别为 $\vv a,\vv b$，则
-	$\vv\alpha+\vv\beta=\sum(a_i+b_i)\vv\varepsilon_i$，$k\vv\alpha=\sum(ka_i)\vv\varepsilon_i$，即
-	\[
-	\varphi(\vv{\alpha}+\vv{\beta})=\varphi(\vv{\alpha})+\varphi(\vv{\beta}),\qquad\varphi(k\vv{\alpha})=k\varphi(\vv{\alpha}).
-	\]
-	注意左边的加法在 $V$ 中进行，右边的加法在 $\mathbb{F}^n$ 中进行. 这个双射``保持''了线性运算.
-	
-	\begin{definition}
-		设 $V,U$ 是 $\mathbb{F}$ 上的向量空间. 若存在双射 $\varphi:V\to U$，使对任意 $\vv{\alpha},\vv{\beta}\in V$ 和 $k\in\mathbb{F}$ 有
-		\[\varphi(\vv{\alpha}+\vv{\beta})=\varphi(\vv{\alpha})+\varphi(\vv{\beta}),\qquad\varphi(k\vv{\alpha})=k\varphi(\vv{\alpha}),\]
-		则称 $V$ 与 $U$ \textbf{同构}\index{tong2gou4@同构}(isomorphic)，记作 $V\cong U$，$\varphi$ 称为\textbf{同构映射}\index{tong2gou4 ying4she4@同构映射}.
-	\end{definition}
-	
-	\begin{theorem}\label{thm:isomorphism}
-		设 $\varphi: V\to U$ 是同构映射，则
-		\begin{enumerate}
-			\item $\varphi(\zero)=\zero$，$\varphi(k_1\vv\alpha_1+\cdots+k_s\vv\alpha_s)=k_1\varphi(\vv\alpha_1)+\cdots+k_s\varphi(\vv\alpha_s)$；
-			\item $\vv\alpha_1,\ldots,\vv\alpha_s$ 线性相关当且仅当 $\varphi(\vv\alpha_1),\ldots,\varphi(\vv\alpha_s)$ 线性相关；
-			\item 同构关系是等价关系；
-			\item 有限维向量空间 $V$ 与 $U$ 同构，当且仅当 $\dim V=\dim U$.
-		\end{enumerate}
-	\end{theorem}
-	\begin{proof}
-		(1)—(3) 留给读者（提示：(2) 用 (1) 和 $\varphi$ 是单射；(3) 的对称性需要验证逆映射也保持运算）.
-		
-		(4) 若 $\varphi:V\to U$ 是同构，$\vv\varepsilon_1,\ldots,\vv\varepsilon_n$ 是 $V$ 的基. 由 (2)，$\varphi(\vv\varepsilon_1),\ldots,\varphi(\vv\varepsilon_n)$ 线性无关. 对任意 $\vv x\in U$，由于 $\varphi$ 是满射，有 $\vv\alpha=\sum k_i\vv\varepsilon_i$ 使 $\vv x=\varphi(\vv\alpha)=\sum k_i\varphi(\vv\varepsilon_i)$，故它们也生成 $U$，是 $U$ 的基. 所以 $\dim U=\dim V$.
-		反之若 $\dim V=\dim U=n$，取坐标映射知 $V\cong\mathbb{F}^n\cong U$，由 (3) 的传递性得 $V\cong U$.
-	\end{proof}
+	定理~\ref{thm:dimrank} 说明，秩与维数是同一个量的两种说法：秩是对一组\textbf{给定的向量}说的，维数是对它们张成的\textbf{集合}说的. 证明还给出了求基的方法：向量空间若由一个向量组张成，这个向量组的任一极大无关组就是它的一组基. 例如，求 $\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$ 的维数与一组基，只需用第~\ref{sec:rank} 节的方法求 $\vv\alpha_1,\ldots,\vv\alpha_s$ 的秩与一个极大无关组.
 	
 	\begin{motivebox}
-		这个定理的威力在于：\textbf{在同构的意义下，$\mathbb{F}$ 上的 $n$ 维向量空间只有一个，就是 $\mathbb{F}^n$}. 无论面对的是多项式、矩阵还是函数，只要知道它是 $n$ 维向量空间，就可以取一组基，把一切计算搬到 $\mathbb{F}^n$ 里用消元法完成. 抽象让我们看清了共性，坐标又让我们回到了计算.
+		这里的``向量空间''都在某个 $\mathbb{F}^n$ 之内，它的元素都是数组. 然而本章的论证几乎没有用到``数组''这一点：线性相关、基本引理、秩与维数，用到的都只是加法与数乘的八条运算性质. 那么，多项式、矩阵、函数这些对象，只要也能做加法与数乘、也满足这八条性质，是否就能照搬本章的全部结论？第四章将回答：可以. 这正是``线性空间''的出发点.
 	\end{motivebox}
-	
-	\begin{historybox}{从几何到公理}
-		格拉斯曼（H.~Grassmann）在 1844 年出版的《线性扩张论》\cite{grassmann1844ausdehnungslehre}中已经在研究任意维数的``扩张量''，但他的书在当时几乎无人读懂. 1888 年，皮亚诺（G.~Peano）在其著作\cite{peano1888calcolo}中第一次给出了与今天几乎相同的向量空间公理. 从几何直观到公理化定义，人们走了半个世纪.
-	\end{historybox}
-	
-	\begin{exercise}\label{exer:coord}
-		\begin{enumerate}
-			\item 设 $\vv{\alpha}_1,\ldots,\vv{\alpha}_n$ 是 $V$ 的基，$\vv{\beta}_1,\ldots,\vv{\beta}_n\in V$，且每个 $\vv\alpha_i$ 都可由 $\vv{\beta}_1,\ldots,\vv{\beta}_n$ 线性表出. 证明 $\vv{\beta}_1,\ldots,\vv{\beta}_n$ 也是 $V$ 的基.
-			\item 设 $V=\{a+b\sqrt[4]{2}+c\sqrt[4]{4}\mid a,b,c\in\mathbb{Q}\}$. 证明 $V$ 是 $\mathbb{Q}$ 上的向量空间，并求 $\dim_{\mathbb{Q}}V$.
-			\item 求 $\vv{\alpha} = (a_1, \ldots, a_n)^\trans$ 在基 $\vv{\beta}_1 = (1, 1, \ldots, 1)^\trans, \vv{\beta}_2 = (1, \ldots, 1, 0)^\trans, \ldots, \vv{\beta}_n = (1, 0, \ldots, 0)^\trans$ 下的坐标.
-			\item 设 $\vv{\gamma}_1, \ldots, \vv{\gamma}_n$ 是 $V$ 的基. $\vv{\gamma}_1, \vv{\gamma}_1 + \vv{\gamma}_2, \ldots, \vv{\gamma}_1 + \cdots + \vv{\gamma}_n$ 是否也是基？
-			\item 设 $\vv{\alpha}_1, \ldots, \vv{\alpha}_s$（$s>1$）是 $V$ 的基，$\vv{\beta}_1 = \vv{\alpha}_1 + \vv{\alpha}_2, \ldots, \vv{\beta}_{s-1} = \vv{\alpha}_{s-1} + \vv{\alpha}_s, \vv{\beta}_s = \vv{\alpha}_s + \vv{\alpha}_1$. 讨论 $\vv{\beta}_1, \ldots, \vv{\beta}_s$ 的线性相关性.（提示：答案与 $s$ 的奇偶有关.）
-			\item 证明维数公式：$\dim(W_1+W_2)=\dim W_1+\dim W_2-\dim(W_1\cap W_2)$.（提示：从 $W_1\cap W_2$ 的一组基出发，分别扩张.）
-		\end{enumerate}
-	\end{exercise}
-	
-	\section{\hC 子空间的直和与空间的直积}\label{sec:directsum}
-	
-	\begin{motivebox}
-		取定一组基，就把一个向量拆成了 $n$ 个互不干扰的``坐标''. 能不能把整个空间按``块''来拆，而不只是按一个个方向来拆？比如把商品空间拆成``食品''和``非食品''两块，各自研究，再拼回去. 本节回答两个互逆的问题：怎样把一个空间\textbf{拆开}（直和），怎样把几个空间\textbf{拼起来}（直积）.
-	\end{motivebox}
-	
-	\subsection{两个子空间的直和}
-	
-	\begin{definition}
-		设 $W_1,W_2$ 是 $V$ 的子空间. 若 $W_1+W_2$ 中每个向量都能\textbf{唯一地}写成 $\vv\alpha_1+\vv\alpha_2$（$\vv\alpha_1\in W_1$，$\vv\alpha_2\in W_2$），则称和 $W_1+W_2$ 为\textbf{直和}\index{zhi2he2@直和}(direct sum)，记为 $W_1\oplus W_2$.
-	\end{definition}
-	
-	``唯一''是关键. 例如 $\mathbb{R}^3$ 中的 $xy$-平面与 $yz$-平面之和是整个 $\mathbb{R}^3$，但 $(0,1,0)^\trans$ 既可以全算在第一个平面里，也可以全算在第二个平面里，所以这个和不是直和.
-	
-	\begin{theorem}[维数公式]\label{thm:dimformula}\index{wei2shu4 gong1shi4@维数公式}
-		设 $W_1,W_2$ 是有限维空间 $V$ 的子空间，则
-		\[\dim(W_1+W_2)=\dim W_1+\dim W_2-\dim(W_1\cap W_2).\]
-	\end{theorem}
-	\begin{proof}
-		取 $W_1\cap W_2$ 的基 $\vv\gamma_1,\ldots,\vv\gamma_k$，分别扩张为 $W_1$ 的基 $\vv\gamma_1,\ldots,\vv\gamma_k,\vv\alpha_1,\ldots,\vv\alpha_s$ 与 $W_2$ 的基 $\vv\gamma_1,\ldots,\vv\gamma_k,\vv\beta_1,\ldots,\vv\beta_t$. 下面证明 $\vv\gamma_1,\ldots,\vv\gamma_k,\vv\alpha_1,\ldots,\vv\alpha_s,\vv\beta_1,\ldots,\vv\beta_t$ 是 $W_1+W_2$ 的基，从而 $\dim(W_1+W_2)=k+s+t=(k+s)+(k+t)-k$.
-		
-		它们生成 $W_1+W_2$ 是显然的. 设
-		$\sum a_i\vv\gamma_i+\sum b_j\vv\alpha_j+\sum c_l\vv\beta_l=\zero$. 则
-		$\sum c_l\vv\beta_l=-\big(\sum a_i\vv\gamma_i+\sum b_j\vv\alpha_j\big)$. 左边属于 $W_2$，右边属于 $W_1$，所以它属于 $W_1\cap W_2$，可写成 $\sum d_i\vv\gamma_i$. 于是 $\sum c_l\vv\beta_l-\sum d_i\vv\gamma_i=\zero$，由 $W_2$ 的基线性无关得所有 $c_l=0$. 代回原式，再由 $W_1$ 的基线性无关得所有 $a_i=b_j=0$.
-	\end{proof}
-	
-	\begin{remark}
-		这正是练习~\ref{exer:coord}~的第 6 题. 为使本节自成一体，这里给出完整证明.
-	\end{remark}
-	
-	\begin{theorem}\label{thm:directsum2}
-		设 $W_1,W_2$ 是有限维空间的子空间. 以下条件等价：
-		\begin{enumerate}
-			\item $W_1+W_2$ 是直和；
-			\item 零向量的分解唯一：若 $\vv\alpha_1+\vv\alpha_2=\zero$（$\vv\alpha_i\in W_i$），则 $\vv\alpha_1=\vv\alpha_2=\zero$；
-			\item $W_1\cap W_2=\{\zero\}$；
-			\item $\dim(W_1+W_2)=\dim W_1+\dim W_2$；
-			\item $W_1$ 的一组基与 $W_2$ 的一组基合在一起，是 $W_1+W_2$ 的一组基.
-		\end{enumerate}
-	\end{theorem}
-	\begin{proof}
-		(1)$\Rightarrow$(2)：$\zero=\zero+\zero$ 是一种分解，由唯一性即得.
-		
-		(2)$\Rightarrow$(1)：若 $\vv\alpha_1+\vv\alpha_2=\vv\beta_1+\vv\beta_2$，则 $(\vv\alpha_1-\vv\beta_1)+(\vv\alpha_2-\vv\beta_2)=\zero$，由 (2) 两个括号都为零.
-		
-		(2)$\Leftrightarrow$(3)：若 $\vv\gamma\in W_1\cap W_2$，则 $\vv\gamma+(-\vv\gamma)=\zero$ 是零向量的一种分解，由 (2) 得 $\vv\gamma=\zero$. 反之，若 $\vv\alpha_1+\vv\alpha_2=\zero$，则 $\vv\alpha_1=-\vv\alpha_2\in W_1\cap W_2=\{\zero\}$.
-		
-		(3)$\Leftrightarrow$(4)：由维数公式.
-		
-		(4)$\Leftrightarrow$(5)：两组基合起来共 $\dim W_1+\dim W_2$ 个向量，且生成 $W_1+W_2$. 由定理~\ref{thm:ndimbasis}(3)，它们是基当且仅当个数等于 $\dim(W_1+W_2)$.
-	\end{proof}
-	
-	\begin{motivebox}
-		条件 (3) 最好用：要判断``拆得干不干净''，只需检查两块是否只在原点相交. 这与线性无关的定义如出一辙：线性无关是``零向量只能用零系数组合出来''，直和是``零向量只能用零向量拼出来''. 直和就是``子空间层面的线性无关''.
-	\end{motivebox}
-	
-	\begin{definition}
-		若 $V=W\oplus U$，称 $U$ 是 $W$ 在 $V$ 中的一个\textbf{补空间}\index{bu3 kong1jian1@补空间}.
-	\end{definition}
-	
-	\begin{proposition}
-		有限维空间的任一子空间都有补空间，但补空间一般不唯一.
-	\end{proposition}
-	\begin{proof}
-		取 $W$ 的基 $\vv\alpha_1,\ldots,\vv\alpha_k$，扩张为 $V$ 的基 $\vv\alpha_1,\ldots,\vv\alpha_k,\vv\beta_1,\ldots,\vv\beta_{n-k}$，令 $$U=\spn(\vv\beta_1,\ldots,\vv\beta_{n-k})$$，由定理~\ref{thm:directsum2}(5) 即得. 不唯一的例子：在 $\mathbb{R}^2$ 中，$x$ 轴的补空间可以是任意一条不同于 $x$ 轴的过原点直线.
-	\end{proof}
-	
-	补空间不唯一，那么有没有一个``最自然''的补空间？有了``垂直''的概念之后答案是肯定的，见第九章正交补一节.
-	
-	\begin{example}
-		在 $\mathbb{F}[x]_n$ 中，令 $E$ 为只含偶次项的多项式全体，$O$ 为只含奇次项的多项式全体. 每个多项式都能唯一地拆成偶次部分与奇次部分之和，故 $\mathbb{F}[x]_n=E\oplus O$.
-	\end{example}
-	
-	\begin{example}[（价格水平与相对价格）]\label{eg:pricedecomp}
-		在 $\mathbb{R}^n$（$n$ 种商品的价格变动向量）中，令
-		\[L=\spn\big((1,1,\ldots,1)^\trans\big),\qquad R=\{\vv x\in\mathbb{R}^n\mid x_1+x_2+\cdots+x_n=0\}.\]
-		$L$ 中的向量表示所有价格同涨同跌（\textbf{一般价格水平}的变化），$R$ 中的向量表示有涨有跌、总和不变（\textbf{相对价格}的变化）. 若 $c(1,\ldots,1)^\trans\in R$，则 $nc=0$，$c=0$，故 $L\cap R=\{\zero\}$；又 $\dim L+\dim R=1+(n-1)=n$. 由定理~\ref{thm:directsum2}，$\mathbb{R}^n=L\oplus R$：任何价格变动都能唯一地分解为``整体通胀''与``结构调整''两部分. 具体地，$\vv x$ 在 $L$ 中的分量是 $\bar x(1,\ldots,1)^\trans$，其中 $\bar x$ 是各分量的平均值.
-	\end{example}
-	\begin{figure}[htbp]
-		\centering
-		\begin{tikzpicture}[iso2,scale=1.5]
-			\fill[figorange,opacity=0.13] (1.5,-0.5,-1) -- (0.5,-1.5,1) -- (-1.5,0.5,1) -- (-0.5,1.5,-1) -- cycle;
-			\draw[figorange!70] (1.5,-0.5,-1) -- (0.5,-1.5,1) -- (-1.5,0.5,1) -- (-0.5,1.5,-1) -- cycle;
-			\node[figorange,font=\small,anchor=north] at (0.5,-1.5,1) {$R$：$x_1+x_2+x_3=0$};
-			\draw[axis] (0,0,0) -- (1.6,0,0) node[below]{$x_1$};
-			\draw[axis] (0,0,0) -- (0,1.9,0) node[right]{$x_2$};
-			\draw[axis] (0,0,0) -- (0,0,1.6) node[above]{$x_3$};
-			\draw[thick,figblue] (-0.9,-0.9,-0.9) -- (1.75,1.75,1.75) node[above right]{$L$};
-			\coordinate (x) at (1.65,0.55,1.1);
-			\coordinate (l) at (1.1,1.1,1.1);
-			\coordinate (r) at (0.55,-0.55,0);
-			\draw[dashed,gray] (l) -- (x) -- (r);
-			\draw[vec,figblue] (0,0,0) -- (l) node[above left,font=\small]{$\bar x(1,1,1)^\trans$};
-			\draw[vec,figorange] (0,0,0) -- (r) node[below left,font=\small]{偏离平均};
-			\draw[vec,figred] (0,0,0) -- (x) node[right]{$\vv x$};
-		\end{tikzpicture}
-		\caption{$\mathbb{R}^3=L\oplus R$：任何价格变动 $\vv x$ 都唯一地分解为``一般价格水平''（$L$ 中）与``相对价格''（$R$ 中）两部分. 图中 $\vv x$ 按 $(3,1,2)^\trans$ 的比例画出. 第九章会看到，$L$ 与 $R$ 互相垂直.}
-		\label{fig:pricedecomp}
-	\end{figure}
-	\subsection{多个子空间的直和}
-	
-	\begin{definition}
-		若 $W_1+\cdots+W_k$ 中每个向量都能唯一地写成 $\vv\alpha_1+\cdots+\vv\alpha_k$（$\vv\alpha_i\in W_i$），称之为直和，记为 $W_1\oplus\cdots\oplus W_k$.
-	\end{definition}
-	
-	\begin{theorem}
-		以下条件等价：
-		\begin{enumerate}
-			\item $W_1+\cdots+W_k$ 是直和；
-			\item 零向量的分解唯一；
-			\item 对每个 $i$，$W_i\cap\sum_{j\ne i}W_j=\{\zero\}$；
-			\item $\dim(W_1+\cdots+W_k)=\dim W_1+\cdots+\dim W_k$.
-		\end{enumerate}
-	\end{theorem}
-	\begin{proof}
-		(1)$\Leftrightarrow$(2) 与两个子空间的情形相同.
-		
-		(2)$\Rightarrow$(3)：若 $\vv\gamma\in W_i\cap\sum_{j\neq i}W_j$，写 $\vv\gamma=\sum_{j\ne i}\vv\alpha_j$，则 $(-\vv\gamma)+\sum_{j\ne i}\vv\alpha_j=\zero$ 是零向量的分解，故 $\vv\gamma=\zero$.
-		
-		(3)$\Rightarrow$(2)：设 $\vv\alpha_1+\cdots+\vv\alpha_k=\zero$. 对每个 $i$，$\vv\alpha_i=-\sum_{j\ne i}\vv\alpha_j\in W_i\cap\sum_{j\ne i}W_j$，故 $\vv\alpha_i=\zero$.
-		
-		(1)$\Leftrightarrow$(4) 对 $k$ 用归纳法并结合维数公式，留作习题.
-	\end{proof}
-	
-	\begin{pitfallbox}
-		多个子空间时，``两两交为零''\textbf{不够}. 在 $\mathbb{R}^2$ 中取 $W_1=\spn(\vv e_1)$，$W_2=\spn(\vv e_2)$，$W_3=\spn(\vv e_1+\vv e_2)$，它们两两只交于原点，但
-		$\vv e_1+\vv e_2-(\vv e_1+\vv e_2)=\zero$ 是零向量的一个非平凡分解，和不是直和. 三条直线挤在二维平面里，不可能互不干扰. 这与``向量组两两线性无关不等于整体线性无关''是同一个现象.
-	\end{pitfallbox}
-	\begin{figure}[htbp]
-		\centering
-		\begin{tikzpicture}
-			\begin{scope}[iso,scale=0.9]
-				\fill[figblue,opacity=0.15] (-1.3,-1.6,0) -- (1.3,-1.6,0) -- (1.3,1.6,0) -- (-1.3,1.6,0) -- cycle;
-				\fill[figorange,opacity=0.15] (0,-1.6,-1.2) -- (0,1.6,-1.2) -- (0,1.6,1.4) -- (0,-1.6,1.4) -- cycle;
-				\draw[figblue] (-1.3,-1.6,0) -- (1.3,-1.6,0) -- (1.3,1.6,0) -- (-1.3,1.6,0) -- cycle;
-				\draw[figorange] (0,-1.6,-1.2) -- (0,1.6,-1.2) -- (0,1.6,1.4) -- (0,-1.6,1.4) -- cycle;
-				\draw[line width=1.6pt,figred] (0,-1.6,0) -- (0,1.6,0);
-				\node[figblue,font=\small] at (1.6,1.9,0) {$xy$ 平面};
-				\node[figorange,font=\small,above] at (0,-1.2,1.4) {$yz$ 平面};
-				\node[figred,font=\small,right] at (0,1.7,0) {$y$ 轴};
-			\end{scope}
-			\node[sub] at (0,-2.0) {(a) 和是 $\mathbb{R}^3$，交是 $y$ 轴：不是直和};
-			\begin{scope}[xshift=6cm]
-				\draw[thick,figblue] (-1.6,0) -- (1.8,0) node[right]{$W_1$};
-				\draw[thick,figorange] (0,-1.3) -- (0,1.7) node[above]{$W_2$};
-				\draw[thick,figgreen] (-1.3,-1.3) -- (1.6,1.6) node[above right]{$W_3$};
-				\draw[vec,figblue] (0,0) -- (1,0);
-				\draw[vec,figorange] (1,0) -- (1,1);
-				\draw[vec,figgreen] (1,1) -- (0.03,0.03);
-				\node[sub] at (0.2,-2.0) {(b) 两两只交于原点，\\但 $\vv e_1+\vv e_2-(\vv e_1+\vv e_2)=\zero$};
-			\end{scope}
-		\end{tikzpicture}
-		\caption{判断直和：两个子空间看交是否为零；三个以上子空间时，``两两交为零''不够.}
-		\label{fig:directsum}
-	\end{figure}
-	\subsection{向量空间的直积}
-	
-	直和是把一个已知空间\textbf{拆开}. 反过来，也可以把两个毫不相干的空间\textbf{拼起来}.
-	
-	\begin{definition}
-		设 $V,W$ 是 $\mathbb{F}$ 上的向量空间. 在笛卡尔积 $V\times W=\{(\vv\alpha,\vv\beta)\mid\vv\alpha\in V,\vv\beta\in W\}$ 上按分量定义运算：
-		\[(\vv\alpha_1,\vv\beta_1)+(\vv\alpha_2,\vv\beta_2)=(\vv\alpha_1+\vv\alpha_2,\ \vv\beta_1+\vv\beta_2),\qquad k(\vv\alpha,\vv\beta)=(k\vv\alpha,k\vv\beta).\]
-		它构成 $\mathbb{F}$ 上的向量空间，称为 $V$ 与 $W$ 的\textbf{直积}\index{zhi2ji1@直积}(direct product)，也称\textbf{外直和}\index{wai4 zhi2he2@外直和}.
-	\end{definition}
-	
-	八条公理逐项验证即可，零向量是 $(\zero,\zero)$. 例如 $\mathbb{F}^m\times\mathbb{F}^n$ 就是把两个向量``上下摞在一起''，可以等同于 $\mathbb{F}^{m+n}$.
-	
-	\begin{theorem}\label{thm:productsum}
-		\begin{enumerate}
-			\item $\dim(V\times W)=\dim V+\dim W$.
-			\item 在 $V\times W$ 中，$V\times\{\zero\}$ 与 $\{\zero\}\times W$ 是子空间，且 $V\times W=(V\times\{\zero\})\oplus(\{\zero\}\times W)$.
-			\item 若 $V=W_1\oplus W_2$，则映射 $W_1\times W_2\to V$，$(\vv\alpha_1,\vv\alpha_2)\mapsto\vv\alpha_1+\vv\alpha_2$ 是同构.
-		\end{enumerate}
-	\end{theorem}
-	\begin{proof}
-		(1) 若 $\vv\alpha_1,\ldots,\vv\alpha_m$ 与 $\vv\beta_1,\ldots,\vv\beta_n$ 分别是 $V,W$ 的基，则 $(\vv\alpha_i,\zero)$ 与 $(\zero,\vv\beta_j)$ 合起来是 $V\times W$ 的基，验证方法与定理~\ref{thm:directsum2} 相同. (2) $(\vv\alpha,\vv\beta)=(\vv\alpha,\zero)+(\zero,\vv\beta)$，两个子空间只交于 $(\zero,\zero)$. (3) 映射显然保持线性运算；``每个向量都能写成 $\vv\alpha_1+\vv\alpha_2$''说明它是满射，``写法唯一''说明它是单射.
-	\end{proof}
-	
-	\begin{motivebox}
-		定理~\ref{thm:productsum} 说：\textbf{直积与直和是同一件事的两面}. 直积是``从外面拼''，直和是``在里面拆''，在同构意义下二者没有区别. 这正是第二章同构思想的又一次应用：我们不在乎向量``是什么''，只在乎结构.\footnote{对无穷多个空间，``直积''与``直和''不再相同：直积允许无穷多个分量非零，直和只允许有限个分量非零. 这超出了本书范围.}
-	\end{motivebox}
-	
-	\begin{linkbox}{面板数据}
-		经济学中常把 $n$ 个地区、$T$ 年的数据排在一起分析，称为\textbf{面板数据}\index{mian4ban3 shu4ju4@面板数据}. 若每个地区每年记录一个指标，全部数据就是 $\mathbb{R}^n\times\cdots\times\mathbb{R}^n$（$T$ 个）中的一个元素，维数为 $nT$. 把它按年份拆开，就是直积的分量；按例~\ref{eg:pricedecomp} 的方法把每年的数据拆成``全国平均''与``地区差异''两部分，就是在每个分量里做直和分解. 计量经济学中的``固定效应''模型正是从这种分解出发的.
-	\end{linkbox}
-	
-	\begin{exercise}
-		\begin{enumerate}
-			\item 设 $W_1=\spn((1,0,1)^\trans,(0,1,1)^\trans)$，$W_2=\spn((1,1,0)^\trans)$. $\mathbb{R}^3=W_1\oplus W_2$ 是否成立？
-			\item 证明 $M_n(\mathbb{F})$ 是对称矩阵全体与反对称矩阵全体的直和，并求两者的维数.（提示：第三章章末习题~\ref{ex:mat:A22}.）
-			\item 设 $\mathscr T$ 是 $V$ 上的线性变换且 $\mathscr T^2=\mathscr T$. 证明 $V=\ker\mathscr T\oplus\imm\mathscr T$.（这把第四章章末习题~\ref{ex:lmap:B8} 改写成了直和的语言.）
-			\item 完成多个子空间直和判定中 (1)$\Leftrightarrow$(4) 的证明.
-			\item 在例~\ref{eg:pricedecomp} 中，把 $\vv x=(3,1,2)^\trans$ 分解为 $L$ 与 $R$ 中向量之和.
-			\item 证明：$V\times W\cong W\times V$，$(U\times V)\times W\cong U\times(V\times W)$.
-		\end{enumerate}
-	\end{exercise}
 	
 	\section{*化学计量矩阵与独立反应数（选读）}\label{sec:stoich}
 	
@@ -1894,7 +1443,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	第一章把矩阵当作记录方程组的表格. 本章把矩阵本身作为研究对象，定义矩阵的运算，并研究初等矩阵、逆矩阵与矩阵的秩. 矩阵乘法的定义来自线性组合，方程组由此可以写成 $\vv{Ax}=\vv b$ 的形式，第一、二章的结论也随之获得矩阵语言的表述. 本章证明的``行秩等于列秩''，把方程组、向量组与矩阵三方面的秩统一了起来.
 	
-	\chapterhours{6}{7}{7}
+	\chapterhours{6}{7}{8}
 	
 	\begin{introduction}[学习目标]
 		\item 进行矩阵的线性运算、乘法、转置与求迹，并能按列的线性组合理解矩阵乘向量
@@ -2103,9 +1652,9 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\end{enumerate}
 	\end{pitfallbox}
 	
-	由 (1)，迹是 $M_n(\mathbb{F})$ 上的线性函数（第四章、第十二章）；第八章会看到，迹还等于矩阵全部特征值之和.
+	由 (1)，迹是 $M_n(\mathbb{F})$ 上的线性函数（第四章、第十四章）；第八章会看到，迹还等于矩阵全部特征值之和.
 	\begin{linkbox}{法条检索中的``词项—文档矩阵''}
-		设一个法规库有 $n$ 条法条，词表中有 $m$ 个关键词. 令 $a_{ij}$ 为第 $i$ 个词在第 $j$ 条法条中出现的次数，得到 $m\times n$ 的\textbf{词项—文档矩阵}\index{ci2xiang4 wen2dang4 ju3zhen4@词项—文档矩阵} $\vv A$. 用户的查询也写成 $m$ 维向量 $\vv q$（第 $i$ 个分量表示是否含第 $i$ 个词），则 $\vv A^\trans\vv q$ 的第 $j$ 个分量就是查询与第 $j$ 条法条的``共同词数''——一次矩阵乘法就给所有法条打了分. 第九章我们会用``夹角''改进这个打分方法.
+		设一个法规库有 $n$ 条法条，词表中有 $m$ 个关键词. 令 $a_{ij}$ 为第 $i$ 个词在第 $j$ 条法条中出现的次数，得到 $m\times n$ 的\textbf{词项—文档矩阵}\index{ci2xiang4 wen2dang4 ju3zhen4@词项—文档矩阵} $\vv A$. 用户的查询也写成 $m$ 维向量 $\vv q$（第 $i$ 个分量表示是否含第 $i$ 个词），则 $\vv A^\trans\vv q$ 的第 $j$ 个分量就是查询与第 $j$ 条法条的``共同词数''——一次矩阵乘法就给所有法条打了分. 第十章我们会用``夹角''改进这个打分方法.
 	\end{linkbox}
 	
 	\begin{modelbox}{判例引证网络}
@@ -2444,7 +1993,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	这个等式直接计算几乎无从下手：$\vv{AB}$ 与 $\vv{BA}$ 甚至不是同阶矩阵. 打洞的诀窍在于\textbf{把两个矩阵放进同一个更大的矩阵里}，从两个方向消元，再比较结果.
 	
 	\begin{remark}
-		打洞将在后文反复出现. 第五章会看到，分块初等矩阵 $\vv P,\vv Q$ 的行列式都是 $1$，于是由定理~\ref{thm:holepunch}(1) 立即得到 $\det\vv M=\det\vv A\cdot\det\vv S$. 第十一章证明正定矩阵的顺序主子式判据时，对 $\vv C=\vv B^\trans$ 的对称情形打洞，Schur 补将再次登场.
+		打洞将在后文反复出现. 第五章会看到，分块初等矩阵 $\vv P,\vv Q$ 的行列式都是 $1$，于是由定理~\ref{thm:holepunch}(1) 立即得到 $\det\vv M=\det\vv A\cdot\det\vv S$. 第十三章证明正定矩阵的顺序主子式判据时，对 $\vv C=\vv B^\trans$ 的对称情形打洞，Schur 补将再次登场.
 	\end{remark}
 	
 	\begin{historybox}{华罗庚与``打洞''}
@@ -2494,31 +2043,38 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\ExMatrix
 	
 	% =====================================================================
-	\chapter{线性映射}\label{ch:linearmap}
+	\chapter{线性空间与线性变换}\label{ch:linearmap}
 	
 	\paragraph*{本章地位}
 	
-	第二章研究了向量空间本身，第三章研究了矩阵. 本章研究向量空间之间保持线性运算的映射，即线性映射，并证明：取定基以后，线性映射与矩阵一一对应，映射的复合对应矩阵的乘法. 由此，第三章中矩阵乘法的定义得到了解释，矩阵的许多性质也可以借助映射来理解. 本章最后讨论同一个线性变换在不同基下的矩阵之间的关系，引出相似矩阵，为第八章的对角化问题做准备.
+	本章的主题是整个线性代数的中心任务——描述线性空间上的线性变换.
 	
-	\chapterhours{4}{5}{6}
+	第二章在 $\mathbb{F}^n$ 中建立了线性相关、秩、基与维数，这些结论的证明只用到了加法与数乘的运算性质. 本章前半部分把这一观察变成定义：先用数域概括``数可以自由地做四则运算''，再用八条运算律定义一般的线性空间，使多项式、矩阵、函数等对象都能使用第二章的全部结论；并证明同一数域上维数相同的有限维线性空间都同构于 $\mathbb{F}^n$. 后半部分研究线性空间之间保持线性运算的映射，并证明：取定基以后，线性映射与矩阵一一对应，映射的复合对应矩阵的乘法. 由此，第三章中矩阵乘法的定义得到了解释. 本章最后讨论同一个线性变换在不同基下的矩阵之间的关系，引出相似矩阵，为第八章的对角化问题做准备.
+	
+	\chapterhours{5}{7}{9}
 	
 	\begin{introduction}[学习目标]
+		\item 验证一个集合关于给定的运算是否构成数域、线性空间或子空间
+		\item 求线性空间或子空间的基与维数，把线性无关组扩充为基
+		\item 求向量在给定基下的坐标，说明有限维线性空间与 $\mathbb{F}^n$ 同构
 		\item 判断一个映射是否为线性映射
 		\item 求矩阵所定义的映射的核与像，并用秩—零化度定理检验结果
 		\item 写出线性映射在给定基下的矩阵，说明映射的复合与矩阵乘法的对应关系
 		\item 求两组基之间的过渡矩阵，写出线性变换在新基下的矩阵（48 学时方案以此为限）
 		\item 在两组基之间换算向量的坐标
+		\item \hC 覆盖定理的叙述与证明；空间的直和与直和分解
 	\end{introduction}
 	
 	\paragraph*{前置知识}
 	
-	第二章（基、维数、坐标与同构）；第三章（矩阵的运算、逆矩阵与秩）；附录~A 中映射的概念.
+	第二章（向量组的线性相关性与秩、向量空间）；第三章（矩阵的运算、逆矩阵与秩）；附录~A 中映射的概念.
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
-		\item 本章的核心是把抽象的线性映射与具体的矩阵对应起来. 学习时应同时掌握两种表述并能相互转换：概念和结论用映射的语言理解，具体计算用矩阵完成.
+		\item 本章是全书从具体走向抽象的一步. 线性空间由运算规则定义，而不由元素的具体形态定义. 遇到抽象概念时，应在数组、多项式、矩阵、函数等具体空间中加以检验.
+		\item 坐标是抽象与具体之间的桥梁：取定一组基，一般线性空间中的计算就变成了 $\mathbb{F}^n$ 中的计算，可以用第一、二章的方法完成.
+		\item 本章后半部分的核心是把抽象的线性映射与具体的矩阵对应起来. 学习时应同时掌握两种表述并能相互转换：概念和结论用映射的语言理解，具体计算用矩阵完成.
 		\item 线性映射的矩阵依赖于基的选取. 过渡矩阵、坐标变换与相似矩阵回答的是同一个问题：换一组基，表示会怎样改变. 应把这三者作为一个整体来理解.
-		\item 秩—零化度定理把映射的核、像与空间的维数联系在一起，是第六章讨论方程组解的结构、第八章讨论特征子空间的基础，应掌握它的含义与证明思路.
 	\end{itemize}
 	
 	\newpage
@@ -2530,15 +2086,557 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{tcolorbox}
 	\footnotetext{埃米尔·阿廷（1898—1962），奥地利裔数学家，近世代数的奠基者之一. 引文出自其著作《几何代数》（1957）第一章.}
 	
-	\section{线性映射的定义}
+	本章的主题是整个高等代数的中心任务：描述线性空间上的线性变换. 要描述变换，就要先说清楚它作用在什么上，这就需要“空间”这个概念. 中学时我们为了研究一类事物的性质，引入了集合这个重要的概念；随着研究对象的演进，我们对于集合的描述也会变得复杂，因此空间的概念应运而生.
+	
+	什么是空间？粗略地说，一个\textbf{空间}就是一个集合，再加上集合中元素之间的某种\textbf{结构}——可以做哪些运算，运算遵守哪些规则. 在研究空间时，我们一般不关心集合里的元素是什么：可以是平面上的点，可以是第二章的 $n$ 维向量，也可以是多项式、函数，或者一个方程组的全部解；而是着重关心其是结构. 中学解方程时其实已经体会过这一点：解 $3x+2=8$，靠的是``可以做减法''``可以除以非零数''这样的运算规则，而不是 $3$、$2$、$8$ 这几个数本身；若只允许使用整数，$3x=2$ 就无解了——缺的不是某个数，而是``除法''这条规则. 一个集合配上运算与规则，就称为一个\textbf{代数结构}. 本章的线性空间，就是配上``加法''与``数乘''两种运算、满足八条规则的代数结构.
+	
+	为什么需要空间？因为它是一种研究方法. 研究单个对象时，我们只能就事论事；把它放进一个空间，它就成了空间中的一个``点''，可以和其他的点相加、比较、互相表示，原来孤立的问题就变成了关于空间结构的问题. 例如，一个二次多项式 $a+bx+cx^2$ 本身只是一个式子，放进全体次数不超过 $2$ 的多项式构成的空间里，它就有了坐标 $(a,b,c)$，第二章关于 $\mathbb{F}^3$ 的全部结论都能拿来使用；一个方程组的某个解只是一组数，把全部解放在一起，第六章就能用一个基础解系把它们一次说清. 更重要的是，空间只记住结构，不记住元素是什么. 于是同一个定理只需证明一次，就对一切具有这种结构的对象成立——函数、多项式、矩阵、数列，都不必各证一遍. 线性变换也必须放在空间上才能讨论：它要``保持运算''，先得有运算可以保持.
+	
+	我们不妨先来看最简单的一类空间.
+	
+	\section{数域}
 	
 	\begin{definition}
-		设 $V,W$ 是 $\mathbb{F}$ 上的向量空间. 映射 $\mathscr T:V\to W$ 若满足对任意 $\vv\alpha,\vv\beta\in V$，$k\in\mathbb{F}$：
+		设 $\mathbb{F}$ 是复数集的子集，且至少含有两个不同的元素. 若 $\mathbb{F}$ 中任意两个数的和、差、积、商（除数不为零）仍在 $\mathbb{F}$ 中，就称 $\mathbb{F}$ 是一个\textbf{数域}\index{shu4yu4@数域}(number field).
+	\end{definition}
+	
+	有理数集 $\mathbb{Q}$、实数集 $\mathbb{R}$、复数集 $\mathbb{C}$ 都是数域. 整数集 $\mathbb{Z}$ 不是数域，因为 $1\div 2\notin\mathbb{Z}$.
+	
+	\begin{example}
+		证明：$\mathbb{Q}(\sqrt{2}) = \{ a+b\sqrt{2} \mid a,b \in \mathbb{Q} \}$ 是数域.
+	\end{example}
+	\begin{proof}
+		和、差、积仍为 $a+b\sqrt2$ 型是直接验证的. 对于商，设 $c+d\sqrt{2}\ne 0$（$c,d\in\mathbb{Q}$）. 先说明 $c-d\sqrt2\neq 0$：否则 $c=d\sqrt2$，若 $d\ne0$ 则 $\sqrt2=c/d$ 是有理数，矛盾；若 $d=0$ 则 $c=0$，与 $c+d\sqrt2\ne0$ 矛盾. 于是可以分母有理化：
+		\[
+		\frac{a+b\sqrt{2}}{c+d\sqrt{2}}=\frac{(a+b\sqrt{2})(c-d\sqrt{2})}{c^2-2d^2}=\frac{ac-2bd}{c^2-2d^2}+\frac{bc-ad}{c^2-2d^2}\sqrt{2}\in\mathbb{Q}(\sqrt2).
+		\]
+	\end{proof}
+	
+	\begin{note}
+		任何数学定义提出之后，都应当\textbf{验证满足定义的对象确实存在}. 研究一个空洞的概念是没有意义的——在数理逻辑中，从矛盾的前提可以推出任何结论. 
+		
+		举一个例子. 设 $N$ 是最大的正整数. 由于 $N^2$ 也是正整数，而 $N$ 最大，故 $N^2\le N$；又 $N\ge1$，故 $N^2\ge N$. 于是 $N^2=N$，得 $N=1$——``最大的正整数是 $1$''. 推理的每一步都无懈可击，错在第一句：最大的正整数根本不存在.
+	\end{note}
+	
+	\begin{theorem}\label{thm:Qsmallest}
+		任何数域都包含有理数域. 即有理数域是最小的数域.
+	\end{theorem}
+	\begin{proof}
+		设 $\mathbb{F}$ 是数域. 由于 $\mathbb{F}$ 至少有两个不同元素，其中必有非零数 $a$. 于是 $1=a\div a\in\mathbb{F}$，$0=a-a\in\mathbb{F}$. 由 $1$ 反复相加、相减得到全部整数，再作商得到全部有理数 $m/n$（$n\ne0$）. 故 $\mathbb{Q}\subset\mathbb{F}$.
+	\end{proof}
+	
+	\begin{exercise}
+		\begin{enumerate}
+			\item 证明：$\{a+b\sqrt[3]{2}+c\sqrt[3]{4}\mid a,b,c\in\mathbb{Q}\}$ 是数域.（提示：除法是难点，可先证明非零元都有逆元.）
+			\item $\{a+b\mathrm{i}\mid a,b\in\mathbb{Q}\}$ 是否是数域？$\{a+b\sqrt2\mid a,b\in\mathbb{Z}\}$ 呢？
+			\item 证明：若 $\mathbb{F}_1,\mathbb{F}_2$ 是数域，则 $\mathbb{F}_1\cap\mathbb{F}_2$ 也是数域.
+		\end{enumerate}
+	\end{exercise}
+	
+	\section{线性空间}\label{sec:linspace}
+	
+	研究函数时，我们关心的往往是一类函数共同的性质；研究向量也是如此. 第二章中 $\mathbb{F}^n$ 的八条运算性质（第~\ref{sec:nvec} 节）并不依赖``向量是一列数''这件事——许多别的对象也满足它们. 于是我们把这八条规则本身作为定义.
+	
+	\begin{definition}
+		设 $\mathbb{F}$ 是数域，$V$ 是非空集合. 若在 $V$ 上定义了
+		\begin{itemize}
+			\item \textbf{加法}：对任意 $\vv{\alpha}, \vv{\beta} \in V$，有唯一的 $\vv{\alpha} + \vv{\beta} \in V$；
+			\item \textbf{数乘}：对任意 $k \in \mathbb{F}$ 和 $\vv{\alpha} \in V$，有唯一的 $k \vv{\alpha} \in V$，
+		\end{itemize}
+		且它们满足第~\ref{sec:nvec} 节列出的八条运算律（其中第 3、4 条理解为：\textbf{存在}某个元素 $\zero\in V$ 使第 3 条对一切 $\vv\alpha$ 成立；对每个 $\vv\alpha$ \textbf{存在}某个 $-\vv\alpha\in V$ 使第 4 条成立），则称 $V$ 是数域 $\mathbb{F}$ 上的\textbf{线性空间}\index{xian4xing4 kong1jian1@线性空间}(linear space)，$V$ 中的元素仍称为\textbf{向量}. 第二章的向量空间都是线性空间；许多教材也把一般的线性空间称为向量空间(vector space).
+	\end{definition}
+	
+	这个定义冗长但好理解：线性空间就是一个配备了两种运算、遵守八条规则的集合. 下面的例子说明，许多看似无关的对象都是线性空间.
+	
+	\begin{example}
+		$\mathbb{F}^n$ 关于第二章的运算是 $\mathbb{F}$ 上的线性空间. 特别地有 $\mathbb{R}^n$.
+	\end{example}
+	
+	\begin{example}
+		系数属于 $\mathbb{F}$ 的一元多项式全体 $\mathbb{F}[x]$，关于多项式的加法和数乘构成线性空间. 次数小于 $n$ 的多项式（含零多项式）全体 $\mathbb{F}[x]_n$ 也构成线性空间.
+	\end{example}
+	
+	\begin{example}
+		复数集 $\mathbb{C}$ 关于复数加法和``实数乘复数''构成 $\mathbb{R}$ 上的线性空间.
+	\end{example}
+	
+	\begin{example}
+		闭区间 $[a,b]$ 上的实值连续函数全体 $C[a,b]$，关于 $(f+g)(x)=f(x)+g(x)$，$(kf)(x)=kf(x)$ 构成 $\mathbb{R}$ 上的线性空间.
+	\end{example}
+	
+
+	推导线性空间的基本性质需要使用公理化方法：即只能从八条公理出发.
+	
+	\begin{theorem}
+		线性空间中的零向量是唯一的；每个向量的负向量也是唯一的.
+	\end{theorem}
+	\begin{proof}
+		设 $\zero_1,\zero_2$ 都是零向量，则 $\zero_1=\zero_1+\zero_2=\zero_2+\zero_1=\zero_2$.
+		
+		设 $\vv\beta,\vv\gamma$ 都是 $\vv\alpha$ 的负向量，则
+		$\vv\beta=\vv\beta+\zero=\vv\beta+(\vv\alpha+\vv\gamma)=(\vv\beta+\vv\alpha)+\vv\gamma=\zero+\vv\gamma=\vv\gamma.$
+	\end{proof}
+	
+	\begin{proposition}\label{prop:linspc}
+		设 $V$ 是 $\mathbb{F}$ 上的线性空间，$k\in\mathbb{F}$，$\vv{\alpha},\vv{\beta},\vv{\gamma}\in V$，则
+		\begin{enumerate}
+			\item （消去律）若 $\vv{\alpha}+\vv{\beta}=\vv{\alpha}+\vv{\gamma}$，则 $\vv{\beta}=\vv{\gamma}$；
+			\item $0\vv{\alpha}=\zero$；
+			\item $k\zero=\zero$；
+			\item $(-1)\vv{\alpha}=-\vv{\alpha}$；
+			\item 若 $k\vv{\alpha}=\zero$，则 $k=0$ 或 $\vv{\alpha}=\zero$.
+		\end{enumerate}
+	\end{proposition}
+	\begin{proof}
+		(1) 两边加上 $-\vv\alpha$ 并用结合律. (2) $0\vv\alpha=(0+0)\vv\alpha=0\vv\alpha+0\vv\alpha$，由 (1) 得 $0\vv\alpha=\zero$. (3) 同理. (4) $\vv\alpha+(-1)\vv\alpha=(1+(-1))\vv\alpha=0\vv\alpha=\zero$，由负向量唯一性得证. (5) 若 $k\ne0$，则 $\vv\alpha=1\vv\alpha=(k^{-1}k)\vv\alpha=k^{-1}(k\vv\alpha)=k^{-1}\zero=\zero$.
+	\end{proof}
+	
+	\begin{exercise}
+		\begin{enumerate}
+			\item 以 $0$ 为极限的实数列全体 $V$，按 $\{a_n\}+\{b_n\}=\{a_n+b_n\}$，$k\{a_n\}=\{ka_n\}$ 定义运算，证明 $V$ 是 $\mathbb{R}$ 上的线性空间.
+			\item 在正实数集 $\mathbb{R}^+$ 上定义``加法''$a\oplus b=ab$、``数乘''$k\circ a=a^k$（$k\in\mathbb{R}$）. 证明 $\mathbb{R}^+$ 是 $\mathbb{R}$ 上的线性空间，并指出它的``零向量''是什么.
+			\item 在 $\mathbb{R}^2$ 上保留通常加法，定义数乘为 $k\circ(a,b)^\trans=(ka,0)^\trans$. 八条公理中哪一条不成立？
+		\end{enumerate}
+	\end{exercise}
+	
+	\section{子空间、基与维数}
+	
+	第二章在 $\mathbb{F}^n$ 中定义了线性组合、线性表出、线性相关、极大无关组、向量组的等价与秩. 这些定义只用到加法与数乘，把其中的 $\mathbb{F}^n$ 换成任意线性空间 $V$，就得到一般线性空间中的相应概念. 结论也可以照搬：定理~\ref{thm:relvandexp}、定理~\ref{thm:uniquerep}、引理~\ref{lem:addone} 的证明只用到运算律；基本引理（引理~\ref{lem:rankineq}）的证明只用到``$\vv\alpha_i$ 可由 $\vv\beta_j$ 线性表出''，把表出系数代入后归结为关于系数的齐次方程组，没有用到向量的分量. 因此，依赖基本引理的定理~\ref{thm:maxexist}、定理~\ref{thm:rankwelldef} 以及秩的性质，在任何线性空间中都成立. 下面直接使用这些结论.
+	
+	唯一需要留意的是：第二章的判别方法``以向量为列作消元''只适用于数组. 在一般的线性空间中判断线性相关性，可以按定义列出关于系数的方程，或者在第 \ref{sec:coord} 节之后，先取坐标再消元.
+	
+	\subsection{子空间}
+	\begin{definition}
+		设 $V$ 是 $\mathbb{F}$ 上的线性空间，$W$ 是 $V$ 的非空子集. 若 $W$ 对 $V$ 的加法和数乘封闭，即对任意 $\vv\alpha,\vv\beta\in W$，$k\in\mathbb{F}$，都有 $\vv\alpha+\vv\beta\in W$，$k\vv\alpha\in W$，则称 $W$ 是 $V$ 的\textbf{子空间}\index{zi3kong1jian1@子空间}(subspace).
+	\end{definition}
+	
+	\begin{proposition}
+		子空间关于 $V$ 的运算本身是一个线性空间.
+	\end{proposition}
+	\begin{proof}
+		运算律 1、2、5—8 对 $V$ 中所有向量成立，自然对 $W$ 中向量成立. 只需检查零向量与负向量是否落在 $W$ 内：任取 $\vv\alpha\in W$，由封闭性和命题~\ref{prop:linspc}，$\zero=0\vv\alpha\in W$，$-\vv\alpha=(-1)\vv\alpha\in W$.
+	\end{proof}
+	
+	\begin{example}
+		\begin{enumerate}
+			\item $\{\zero\}$ 和 $V$ 本身是 $V$ 的子空间，称为平凡子空间.
+			\item 任意向量组的张成 $\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$ 是子空间（两个线性组合之和、线性组合的倍数仍是线性组合），并且它是包含 $\vv\alpha_1,\ldots,\vv\alpha_s$ 的\textbf{最小}子空间：任何包含这些向量的子空间，由封闭性必然包含它们的全部线性组合.
+			\item 齐次方程组的解集是 $\mathbb{F}^n$ 的子空间（第一章章末习题~\ref{ex:elim:B12}），称为\textbf{解空间}\index{jie3 kong1jian1@解空间}.
+			\item 非齐次方程组的解集\textbf{不是}子空间：它不含零向量.
+			\item 平面 $\mathbb{R}^2$ 中过原点的直线是子空间；不过原点的直线不是.
+		\end{enumerate}
+	\end{example}
+
+	\begin{proposition}
+		设 $W_1,W_2$ 是 $V$ 的子空间，则交 $W_1\cap W_2$ 与和 $W_1+W_2=\{\vv\alpha_1+\vv\alpha_2\mid \vv\alpha_1\in W_1,\vv\alpha_2\in W_2\}$ 都是 $V$ 的子空间. 但并集 $W_1\cup W_2$ 一般不是.
+	\end{proposition}
+	
+	证明留作练习. 并集的反例：$\mathbb{R}^2$ 中两条不同的过原点直线之并.
+	
+	\subsection{基与维数}
+	
+	\begin{definition}
+		若 $V=\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$，称 $\vv\alpha_1,\ldots,\vv\alpha_s$ \textbf{生成}\index{sheng1cheng2@生成} $V$. 能被有限个向量生成的线性空间称为\textbf{有限维}\index{you3xian4 wei2@有限维}的. 若 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$ 线性无关且生成 $V$，则称它为 $V$ 的一组\textbf{基}\index{ji1@基}(basis).
+	\end{definition}
+	
+	基就是``既不多余（线性无关）、又不缺少（能生成）''的向量组，是整个空间的骨架.
+	
+	\begin{theorem}
+		有限维线性空间都有基，且任意两组基所含向量个数相同.
+	\end{theorem}
+	\begin{proof}
+		设 $V=\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$. 由定理~\ref{thm:maxexist} 取 $\vv\alpha_1,\ldots,\vv\alpha_s$ 的一个极大无关组，它线性无关，且每个 $\vv\alpha_i$ 都可由它线性表出，从而 $V$ 中每个向量都可由它线性表出——它是一组基. 任意两组基互相线性表出，即彼此等价，由定理~\ref{thm:rankwelldef} 所含向量个数相同.
+	\end{proof}
+	
+	\begin{definition}
+		有限维线性空间 $V$ 的基所含向量个数称为 $V$ 的\textbf{维数}\index{wei2shu4@维数}(dimension)，记为 $\dim_{\mathbb{F}} V$，在不致混淆时简记为 $\dim V$. 规定 $\dim\{\zero\}=0$.
+	\end{definition}
+	
+	\begin{example}
+		\begin{enumerate}
+			\item $\dim\mathbb{F}^n=n$，$\vv e_1,\ldots,\vv e_n$ 是一组基，称为\textbf{标准基}\index{biao1zhun3 ji1@标准基}.
+			\item $\dim\mathbb{F}[x]_n=n$，$1,x,\ldots,x^{n-1}$ 是一组基.
+			\item $\dim_{\mathbb{R}}\mathbb{C}=2$：$1,\mathrm{i}$ 生成 $\mathbb{C}$；若 $a+b\mathrm{i}=0$（$a,b\in\mathbb{R}$）则 $a=b=0$，故线性无关. 这说明用``复平面''表示复数是合理的. 注意 $\dim_{\mathbb{C}}\mathbb{C}=1$——维数依赖于基域.
+			\item 向量组 $(1,0,0)^\trans,(1,2,0)^\trans,(0,1,0)^\trans$ 张成的子空间维数为 $2$.
+		\end{enumerate}
+	\end{example}
+	
+	\begin{remark}
+		$\mathbb{F}[x]$ 不是有限维的：任给有限个多项式，设其最高次数为 $d$，则 $x^{d+1}$ 不在它们的张成中. 同样，$C[a,b]$ 也不是有限维的. 在无限维空间中，``无穷多个向量相加''\footnote{即使只问``无限维空间有没有基''这样纯代数的问题，答案也依赖集合论中的选择公理：在选择公理下，每个线性空间都有基，但对 $C[a,b]$ 这样的空间，没有人能具体写出它的一组基.}必须先说明在什么意义下收敛，这需要分析学的极限理论与拓扑学对``接近''的刻画；把这些工具与线性代数结合起来研究无限维空间的学科称为\textbf{泛函分析}，超出了本课程的范围. \textbf{此后除特别说明外，本书讨论的线性空间都是有限维的.}
+	\end{remark}
+	
+	\begin{theorem}\label{thm:ndimbasis}
+		设 $\dim V=n$. 则
+		\begin{enumerate}
+			\item $V$ 中任意 $n+1$ 个向量线性相关；
+			\item $V$ 中任意 $n$ 个线性无关的向量构成一组基；
+			\item $V$ 中任意 $n$ 个生成 $V$ 的向量构成一组基.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		(1) 它们可由一组基（$n$ 个向量）线性表出，用基本引理.
+		(2) 若它们不能生成 $V$，取 $\vv\beta$ 不在其张成中，由引理~\ref{lem:addone} 得到 $n+1$ 个线性无关的向量，与 (1) 矛盾.
+		(3) 取它们的极大无关组，这是一组基，必含 $n$ 个向量，即全体.
+	\end{proof}
+	
+	\begin{theorem}[基扩张定理]\index{ji1 kuo4zhang1 ding4li3@基扩张定理}
+		设 $\dim V=n$，$\vv{\alpha}_1,\ldots,\vv{\alpha}_m$ 线性无关，$\vv\beta_1,\ldots,\vv\beta_n$ 是 $V$ 的一组基. 则可从 $\vv\beta_1,\ldots,\vv\beta_n$ 中选出 $n-m$ 个向量，与 $\vv{\alpha}_1,\ldots,\vv{\alpha}_m$ 一起构成 $V$ 的一组基.
+	\end{theorem}
+	\begin{proof}
+		对向量组 $\vv\alpha_1,\ldots,\vv\alpha_m,\vv\beta_1,\ldots,\vv\beta_n$ 按定理~\ref{thm:maxexist} 证明中的方法依次挑选. 因为 $\vv\alpha_1,\ldots,\vv\alpha_m$ 线性无关，它们全部被选中；选出的组线性无关，且每个 $\vv\beta_j$ 都可由它线性表出，从而它生成 $V$，是一组基. 它含 $n$ 个向量，所以恰好从 $\vv\beta_j$ 中选出了 $n-m$ 个.
+	\end{proof}
+	
+	\begin{corollary}
+		若 $W$ 是 $n$ 维空间 $V$ 的子空间，则 $\dim W\le n$，且等号成立当且仅当 $W=V$.
+	\end{corollary}
+	
+	\begin{remark}
+		当 $V$ 是 $\mathbb{F}^n$ 中的线性空间时，这里的基与维数就是第~\ref{sec:vecspace} 节中的基与维数；定理~\ref{thm:dimrank}（张成的空间的维数等于向量组的秩）在一般线性空间中同样成立，证明不变.
+	\end{remark}
+	
+	\subsection{\hC 覆盖定理}\label{sec:cover}
+	
+	若 $W$ 是 $V$ 的子空间且 $W\ne V$，称 $W$ 是 $V$ 的\textbf{真子空间}\index{zhen1 zi3kong1jian1@真子空间}(proper subspace).
+	
+	\begin{motivebox}
+		两条过原点的直线合起来不是子空间. 那么换一个问题：它们合起来有\textbf{多大}？三条、十条、一百条直线呢？能不能用有限条直线把整个平面``铺满''？
+		
+		直觉说不能：一条直线是``细''的，有限条细线不可能盖住一整张纸. 但``细''是一个关于面积的说法，而线性空间里并没有面积——我们只有加法和数乘. 本节要说明，仅凭这两种运算，就能把这个直觉变成定理；而定理成立的真正原因，藏在``数域''的定义里.
+	\end{motivebox}
+	
+	\begin{theorem}[覆盖定理]\label{thm:cover}\index{fu4gai4 ding4li3@覆盖定理}
+		设 $V$ 是数域 $\mathbb{F}$ 上的线性空间，$W_1,\ldots,W_s$（$s\ge1$）都是 $V$ 的真子空间，则
+		\[W_1\cup W_2\cup\cdots\cup W_s\ne V.\]
+		换言之，$V$ 中总有一个向量不属于其中任何一个 $W_i$.
+	\end{theorem}
+	\begin{proof}
+		用反证法. 假设存在有限个真子空间，它们的并等于 $V$. 在所有这样的组中取一组\textbf{个数最少}的，记为 $W_1,\ldots,W_s$.
+		
+		$s=1$ 是不可能的，因为 $W_1\ne V$. 所以 $s\ge2$. 由 $s$ 的最小性，去掉 $W_1$ 后剩下的 $s-1$ 个子空间盖不住 $V$；而 $W_2,\ldots,W_s$ 之外的向量只能落在 $W_1$ 中. 于是可以取
+		\[\vv\alpha\in W_1,\qquad\vv\alpha\notin W_2\cup\cdots\cup W_s.\]
+		又因为 $W_1$ 是真子空间，可以取 $\vv\beta\notin W_1$. 考察无穷多个向量
+		\[\vv\beta+k\vv\alpha\qquad(k\in\mathbb{F}).\]
+		\begin{itemize}
+			\item 它们都不在 $W_1$ 中：否则 $\vv\beta=(\vv\beta+k\vv\alpha)-k\vv\alpha\in W_1$，矛盾.
+			\item 每个 $W_i$（$i\ge2$）\textbf{至多}含其中一个：若 $k\ne k'$ 而 $\vv\beta+k\vv\alpha$ 与 $\vv\beta+k'\vv\alpha$ 都在 $W_i$ 中，则二者之差 $(k-k')\vv\alpha\in W_i$，再乘以 $(k-k')^{-1}$ 得 $\vv\alpha\in W_i$，与 $\vv\alpha$ 的取法矛盾.
+		\end{itemize}
+		所以 $W_1\cup\cdots\cup W_s$ 至多含这些向量中的 $s-1$ 个. 但由定理~\ref{thm:Qsmallest}，数域 $\mathbb{F}$ 包含 $\mathbb{Q}$，有无穷多个元素，$k$ 可以取无穷多个不同的值，这些向量两两不同（$\vv\alpha\ne\zero$，因为 $\zero\in W_2$）. 有限个子空间装不下无穷多个向量，与 $W_1\cup\cdots\cup W_s=V$ 矛盾.
+	\end{proof}
+	
+	\begin{motivebox}
+		证明的图像是这样的：过 $\vv\beta$ 作一条平行于 $\vv\alpha$ 的``直线'' $\{\vv\beta+k\vv\alpha\}$（它不过原点，所以不是子空间）. 这条直线完全躲开了 $W_1$，而与其余每个 $W_i$ 至多交于一点. 一条直线上有无穷多个点，有限个子空间只能各``扎''它一下.
+		
+		请注意定理只用到了三件事：子空间对加法封闭；子空间对数乘封闭；$\mathbb{F}$ 有无穷多个元素. 定理对无限维空间同样成立，证明中没有出现维数.
+	\end{motivebox}
+	
+	\begin{pitfallbox}
+		``$\mathbb{F}$ 有无穷多个元素''这个条件\textbf{不能去掉}. 在只含 $0,1$、按模 $2$ 运算的``数系'' $\mathbb{F}_2$ 上（第二章章末习题~\ref{ex:vs:C5}，以及本书讲 Hamming 码时用的正是它），$\mathbb{F}_2^2$ 一共只有四个向量：
+		\[\zero,\quad\vv e_1,\quad\vv e_2,\quad\vv e_1+\vv e_2,\]
+		而三个一维子空间 $\{\zero,\vv e_1\}$，$\{\zero,\vv e_2\}$，$\{\zero,\vv e_1+\vv e_2\}$ 恰好把它们全部盖住. 在那里，证明中的``直线'' $\{\vv\beta+k\vv\alpha\}$ 只有两个点，扎两下就扎完了. 本书一直要求数域包含 $\mathbb{Q}$，这个要求在这里第一次真正派上了用场.
+	\end{pitfallbox}
+	
+	定理最常用的形式是它的``构造版''：给定有限个``坏''的子空间，总能找到一个躲开它们全部的``好''向量. 在 $\mathbb{F}^n$ 中，``坏''的子空间最常见的来源是一个齐次线性方程.
+	
+	\begin{corollary}\label{cor:avoid}
+		设 $\vv c_1,\ldots,\vv c_m$ 是 $\mathbb{F}^n$ 中的非零向量，$\vv c_i=(c_{i1},\ldots,c_{in})^\trans$. 则存在 $\vv w=(w_1,\ldots,w_n)^\trans\in\mathbb{F}^n$，使
+		\[w_1c_{i1}+w_2c_{i2}+\cdots+w_nc_{in}\ne0\qquad\text{对每个}\ i=1,\ldots,m\ \text{成立}.\]
+		若 $\vv c_i$ 都是实向量，$\vv w$ 还可以取为整数向量.
+	\end{corollary}
+	\begin{proof}
+		令 $H_i=\{\vv w\in\mathbb{F}^n\mid w_1c_{i1}+\cdots+w_nc_{in}=0\}$. 它是一个齐次方程的解集，是子空间（第一章章末习题~\ref{ex:elim:B12}）. 由于 $\vv c_i\ne\zero$，有某个 $c_{ij}\ne0$，于是标准单位向量 $\vv e_j\notin H_i$，$H_i$ 是真子空间. 由覆盖定理，存在 $\vv w\notin H_1\cup\cdots\cup H_m$.
+		
+		对最后一句，把同样的论证用在 $\mathbb{Q}$ 上的线性空间 $\mathbb{Q}^n$ 上：$H_i\cap\mathbb{Q}^n$ 对加法和有理数数乘封闭，是 $\mathbb{Q}^n$ 的子空间，并且仍不含 $\vv e_j$. 于是有有理向量 $\vv w$ 躲开所有 $H_i$；乘以各分量分母的公倍数，得到整数向量，条件``$\ne0$''不受影响.
+	\end{proof}
+	
+	像 $H_i$ 这样由一个非平凡的齐次方程定义的子空间，称为\textbf{超平面}. 在 $\mathbb{R}^2$ 中它是过原点的直线，在 $\mathbb{R}^3$ 中是过原点的平面. 推论说：有限个超平面之外，总有立足之地.
+	
+	\begin{linkbox}{综合指数为什么几乎不会``并列''}
+		本书多次用加权求和给对象打分：价目表给购物篮定价，词频给法条打分，第十一章还会用主成分给地区编制综合指数. 设 $n$ 个地区各有 $p$ 个指标，第 $i$ 个地区的数据为 $\vv x_i=(x_{i1},\ldots,x_{ip})^\trans$，且任意两个地区的数据不完全相同. 给定权重 $\vv w$，地区 $i$ 的得分为 $w_1x_{i1}+\cdots+w_px_{ip}$.
+		
+		地区 $i$ 与 $j$ 得分相同，恰好是 $\vv w$ 落在超平面
+		\[\{\vv w\mid w_1(x_{i1}-x_{j1})+\cdots+w_p(x_{ip}-x_{jp})=0\}\]
+		上. 一共只有 $\binom n2$ 个这样的超平面. 由推论~\ref{cor:avoid}，\textbf{总存在一组权重，使所有地区的得分两两不同}，而且可以取整数权重.
+		
+		更进一步，在 $\mathbb{R}^p$ 中，``坏''的权重全都挤在有限个超平面上，而超平面在 $\mathbb{R}^p$ 中``没有体积''. 所以若权重是从某个连续的范围里随意选取的，出现并列几乎是不可能的. 这个直觉的严格表述需要概率论或测度论，这里不作证明.
+		
+		不过，``能排出不并列的名次''与``名次有意义''是两回事. 覆盖定理只保证前者；后者取决于权重是否反映了我们真正在乎的东西——这正是第十一章主成分分析建模实验中``局限''一栏讨论的问题.
+	\end{linkbox}
+	
+	
+	\section{坐标与同构}\label{sec:coord}
+	
+	\begin{definition}
+		设 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$ 是 $V$ 的一组（有序）基. 对 $\vv\alpha\in V$，若
+		\[\vv{\alpha}=a_1\vv{\varepsilon}_1+a_2 \vv{\varepsilon}_2+\cdots+a_n\vv{\varepsilon}_n,\]
+		则称列向量 $(a_1,\ldots,a_n)^\trans\in\mathbb{F}^n$ 为 $\vv\alpha$ 在这组基下的\textbf{坐标}\index{zuo4biao1@坐标}.
+	\end{definition}
+	
+	由于基生成 $V$，坐标存在；由于基线性无关，由定理~\ref{thm:uniquerep} 坐标唯一. 因此取定一组有序基后，就得到一个双射
+	\[
+	\varphi: V\to\mathbb{F}^n,\qquad \vv\alpha\mapsto \vv\alpha\text{ 的坐标}.
+	\]
+	设 $\vv\alpha,\vv\beta$ 的坐标分别为 $\vv a,\vv b$，则
+	$\vv\alpha+\vv\beta=\sum(a_i+b_i)\vv\varepsilon_i$，$k\vv\alpha=\sum(ka_i)\vv\varepsilon_i$，即
+	\[
+	\varphi(\vv{\alpha}+\vv{\beta})=\varphi(\vv{\alpha})+\varphi(\vv{\beta}),\qquad\varphi(k\vv{\alpha})=k\varphi(\vv{\alpha}).
+	\]
+	注意左边的加法在 $V$ 中进行，右边的加法在 $\mathbb{F}^n$ 中进行. 这个双射``保持''了线性运算.
+	
+	\begin{definition}
+		设 $V,U$ 是 $\mathbb{F}$ 上的线性空间. 若存在双射 $\varphi:V\to U$，使对任意 $\vv{\alpha},\vv{\beta}\in V$ 和 $k\in\mathbb{F}$ 有
+		\[\varphi(\vv{\alpha}+\vv{\beta})=\varphi(\vv{\alpha})+\varphi(\vv{\beta}),\qquad\varphi(k\vv{\alpha})=k\varphi(\vv{\alpha}),\]
+		则称 $V$ 与 $U$ \textbf{同构}\index{tong2gou4@同构}(isomorphic)，记作 $V\cong U$，$\varphi$ 称为\textbf{同构映射}\index{tong2gou4 ying4she4@同构映射}.
+	\end{definition}
+	
+	\begin{theorem}\label{thm:isomorphism}
+		设 $\varphi: V\to U$ 是同构映射，则
+		\begin{enumerate}
+			\item $\varphi(\zero)=\zero$，$\varphi(k_1\vv\alpha_1+\cdots+k_s\vv\alpha_s)=k_1\varphi(\vv\alpha_1)+\cdots+k_s\varphi(\vv\alpha_s)$；
+			\item $\vv\alpha_1,\ldots,\vv\alpha_s$ 线性相关当且仅当 $\varphi(\vv\alpha_1),\ldots,\varphi(\vv\alpha_s)$ 线性相关；
+			\item 同构关系是等价关系；
+			\item 有限维线性空间 $V$ 与 $U$ 同构，当且仅当 $\dim V=\dim U$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		(1)—(3) 留给读者（提示：(2) 用 (1) 和 $\varphi$ 是单射；(3) 的对称性需要验证逆映射也保持运算）.
+		
+		(4) 若 $\varphi:V\to U$ 是同构，$\vv\varepsilon_1,\ldots,\vv\varepsilon_n$ 是 $V$ 的基. 由 (2)，$\varphi(\vv\varepsilon_1),\ldots,\varphi(\vv\varepsilon_n)$ 线性无关. 对任意 $\vv x\in U$，由于 $\varphi$ 是满射，有 $\vv\alpha=\sum k_i\vv\varepsilon_i$ 使 $\vv x=\varphi(\vv\alpha)=\sum k_i\varphi(\vv\varepsilon_i)$，故它们也生成 $U$，是 $U$ 的基. 所以 $\dim U=\dim V$.
+		反之若 $\dim V=\dim U=n$，取坐标映射知 $V\cong\mathbb{F}^n\cong U$，由 (3) 的传递性得 $V\cong U$.
+	\end{proof}
+	
+	\begin{motivebox}
+		这个定理的威力在于：\textbf{在同构的意义下，$\mathbb{F}$ 上的 $n$ 维线性空间只有一个，就是 $\mathbb{F}^n$}. 无论面对的是多项式、矩阵还是函数，只要知道它是 $n$ 维线性空间，就可以取一组基，把一切计算搬到 $\mathbb{F}^n$ 里用消元法完成. 抽象让我们看清了共性，坐标又让我们回到了计算.
+	\end{motivebox}
+	
+	\begin{historybox}{从几何到公理}
+		格拉斯曼（H.~Grassmann）在 1844 年出版的《线性扩张论》\cite{grassmann1844ausdehnungslehre}中已经在研究任意维数的``扩张量''，但他的书在当时几乎无人读懂. 1888 年，皮亚诺（G.~Peano）在其著作\cite{peano1888calcolo}中第一次给出了与今天几乎相同的线性空间公理. 从几何直观到公理化定义，人们走了半个世纪.
+	\end{historybox}
+	
+	\begin{exercise}\label{exer:coord}
+		\begin{enumerate}
+			\item 设 $\vv{\alpha}_1,\ldots,\vv{\alpha}_n$ 是 $V$ 的基，$\vv{\beta}_1,\ldots,\vv{\beta}_n\in V$，且每个 $\vv\alpha_i$ 都可由 $\vv{\beta}_1,\ldots,\vv{\beta}_n$ 线性表出. 证明 $\vv{\beta}_1,\ldots,\vv{\beta}_n$ 也是 $V$ 的基.
+			\item 设 $V=\{a+b\sqrt[4]{2}+c\sqrt[4]{4}\mid a,b,c\in\mathbb{Q}\}$. 证明 $V$ 是 $\mathbb{Q}$ 上的线性空间，并求 $\dim_{\mathbb{Q}}V$.
+			\item 求 $\vv{\alpha} = (a_1, \ldots, a_n)^\trans$ 在基 $\vv{\beta}_1 = (1, 1, \ldots, 1)^\trans, \vv{\beta}_2 = (1, \ldots, 1, 0)^\trans, \ldots, \vv{\beta}_n = (1, 0, \ldots, 0)^\trans$ 下的坐标.
+			\item 设 $\vv{\gamma}_1, \ldots, \vv{\gamma}_n$ 是 $V$ 的基. $\vv{\gamma}_1, \vv{\gamma}_1 + \vv{\gamma}_2, \ldots, \vv{\gamma}_1 + \cdots + \vv{\gamma}_n$ 是否也是基？
+			\item 设 $\vv{\alpha}_1, \ldots, \vv{\alpha}_s$（$s>1$）是 $V$ 的基，$\vv{\beta}_1 = \vv{\alpha}_1 + \vv{\alpha}_2, \ldots, \vv{\beta}_{s-1} = \vv{\alpha}_{s-1} + \vv{\alpha}_s, \vv{\beta}_s = \vv{\alpha}_s + \vv{\alpha}_1$. 讨论 $\vv{\beta}_1, \ldots, \vv{\beta}_s$ 的线性相关性.（提示：答案与 $s$ 的奇偶有关.）
+			\item 证明维数公式：$\dim(W_1+W_2)=\dim W_1+\dim W_2-\dim(W_1\cap W_2)$.（提示：从 $W_1\cap W_2$ 的一组基出发，分别扩张.）
+		\end{enumerate}
+	\end{exercise}
+	
+	\section{\hC 子空间的直和与空间的直积}\label{sec:directsum}
+	
+	\begin{motivebox}
+		取定一组基，就把一个向量拆成了 $n$ 个互不干扰的``坐标''. 能不能把整个空间按``块''来拆，而不只是按一个个方向来拆？比如把商品空间拆成``食品''和``非食品''两块，各自研究，再拼回去. 本节回答两个互逆的问题：怎样把一个空间\textbf{拆开}（直和），怎样把几个空间\textbf{拼起来}（直积）.
+	\end{motivebox}
+	
+	\subsection{两个子空间的直和}
+	
+	\begin{definition}
+		设 $W_1,W_2$ 是 $V$ 的子空间. 若 $W_1+W_2$ 中每个向量都能\textbf{唯一地}写成 $\vv\alpha_1+\vv\alpha_2$（$\vv\alpha_1\in W_1$，$\vv\alpha_2\in W_2$），则称和 $W_1+W_2$ 为\textbf{直和}\index{zhi2he2@直和}(direct sum)，记为 $W_1\oplus W_2$.
+	\end{definition}
+	
+	``唯一''是关键. 例如 $\mathbb{R}^3$ 中的 $xy$-平面与 $yz$-平面之和是整个 $\mathbb{R}^3$，但 $(0,1,0)^\trans$ 既可以全算在第一个平面里，也可以全算在第二个平面里，所以这个和不是直和.
+	
+	\begin{theorem}[维数公式]\label{thm:dimformula}\index{wei2shu4 gong1shi4@维数公式}
+		设 $W_1,W_2$ 是有限维空间 $V$ 的子空间，则
+		\[\dim(W_1+W_2)=\dim W_1+\dim W_2-\dim(W_1\cap W_2).\]
+	\end{theorem}
+	\begin{proof}
+		取 $W_1\cap W_2$ 的基 $\vv\gamma_1,\ldots,\vv\gamma_k$，分别扩张为 $W_1$ 的基 $\vv\gamma_1,\ldots,\vv\gamma_k,\vv\alpha_1,\ldots,\vv\alpha_s$ 与 $W_2$ 的基 $\vv\gamma_1,\ldots,\vv\gamma_k,\vv\beta_1,\ldots,\vv\beta_t$. 下面证明 $\vv\gamma_1,\ldots,\vv\gamma_k,\vv\alpha_1,\ldots,\vv\alpha_s,\vv\beta_1,\ldots,\vv\beta_t$ 是 $W_1+W_2$ 的基，从而 $\dim(W_1+W_2)=k+s+t=(k+s)+(k+t)-k$.
+		
+		它们生成 $W_1+W_2$ 是显然的. 设
+		$\sum a_i\vv\gamma_i+\sum b_j\vv\alpha_j+\sum c_l\vv\beta_l=\zero$. 则
+		$\sum c_l\vv\beta_l=-\big(\sum a_i\vv\gamma_i+\sum b_j\vv\alpha_j\big)$. 左边属于 $W_2$，右边属于 $W_1$，所以它属于 $W_1\cap W_2$，可写成 $\sum d_i\vv\gamma_i$. 于是 $\sum c_l\vv\beta_l-\sum d_i\vv\gamma_i=\zero$，由 $W_2$ 的基线性无关得所有 $c_l=0$. 代回原式，再由 $W_1$ 的基线性无关得所有 $a_i=b_j=0$.
+	\end{proof}
+	
+	\begin{remark}
+		这正是练习~\ref{exer:coord}~的第 6 题. 为使本节自成一体，这里给出完整证明.
+	\end{remark}
+	
+	\begin{theorem}\label{thm:directsum2}
+		设 $W_1,W_2$ 是有限维空间的子空间. 以下条件等价：
+		\begin{enumerate}
+			\item $W_1+W_2$ 是直和；
+			\item 零向量的分解唯一：若 $\vv\alpha_1+\vv\alpha_2=\zero$（$\vv\alpha_i\in W_i$），则 $\vv\alpha_1=\vv\alpha_2=\zero$；
+			\item $W_1\cap W_2=\{\zero\}$；
+			\item $\dim(W_1+W_2)=\dim W_1+\dim W_2$；
+			\item $W_1$ 的一组基与 $W_2$ 的一组基合在一起，是 $W_1+W_2$ 的一组基.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		(1)$\Rightarrow$(2)：$\zero=\zero+\zero$ 是一种分解，由唯一性即得.
+		
+		(2)$\Rightarrow$(1)：若 $\vv\alpha_1+\vv\alpha_2=\vv\beta_1+\vv\beta_2$，则 $(\vv\alpha_1-\vv\beta_1)+(\vv\alpha_2-\vv\beta_2)=\zero$，由 (2) 两个括号都为零.
+		
+		(2)$\Leftrightarrow$(3)：若 $\vv\gamma\in W_1\cap W_2$，则 $\vv\gamma+(-\vv\gamma)=\zero$ 是零向量的一种分解，由 (2) 得 $\vv\gamma=\zero$. 反之，若 $\vv\alpha_1+\vv\alpha_2=\zero$，则 $\vv\alpha_1=-\vv\alpha_2\in W_1\cap W_2=\{\zero\}$.
+		
+		(3)$\Leftrightarrow$(4)：由维数公式.
+		
+		(4)$\Leftrightarrow$(5)：两组基合起来共 $\dim W_1+\dim W_2$ 个向量，且生成 $W_1+W_2$. 由定理~\ref{thm:ndimbasis}(3)，它们是基当且仅当个数等于 $\dim(W_1+W_2)$.
+	\end{proof}
+	
+	\begin{motivebox}
+		条件 (3) 最好用：要判断``拆得干不干净''，只需检查两块是否只在原点相交. 这与线性无关的定义如出一辙：线性无关是``零向量只能用零系数组合出来''，直和是``零向量只能用零向量拼出来''. 直和就是``子空间层面的线性无关''.
+	\end{motivebox}
+	
+	\begin{definition}
+		若 $V=W\oplus U$，称 $U$ 是 $W$ 在 $V$ 中的一个\textbf{补空间}\index{bu3 kong1jian1@补空间}.
+	\end{definition}
+	
+	\begin{proposition}
+		有限维空间的任一子空间都有补空间，但补空间一般不唯一.
+	\end{proposition}
+	\begin{proof}
+		取 $W$ 的基 $\vv\alpha_1,\ldots,\vv\alpha_k$，扩张为 $V$ 的基 $\vv\alpha_1,\ldots,\vv\alpha_k,\vv\beta_1,\ldots,\vv\beta_{n-k}$，令 $$U=\spn(\vv\beta_1,\ldots,\vv\beta_{n-k})$$，由定理~\ref{thm:directsum2}(5) 即得. 不唯一的例子：在 $\mathbb{R}^2$ 中，$x$ 轴的补空间可以是任意一条不同于 $x$ 轴的过原点直线.
+	\end{proof}
+	
+	补空间不唯一，那么有没有一个``最自然''的补空间？有了``垂直''的概念之后答案是肯定的，见第十章正交补一节.
+	
+	\begin{example}
+		在 $\mathbb{F}[x]_n$ 中，令 $E$ 为只含偶次项的多项式全体，$O$ 为只含奇次项的多项式全体. 每个多项式都能唯一地拆成偶次部分与奇次部分之和，故 $\mathbb{F}[x]_n=E\oplus O$.
+	\end{example}
+	
+	\begin{example}[（价格水平与相对价格）]\label{eg:pricedecomp}
+		在 $\mathbb{R}^n$（$n$ 种商品的价格变动向量）中，令
+		\[L=\spn\big((1,1,\ldots,1)^\trans\big),\qquad R=\{\vv x\in\mathbb{R}^n\mid x_1+x_2+\cdots+x_n=0\}.\]
+		$L$ 中的向量表示所有价格同涨同跌（\textbf{一般价格水平}的变化），$R$ 中的向量表示有涨有跌、总和不变（\textbf{相对价格}的变化）. 若 $c(1,\ldots,1)^\trans\in R$，则 $nc=0$，$c=0$，故 $L\cap R=\{\zero\}$；又 $\dim L+\dim R=1+(n-1)=n$. 由定理~\ref{thm:directsum2}，$\mathbb{R}^n=L\oplus R$：任何价格变动都能唯一地分解为``整体通胀''与``结构调整''两部分. 具体地，$\vv x$ 在 $L$ 中的分量是 $\bar x(1,\ldots,1)^\trans$，其中 $\bar x$ 是各分量的平均值.
+	\end{example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}[iso2,scale=1.5]
+			\fill[figorange,opacity=0.13] (1.5,-0.5,-1) -- (0.5,-1.5,1) -- (-1.5,0.5,1) -- (-0.5,1.5,-1) -- cycle;
+			\draw[figorange!70] (1.5,-0.5,-1) -- (0.5,-1.5,1) -- (-1.5,0.5,1) -- (-0.5,1.5,-1) -- cycle;
+			\node[figorange,font=\small,anchor=north] at (0.5,-1.5,1) {$R$：$x_1+x_2+x_3=0$};
+			\draw[axis] (0,0,0) -- (1.6,0,0) node[below]{$x_1$};
+			\draw[axis] (0,0,0) -- (0,1.9,0) node[right]{$x_2$};
+			\draw[axis] (0,0,0) -- (0,0,1.6) node[above]{$x_3$};
+			\draw[thick,figblue] (-0.9,-0.9,-0.9) -- (1.75,1.75,1.75) node[above right]{$L$};
+			\coordinate (x) at (1.65,0.55,1.1);
+			\coordinate (l) at (1.1,1.1,1.1);
+			\coordinate (r) at (0.55,-0.55,0);
+			\draw[dashed,gray] (l) -- (x) -- (r);
+			\draw[vec,figblue] (0,0,0) -- (l) node[above left,font=\small]{$\bar x(1,1,1)^\trans$};
+			\draw[vec,figorange] (0,0,0) -- (r) node[below left,font=\small]{偏离平均};
+			\draw[vec,figred] (0,0,0) -- (x) node[right]{$\vv x$};
+		\end{tikzpicture}
+		\caption{$\mathbb{R}^3=L\oplus R$：任何价格变动 $\vv x$ 都唯一地分解为``一般价格水平''（$L$ 中）与``相对价格''（$R$ 中）两部分. 图中 $\vv x$ 按 $(3,1,2)^\trans$ 的比例画出. 第十章会看到，$L$ 与 $R$ 互相垂直.}
+		\label{fig:pricedecomp}
+	\end{figure}
+	\subsection{多个子空间的直和}
+	
+	\begin{definition}
+		若 $W_1+\cdots+W_k$ 中每个向量都能唯一地写成 $\vv\alpha_1+\cdots+\vv\alpha_k$（$\vv\alpha_i\in W_i$），称之为直和，记为 $W_1\oplus\cdots\oplus W_k$.
+	\end{definition}
+	
+	\begin{theorem}
+		以下条件等价：
+		\begin{enumerate}
+			\item $W_1+\cdots+W_k$ 是直和；
+			\item 零向量的分解唯一；
+			\item 对每个 $i$，$W_i\cap\sum_{j\ne i}W_j=\{\zero\}$；
+			\item $\dim(W_1+\cdots+W_k)=\dim W_1+\cdots+\dim W_k$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		(1)$\Leftrightarrow$(2) 与两个子空间的情形相同.
+		
+		(2)$\Rightarrow$(3)：若 $\vv\gamma\in W_i\cap\sum_{j\neq i}W_j$，写 $\vv\gamma=\sum_{j\ne i}\vv\alpha_j$，则 $(-\vv\gamma)+\sum_{j\ne i}\vv\alpha_j=\zero$ 是零向量的分解，故 $\vv\gamma=\zero$.
+		
+		(3)$\Rightarrow$(2)：设 $\vv\alpha_1+\cdots+\vv\alpha_k=\zero$. 对每个 $i$，$\vv\alpha_i=-\sum_{j\ne i}\vv\alpha_j\in W_i\cap\sum_{j\ne i}W_j$，故 $\vv\alpha_i=\zero$.
+		
+		(1)$\Leftrightarrow$(4) 对 $k$ 用归纳法并结合维数公式，留作习题.
+	\end{proof}
+	
+	\begin{pitfallbox}
+		多个子空间时，``两两交为零''\textbf{不够}. 在 $\mathbb{R}^2$ 中取 $W_1=\spn(\vv e_1)$，$W_2=\spn(\vv e_2)$，$W_3=\spn(\vv e_1+\vv e_2)$，它们两两只交于原点，但
+		$\vv e_1+\vv e_2-(\vv e_1+\vv e_2)=\zero$ 是零向量的一个非平凡分解，和不是直和. 三条直线挤在二维平面里，不可能互不干扰. 这与``向量组两两线性无关不等于整体线性无关''是同一个现象.
+	\end{pitfallbox}
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}
+			\begin{scope}[iso,scale=0.9]
+				\fill[figblue,opacity=0.15] (-1.3,-1.6,0) -- (1.3,-1.6,0) -- (1.3,1.6,0) -- (-1.3,1.6,0) -- cycle;
+				\fill[figorange,opacity=0.15] (0,-1.6,-1.2) -- (0,1.6,-1.2) -- (0,1.6,1.4) -- (0,-1.6,1.4) -- cycle;
+				\draw[figblue] (-1.3,-1.6,0) -- (1.3,-1.6,0) -- (1.3,1.6,0) -- (-1.3,1.6,0) -- cycle;
+				\draw[figorange] (0,-1.6,-1.2) -- (0,1.6,-1.2) -- (0,1.6,1.4) -- (0,-1.6,1.4) -- cycle;
+				\draw[line width=1.6pt,figred] (0,-1.6,0) -- (0,1.6,0);
+				\node[figblue,font=\small] at (1.6,1.9,0) {$xy$ 平面};
+				\node[figorange,font=\small,above] at (0,-1.2,1.4) {$yz$ 平面};
+				\node[figred,font=\small,right] at (0,1.7,0) {$y$ 轴};
+			\end{scope}
+			\node[sub] at (0,-2.0) {(a) 和是 $\mathbb{R}^3$，交是 $y$ 轴：不是直和};
+			\begin{scope}[xshift=6cm]
+				\draw[thick,figblue] (-1.6,0) -- (1.8,0) node[right]{$W_1$};
+				\draw[thick,figorange] (0,-1.3) -- (0,1.7) node[above]{$W_2$};
+				\draw[thick,figgreen] (-1.3,-1.3) -- (1.6,1.6) node[above right]{$W_3$};
+				\draw[vec,figblue] (0,0) -- (1,0);
+				\draw[vec,figorange] (1,0) -- (1,1);
+				\draw[vec,figgreen] (1,1) -- (0.03,0.03);
+				\node[sub] at (0.2,-2.0) {(b) 两两只交于原点，\\但 $\vv e_1+\vv e_2-(\vv e_1+\vv e_2)=\zero$};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{判断直和：两个子空间看交是否为零；三个以上子空间时，``两两交为零''不够.}
+		\label{fig:directsum}
+	\end{figure}
+	\subsection{线性空间的直积}
+	
+	直和是把一个已知空间\textbf{拆开}. 反过来，也可以把两个毫不相干的空间\textbf{拼起来}.
+	
+	\begin{definition}
+		设 $V,W$ 是 $\mathbb{F}$ 上的线性空间. 在笛卡尔积 $V\times W=\{(\vv\alpha,\vv\beta)\mid\vv\alpha\in V,\vv\beta\in W\}$ 上按分量定义运算：
+		\[(\vv\alpha_1,\vv\beta_1)+(\vv\alpha_2,\vv\beta_2)=(\vv\alpha_1+\vv\alpha_2,\ \vv\beta_1+\vv\beta_2),\qquad k(\vv\alpha,\vv\beta)=(k\vv\alpha,k\vv\beta).\]
+		它构成 $\mathbb{F}$ 上的线性空间，称为 $V$ 与 $W$ 的\textbf{直积}\index{zhi2ji1@直积}(direct product)，也称\textbf{外直和}\index{wai4 zhi2he2@外直和}.
+	\end{definition}
+	
+	八条公理逐项验证即可，零向量是 $(\zero,\zero)$. 例如 $\mathbb{F}^m\times\mathbb{F}^n$ 就是把两个向量``上下摞在一起''，可以等同于 $\mathbb{F}^{m+n}$.
+	
+	\begin{theorem}\label{thm:productsum}
+		\begin{enumerate}
+			\item $\dim(V\times W)=\dim V+\dim W$.
+			\item 在 $V\times W$ 中，$V\times\{\zero\}$ 与 $\{\zero\}\times W$ 是子空间，且 $V\times W=(V\times\{\zero\})\oplus(\{\zero\}\times W)$.
+			\item 若 $V=W_1\oplus W_2$，则映射 $W_1\times W_2\to V$，$(\vv\alpha_1,\vv\alpha_2)\mapsto\vv\alpha_1+\vv\alpha_2$ 是同构.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		(1) 若 $\vv\alpha_1,\ldots,\vv\alpha_m$ 与 $\vv\beta_1,\ldots,\vv\beta_n$ 分别是 $V,W$ 的基，则 $(\vv\alpha_i,\zero)$ 与 $(\zero,\vv\beta_j)$ 合起来是 $V\times W$ 的基，验证方法与定理~\ref{thm:directsum2} 相同. (2) $(\vv\alpha,\vv\beta)=(\vv\alpha,\zero)+(\zero,\vv\beta)$，两个子空间只交于 $(\zero,\zero)$. (3) 映射显然保持线性运算；``每个向量都能写成 $\vv\alpha_1+\vv\alpha_2$''说明它是满射，``写法唯一''说明它是单射.
+	\end{proof}
+	
+	\begin{motivebox}
+		定理~\ref{thm:productsum} 说：\textbf{直积与直和是同一件事的两面}. 直积是``从外面拼''，直和是``在里面拆''，在同构意义下二者没有区别. 这正是本章同构思想的又一次应用：我们不在乎向量``是什么''，只在乎结构.\footnote{对无穷多个空间，``直积''与``直和''不再相同：直积允许无穷多个分量非零，直和只允许有限个分量非零. 这超出了本书范围.}
+	\end{motivebox}
+	
+	\begin{linkbox}{面板数据}
+		经济学中常把 $n$ 个地区、$T$ 年的数据排在一起分析，称为\textbf{面板数据}\index{mian4ban3 shu4ju4@面板数据}. 若每个地区每年记录一个指标，全部数据就是 $\mathbb{R}^n\times\cdots\times\mathbb{R}^n$（$T$ 个）中的一个元素，维数为 $nT$. 把它按年份拆开，就是直积的分量；按例~\ref{eg:pricedecomp} 的方法把每年的数据拆成``全国平均''与``地区差异''两部分，就是在每个分量里做直和分解. 计量经济学中的``固定效应''模型正是从这种分解出发的.
+	\end{linkbox}
+	
+	\begin{exercise}
+		\begin{enumerate}
+			\item 设 $W_1=\spn((1,0,1)^\trans,(0,1,1)^\trans)$，$W_2=\spn((1,1,0)^\trans)$. $\mathbb{R}^3=W_1\oplus W_2$ 是否成立？
+			\item 证明 $M_n(\mathbb{F})$ 是对称矩阵全体与反对称矩阵全体的直和，并求两者的维数.（提示：第三章章末习题~\ref{ex:mat:A22}.）
+			\item 设 $\mathscr T$ 是 $V$ 上的线性变换且 $\mathscr T^2=\mathscr T$. 证明 $V=\ker\mathscr T\oplus\imm\mathscr T$.（这把第四章章末习题~\ref{ex:lmap:B8} 改写成了直和的语言.）
+			\item 完成多个子空间直和判定中 (1)$\Leftrightarrow$(4) 的证明.
+			\item 在例~\ref{eg:pricedecomp} 中，把 $\vv x=(3,1,2)^\trans$ 分解为 $L$ 与 $R$ 中向量之和.
+			\item 证明：$V\times W\cong W\times V$，$(U\times V)\times W\cong U\times(V\times W)$.
+		\end{enumerate}
+	\end{exercise}
+	
+	
+	\section{线性映射的定义}
+	
+	本章前半部分研究的是线性空间本身. 但要描述线性空间上的线性变换（本章的中心任务），还需要研究空间与空间之间的关系. 其实我们已经见过一种这样的关系：第~\ref{sec:coord}~节的坐标映射把 $V$ 中的向量对应到 $\mathbb{F}^n$ 中的坐标，它保持加法与数乘，而且是一一对应，这就是同构. 现在把``一一对应''的要求去掉，只保留``保持运算''.
+
+	中学几乎一直在研究函数，即从一个数集到另一个数集的对应法则. 两个集合之间的对应法则一般称为\textbf{映射}. 线性空间之间的映射，自变量与函数值都是向量. 然而，并不是每个映射都值得研究：线性空间的要点在于加法与数乘这两种运算，任意的对应法则会把运算打乱，从中得不到关于空间的信息. 我们只研究``先运算再对应''与``先对应再运算''结果相同的映射.
+	
+	\begin{definition}
+		设 $V,W$ 是 $\mathbb{F}$ 上的线性空间. 映射 $\mathscr T:V\to W$ 若满足对任意 $\vv\alpha,\vv\beta\in V$，$k\in\mathbb{F}$：
 		\[
 		\mathscr T(\vv\alpha+\vv\beta)=\mathscr T(\vv\alpha)+\mathscr T(\vv\beta),\qquad \mathscr T(k\vv\alpha)=k\mathscr T(\vv\alpha),
 		\]
 		则称 $\mathscr T$ 为\textbf{线性映射}\index{xian4xing4 ying4she4@线性映射}. $V=W$ 时也称 $\mathscr T$ 为 $V$ 上的\textbf{线性变换}\index{xian4xing4 bian4huan4@线性变换}.
 	\end{definition}
+	
+	\paragraph*{称呼约定.} 本书中，$V\to W$ 的线性映射一律称为\textbf{线性映射}；当 $W=V$，即线性映射从一个空间映到它自身时，称为 $V$ 上的\textbf{线性变换}. 线性变换是线性映射的特例. 本章标题用``线性变换''，是因为从第八章起研究的主要是一个空间到自身的线性变换：它的矩阵是方阵，才谈得上特征值、对角化与标准形.
+	
 	
 	同构映射就是双射的线性映射. 与定理~\ref{thm:isomorphism} 一样，线性映射满足 $\mathscr T(\zero)=\zero$，且把线性组合映为线性组合.
 	
@@ -2796,7 +2894,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\begin{itemize}
 			\item 第一行系数之和为 $1$，后两行系数之和为 $0$. 所以灰色像素 $R=G=B=g$ 变为 $(g,0,0)^\trans$：灰色没有``色度''，只有亮度.
 			\item 系数矩阵可逆，换基本身不损失任何信息. 但人眼对亮度远比对颜色敏感，于是可以对每 $2\times2$ 个像素只保留一组 $(C_b,C_r)$. 原来 $4$ 个像素要存 $12$ 个数，现在只需 $4+1+1=6$ 个，数据量减半.
-			\item 换基不改变信息，但改变了\textbf{信息在坐标之间的分布}，让``重要的''集中到少数坐标上，``不重要的''可以舍弃. 这一思想将在第十章的奇异值分解与主成分分析中达到顶峰.
+			\item 换基不改变信息，但改变了\textbf{信息在坐标之间的分布}，让``重要的''集中到少数坐标上，``不重要的''可以舍弃. 这一思想将在第十一章的奇异值分解与主成分分析中达到顶峰.
 		\end{itemize}
 		
 		\mstep{局限} 加上 $128$ 的偏移后，变换是``线性映射 $+$ 平移''，即\textbf{仿射变换}\index{fang3she4 bian4huan4@仿射变换}，而不是线性变换（回忆：平移不保持零向量）. 另外，系数取决于所采用的标准，高清视频标准使用另一组系数.
@@ -2811,12 +2909,12 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	本章为方阵定义一个数值特征，即行列式. 从几何上看，行列式是方阵所代表的线性变换对面积或体积的有向伸缩倍数. 行列式给出了方阵可逆的数值判据，以及逆矩阵和方程组的解的显式公式（伴随矩阵与 Cramer 法则）. 本章最后用子式刻画矩阵的秩，与第三章用向量组定义的秩相互印证.
 	
-	\chapterhours{4}{5}{5}
+	\chapterhours{4}{5}{6}
 	
 	\begin{introduction}[学习目标]
 		\item 计算排列的逆序数，按定义写出低阶行列式的展开式
-		\item 运用行列式的性质把行列式化为三角形计算，运用按行（列）展开计算行列式
-		\item 运用乘积公式以及``方阵可逆当且仅当行列式不为零''解决问题
+		\item 运用行列式的性质把行列式化为三角形计算，运用按行（列）展开与 Laplace 定理计算行列式
+		\item 运用乘积公式、Cauchy–Binet 公式以及``方阵可逆当且仅当行列式不为零''解决问题
 		\item 求伴随矩阵，用伴随矩阵求逆矩阵，用 Cramer 法则解方程组
 		\item 用子式判断矩阵的秩
 	\end{introduction}
@@ -3041,7 +3139,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		在 $n$ 阶行列式中划去第 $i$ 行、第 $j$ 列，余下元素按原顺序组成的 $n-1$ 阶行列式记为 $M_{ij}$，称为 $a_{ij}$ 的\textbf{余子式}\index{yu2zi3shi4@余子式}；$A_{ij}=(-1)^{i+j}M_{ij}$ 称为 $a_{ij}$ 的\textbf{代数余子式}\index{dai4shu4 yu2zi3shi4@代数余子式}.
 	\end{definition}
 	
-	\begin{theorem}[Laplace 展开]\label{thm:expansion}\index{laplace zhan3kai1@Laplace 展开}
+	\begin{theorem}[按行（列）展开]\label{thm:expansion}\index{an4hang2 zhan3kai1@按行（列）展开}
 		对任意 $i,j$，
 		\[
 		\det\vv A=\sum_{k=1}^n a_{ik}A_{ik}\ \ (\text{按第 } i \text{ 行展开})=\sum_{k=1}^n a_{kj}A_{kj}\ \ (\text{按第 } j \text{ 列展开}).
@@ -3078,6 +3176,67 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\]
 		证明：从最后一行起，每一行减去上一行的 $x_1$ 倍，再按第一列展开，并提出各列公因子 $(x_j-x_1)$，得到一个 $n-1$ 阶 Vandermonde 行列式，然后归纳. 细节留作练习.
 	\end{example}
+	
+	\subsection{Laplace 定理}\label{sec:laplace}
+	
+	按一行展开，是把行列式写成这一行的 $n$ 个元素与各自代数余子式的乘积之和. 把``一行''换成``若干行''，就得到更一般的展开.
+	
+	\begin{definition}
+		在 $n$ 阶方阵 $\vv A$ 中任取 $k$ 行 $i_1<\cdots<i_k$ 与 $k$ 列 $j_1<\cdots<j_k$（$1\le k<n$），位于这些行、列交叉处的元素按原来的相对位置组成的 $k$ 阶行列式，称为 $\vv A$ 的一个 \textbf{$k$ 阶子式}\index{zi3shi4@子式}，记为
+		\[
+		\vv A\binom{i_1\,\cdots\,i_k}{j_1\,\cdots\,j_k}.
+		\]
+		划去这 $k$ 行、$k$ 列后，余下元素按原来的相对位置组成的 $n-k$ 阶行列式 $M$ 称为这个子式的\textbf{余子式}；$(-1)^{(i_1+\cdots+i_k)+(j_1+\cdots+j_k)}M$ 称为它的\textbf{代数余子式}.
+	\end{definition}
+	
+	$k=1$ 时，一阶子式就是元素 $a_{ij}$ 本身，余子式与代数余子式就是前面的 $M_{ij}$ 与 $A_{ij}$.
+	
+	\begin{theorem}[Laplace 定理]\label{thm:laplace}\index{laplace ding4li3@Laplace 定理}
+		在 $n$ 阶行列式中任意取定 $k$ 行 $i_1<\cdots<i_k$（$1\le k<n$）. 由这 $k$ 行元素组成的全部 $\binom nk$ 个 $k$ 阶子式与各自的代数余子式的乘积之和，等于行列式本身：
+		\begin{equation}\label{eq:laplace}
+			\det\vv A=\sum_{1\le j_1<\cdots<j_k\le n}\vv A\binom{i_1\,\cdots\,i_k}{j_1\,\cdots\,j_k}\cdot(-1)^{(i_1+\cdots+i_k)+(j_1+\cdots+j_k)}M_{j_1\cdots j_k},
+		\end{equation}
+		其中 $M_{j_1\cdots j_k}$ 是相应子式的余子式. 取定 $k$ 列时有同样的结论.
+	\end{theorem}
+	\begin{proof}
+		先说明一个事实：交换相邻的两行（或两列）后，原行列式的每一项 $(-1)^{\tau(p_1\cdots p_n)}a_{1p_1}\cdots a_{np_n}$ 中的元素乘积，仍是新行列式的一项，但符号相反. 事实上，交换第 $r$、$r+1$ 行时，这个乘积在新行列式中对应的列号排列是把 $p_r$ 与 $p_{r+1}$ 互换；交换第 $c$、$c+1$ 列时，对应的列号排列是把数 $c$ 与 $c+1$ 互换. 由引理~\ref{lem:transposition}，两种情形下排列的奇偶性都改变.
+		
+		\textbf{第一步：取定前 $k$ 行与前 $k$ 列.} 设 $i_s=j_s=s$（$s=1,\ldots,k$），子式为 $N$，余子式为 $M$. 在 $\det\vv A$ 的各项中，考察前 $k$ 行的元素恰好取自前 $k$ 列的那些项. 这时 $\{p_1,\ldots,p_k\}=\{1,\ldots,k\}$，$\{p_{k+1},\ldots,p_n\}=\{k+1,\ldots,n\}$. 前段的每个数都小于后段的每个数，两段之间没有逆序，所以
+		\[
+		\tau(p_1\cdots p_n)=\tau(p_1\cdots p_k)+\tau(p_{k+1}\cdots p_n),
+		\]
+		这样的一项等于
+		\[
+		\Big[(-1)^{\tau(p_1\cdots p_k)}a_{1p_1}\cdots a_{kp_k}\Big]\cdot\Big[(-1)^{\tau(p_{k+1}\cdots p_n)}a_{k+1,p_{k+1}}\cdots a_{np_n}\Big].
+		\]
+		让 $p_1\cdots p_k$ 取遍 $1,\ldots,k$ 的全部排列、$p_{k+1}\cdots p_n$ 取遍 $k+1,\ldots,n$ 的全部排列，前一个方括号之和是 $N$，后一个方括号之和是 $M$（把 $k+1,\ldots,n$ 重新编号为 $1,\ldots,n-k$ 不改变逆序数）. 所以这些项之和为 $NM$. 此时 $(-1)^{(1+\cdots+k)+(1+\cdots+k)}=1$，结论成立.
+		
+		\textbf{第二步：一般的 $k$ 行与 $k$ 列.} 把第 $i_1$ 行经 $i_1-1$ 次相邻交换移到第 $1$ 行，再把第 $i_2$ 行经 $i_2-2$ 次相邻交换移到第 $2$ 行……共交换 $\sum_s(i_s-s)$ 次；对第 $j_1,\ldots,j_k$ 列同样操作，共交换 $\sum_s(j_s-s)$ 次. 其余各行、各列的相对顺序不变，所以新矩阵左上角的 $k$ 阶子式仍是 $\vv A\binom{i_1\,\cdots\,i_k}{j_1\,\cdots\,j_k}$，它的余子式仍是 $M_{j_1\cdots j_k}$. 由开头的事实，$\det\vv A$ 中``第 $i_1,\ldots,i_k$ 行的元素取自第 $j_1,\ldots,j_k$ 列''的那些项，变为新行列式中``前 $k$ 行的元素取自前 $k$ 列''的那些项，符号相差
+		\[
+		(-1)^{\sum_s(i_s-s)+\sum_s(j_s-s)}=(-1)^{(i_1+\cdots+i_k)+(j_1+\cdots+j_k)}.
+		\]
+		由第一步，前者之和等于 $\vv A\binom{i_1\,\cdots\,i_k}{j_1\,\cdots\,j_k}\cdot(-1)^{(i_1+\cdots+i_k)+(j_1+\cdots+j_k)}M_{j_1\cdots j_k}$.
+		
+		\textbf{第三步：求和.} $\det\vv A$ 的每一项中，第 $i_1,\ldots,i_k$ 行的元素恰好取自某 $k$ 个不同的列. 把 $\det\vv A$ 的 $n!$ 项按这 $k$ 列分组，每组之和由第二步给出，对全部 $\binom nk$ 种取法求和即得 \eqref{eq:laplace}. 取定 $k$ 列的情形，对 $\vv A^\trans$ 用已证的结论，再用性质~\ref{prop:det-transpose}.
+	\end{proof}
+	
+	$k=1$ 时，Laplace 定理就是定理~\ref{thm:expansion} 中的按行（列）展开. Laplace 定理适用于某几行的零元素很多、非零的 $k$ 阶子式很少的情形.
+	
+	\begin{example}
+		计算 $D=\begin{vmatrix}1&0&2&0\\3&0&4&0\\5&6&7&8\\1&2&3&4\end{vmatrix}$.
+	\end{example}
+	\begin{solution}
+		取定第 $1,2$ 行. 这两行的元素只在第 $1,3$ 列不为零，在它们组成的 $\binom42=6$ 个二阶子式中，只要含第 $2$ 列或第 $4$ 列，就有一列全为零. 所以只有取第 $1,3$ 列的子式可能不为零：
+		\[
+		\vv A\binom{1\,2}{1\,3}=\begin{vmatrix}1&2\\3&4\end{vmatrix}=-2.
+		\]
+		它的余子式由第 $3,4$ 行、第 $2,4$ 列组成，$M=\begin{vmatrix}6&8\\2&4\end{vmatrix}=8$，符号为 $(-1)^{(1+2)+(1+3)}=-1$. 于是
+		\[
+		D=(-2)\cdot(-1)\cdot8=16.
+		\]
+	\end{solution}
+	
+	用同样的方法按前 $m$ 行展开，立即得到分块三角矩阵的行列式公式（章末习题~\ref{ex:det:A17}）：前 $m$ 行中只有前 $m$ 列组成的子式可能不为零.
 	
 	\section{乘积公式与可逆性}
 	
@@ -3125,12 +3284,60 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{remark}
 		Cramer 法则的理论意义大于计算意义：它说明解``连续地依赖于''系数，并给出了显式公式. 但实际求解时，计算 $n+1$ 个行列式远不如一次消元划算.
 	\end{remark}
+	
+	\subsection{Cauchy–Binet 公式}
+	
+	乘积公式要求 $\vv A,\vv B$ 都是方阵. 若 $\vv A$ 是 $m\times n$ 矩阵、$\vv B$ 是 $n\times m$ 矩阵，乘积 $\vv{AB}$ 仍是 $m$ 阶方阵，它的行列式可以用 $\vv A,\vv B$ 的 $m$ 阶子式表示. 下面沿用第~\ref{sec:laplace}~小节的记号：$\vv A\binom{1\,\cdots\,m}{j_1\,\cdots\,j_m}$ 是 $\vv A$ 的第 $j_1,\ldots,j_m$ 列组成的 $m$ 阶行列式，$\vv B\binom{j_1\,\cdots\,j_m}{1\,\cdots\,m}$ 是 $\vv B$ 的第 $j_1,\ldots,j_m$ 行组成的 $m$ 阶行列式.
+	
+	\begin{theorem}[Cauchy–Binet 公式]\label{thm:cauchybinet}\index{cauchy binet gong1shi4@Cauchy–Binet 公式}
+		设 $\vv A$ 是 $m\times n$ 矩阵，$\vv B$ 是 $n\times m$ 矩阵.
+		\begin{enumerate}
+			\item 若 $m>n$，则 $\det(\vv{AB})=0$；
+			\item 若 $m\le n$，则
+			\begin{equation}\label{eq:cauchybinet}
+				\det(\vv{AB})=\sum_{1\le j_1<\cdots<j_m\le n}\vv A\binom{1\,\cdots\,m}{j_1\,\cdots\,j_m}\vv B\binom{j_1\,\cdots\,j_m}{1\,\cdots\,m}.
+			\end{equation}
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		由性质~\ref{prop:det-transpose}，行列式的各条性质对列同样成立. 记 $\vv A$ 的第 $l$ 列为 $\vv a_l$. $\vv{AB}$ 的第 $k$ 列是 $\vv A$ 的各列以 $\vv B$ 的第 $k$ 列为系数的线性组合：$\sum_{l=1}^nb_{lk}\vv a_l$. 由行列式对各列的线性（性质~\ref{prop:det-linear}），把 $m$ 列逐一拆开，得
+		\[
+		\det(\vv{AB})=\det\Big(\sum_{l_1}b_{l_11}\vv a_{l_1},\ \ldots,\ \sum_{l_m}b_{l_mm}\vv a_{l_m}\Big)=\sum_{l_1,\ldots,l_m=1}^nb_{l_11}\cdots b_{l_mm}\det(\vv a_{l_1},\ldots,\vv a_{l_m}).
+		\]
+		若 $l_1,\ldots,l_m$ 中有两个相同，行列式有两列相同，等于零（性质~\ref{prop:det-equalrows}）. 当 $m>n$ 时，$m$ 个取自 $\{1,\ldots,n\}$ 的数必有两个相同，于是 $\det(\vv{AB})=0$.
+		
+		设 $m\le n$. 剩下的是 $l_1,\ldots,l_m$ 互不相同的项. 按集合 $\{l_1,\ldots,l_m\}$ 分组：设它从小到大是 $j_1<\cdots<j_m$，则 $l_k=j_{\sigma_k}$，其中 $\sigma_1\cdots\sigma_m$ 是 $1,\ldots,m$ 的一个排列. 把列 $\vv a_{l_1},\ldots,\vv a_{l_m}$ 重新排成 $\vv a_{j_1},\ldots,\vv a_{j_m}$，可以经过若干次对换完成，对换次数的奇偶性与 $\tau(\sigma_1\cdots\sigma_m)$ 相同（引理~\ref{lem:transposition}），每次对换改变行列式的符号（性质~\ref{prop:det-swap}），所以
+		\[
+		\det(\vv a_{l_1},\ldots,\vv a_{l_m})=(-1)^{\tau(\sigma_1\cdots\sigma_m)}\vv A\binom{1\,\cdots\,m}{j_1\,\cdots\,j_m}.
+		\]
+		于是 $j_1<\cdots<j_m$ 这一组之和为
+		\[
+		\vv A\binom{1\,\cdots\,m}{j_1\,\cdots\,j_m}\sum_{\sigma_1\cdots\sigma_m}(-1)^{\tau(\sigma_1\cdots\sigma_m)}b_{j_{\sigma_1}1}b_{j_{\sigma_2}2}\cdots b_{j_{\sigma_m}m}.
+		\]
+		记 $\vv C$ 为 $\vv B$ 的第 $j_1,\ldots,j_m$ 行组成的 $m$ 阶方阵，$c_{sk}=b_{j_sk}$，则后面的和是 $\sum(-1)^{\tau(\sigma_1\cdots\sigma_m)}c_{\sigma_11}\cdots c_{\sigma_mm}=\det\vv C^\trans=\det\vv C$，即 $\vv B\binom{j_1\,\cdots\,j_m}{1\,\cdots\,m}$. 对全部 $\binom nm$ 组求和即得 \eqref{eq:cauchybinet}.
+	\end{proof}
+	
+	$m=n$ 时，\eqref{eq:cauchybinet} 右边只有一项，就是乘积公式 $\det(\vv{AB})=\det\vv A\det\vv B$；$m=1$ 时，它是数量积的公式 $\vv a^\trans\vv b=\sum_ja_jb_j$. Cauchy–Binet 公式介于两者之间. (1) 也可以从秩看出：$\rk(\vv{AB})\le\rk\vv A\le n<m$，$m$ 阶方阵 $\vv{AB}$ 不满秩.
+	
+	\begin{example}\label{eg:lagrangeid}
+		设 $\vv a=(a_1,a_2,a_3)^\trans$，$\vv b=(b_1,b_2,b_3)^\trans$ 是 $\mathbb{R}^3$ 中的向量，令 $\vv A=\begin{pmatrix}\vv a^\trans\\\vv b^\trans\end{pmatrix}$（$2\times3$ 矩阵），$\vv B=\vv A^\trans$. 由 Cauchy–Binet 公式，
+		\[
+		\det(\vv A\vv A^\trans)=\begin{vmatrix}\vv a^\trans\vv a&\vv a^\trans\vv b\\\vv b^\trans\vv a&\vv b^\trans\vv b\end{vmatrix}=\begin{vmatrix}a_1&a_2\\b_1&b_2\end{vmatrix}^2+\begin{vmatrix}a_1&a_3\\b_1&b_3\end{vmatrix}^2+\begin{vmatrix}a_2&a_3\\b_2&b_3\end{vmatrix}^2.
+		\]
+		左边是 $|\vv a|^2|\vv b|^2-(\vv a\cdot\vv b)^2=|\vv a|^2|\vv b|^2\sin^2\theta$，即以 $\vv a,\vv b$ 为邻边的平行四边形面积的平方；右边三个二阶行列式，分别是这个平行四边形在三个坐标平面上的投影的有向面积. 所以这个等式是\textbf{面积的勾股定理}：平行四边形面积的平方，等于它在三个坐标平面上的投影面积的平方和. 例如 $\vv a=(1,2,0)^\trans$，$\vv b=(0,1,3)^\trans$ 时，左边为 $5\times10-2^2=46$，右边为 $1^2+3^2+6^2=46$.
+	\end{example}
+	
+	一般地，对实的 $m\times n$ 矩阵 $\vv A$（$m\le n$），取 $\vv B=\vv A^\trans$，得
+	\[
+	\det(\vv A\vv A^\trans)=\sum_{1\le j_1<\cdots<j_m\le n}\vv A\binom{1\,\cdots\,m}{j_1\,\cdots\,j_m}^2\ge0,
+	\]
+	等号成立当且仅当 $\vv A$ 的 $m$ 阶子式全为零，即（由第~\ref{sec:minorrank}~节）$\rk\vv A<m$. $m=2$ 时，$\det(\vv A\vv A^\trans)\ge0$ 正是 Cauchy–Schwarz 不等式 $(\vv a\cdot\vv b)^2\le|\vv a|^2|\vv b|^2$（第十章将在一般的内积空间中证明它）.
 		\section{子式与矩阵的秩}\label{sec:minorrank}
 	
 	第三章用行（列）向量组的秩定义了矩阵的秩，求秩要做初等变换. 行列式给出了另一种刻画：看矩阵里``藏着''多大的非零行列式.
 	
 	\begin{definition}
-		设 $\vv A$ 是 $m\times n$ 矩阵，$1\le k\le\min\{m,n\}$. 任取 $\vv A$ 的 $k$ 行与 $k$ 列，位于这些行、列交叉处的 $k^2$ 个元素按原来的相对位置组成的 $k$ 阶行列式，称为 $\vv A$ 的一个 $k$ 阶\textbf{子式}\index{zi3shi4@子式}(minor). 当 $\vv A$ 是方阵且所取的行号与列号相同时，称为\textbf{主子式}\index{zhu3zi3shi4@主子式}(principal minor)；若所取的恰是前 $k$ 行与前 $k$ 列，称为 $k$ 阶\textbf{顺序主子式}\index{shun4xu4 zhu3zi3shi4@顺序主子式}(leading principal minor).
+		设 $\vv A$ 是 $m\times n$ 矩阵，$1\le k\le\min\{m,n\}$. 与第~\ref{sec:laplace}~小节对方阵的定义一样，任取 $\vv A$ 的 $k$ 行与 $k$ 列，位于这些行、列交叉处的 $k^2$ 个元素按原来的相对位置组成的 $k$ 阶行列式，称为 $\vv A$ 的一个 $k$ 阶\textbf{子式}(minor). 当 $\vv A$ 是方阵且所取的行号与列号相同时，称为\textbf{主子式}\index{zhu3zi3shi4@主子式}(principal minor)；若所取的恰是前 $k$ 行与前 $k$ 列，称为 $k$ 阶\textbf{顺序主子式}\index{shun4xu4 zhu3zi3shi4@顺序主子式}(leading principal minor).
 	\end{definition}
 	
 	例如，余子式 $M_{ij}$ 就是 $n$ 阶方阵的一个 $n-1$ 阶子式.
@@ -3164,7 +3371,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{solution}
 	
 	\begin{remark}
-		求秩时，子式通常比初等变换麻烦得多. 这个定理的价值在于理论上的刻画. 例如它说明：一个非零子式在矩阵元素作微小改动后仍不为零，所以\textbf{秩在微小扰动下不会降低，只可能升高}. 带测量误差的数据矩阵因此几乎总是满秩的，``数据的真实秩''要用第十章的奇异值来判断.
+		求秩时，子式通常比初等变换麻烦得多. 这个定理的价值在于理论上的刻画. 例如它说明：一个非零子式在矩阵元素作微小改动后仍不为零，所以\textbf{秩在微小扰动下不会降低，只可能升高}. 带测量误差的数据矩阵因此几乎总是满秩的，``数据的真实秩''要用第十一章的奇异值来判断.
 	\end{remark}
 	\begin{modelbox}{投入产出（续）：经济能否运转与产业乘数}
 		\mstep{问题} 回到两部门模型 $(\vv I-\vv A)\vv x=\vv d$，$\vv A=\begin{pmatrix}0.2&0.3\\0.4&0.1\end{pmatrix}$. 两个问题：(1) 这个经济体是否\textbf{对任何}非负的最终需求都能给出非负的产出？(2) 某部门的最终需求增加 $1$ 单位，各部门产出各需增加多少？
@@ -3220,13 +3427,13 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	本章是第一部分的总结. 第一章给出了求解方程组的算法，第二至五章建立了秩、维数、线性映射与行列式的语言. 本章用这些语言完整地描述线性方程组的解集：解是否存在、是否唯一，齐次方程组的解空间及其基础解系，以及非齐次方程组的解集与齐次方程组解空间的关系. 64、72 学时方案还将讨论子空间的方程表示、方程组能够唯一确定哪些量，以及矩阵的秩不等式.
 	
-	\chapterhours{4}{5}{6}
+	\chapterhours{4}{5}{7}
 	
 	\begin{introduction}[学习目标]
 		\item 用秩判断线性方程组是否有解、解是否唯一
 		\item 求齐次方程组的基础解系，写出非齐次方程组的通解
 		\item 说明非齐次方程组的解集与对应齐次方程组的解空间之间的关系
-		\item 在子空间的参数表示与方程表示之间相互转化（64 学时起），解矩阵方程，运用 Sylvester 不等式
+		\item 在子空间的参数表示与方程表示之间相互转化（72 学时起），解矩阵方程，运用 Sylvester 不等式
 		\item 判断方程组能否唯一确定给定的量
 	\end{introduction}
 	
@@ -3428,7 +3635,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		证明的关键是一种``对称性''：$\vv a$ 与 $\vv\beta$ 的关系 $\vv a^\trans\vv\beta=0$ 对两者是平等的. 从 $W$ 的基出发求出所有``与 $W$ 正交的系数向量''，再反过来用它们写方程. 第九章会看到，这正是``正交补''的思想；这里我们只用到了方程组.
+		证明的关键是一种``对称性''：$\vv a$ 与 $\vv\beta$ 的关系 $\vv a^\trans\vv\beta=0$ 对两者是平等的. 从 $W$ 的基出发求出所有``与 $W$ 正交的系数向量''，再反过来用它们写方程. 第十章会看到，这正是``正交补''的思想；这里我们只用到了方程组.
 	\end{motivebox}
 	
 	\begin{example}
@@ -3656,7 +3863,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		
 		\mstep{求解} 对增广矩阵消元可得 $\rk\vv A=2$，$\rk(\vv A\mid\vv y)=3$. 由定理~\ref{thm:rouche}，方程组\textbf{无解}：没有一条直线同时穿过四个点. 由推论~\ref{cor:sol-fullrank}，$\vv A$ 列满秩，所以即使有解也至多一个；困难只在于存在性.
 		
-		\mstep{解读} 这不是模型错了，而是问题问错了. 观测数据总带有误差，数据点多于参数时，方程组几乎总是不相容的. 正确的问题不是``哪条直线\textbf{恰好}过所有点''，而是``哪条直线\textbf{最接近}所有点''. 回答它需要``距离''和``垂直''的概念——这正是第九章内积空间的出发点. 届时我们会求出最佳直线 $y=0.5+1.4x$.
+		\mstep{解读} 这不是模型错了，而是问题问错了. 观测数据总带有误差，数据点多于参数时，方程组几乎总是不相容的. 正确的问题不是``哪条直线\textbf{恰好}过所有点''，而是``哪条直线\textbf{最接近}所有点''. 回答它需要``距离''和``垂直''的概念——这正是第十章内积空间的出发点. 届时我们会求出最佳直线 $y=0.5+1.4x$.
 	\end{modelbox}
 	
 	% ---------------------------------------------------------------------
@@ -3794,7 +4001,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\label{fig:illcond}
 	\end{figure}
 	\begin{pitfallbox}
-		行列式很小，并\textbf{不}说明方程组病态. 把上例第一个方程组的两边都乘以 $1000$，行列式变为原来的 $10^6$ 倍，但解对扰动的敏感程度丝毫未变；反之，$\vv A=0.001\vv I_{10}$ 的行列式是 $10^{-30}$，方程组却毫不病态. 衡量病态程度的正确工具是\textbf{条件数}\index{tiao2jian4shu4@条件数}，它需要``向量的长度''（范数），将在第九章之后介绍.
+		行列式很小，并\textbf{不}说明方程组病态. 把上例第一个方程组的两边都乘以 $1000$，行列式变为原来的 $10^6$ 倍，但解对扰动的敏感程度丝毫未变；反之，$\vv A=0.001\vv I_{10}$ 的行列式是 $10^{-30}$，方程组却毫不病态. 衡量病态程度的正确工具是\textbf{条件数}\index{tiao2jian4shu4@条件数}，它需要``向量的长度''（范数），将在第十章之后介绍.
 	\end{pitfallbox}
 	
 	\begin{historybox}{名字与概念}
@@ -3837,10 +4044,10 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\]
 	加法就是``异或''：两位相同得 $0$，不同得 $1$. 注意 $1+1=0$，所以 $-1=1$，减法与加法相同. 记这个数系为 $\mathbb{F}_2$.
 	
-	$\mathbb{F}_2$ 不是第二章定义的数域——它不是复数集的子集. 但第二章数域定义中真正用到的只是：加、减、乘、除（除数非零）可以进行，并且满足通常的运算律. 满足这些条件的数系称为\textbf{域}\index{yu4@域}(field)，$\mathbb{F}_2$ 是只有两个元素的域. 第一至六章的定义与定理，凡是只用到四则运算的——消元法、线性相关、基与维数、秩、基础解系——在任何域上都成立. 本节就在 $\mathbb{F}_2$ 上使用它们. 第二章章末习题 C5 已经在 $\mathbb{F}_2^3$ 中数过向量和子空间.
+	$\mathbb{F}_2$ 不是第四章定义的数域——它不是复数集的子集. 但第四章数域定义中真正用到的只是：加、减、乘、除（除数非零）可以进行，并且满足通常的运算律. 满足这些条件的数系称为\textbf{域}\index{yu4@域}(field)，$\mathbb{F}_2$ 是只有两个元素的域. 第一至六章的定义与定理，凡是只用到四则运算的——消元法、线性相关、基与维数、秩、基础解系——在任何域上都成立. 本节就在 $\mathbb{F}_2$ 上使用它们. 第二章章末习题 C5 已经在 $\mathbb{F}_2^3$ 中数过向量和子空间.
 	
 	\begin{pitfallbox}
-		在 $\mathbb{F}_2$ 上，``$\vv x\neq\zero$ 时 $\vv x^\trans\vv x>0$''不再成立：$(1,1)^\trans$ 与自身的``内积''是 $1+1=0$. 依赖于大小比较、开方或``平方和为零则全为零''的结论（第九章以后的内积、长度、正交投影）都不能照搬到 $\mathbb{F}_2$ 上.
+		在 $\mathbb{F}_2$ 上，``$\vv x\neq\zero$ 时 $\vv x^\trans\vv x>0$''不再成立：$(1,1)^\trans$ 与自身的``内积''是 $1+1=0$. 依赖于大小比较、开方或``平方和为零则全为零''的结论（第十章以后的内积、长度、正交投影）都不能照搬到 $\mathbb{F}_2$ 上.
 	\end{pitfallbox}
 	
 	\subsection{校验矩阵与码字}
@@ -3976,7 +4183,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{enumerate}
 		\item 选取一部法律的 50 条左右条文，手工或用分词工具确定 100 个左右关键词，建立词项—文档矩阵.
 		\item 设计 5 个模拟案情查询，用 $\vv A^\trans\vv q$ 打分，评价排名前五的结果是否合理.
-		\item 找出``共同词数''打分的至少两个缺陷（例如长条文天然得分高），提出改进思路. 第九章的余弦相似度是其中一种答案.
+		\item 找出``共同词数''打分的至少两个缺陷（例如长条文天然得分高），提出改进思路. 第十章的余弦相似度是其中一种答案.
 	\end{enumerate}
 	
 	\begin{note}
@@ -4030,26 +4237,27 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\paragraph*{本章地位}
 	
-	第八章讨论线性变换的矩阵何时可以化为对角矩阵，这一问题最终归结为多项式的根与因式分解. 本章为此提供所需的工具：带余除法、最大公因式与 Bézout 等式、不可约多项式与唯一分解定理、多项式的根与代数基本定理. 本章的内容与整数的整除理论平行，二者的论证方法基本相同. 48 学时方案不讲本章，第八章所需的结论见附录~A.
+	多项式是中学数学里最熟悉的对象之一：因式分解、配方、解一元二次方程，都是在和多项式打交道. 但中学很少追问几个基本的问题：一个多项式能不能被另一个整除，如何判断；两个多项式有没有公因式，怎样求出来；一个多项式能分解到什么程度，结果是否唯一；它有几个根，根在哪个数域里. 本章系统地回答这些问题. 回答的关键是带余除法，这与整数的做法如出一辙，读者会发现小学学过的整除、最大公约数、分解质因数，在多项式中都有对应. 本章还会看到，多项式能否分解、有没有根，取决于在哪个数域上讨论：$x^2+1$ 在实数域上不能分解，在复数域上却可以. 最后一节把方阵代入多项式，得到矩阵的最小多项式，它是第八章判断矩阵能否对角化、第九章求矩阵最简形式的工具. 48 学时方案不讲本章，第八章所需的结论见附录~A.
 	
-	\chapterhours{—}{3}{4}
+	\chapterhours{—}{4}{6}
 	
 	\begin{introduction}[学习目标]
 		\item 进行多项式的带余除法，用余数定理判断根并讨论重根
 		\item 说明代数基本定理的含义，以及实系数多项式的不可约因式至多为二次
-		\item 把方阵代入多项式进行计算
-		\item 用辗转相除法求最大公因式，写出 Bézout 等式（72 学时方案）
-		\item 说明唯一分解定理的内容，在不同数域上分解多项式（72 学时方案）
+		\item 把方阵代入多项式进行计算，求矩阵的最小多项式，并用它计算矩阵的高次幂与逆矩阵
+		\item 用辗转相除法求最大公因式，写出 Bézout 等式（96 学时方案）
+		\item 说明唯一分解定理的内容，在不同数域上分解多项式，判断多项式有无重因式（96 学时方案）
+		\item 用中国剩余定理与 Lagrange 插值构造满足给定余式的多项式（96 学时方案）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
 	
-	中学的多项式运算与一元二次方程；附录~A 中的复数.
+	中学的多项式运算与一元二次方程；第三章（矩阵的运算）；第四章（线性空间的维数）；附录~A 中的复数.
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
-		\item 学习本章时，可以把每个结论与整数的对应结论并列比较，包括带余除法、最大公因数、素数与算术基本定理.
-		\item 本章有三个结论在后面直接使用：带余除法用于最小多项式，Bézout 等式用于空间的直和分解，实系数多项式的不可约因式至多二次用于正交变换的结构. 应掌握它们的内容.
+		\item 学习本章时，可以把每个结论与整数的对应结论并列比较，包括带余除法、最大公因数、素数与算术基本定理、同余与``物不知数''问题.
+		\item 本章有几个结论在后面直接使用：带余除法用于最小多项式，Bézout 等式用于空间的直和分解，实系数多项式的不可约因式至多二次用于正交变换的结构，最小多项式用于判断矩阵能否对角化. 应掌握它们的内容.
 		\item 多项式是否可约依赖于所在的数域. 讨论因式分解与根时，应先明确在哪个数域上考虑.
 	\end{itemize}
 	
@@ -4063,7 +4271,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{tcolorbox}
 	\footnotetext{埃米·诺特（1882—1935），德国数学家，抽象代数的奠基人. 引文出自她 1931 年 11 月 12 日写给数学家哈塞（H.~Hasse）的信. 她的生平见本章第二节的``历史回响''.}
 	
-	\section{\hB 一元多项式环}
+	\section{\hB 一元多项式环}\label{sec:polyring}
 	
 	\begin{definition}
 		设 $\mathbb{F}$ 是数域，$x$ 是一个符号（称为\textbf{未定元}\index{wei4ding4yuan2@未定元}）. 形如
@@ -4071,7 +4279,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		的表达式称为 $\mathbb{F}$ 上的\textbf{一元多项式}\index{yi1yuan2 duo1xiang4shi4@一元多项式}. 若 $a_n\ne0$，称 $a_nx^n$ 为\textbf{首项}\index{shou3xiang4@首项}，$n$ 为 $f$ 的\textbf{次数}\index{ci4shu4@次数（多项式的）}，记为 $\deg f$；首项系数为 $1$ 的多项式称为\textbf{首一}\index{shou3yi1 duo1xiang4shi4@首一多项式}的. 系数全为零的多项式称为\textbf{零多项式}\index{ling2 duo1xiang4shi4@零多项式}，约定它的次数为 $-\infty$. 两个多项式相等，当且仅当同次项系数全部相等. 全体 $\mathbb{F}$ 上的一元多项式记为 $\mathbb{F}[x]$.
 	\end{definition}
 	
-	多项式的加法与数乘按同次项系数进行；第二章已经说明，$\mathbb{F}[x]$ 由此成为一个（无限维的）向量空间. 多项式之间还可以\textbf{相乘}：
+	多项式的加法与数乘按同次项系数进行；第四章已经说明，$\mathbb{F}[x]$ 由此成为一个（无限维的）线性空间. 多项式之间还可以\textbf{相乘}：
 	\[\Big(\sum_i a_ix^i\Big)\Big(\sum_j b_jx^j\Big)=\sum_k\Big(\sum_{i+j=k}a_ib_j\Big)x^k.\]
 	乘法满足交换律、结合律以及对加法的分配律. 一个集合上同时有加法和满足这些规律的乘法，称为一个\textbf{环}\index{huan2@环}；$\mathbb{F}[x]$ 称为\textbf{一元多项式环}\index{yi1yuan2 duo1xiang4shi4 huan2@一元多项式环}. 整数集 $\mathbb{Z}$ 是另一个环，$n$ 阶方阵全体 $M_n(\mathbb{F})$ 是乘法不交换的环.
 	
@@ -4090,13 +4298,13 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\[f(\vv A)=a_n\vv A^n+\cdots+a_1\vv A+a_0\vv I.\]
 	注意常数项要乘上单位矩阵. 同样，对线性变换 $\mathscr T$ 可以定义 $f(\mathscr T)$. 由于 $\vv A$ 的各次幂彼此可交换，容易验证
 	\[(f+g)(\vv A)=f(\vv A)+g(\vv A),\qquad (fg)(\vv A)=f(\vv A)g(\vv A)=g(\vv A)f(\vv A).\]
-	也就是说，凡是多项式之间成立的等式，代入同一个矩阵后依然成立. 例如由 $x^2-1=(x-1)(x+1)$ 得 $\vv A^2-\vv I=(\vv A-\vv I)(\vv A+\vv I)$. 这个看似平凡的事实，是第八章把多项式工具用于矩阵的桥梁.
+	也就是说，凡是多项式之间成立的等式，代入同一个矩阵后依然成立. 例如由 $x^2-1=(x-1)(x+1)$ 得 $\vv A^2-\vv I=(\vv A-\vv I)(\vv A+\vv I)$. 这个看似平凡的事实，是把多项式工具用于矩阵的桥梁，第~\ref{sec:minpoly} 节和第八章都要用到它.
 	
 	\begin{pitfallbox}
 		代入两个\textbf{不同}的矩阵时要小心. 例如 $(x+y)^2=x^2+2xy+y^2$ 代入 $\vv A,\vv B$ 后一般不成立，除非 $\vv{AB}=\vv{BA}$. 本章只代入同一个矩阵，所以不会出问题.
 	\end{pitfallbox}
 	
-	\section{\hB 带余除法与最大公因式}
+	\section{\hB 整除、带余除法与最大公因式}
 	
 	\subsection{带余除法}
 	
@@ -4154,6 +4362,29 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		辗转相除只用到 $f,g$ 系数所在数域中的四则运算. 所以\textbf{最大公因式不随数域的扩大而改变}：$f,g\in\mathbb{Q}[x]$ 在 $\mathbb{Q}[x]$ 中互素，在 $\mathbb{C}[x]$ 中也互素. 后面判断``两个多项式有没有公共复根''时，这一点让我们可以只在小的数域中计算.
 	\end{remark}
 	
+	互素的多项式有下面几条常用的性质，它们都是 Bézout 等式的直接推论.
+	
+	\begin{proposition}\label{prop:coprime}
+		设 $f,g$ 互素.
+		\begin{enumerate}
+			\item 若 $f\mid gh$，则 $f\mid h$；
+			\item 若 $f\mid h$ 且 $g\mid h$，则 $fg\mid h$；
+			\item 若 $f$ 与 $h$ 也互素，则 $f$ 与 $gh$ 互素.
+		\end{enumerate}
+	\end{proposition}
+	\begin{proof}
+		由 Bézout 等式，有 $u,v$ 使 $uf+vg=1$.
+		
+		(1) 两边乘以 $h$：$h=ufh+v(gh)$，右边两项都被 $f$ 整除，故 $f\mid h$.
+		
+		(2) 设 $h=gh_1$. 由 $f\mid gh_1$ 及 (1) 得 $f\mid h_1$，于是 $fg\mid gh_1=h$.
+		
+		(3) 又有 $u',v'$ 使 $u'f+v'h=1$. 两式相乘：$f\,(uu'f+uv'h+u'vg)+(vv')\,gh=1$，所以 $f$ 与 $gh$ 互素.
+	\end{proof}
+	
+	与最大公因式相对，若 $f\mid l$，$g\mid l$，并且 $f,g$ 的任一公倍式都是 $l$ 的倍式，则称 $l$ 是 $f,g$ 的一个\textbf{最小公倍式}\index{zui4xiao3 gong1bei4shi4@最小公倍式}. 首一的最小公倍式唯一，记为 $\operatorname{lcm}(f,g)$. 由命题~\ref{prop:coprime}(2)，互素的首一多项式 $f,g$ 有 $\operatorname{lcm}(f,g)=fg$.
+	
+	
 	\begin{motivebox}
 		Bézout 等式的威力在于：它把``没有公因式''这样一个\textbf{否定性}的性质，变成了``能凑出 $1$''这样一个\textbf{构造性}的等式. 而 $1$ 是可以``拆开''的：$1=uf+vg$ 意味着任何东西都可以拆成``$f$ 管的一部分''加上``$g$ 管的一部分''. 第八章会用它把整个空间拆成几个不变子空间的直和——那时请回来看这一段.
 	\end{motivebox}
@@ -4168,7 +4399,29 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		1933 年，纳粹政府以她是犹太人为由解除了她的教职. 她移居美国，在布林莫尔学院任教，并在普林斯顿高等研究院讲学. 1935 年 4 月，她在一次手术后意外去世，年仅 53 岁. 爱因斯坦随即在《纽约时报》发表公开信，称她是自女性接受高等教育以来最具创造力的数学天才\cite{einstein1935noether}；数学家外尔（H.~Weyl）在追悼会上致辞\cite{weyl1935noether}. 她留下的不是某一个公式，而是一种看数学的方式——正如章首那句话所说，它已``不具名地''渗透在每一本代数教科书里，包括你手中的这一本.
 	\end{historybox}
 	
-	\section{\hB 因式分解与根}
+	\begin{codebox}{辗转相除法}
+		\mstep{目标} 用系数列表表示多项式，实现带余除法和扩展的辗转相除法，自动写出 Bézout 等式.
+		
+		\mstep{准备} \texttt{fractions.Fraction}；用于对照的 \texttt{sympy} 中的 \texttt{div} 与 \texttt{gcdex}. 约定 $[a_0,a_1,\ldots,a_n]$ 表示 $a_0+a_1x+\cdots+a_nx^n$.
+		
+		\mstep{任务}
+		\begin{enumerate}
+			\item 按定理~\ref{thm:divalg} 证明中``逐次消去首项''的步骤，写函数 \texttt{poly\_divmod(f, g)}，返回商与余式.
+			\item 写多项式乘法 \texttt{poly\_mul(f, g)}，用它检验 $f=qg+r$.
+			\item 写函数 \texttt{ext\_gcd(f, g)}，返回首一的 $\gcd(f,g)$ 以及 $u,v$，并用 \texttt{poly\_mul} 验证 $uf+vg=\gcd(f,g)$.
+			\item 用书中的两个例子检验，再用它完成本章章末习题~\ref{ex:poly:A1} 与 \ref{ex:poly:A4}，并与 \texttt{sympy} 的结果对照.
+		\end{enumerate}
+		
+		\mstep{检查点} $x^4+2x^3+x+3$ 除以 $x^2+1$，商为 $x^2+2x-1$，余式为 $-x+4$；$\gcd(x^3-1,x^2-1)=x-1$，$u=1$，$v=-x$.
+		
+		\mstep{思考}
+		\begin{enumerate}
+			\item 你的程序只用到了加、减、乘、除. 这与``最大公因式不随数域扩大而改变''有什么关系？
+			\item 把 \texttt{Fraction} 换成浮点数，再对 $(x-1)^3(x+2)$ 与它的导数求最大公因式. 余式还能``恰好为零''吗？程序该怎样判断辗转相除何时结束？
+		\end{enumerate}
+	\end{codebox}
+	
+	\section{\hB 因式分解与多项式的根}
 	
 	\subsection{\hC 不可约多项式与唯一分解}
 	
@@ -4198,6 +4451,27 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	把相同的不可约因式合并，可写成 $f=c\,p_1^{k_1}\cdots p_m^{k_m}$，称为 $f$ 的\textbf{标准分解式}\index{biao1zhun3 fen1jie3shi4@标准分解式}.
 	
+	\subsection{\hC 重因式}
+	
+	在标准分解式 $f=c\,p_1^{k_1}\cdots p_m^{k_m}$ 中，若 $k_i\ge2$，称 $p_i$ 是 $f$ 的\textbf{重因式}\index{chong2yin1shi4@重因式}（$k_i$ 重因式）. 判断一个多项式有没有重因式，不必先把它分解——分解往往很难——只需借助导数.
+	
+	对 $f=\sum_k a_kx^k$，定义它的\textbf{导数}\index{dao3shu4@导数（多项式的）} $f'=\sum_k ka_kx^{k-1}$. 这是一个纯代数的定义，不涉及极限；但容易逐项验证，微积分中熟悉的法则依然成立：
+	\[(f+g)'=f'+g',\qquad(cf)'=cf',\qquad(fg)'=f'g+fg',\qquad(f^k)'=kf^{k-1}f'.\]
+	
+	\begin{theorem}\label{thm:multfactor}
+		设 $p$ 是不可约多项式. 若 $p$ 是 $f$ 的 $k$ 重因式（$k\ge1$），则 $p$ 是 $f'$ 的 $k-1$ 重因式. 因此，$f$ 没有重因式当且仅当 $\gcd(f,f')=1$.
+	\end{theorem}
+	\begin{proof}
+		设 $f=p^kg$，$p\nmid g$. 则
+		\[f'=kp^{k-1}p'g+p^kg'=p^{k-1}\,(kp'g+pg').\]
+		$p'$ 的次数比 $p$ 低且不为零，$p\nmid g$，数 $k\ne0$，由引理~\ref{lem:primediv}，$p\nmid kp'g$，从而 $p\nmid kp'g+pg'$. 故 $p$ 恰是 $f'$ 的 $k-1$ 重因式.
+		
+		于是 $f$ 的每个 $k$ 重不可约因式恰以 $k-1$ 重出现在 $\gcd(f,f')$ 中. $\gcd(f,f')=1$ 当且仅当每个 $k-1=0$，即没有重因式.
+	\end{proof}
+	
+	由证明还可以看出：$f/\gcd(f,f')$ 与 $f$ 含有完全相同的不可约因式，但每个都只出现一次. 这给出了一个不用分解就能``去掉重因式''的办法. 又因为最大公因式不随数域的扩大而改变，$f$ 在 $\mathbb{Q}$ 上有没有重因式，与它在 $\mathbb{C}$ 上有没有重根，是同一个问题.
+	
+	
 	\subsection{根}
 	
 	\begin{theorem}[余数定理]\label{thm:remainder}\index{yu2shu4 ding4li3@余数定理}
@@ -4222,7 +4496,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\item 设 $f=c_0+c_1x+\cdots+c_{n-1}x^{n-1}$，条件 $f(x_i)=y_i$ 是关于 $c_0,\ldots,c_{n-1}$ 的线性方程组，系数矩阵的转置正是第五章的 Vandermonde 矩阵，行列式 $\prod_{i<j}(x_j-x_i)\ne0$，故有唯一解.
 			\item 直接写出 $f(x)=\sum_{i=1}^n y_i\,\ell_i(x)$，其中 $\ell_i(x)=\prod_{j\ne i}\dfrac{x-x_j}{x_i-x_j}$ 满足 $\ell_i(x_i)=1$，$\ell_i(x_j)=0$（$j\ne i$）.
 		\end{itemize}
-		用第二章的语言说：$\ell_1,\ldots,\ell_n$ 是 $\mathbb{F}[x]_n$ 的一组基，$f$ 在这组基下的坐标恰好就是 $(y_1,\ldots,y_n)^\trans$.
+		用第四章的语言说：$\ell_1,\ldots,\ell_n$ 是 $\mathbb{F}[x]_n$ 的一组基，$f$ 在这组基下的坐标恰好就是 $(y_1,\ldots,y_n)^\trans$.
 	\end{example}
 	
 	\subsection{代数基本定理与实系数多项式}
@@ -4248,8 +4522,31 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		请记住这个结论的形状：\textbf{实数世界里，不可约的东西至多是``二维''的.} 一个实系数多项式，最多只能被拆到一次因式和二次因式为止，再也拆不动. 第九章的选读节会遇到它的一个``几何分身''：实空间上的正交变换，也总能被拆成一维块和二维块，二维块就是平面上的旋转. 那里的``$2$''，正是这里的``$2$''.
+		请记住这个结论的形状：\textbf{实数世界里，不可约的东西至多是``二维''的.} 一个实系数多项式，最多只能被拆到一次因式和二次因式为止，再也拆不动. 第十章的选读节会遇到它的一个``几何分身''：实空间上的正交变换，也总能被拆成一维块和二维块，二维块就是平面上的旋转. 那里的``$2$''，正是这里的``$2$''.
 	\end{motivebox}
+	
+	
+	\subsection{\hC 有理系数多项式}
+	
+	在 $\mathbb{C}$ 上，不可约多项式只有一次的；在 $\mathbb{R}$ 上，至多是二次的. $\mathbb{Q}$ 上的情形完全不同. 有理系数多项式乘以系数分母的公倍数，就成为整系数多项式，而根与可约性都不变，所以只需讨论整系数多项式.
+	
+	\begin{proposition}\label{prop:ratroot}
+		设整系数多项式 $f=a_nx^n+\cdots+a_1x+a_0$（$a_n\ne0$）有有理根 $\dfrac pq$，其中 $p,q$ 是互素的整数，则 $p\mid a_0$，$q\mid a_n$.
+	\end{proposition}
+	\begin{proof}
+		代入并乘以 $q^n$：$a_np^n+a_{n-1}p^{n-1}q+\cdots+a_1pq^{n-1}+a_0q^n=0$. 除最后一项外每项都含因子 $p$，故 $p\mid a_0q^n$；$p,q$ 互素，所以 $p\mid a_0$. 同理，除第一项外每项都含因子 $q$，得 $q\mid a_n$.
+	\end{proof}
+	
+	于是整系数多项式的有理根只有有限个候选，可以逐一检验. 例如 $x^3-3x+1$ 的有理根只可能是 $\pm1$，而 $f(1)=-1$，$f(-1)=3$，所以它没有有理根；三次多项式若可约，必有一次因式，即有有理根，故 $x^3-3x+1$ 在 $\mathbb{Q}$ 上不可约.
+	
+	对更高次的多项式，没有有理根并不说明不可约（例如 $(x^2+1)^2$）. 下面两个结论是判断 $\mathbb{Q}$ 上不可约性的基本工具，这里只叙述，证明可参看参考文献中的高等代数教材.
+	
+	\begin{itemize}
+		\item \textbf{Gauss 引理.}\index{gauss yin3li3@Gauss 引理} 整系数多项式若能分解为两个次数更低的有理系数多项式之积，就能分解为两个次数更低的\textbf{整系数}多项式之积.
+		\item \textbf{Eisenstein 判别法.}\index{eisenstein pan4bie2fa3@Eisenstein 判别法} 设 $f=a_nx^n+\cdots+a_0$ 是整系数多项式. 若存在素数 $p$，使 $p\nmid a_n$，$p$ 整除其余各系数 $a_{n-1},\ldots,a_0$，且 $p^2\nmid a_0$，则 $f$ 在 $\mathbb{Q}$ 上不可约.
+	\end{itemize}
+	
+	取 $p=2$，Eisenstein 判别法说明 $x^n-2$ 对每个 $n\ge1$ 都在 $\mathbb{Q}$ 上不可约. 所以 $\mathbb{Q}$ 上有任意次数的不可约多项式——``不可约多项式有多少种''，完全取决于数域.
 	
 	\begin{modelbox}{内部收益率：一个多项式方程的根}
 		\mstep{问题} 一个项目现在投入 $100$ 万元，此后三年末分别回收 $30$，$40$，$50$ 万元. 它的``年化收益率''是多少？另一个项目现在投入 $100$ 万元，一年末回收 $230$ 万元，两年末还要追加支出 $132$ 万元（例如环境修复费用），它的收益率又是多少？
@@ -4290,6 +4587,201 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		十七、十八世纪，吉拉尔、笛卡儿、达朗贝尔、欧拉、拉格朗日等人都相信或试图证明``$n$ 次方程有 $n$ 个根''. 1799 年，22 岁的高斯在博士论文\cite{gauss1799demonstratio}中给出了一个证明，并批评了前人证明中的漏洞——尽管今天看来，他自己的证明也依赖一个当时尚未严格证明的拓扑事实. 高斯一生给出了四个不同的证明. 有趣的是，这个``代数''基本定理，至今没有一个只用代数的证明：每个证明都要用到实数的完备性.
 	\end{historybox}
 	
+	\section{\hC 多项式的同余}\label{sec:polycong}
+	
+	整数中，``被 $7$ 除余 $3$''的数有无穷多个：$3,10,17,\ldots$，它们彼此相差 $7$ 的倍数. 中学里我们说它们``模 $7$ 同余''. 多项式有完全平行的概念.
+	
+	\begin{definition}
+		设 $m\in\mathbb{F}[x]$，$\deg m\ge1$. 若 $m\mid f-g$，即 $f,g$ 被 $m$ 除的余式相同，则称 $f$ 与 $g$ \textbf{模 $m$ 同余}\index{tong2yu2@同余（多项式的）}，记为 $f\equiv g\pmod m$.
+	\end{definition}
+	
+	由带余除法，每个多项式都与它被 $m$ 除的余式模 $m$ 同余，而次数低于 $\deg m$ 的两个不同多项式互不同余. 所以``模 $m$ 的同余类''与``次数低于 $\deg m$ 的多项式''一一对应. 同余关系与运算相容：若 $f\equiv f_1$，$g\equiv g_1\pmod m$，则
+	\[f+g\equiv f_1+g_1,\qquad fg\equiv f_1g_1\pmod m.\]
+	后一式是因为 $fg-f_1g_1=f(g-g_1)+(f-f_1)g_1$. 因此计算一个复杂的多项式模 $m$ 的余式时，可以随时把中间结果换成它的余式，不必先算出整个乘积.
+	
+	\begin{example}
+		求 $x^{100}$ 被 $x^2+1$ 除的余式. 由于 $x^2\equiv-1\pmod{x^2+1}$，有 $x^{100}=(x^2)^{50}\equiv(-1)^{50}=1$，余式为 $1$. 同理 $x^{101}\equiv x$.
+	\end{example}
+	
+	\begin{motivebox}
+		在模 $x^2+1$ 的同余类中计算两个实系数一次多项式的乘积：
+		\[(a+bx)(c+dx)=ac+(ad+bc)x+bd\,x^2\equiv(ac-bd)+(ad+bc)x\pmod{x^2+1}.\]
+		把 $x$ 换成 $\mathrm i$，这正是复数的乘法法则. 换句话说，复数可以看作``模 $x^2+1$ 的实系数多项式''，$\mathrm i$ 就是``满足 $x^2=-1$ 的那个 $x$''. 用同余构造新的数系，是代数学中最常用的手法之一.
+	\end{motivebox}
+	
+	在整数中，$3$ 模 $7$ 有``倒数''：$3\cdot5=15\equiv1\pmod 7$. 多项式也是如此.
+	
+	\begin{proposition}\label{prop:polyinv}
+		存在 $u$ 使 $uf\equiv1\pmod m$，当且仅当 $f$ 与 $m$ 互素.
+	\end{proposition}
+	\begin{proof}
+		$uf\equiv1\pmod m$ 意味着存在 $v$ 使 $uf+vm=1$. 由 Bézout 等式，这样的 $u,v$ 存在当且仅当 $\gcd(f,m)=1$.
+	\end{proof}
+	
+	下面是本节的主要定理.
+	
+	\begin{theorem}[中国剩余定理]\label{thm:crt}\index{zhong1guo2 sheng4yu2 ding4li3@中国剩余定理}
+		设 $m_1,\ldots,m_k\in\mathbb{F}[x]$ 两两互素，$r_1,\ldots,r_k\in\mathbb{F}[x]$ 任意. 则同余方程组
+		\[f\equiv r_1\pmod{m_1},\quad f\equiv r_2\pmod{m_2},\quad\ldots,\quad f\equiv r_k\pmod{m_k}\]
+		有解，并且在次数低于 $\deg(m_1m_2\cdots m_k)$ 的多项式中，解唯一. 全部解是这个解加上 $m_1m_2\cdots m_k$ 的任意倍式.
+	\end{theorem}
+	\begin{proof}
+		\textbf{两个方程的情形.} 由 Bézout 等式，有 $u,v$ 使 $um_1+vm_2=1$. 令
+		\[f=r_1\,vm_2+r_2\,um_1.\]
+		由于 $vm_2=1-um_1\equiv1\pmod{m_1}$，有 $f\equiv r_1\pmod{m_1}$；同理 $f\equiv r_2\pmod{m_2}$.
+		
+		\textbf{一般情形.} 对 $k$ 归纳. 由命题~\ref{prop:coprime}(3)，$m_1\cdots m_{k-1}$ 与 $m_k$ 互素. 先由归纳假设求出满足前 $k-1$ 个方程的 $g$；前 $k-1$ 个方程等价于 $f\equiv g\pmod{m_1\cdots m_{k-1}}$（由命题~\ref{prop:coprime}(2)），再与第 $k$ 个方程联立，归结为两个方程的情形.
+		
+		\textbf{唯一性.} 若 $f,f_1$ 都是解，则 $f-f_1$ 被每个 $m_i$ 整除. $m_i$ 两两互素，反复用命题~\ref{prop:coprime}(2)，得 $m_1\cdots m_k\mid f-f_1$. 若两者次数都低于 $\deg(m_1\cdots m_k)$，则 $f-f_1=0$. 把任一解换成它被 $m_1\cdots m_k$ 除的余式，就得到次数低于 $\deg(m_1\cdots m_k)$ 的解.
+	\end{proof}
+	
+	\begin{example}
+		求次数最低的多项式 $f$，使 $f$ 被 $x-1$ 除余 $2$，被 $x^2+1$ 除余 $x$.
+	\end{example}
+	\begin{solution}
+		$x-1$ 与 $x^2+1$ 互素，由定理~\ref{thm:crt}，存在唯一的次数低于 $3$ 的解. 第二个条件说明 $f=x+c\,(x^2+1)$，其中 $c$ 是常数（因为 $\deg f<3$）. 由余数定理，第一个条件即 $f(1)=2$，于是 $1+2c=2$，$c=\frac12$. 所以
+		\[f=\tfrac12x^2+x+\tfrac12.\]
+	\end{solution}
+	
+	\paragraph*{Lagrange 插值是中国剩余定理的特例.} 取 $m_i=x-x_i$，$x_1,\ldots,x_n$ 互不相同，它们两两互素. 由余数定理，$f\equiv y_i\pmod{x-x_i}$ 就是 $f(x_i)=y_i$. 于是定理~\ref{thm:crt} 说：存在唯一的次数低于 $n$ 的多项式在 $n$ 个点上取给定的值——这正是例~\ref{eg:interp}. 若把模换成 $(x-x_i)^{k_i}$，条件就变成在 $x_i$ 处 $f$ 与给定多项式的前 $k_i$ 个 Taylor 系数相同，即函数值与前 $k_i-1$ 阶导数都给定，得到的是 \textbf{Hermite 插值}\index{hermite cha1zhi2@Hermite 插值}. 一个定理统一了两种插值.
+	
+	\begin{historybox}{物不知数}
+		\sidefig[0.3\linewidth]{image/suanchou.jpg}{算筹}[fig:suanchou]
+		《孙子算经》卷下有一道题：``今有物不知其数，三三数之剩二，五五数之剩三，七七数之剩二，问物几何？''答案是二十三. 用今天的话说，就是解同余方程组 $x\equiv2\pmod3$，$x\equiv3\pmod5$，$x\equiv2\pmod7$. 书中给出的解法，实质上就是定理~\ref{thm:crt} 证明中的构造：先找出``被 $5,7$ 整除而被 $3$ 除余 $1$''的数（$70$），以及另外两个类似的数（$21$ 与 $15$），再按余数加权求和.
+		
+		南宋数学家秦九韶在《数书九章》（1247）中把这一方法推广为一般的``大衍求一术''，其中求``被 $3$ 除余 $1$''的那一步，正是用辗转相除法求模逆. 十九世纪这一方法传入欧洲后，被称为``中国剩余定理''. 从整数到多项式，同一个论证原封不动地成立——这是本章``整数与多项式平行''的又一个例证.
+	\end{historybox}
+	
+	\begin{linkbox}{门限秘密共享}
+		一份遗嘱、一枚公司公章或一个数据库的密钥，有时要求``任意 $k$ 位受托人到场才能启用，少于 $k$ 位则得不到任何信息''. 1979 年，沙米尔（A.~Shamir）用插值多项式给出了一个方案：把秘密 $s$ 作为常数项，随机选一个 $k-1$ 次多项式 $f(x)=s+c_1x+\cdots+c_{k-1}x^{k-1}$，发给第 $i$ 位受托人一个``份额'' $\big(i,f(i)\big)$.
+		
+		任意 $k$ 位受托人凑在一起，有 $k$ 个点，由插值的唯一性恰好确定 $f$，从而得到 $s=f(0)$. 少于 $k$ 位时，对每一个可能的秘密 $s'$，都有一个 $k-1$ 次多项式经过已知的点且常数项为 $s'$——已知的份额与任何秘密都相容，没有泄露任何信息. 实际系统在有限``数系''上运算（类似第六章讲纠错码时用的 $\mathbb{F}_2$），但原理与这里完全相同.
+	\end{linkbox}
+	
+	\begin{codebox}{同余方程组与秘密共享}
+		\mstep{目标} 实现多项式的中国剩余定理，并用它完成一次 $(3,5)$ 门限秘密共享.
+		
+		\mstep{准备} \texttt{sympy} 中的 \texttt{Poly}、\texttt{div}、\texttt{gcdex}（扩展的辗转相除法）与 \texttt{interpolate}.
+		
+		\mstep{任务}
+		\begin{enumerate}
+			\item 按定理~\ref{thm:crt} 证明中的构造，写函数 \texttt{crt([(r1, m1), (r2, m2), ...])}，返回次数最低的解. 用本节的例题检验.
+			\item 取秘密 $s=2025$，随机选取整数 $c_1,c_2$，令 $f(x)=s+c_1x+c_2x^2$，生成 $5$ 个份额 $(i,f(i))$，$i=1,\ldots,5$.
+			\item 任取其中 $3$ 个份额，分别用 \texttt{crt}（模取 $x-i$）和 \texttt{interpolate} 恢复 $f$，读出 $f(0)$.
+			\item 只取 $2$ 个份额. 对 $s'=0,1,2$ 分别构造一个经过这两点、常数项为 $s'$ 的二次多项式.
+		\end{enumerate}
+		
+		\mstep{检查点} 任取 $3$ 个份额都恢复出 $2025$；任务 4 中三个多项式都存在.
+		
+		\mstep{思考}
+		\begin{enumerate}
+			\item 在实数上做这件事，份额会泄露``秘密的大致大小''吗？（提示：系数 $c_i$ 怎样``随机''地选？）这说明了实际系统为什么要在有限的数系上运算.
+			\item 任务 1 中的构造用到了 Bézout 等式. 当两个模不互素时，程序会在哪一步失败？
+		\end{enumerate}
+	\end{codebox}
+	
+	\section{\hB 矩阵多项式与最小多项式}\label{sec:minpoly}
+	
+	第 \ref{sec:polyring} 节定义了把方阵代入多项式的运算 $f(\vv A)$. 本节研究一个自然的问题：哪些多项式会把 $\vv A$ 变成零矩阵？
+	
+	\begin{definition}
+		设 $\vv A$ 是 $n$ 阶方阵. 若非零多项式 $g$ 使 $g(\vv A)=\vv O$，称 $g$ 是 $\vv A$ 的一个\textbf{零化多项式}\index{ling2hua4 duo1xiang4shi4@零化多项式}.
+	\end{definition}
+	
+	\begin{proposition}\label{prop:annihexist}
+		每个 $n$ 阶方阵都有次数不超过 $n^2$ 的零化多项式.
+	\end{proposition}
+	\begin{proof}
+		$n$ 阶方阵全体是 $n^2$ 维线性空间（第四章），其中 $n^2+1$ 个向量 $\vv I,\vv A,\vv A^2,\ldots,\vv A^{n^2}$ 必线性相关：有不全为零的数 $c_0,\ldots,c_{n^2}$ 使 $\sum c_k\vv A^k=\vv O$. 多项式 $\sum c_kx^k$ 就是一个零化多项式.
+	\end{proof}
+	
+	\begin{motivebox}
+		$\vv A$ 的幂 $\vv A,\vv A^2,\vv A^3,\ldots$ 有无穷多个，直接算下去没有尽头. 命题~\ref{prop:annihexist} 说，它们都挤在一个有限维的空间里，迟早要``重复''：某一次幂可以由更低的幂线性表出. 从那以后，所有更高的幂都可以化归为有限个低次幂的组合. 序言中``东西比位置多，总得挤一挤''的道理，在这里又出现了一次.
+	\end{motivebox}
+	
+	零化多项式乘以任意非零多项式仍是零化多项式，所以零化多项式有无穷多个. 我们关心次数最低的那个.
+	
+	\begin{definition}
+		$\vv A$ 的零化多项式中次数最低的首一多项式，称为 $\vv A$ 的\textbf{最小多项式}\index{zui4xiao3 duo1xiang4shi4@最小多项式}，记为 $m_{\vv A}$.
+	\end{definition}
+	
+	\begin{theorem}\label{thm:minpoly}
+		\begin{enumerate}
+			\item 最小多项式唯一，并且对任意多项式 $g$，$g(\vv A)=\vv O$ 当且仅当 $m_{\vv A}\mid g$.
+			\item 相似矩阵有相同的最小多项式.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		(1) 记 $m=m_{\vv A}$. 若 $m\mid g$，设 $g=qm$，则 $g(\vv A)=q(\vv A)m(\vv A)=\vv O$. 反之，用 $m$ 除 $g$：$g=qm+r$，$\deg r<\deg m$. 代入 $\vv A$ 得 $r(\vv A)=g(\vv A)-q(\vv A)m(\vv A)=g(\vv A)$. 若 $g(\vv A)=\vv O$，则 $r(\vv A)=\vv O$；由 $m$ 的次数最低，$r=0$. 唯一性：两个最小多项式互相整除且都首一，故相等.
+		
+		(2) 对任意多项式 $g$，$g(\vv P^{-1}\vv{AP})=\vv P^{-1}g(\vv A)\vv P$（因为 $(\vv P^{-1}\vv{AP})^k=\vv P^{-1}\vv A^k\vv P$）. 所以 $\vv A$ 与 $\vv P^{-1}\vv{AP}$ 的零化多项式完全相同.
+	\end{proof}
+	
+	求最小多项式的一个直接方法是：依次检验 $\vv I,\vv A,\vv A^2,\ldots$，找到第一个能由前面各次幂线性表出的 $\vv A^d$，写出的关系式就是最小多项式.
+	
+	\begin{example}\label{eg:minpoly2}
+		设 $\vv A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$. 求 $m_{\vv A}$，并计算 $\vv A^{100}$ 与 $\vv A^{-1}$.
+	\end{example}
+	\begin{solution}
+		$\vv A$ 不是单位矩阵的倍数，所以 $\vv I,\vv A$ 线性无关，$m_{\vv A}$ 至少是二次的. 计算 $\vv A^2=\begin{pmatrix}5&4\\4&5\end{pmatrix}=4\vv A-3\vv I$，故
+		\[m_{\vv A}(x)=x^2-4x+3=(x-1)(x-3).\]
+		
+		\textbf{求 $\vv A^{100}$.} 用 $m_{\vv A}$ 除 $x^{100}$：$x^{100}=q(x)(x-1)(x-3)+ax+b$. 代入 $x=1$ 与 $x=3$，得 $a+b=1$，$3a+b=3^{100}$，于是 $a=\frac{3^{100}-1}2$，$b=\frac{3-3^{100}}2$. 由 $m_{\vv A}(\vv A)=\vv O$，
+		\[\vv A^{100}=a\vv A+b\vv I=\frac12\begin{pmatrix}3^{100}+1&3^{100}-1\\3^{100}-1&3^{100}+1\end{pmatrix}.\]
+		
+		\textbf{求 $\vv A^{-1}$.} 由 $\vv A^2-4\vv A+3\vv I=\vv O$ 得 $\vv A(4\vv I-\vv A)=3\vv I$，所以
+		\[\vv A^{-1}=\frac13(4\vv I-\vv A)=\frac13\begin{pmatrix}2&-1\\-1&2\end{pmatrix}.\]
+	\end{solution}
+	
+	一百次矩阵乘法，被一次带余除法代替了. 例中求逆的办法是一般的：
+	
+	\begin{proposition}\label{prop:minpolyinv}
+		方阵 $\vv A$ 可逆，当且仅当 $m_{\vv A}(0)\ne0$. 这时 $\vv A^{-1}$ 是 $\vv A$ 的多项式.
+	\end{proposition}
+	\begin{proof}
+		设 $m_{\vv A}(x)=xq(x)+c$，其中 $c=m_{\vv A}(0)$. 若 $c\ne0$，由 $\vv A\,q(\vv A)=-c\vv I$ 得 $\vv A^{-1}=-\frac1c\,q(\vv A)$. 若 $c=0$，则 $\vv A\,q(\vv A)=\vv O$；而 $\deg q<\deg m_{\vv A}$，$q(\vv A)\ne\vv O$，取 $q(\vv A)$ 的一个非零列 $\vv x$，有 $\vv{Ax}=\zero$，故 $\vv A$ 不可逆.
+	\end{proof}
+	
+	对角矩阵与分块对角矩阵的最小多项式可以直接写出.
+	
+	\begin{proposition}\label{prop:minpolydiag}
+		设 $\vv D=\diag(\lambda_1,\ldots,\lambda_n)$，其中互不相同的对角元为 $\mu_1,\ldots,\mu_s$，则
+		\[m_{\vv D}(x)=(x-\mu_1)(x-\mu_2)\cdots(x-\mu_s).\]
+		更一般地，若 $\vv A=\diag(\vv A_1,\vv A_2)$ 是分块对角矩阵，则 $g(\vv A)=\vv O$ 当且仅当 $g(\vv A_1)=\vv O$ 且 $g(\vv A_2)=\vv O$，从而 $m_{\vv A}=\operatorname{lcm}(m_{\vv A_1},m_{\vv A_2})$.
+	\end{proposition}
+	\begin{proof}
+		$g(\vv D)=\diag\big(g(\lambda_1),\ldots,g(\lambda_n)\big)$，它为零当且仅当 $\mu_1,\ldots,\mu_s$ 都是 $g$ 的根. 由余数定理并对 $s$ 归纳，这又当且仅当 $(x-\mu_1)\cdots(x-\mu_s)\mid g$（$\mu_i$ 互不相同）. 由定理~\ref{thm:minpoly}(1) 即得第一个结论.
+		
+		分块对角矩阵的幂按块计算，所以 $g(\vv A)=\diag\big(g(\vv A_1),g(\vv A_2)\big)$. 因此 $g$ 零化 $\vv A$ 当且仅当它是 $m_{\vv A_1}$ 与 $m_{\vv A_2}$ 的公倍式，次数最低的首一公倍式就是最小公倍式.
+	\end{proof}
+	
+	\begin{pitfallbox}
+		\begin{enumerate}
+			\item 代入矩阵时，常数项 $c$ 要写成 $c\vv I$. $\vv A^2-4\vv A+3$ 没有意义.
+			\item $g(\vv A)=\vv O$ 说的是矩阵 $g(\vv A)$ 为零，\textbf{不是}说 $\vv A$ 的每个元素都满足 $g$. 例~\ref{eg:minpoly2} 中，$\vv A$ 的元素 $2$ 并不是 $x^2-4x+3$ 的根.
+			\item 最小多项式的次数可以比 $n$ 小得多：$n$ 阶单位矩阵的最小多项式是 $x-1$.
+		\end{enumerate}
+	\end{pitfallbox}
+	
+	命题~\ref{prop:annihexist} 只保证零化多项式的次数不超过 $n^2$. 第八章的 Cayley–Hamilton 定理将说明，$\vv A$ 的特征多项式就是一个 $n$ 次零化多项式，所以最小多项式的次数不超过 $n$；那里还将用最小多项式判断矩阵能否对角化. 第九章将进一步说明，最小多项式可以从矩阵 $\lambda\vv I-\vv A$ 的``不变因子''中直接读出.
+	
+	\begin{codebox}{用最小多项式计算矩阵的高次幂}
+		\mstep{目标} 比较``反复相乘''与``最小多项式加带余除法''两种计算 $\vv A^k$ 的方法.
+		
+		\mstep{准备} \texttt{sympy} 中的 \texttt{Matrix}、\texttt{Poly}、\texttt{rem}；\texttt{numpy.linalg.matrix\_power}.
+		
+		\mstep{任务}
+		\begin{enumerate}
+			\item 写函数 \texttt{min\_poly(A)}：依次把 $\vv I,\vv A,\vv A^2,\ldots$ 展平成向量，找到第一个能由前面线性表出的幂，返回最小多项式. 用例~\ref{eg:minpoly2} 检验.
+			\item 写函数 \texttt{power\_by\_minpoly(A, k)}：用 $m_{\vv A}$ 除 $x^k$ 得余式 $r$，返回 $r(\vv A)$.
+			\item 对两个城市之间人口迁移的转移矩阵 $\vv P=\begin{pmatrix}0.9&0.2\\0.1&0.8\end{pmatrix}$（各列和为 $1$），用两种方法计算 $\vv P^{50}$，并用精确分数检查 \texttt{matrix\_power} 的舍入误差.
+		\end{enumerate}
+		
+		\mstep{检查点} $m_{\vv P}(x)=(x-1)(x-0.7)$；$\vv P^{50}$ 的每一列都非常接近 $\big(\frac23,\frac13\big)^\trans$.
+		
+		\mstep{思考} 当 $k\to\infty$ 时，余式 $r(x)=ax+b$ 的系数怎样变化？这预示了第八章马尔可夫链中``长期分布''的什么性质？
+	\end{codebox}
+	
 	\section{*对称多项式（选读）}
 	
 	多元多项式的定义与一元类似，例如 $x_1^2x_2+3x_3$ 是 $\mathbb{F}[x_1,x_2,x_3]$ 中的元素.
@@ -4318,27 +4810,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{remark}
 		这个定理的意义在于：多项式的根的任何``对称的''组合，都可以\textbf{不解方程}、直接用系数算出来. 第八章会看到，矩阵的迹和行列式分别是特征值的 $\sigma_1$ 和 $\sigma_n$，它们无需求出特征值就能直接从矩阵读出.
 	\end{remark}
-	\begin{codebox}{辗转相除法}
-		\mstep{目标} 用系数列表表示多项式，实现带余除法和扩展的辗转相除法，自动写出 Bézout 等式.
-		
-		\mstep{准备} \texttt{fractions.Fraction}；用于对照的 \texttt{sympy} 中的 \texttt{div} 与 \texttt{gcdex}. 约定 $[a_0,a_1,\ldots,a_n]$ 表示 $a_0+a_1x+\cdots+a_nx^n$.
-		
-		\mstep{任务}
-		\begin{enumerate}
-			\item 按定理~\ref{thm:divalg} 证明中``逐次消去首项''的步骤，写函数 \texttt{poly\_divmod(f, g)}，返回商与余式.
-			\item 写多项式乘法 \texttt{poly\_mul(f, g)}，用它检验 $f=qg+r$.
-			\item 写函数 \texttt{ext\_gcd(f, g)}，返回首一的 $\gcd(f,g)$ 以及 $u,v$，并用 \texttt{poly\_mul} 验证 $uf+vg=\gcd(f,g)$.
-			\item 用书中的两个例子检验，再用它完成本章章末习题~\ref{ex:poly:A1} 与 \ref{ex:poly:A4}，并与 \texttt{sympy} 的结果对照.
-		\end{enumerate}
-		
-		\mstep{检查点} $x^4+2x^3+x+3$ 除以 $x^2+1$，商为 $x^2+2x-1$，余式为 $-x+4$；$\gcd(x^3-1,x^2-1)=x-1$，$u=1$，$v=-x$.
-		
-		\mstep{思考}
-		\begin{enumerate}
-			\item 你的程序只用到了加、减、乘、除. 这与``最大公因式不随数域扩大而改变''有什么关系？
-			\item 把 \texttt{Fraction} 换成浮点数，再对 $(x-1)^3(x+2)$ 与它的导数求最大公因式. 余式还能``恰好为零''吗？程序该怎样判断辗转相除何时结束？
-		\end{enumerate}
-	\end{codebox}
+
 	\ExPolynomial 
 	
 	% =====================================================================
@@ -4348,15 +4820,15 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	第四章指出，同一个线性变换在不同基下有不同的矩阵. 本章讨论能否选取一组基，使变换的矩阵成为对角矩阵. 这一问题归结为寻找特征向量，即在变换下只改变长度、不改变方向的非零向量. 本章给出特征值与特征向量的求法、可对角化的判别条件，以及对角化在计算矩阵的幂、分析线性递推关系中的应用. 特征值是第二部分的核心概念，也是本课程中应用最广的概念之一.
 	
-	\chapterhours{6}{8}{9}
+	\chapterhours{6}{7}{9}
 	
 	\begin{introduction}[学习目标]
 		\item 求方阵的特征多项式、特征值与特征子空间
 		\item 运用迹、行列式与特征值的关系检验计算结果
 		\item 区分特征值的代数重数与几何重数，判断方阵能否对角化
 		\item 对可对角化的方阵求出相似变换矩阵，计算方阵的幂，求解线性递推关系
-		\item 用马尔可夫链与 PageRank 说明特征向量在实际问题中的含义（64 学时方案起）
-		\item 说明 Cayley–Hamilton 定理，求最小多项式并用它判断可对角化（72 学时方案）
+		\item 用马尔可夫链与 PageRank 说明特征向量在实际问题中的含义（72 学时方案起）
+		\item 说明 Cayley–Hamilton 定理，求最小多项式并用它判断可对角化（96 学时方案）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
@@ -4634,25 +5106,18 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		一个流传很广的错误``证明''是：$f(\vv A)=\det(\vv A\vv I-\vv A)=\det\vv O=0$. 错在 $f(\vv A)$ 是一个\textbf{矩阵}，而右边是一个\textbf{数}：``先把 $\lambda$ 换成 $\vv A$ 再求行列式''与``先求行列式再代入 $\vv A$''是两回事.
 	\end{pitfallbox}
 	
-	Cayley–Hamilton 定理说明：$\vv A$ 总被某个非零多项式``消灭''. 那么，能消灭 $\vv A$ 的次数最低的多项式是什么？
+	Cayley–Hamilton 定理说明，特征多项式是 $\vv A$ 的一个 $n$ 次零化多项式. 第七章第~\ref{sec:minpoly} 节定义了 $\vv A$ 的最小多项式 $m_{\vv A}$，并证明了它整除 $\vv A$ 的每个零化多项式（定理~\ref{thm:minpoly}）. 两者结合，就得到最小多项式与特征多项式的关系.
 	
-	\begin{definition}
-		使 $m(\vv A)=\vv O$ 的次数最低的首一多项式 $m$ 称为 $\vv A$ 的\textbf{最小多项式}\index{zui4xiao3 duo1xiang4shi4@最小多项式}，记为 $m_{\vv A}$.
-	\end{definition}
-	
-	\begin{theorem}\label{thm:minpoly}
+	\begin{proposition}\label{prop:minpolyeig}
 		\begin{enumerate}
-			\item 最小多项式唯一，并且对任意多项式 $g$，$g(\vv A)=\vv O$ 当且仅当 $m_{\vv A}\mid g$. 特别地，$m_{\vv A}$ 整除特征多项式.
+			\item $m_{\vv A}$ 整除 $\vv A$ 的特征多项式，所以 $\deg m_{\vv A}\le n$.
 			\item $m_{\vv A}$ 与特征多项式有相同的根（不计重数），即 $\vv A$ 的全部特征值.
-			\item 相似矩阵有相同的最小多项式.
 		\end{enumerate}
-	\end{theorem}
+	\end{proposition}
 	\begin{proof}
-		(1) 用 $m=m_{\vv A}$ 除 $g$：$g=qm+r$，$\deg r<\deg m$. 代入 $\vv A$ 得 $r(\vv A)=g(\vv A)-q(\vv A)m(\vv A)=g(\vv A)$. 若 $g(\vv A)=\vv O$，则 $r(\vv A)=\vv O$，由 $m$ 次数最低，$r=0$. 唯一性：两个最小多项式互相整除且都首一，故相等.
+		(1) 由定理~\ref{thm:cayleyhamilton} 与定理~\ref{thm:minpoly}(1).
 		
-		(2) 若 $\vv{Ax}=\lambda\vv x$，$\vv x\ne\zero$，则 $\vv0=m(\vv A)\vv x=m(\lambda)\vv x$，故 $m(\lambda)=0$. 反之 $m$ 整除特征多项式，$m$ 的根都是特征值.
-		
-		(3) $g(\vv P^{-1}\vv{AP})=\vv P^{-1}g(\vv A)\vv P$.
+		(2) 若 $\vv{Ax}=\lambda\vv x$，$\vv x\ne\zero$，则 $\vv A^k\vv x=\lambda^k\vv x$，从而 $\zero=m_{\vv A}(\vv A)\vv x=m_{\vv A}(\lambda)\vv x$，故 $m_{\vv A}(\lambda)=0$. 反之，由 (1)，$m_{\vv A}$ 的根都是特征多项式的根.
 	\end{proof}
 	
 	下面这个引理是 Bézout 等式在线性代数中最漂亮的一次出场.
@@ -4790,34 +5255,6 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		1906 年，俄国数学家马尔可夫（A.~A.~Markov）提出了``下一步只依赖当前状态''的随机过程，用以反驳``大数定律只对独立事件成立''的说法\cite{markov1906rasprostranenie}. 1913 年，他统计了普希金《叶甫盖尼·奥涅金》前两万个字母中元音与辅音的交替规律，这是马尔可夫链的第一次``实证应用''\cite{markov1913onegin,hayes2013first}. 九十年后，斯坦福大学的研究生布林（S.~Brin）与佩奇（L.~Page）在 1998 年的论文\cite{brin1998anatomy}中提出了 PageRank——一个规模达数亿的马尔可夫链的稳态分布.
 	\end{historybox}
 	
-	\section{*Jordan 标准形（选读）}
-	
-	不是每个矩阵都能对角化. 那么，在相似的意义下，一个矩阵最简单能化成什么样子？
-	
-	\begin{definition}
-		形如
-		\[\vv J_k(\lambda)=\begin{pmatrix}\lambda&1&&\\&\lambda&\ddots&\\&&\ddots&1\\&&&\lambda\end{pmatrix}_{k\times k}\]
-		的矩阵称为 $k$ 阶 \textbf{Jordan 块}\index{jordan kuai4@Jordan 块}（主对角线上为 $\lambda$，紧邻其上的一条斜线上为 $1$，其余为 $0$）. 由 Jordan 块组成的分块对角矩阵称为 \textbf{Jordan 矩阵}.
-	\end{definition}
-	
-	\begin{theorem}[Jordan 标准形]\index{jordan biao1zhun3xing2 ding4li3@Jordan 标准形定理}
-		每个复方阵都相似于一个 Jordan 矩阵，并且这个 Jordan 矩阵除了各 Jordan 块的排列顺序外是唯一的，称为它的 \textbf{Jordan 标准形}\index{jordan biao1zhun3xing2@Jordan 标准形}. 此外，对每个特征值 $\lambda_0$：
-		\begin{itemize}
-			\item 以 $\lambda_0$ 为对角元的 Jordan 块的\textbf{个数}，等于 $\lambda_0$ 的几何重数；
-			\item 这些块的\textbf{阶数之和}，等于 $\lambda_0$ 的代数重数；
-			\item 其中\textbf{最大的阶数}，等于 $\lambda_0$ 在最小多项式中的重数.
-		\end{itemize}
-	\end{theorem}
-	
-	完整的证明需要较多准备，留给后续课程. 可对角化恰好是``所有 Jordan 块都是一阶的''情形，与定理~\ref{thm:minpolydiag} 一致.
-	
-	\begin{example}
-		$\vv A=\begin{pmatrix}3&1\\-1&1\end{pmatrix}$ 的特征多项式为 $(\lambda-2)^2$，而 $\vv A-2\vv I=\begin{pmatrix}1&1\\-1&-1\end{pmatrix}$ 的秩为 $1$，几何重数为 $1$，所以 Jordan 标准形为 $\vv J_2(2)$. 取 $\vv v_2=(1,0)^\trans$，$\vv v_1=(\vv A-2\vv I)\vv v_2=(1,-1)^\trans$，则 $\vv A\vv v_1=2\vv v_1$，$\vv A\vv v_2=\vv v_1+2\vv v_2$. 令 $\vv P=(\vv v_1,\vv v_2)$，得 $\vv P^{-1}\vv{AP}=\begin{pmatrix}2&1\\0&2\end{pmatrix}$.
-	\end{example}
-	
-	由 $\vv J_2(\lambda)=\lambda\vv I+\vv N$，$\vv N^2=\vv O$，且 $\lambda\vv I$ 与 $\vv N$ 可交换，用二项式定理得
-	\[\vv J_2(\lambda)^k=\lambda^k\vv I+k\lambda^{k-1}\vv N=\begin{pmatrix}\lambda^k&k\lambda^{k-1}\\0&\lambda^k\end{pmatrix}.\]
-	这解释了一个中学就见过的现象：特征方程有重根 $\lambda$ 时，线性递推的通项中会出现 $k\lambda^k$ 这样的项.
 	\begin{codebox}{判例的 PageRank}
 		\mstep{目标} 从第三章的引证关系出发，编程算出四份判决的 PageRank，并观察阻尼系数的影响.
 		
@@ -4840,8 +5277,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\item 若给否定性引用赋予负权重，$\vv S$ 还是转移矩阵吗？幂迭代还一定收敛吗？
 		\end{enumerate}
 	\end{codebox}
+	
+	\begin{remark}
+		不是每个矩阵都能对角化（例如 $\begin{pmatrix}1&1\\0&1\end{pmatrix}$）. 那么，在相似的意义下，一个矩阵最简单能化成什么样子？第九章将用 $\lambda$-矩阵回答这个问题：每个复方阵都相似于由若干 Jordan 块组成的 Jordan 标准形，可对角化恰好是``所有 Jordan 块都是一阶的''情形，与定理~\ref{thm:minpolydiag} 一致.
+	\end{remark}
 	\newpage
 	\ExEigen
+	
+	\input{chapters/lambda}
 	
 	% =====================================================================
 	
@@ -4849,27 +5292,27 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 
 	\paragraph*{本章地位}
 	
-	此前的向量空间只有加法与数乘，没有长度和角度. 本章在向量空间上引入内积，由此定义长度、夹角与正交，并建立标准正交基与 Gram–Schmidt 正交化方法. 在此基础上，本章讨论正交投影与最小二乘法，以及保持内积的正交变换与正交矩阵. 内积是第十章的谱定理与奇异值分解、第十一章的二次型所必需的工具.
+	此前的向量空间只有加法与数乘，没有长度和角度. 本章在向量空间上引入内积，由此定义长度、夹角与正交，并建立标准正交基与 Gram–Schmidt 正交化方法. 在此基础上，本章讨论正交投影与最小二乘法，以及保持内积的正交变换与正交矩阵. 内积是第十一章的谱定理与奇异值分解、第十三章的二次型所必需的工具.
 	
-	\chapterhours{3}{5}{6}
+	\chapterhours{3}{6}{7}
 	
 	\begin{introduction}[学习目标]
 		\item 验证一个二元函数是否为内积，计算向量的长度、夹角与距离
 		\item 运用 Cauchy–Schwarz 不等式
 		\item 用 Gram–Schmidt 方法把线性无关组化为标准正交组
 		\item 判断矩阵是否为正交矩阵，说明正交变换保持长度与内积
-		\item 求向量在子空间上的正交投影，用正规方程求最小二乘解（64 学时方案起）
+		\item 求向量在子空间上的正交投影，用正规方程求最小二乘解（72 学时方案起）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
 	
-	第二章（基与维数）；第三章（矩阵的运算与逆矩阵）；中学的向量数量积.
+	第四章（线性空间、基与维数）；第三章（矩阵的运算与逆矩阵）；中学的向量数量积.
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
 		\item 本章的概念大多可以在平面和空间中直观理解. 学习时应先在二维、三维的情形下作图，再看它们如何推广到 $n$ 维和一般的内积空间.
 		\item 在标准正交基下，求坐标只需计算内积；正交投影给出子空间中与给定向量距离最近的点. 这两点是本章各项应用（包括最小二乘法）的共同基础.
-		\item 正交矩阵对应于保持长度与角度的变换. 第十、十一章的正交对角化，都是在正交矩阵的范围内选取基.
+		\item 正交矩阵对应于保持长度与角度的变换. 第十一、十三章的正交对角化，都是在正交矩阵的范围内选取基.
 	\end{itemize}
 	
 	\newpage
@@ -4982,7 +5425,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{linkbox}
 	
 	\begin{remark}
-		在复向量空间上，内积的对称性要改为 $\langle\vv\alpha,\vv\beta\rangle=\overline{\langle\vv\beta,\vv\alpha\rangle}$（例如 $\mathbb{C}^n$ 上 $\langle\vv x,\vv y\rangle=\sum x_i\bar y_i$），否则 $\langle\vv\alpha,\vv\alpha\rangle$ 不一定是非负实数. 本书只在第十章的一个证明中用到复数的取共轭，其余都在实数范围内讨论.
+		在复向量空间上，内积的对称性要改为 $\langle\vv\alpha,\vv\beta\rangle=\overline{\langle\vv\beta,\vv\alpha\rangle}$（例如 $\mathbb{C}^n$ 上 $\langle\vv x,\vv y\rangle=\sum x_i\bar y_i$），否则 $\langle\vv\alpha,\vv\alpha\rangle$ 不一定是非负实数. 第十二章将系统地讨论这样的复内积空间（酉空间）；在此之前，本书只在第十一章的一个证明中用到复数的取共轭，其余都在实数范围内讨论.
 	\end{remark}
 	
 	\section{正交基与 Gram–Schmidt 正交化}\label{sec:gramschmidt}
@@ -5244,7 +5687,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\caption{Householder 矩阵 $\vv H=\vv I-2\vv u\vv u^\trans$ 是关于超平面 $\vv u^\perp$ 的镜面反射：与 $\vv u$ 垂直的分量不变，沿 $\vv u$ 的分量反号.}
 		\label{fig:householder}
 	\end{figure}
-	正交矩阵还出现在换基中：两组标准正交基之间的过渡矩阵是正交矩阵（它的列是新基在旧基下的坐标）. 于是，在标准正交基之间换基时，相似变换 $\vv P^{-1}\vv{AP}$ 就成了 $\vv P^\trans\vv{AP}$，称为\textbf{正交相似}\index{zheng4jiao1 xiang1si4@正交相似}. 第十章的主角正是它.
+	正交矩阵还出现在换基中：两组标准正交基之间的过渡矩阵是正交矩阵（它的列是新基在旧基下的坐标）. 于是，在标准正交基之间换基时，相似变换 $\vv P^{-1}\vv{AP}$ 就成了 $\vv P^\trans\vv{AP}$，称为\textbf{正交相似}\index{zheng4jiao1 xiang1si4@正交相似}. 第十一章的主角正是它.
 	
 	\section{*正交补与正交分解（选读）}\label{sec:orthcomp}
 	
@@ -5479,7 +5922,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{example}
 		$\vv Q=\begin{pmatrix}0&0&1\\1&0&0\\0&1&0\end{pmatrix}$ 把 $\vv e_1\mapsto\vv e_2\mapsto\vv e_3\mapsto\vv e_1$，它的列是标准正交的，$\det\vv Q=1$. 显然 $(1,1,1)^\trans$ 不动，旋转轴是 $V_{+1}=\spn\big((1,1,1)^\trans\big)$. $\operatorname{tr}\vv Q=0$，所以 $\cos\theta=-\frac12$，$\theta=\frac{2\pi}3$；旋转平面是轴的正交补 $\{x_1+x_2+x_3=0\}$.
 		
-		这里藏着第二章的一个老朋友：例~\ref{eg:pricedecomp} 中的``价格水平''直线 $L$ 与``相对价格''平面 $R$. 把三种商品的价格``轮换一下标签''，一般价格水平不变（$L$ 是旋转轴），相对价格结构则在 $R$ 中转了 $120^\circ$——转三次回到原样.
+		这里藏着第四章的一个老朋友：例~\ref{eg:pricedecomp} 中的``价格水平''直线 $L$ 与``相对价格''平面 $R$. 把三种商品的价格``轮换一下标签''，一般价格水平不变（$L$ 是旋转轴），相对价格结构则在 $R$ 中转了 $120^\circ$——转三次回到原样.
 	\end{example}
 	\begin{figure}[htbp]
 		\centering
@@ -5524,7 +5967,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{exercise}
 		\begin{enumerate}
 			\item 在 $\mathbb{R}^3$ 中求 $W=\spn((1,1,0)^\trans,(0,1,1)^\trans)$ 的正交补.
-			\item 证明：在标准内积下，第二章例~\ref{eg:pricedecomp} 中的 $L$ 与 $R$ 互为正交补. 由此说明，把价格变动分解为``平均变动''与``偏离平均''，就是向 $L$ 作正交投影.
+			\item 证明：在标准内积下，第四章例~\ref{eg:pricedecomp} 中的 $L$ 与 $R$ 互为正交补. 由此说明，把价格变动分解为``平均变动''与``偏离平均''，就是向 $L$ 作正交投影.
 			\item 设 $W_1\subset W_2$，证明 $W_2^\perp\subset W_1^\perp$. 并证明 $(W_1+W_2)^\perp=W_1^\perp\cap W_2^\perp$.
 			\item 设 $\mathscr P$ 是向 $W$ 的正交投影. 证明 $\mathscr P$ 是线性变换，$\mathscr P^2=\mathscr P$，$\ker\mathscr P=W^\perp$，$\imm\mathscr P=W$.
 			\item\label{exo:ortho-rank} 用定理~\ref{thm:fourspaces} 证明 $\rk(\vv A^\trans\vv A)=\rk\vv A$，从而当 $\vv A$ 列满秩时正规方程有唯一解.
@@ -5532,7 +5975,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\item 证明：平面上的旋转 $\vv R(\theta)$ 是两个反射之积. 由结构定理推出：$\mathbb{R}^n$ 上的每个正交变换都是至多 $n$ 个 Householder 反射之积（Cartan–Dieudonné 定理）.
 			\item 设 $\vv Q$ 是正交矩阵. 证明：存在正整数 $m$ 使 $\vv Q^m=\vv I$，当且仅当结构定理中每个 $\theta_j$ 都是 $\pi$ 的有理数倍.
 			\item 证明：若 $\mathscr T$ 是正交变换，则 $\ker(\mathscr T-\mathscr I)^\perp=\imm(\mathscr T-\mathscr I)$.
-			\item （思考）引理~\ref{lem:orthinvperp} 的证明用到了什么？对于满足 $\langle\mathscr T\vv\alpha,\vv\beta\rangle=\langle\vv\alpha,\mathscr T\vv\beta\rangle$ 的变换，类似的结论是否成立？（第十章的谱定理会回答这个问题.）
+			\item （思考）引理~\ref{lem:orthinvperp} 的证明用到了什么？对于满足 $\langle\mathscr T\vv\alpha,\vv\beta\rangle=\langle\vv\alpha,\mathscr T\vv\beta\rangle$ 的变换，类似的结论是否成立？（第十一章的谱定理会回答这个问题.）
 		\end{enumerate}
 	\end{exercise}
 	\section{*范数与 \texorpdfstring{$\ell^p$}{lp}、\texorpdfstring{$L^p$}{Lp} 空间（选读）}\label{sec:lp}
@@ -5607,7 +6050,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\]
 	于是，若一列向量在其中一种范数下趋于零，在另外两种范数下也趋于零. 可以证明，有限维空间上的任意两个范数都有这样的关系（称为\textbf{等价}）. 因此在有限维空间中，选哪种范数不影响``收敛''与否，只影响具体的数值与几何形状.
 	
-	\paragraph*{哪些范数来自内积.} 第九章章末习题~\ref{ex:ip:B1} 说明，$\|\cdot\|_1$ 不满足\textbf{平行四边形法则}\index{ping2xing2 si4bian1xing2 fa3ze2@平行四边形法则}
+	\paragraph*{哪些范数来自内积.} 第十章章末习题~\ref{ex:ip:B1} 说明，$\|\cdot\|_1$ 不满足\textbf{平行四边形法则}\index{ping2xing2 si4bian1xing2 fa3ze2@平行四边形法则}
 	\[
 	\|\vv\alpha+\vv\beta\|^2+\|\vv\alpha-\vv\beta\|^2=2\|\vv\alpha\|^2+2\|\vv\beta\|^2,
 	\]
@@ -5616,13 +6059,13 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{linkbox}{三种误差，三种答案}
 		设对某个量做了 $n$ 次观测，得到 $y_1,\ldots,y_n$，希望用一个数 $c$ 来概括它们. 误差向量为 $\vv e=(y_1-c,\ldots,y_n-c)^\trans$，使哪种范数下的误差最小，就得到哪种``代表值''：
 		\begin{itemize}
-			\item 使 $\|\vv e\|_2$ 最小：$c$ 是\textbf{平均数}. 这是第九章最小二乘法最简单的情形.
+			\item 使 $\|\vv e\|_2$ 最小：$c$ 是\textbf{平均数}. 这是第十章最小二乘法最简单的情形.
 			\item 使 $\|\vv e\|_1$ 最小：$c$ 是\textbf{中位数}. 把 $c$ 从左向右移动，每越过一个数据点，$\sum|y_i-c|$ 的斜率增加 $2$；斜率从负变为正的位置，正好是中间的那个数据点.
 			\item 使 $\|\vv e\|_\infty$ 最小：$c$ 是最大值与最小值的平均，称为\textbf{中程数}.
 		\end{itemize}
 		对数据 $2,3,4,5,16$，三者分别为 $6$，$4$，$9$. 一个异常大的观测值 $16$，把平均数拉高了 $2$，把中程数拉高了更多，却完全不影响中位数. 这就是为什么统计学中有``最小一乘法''\index{zui4xiao3 yi1cheng2fa3@最小一乘法}：当数据中可能混有异常值时，用 $\|\cdot\|_1$ 度量误差，结论更稳健.
 		
-		$\ell^1$ 范数还有另一个用途. 在回归中把第十一章岭回归的惩罚项 $\mu\|\vv x\|_2^2$ 换成 $\mu\|\vv x\|_1$，所得的方法称为 LASSO. 由图~\ref{fig:lpballs} 可以想见：菱形的尖角落在坐标轴上，所以最优解往往有许多分量恰好为零. 这使 LASSO 能从大量候选变量中自动挑出少数几个，在计量经济学和数据科学中应用广泛. 选择哪一种范数，本质上是一个建模决定，而不是数学上的必然.
+		$\ell^1$ 范数还有另一个用途. 在回归中把第十三章岭回归的惩罚项 $\mu\|\vv x\|_2^2$ 换成 $\mu\|\vv x\|_1$，所得的方法称为 LASSO. 由图~\ref{fig:lpballs} 可以想见：菱形的尖角落在坐标轴上，所以最优解往往有许多分量恰好为零. 这使 LASSO 能从大量候选变量中自动挑出少数几个，在计量经济学和数据科学中应用广泛. 选择哪一种范数，本质上是一个建模决定，而不是数学上的必然.
 	\end{linkbox}
 	
 	\subsection{\texorpdfstring{$\ell^p$}{lp} 空间}
@@ -5644,7 +6087,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\subsection{\texorpdfstring{$L^p$}{Lp} 空间}
 	
-	第九章已经在连续函数空间 $C[a,b]$ 上用积分定义了内积 $\langle f,g\rangle=\int_a^bf(x)g(x)\,\mathrm dx$，它给出的长度是 $\|f\|_2=\big(\int_a^b|f(x)|^2\,\mathrm dx\big)^{1/2}$. 仿照 $\ell^p$，对 $p\ge1$ 可以定义
+	第十章已经在连续函数空间 $C[a,b]$ 上用积分定义了内积 $\langle f,g\rangle=\int_a^bf(x)g(x)\,\mathrm dx$，它给出的长度是 $\|f\|_2=\big(\int_a^b|f(x)|^2\,\mathrm dx\big)^{1/2}$. 仿照 $\ell^p$，对 $p\ge1$ 可以定义
 	\[
 	\|f\|_p=\Big(\int_a^b|f(x)|^p\,\mathrm dx\Big)^{1/p},\qquad \|f\|_\infty=\max_{a\le x\le b}|f(x)|.
 	\]
@@ -5659,7 +6102,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	补上这些缺口，需要比 Riemann 积分更一般的 Lebesgue 积分，并把在``可以忽略的集合''（例如有限个点）上取值不同的函数视为同一个元素. 补全之后的空间记为 $L^p[a,b]$，称为 \textbf{$L^p$ 空间}\index{lp han2shu4 kong1jian1@$L^p$ 空间}. 一个空间若没有上述缺口，就称为\textbf{完备的}\index{wan2bei4@完备}. $\ell^p$ 与 $L^p$ 都是完备的赋范空间，$\ell^2$ 与 $L^2$ 都是 Hilbert 空间. 严格的构造属于实变函数与泛函分析课程.
 	
-	在 $L^2[-\pi,\pi]$ 中，函数组 $1,\cos x,\sin x,\cos2x,\sin2x,\ldots$ 两两正交（第九章章末习题~\ref{ex:ip:B9}）. 一个函数的 \textbf{Fourier 级数}，正是它在这组正交函数上的``坐标展开''，而部分和就是它在有限个函数张成的子空间上的正交投影. 本章的最佳逼近定理在这里的含义是：在次数不超过 $N$ 的三角多项式中，Fourier 级数的前 $N$ 阶部分和在 $\|\cdot\|_2$ 下离原函数最近. 信号处理中把 $\|f\|_2^2$ 称为信号的``能量''，Fourier 展开把能量分配到各个频率上，这是勾股定理在无穷维中的推广.
+	在 $L^2[-\pi,\pi]$ 中，函数组 $1,\cos x,\sin x,\cos2x,\sin2x,\ldots$ 两两正交（第十章章末习题~\ref{ex:ip:B9}）. 一个函数的 \textbf{Fourier 级数}，正是它在这组正交函数上的``坐标展开''，而部分和就是它在有限个函数张成的子空间上的正交投影. 本章的最佳逼近定理在这里的含义是：在次数不超过 $N$ 的三角多项式中，Fourier 级数的前 $N$ 阶部分和在 $\|\cdot\|_2$ 下离原函数最近. 信号处理中把 $\|f\|_2^2$ 称为信号的``能量''，Fourier 展开把能量分配到各个频率上，这是勾股定理在无穷维中的推广.
 	
 	\begin{historybox}{从无穷多个未知数到泛函分析}
 		二十世纪初，希尔伯特在研究积分方程时，把问题转化为``无穷多个未知数的线性方程组''，其中的未知数数列满足平方和有限，也就是今天的 $\ell^2$. 1907 年，希尔伯特的学生施密特（E.~Schmidt）给出了把线性无关组正交化的方法，1908 年，他在论文\cite{schmidt1908aufloesung}中为$\ell^2$建立了系统的几何语言. 1910 年，匈牙利数学家里斯（F.~Riesz）引入了 $L^p$ 空间\cite{riesz1910untersuchungen}. 波兰数学家巴拿赫（S.~Banach）在在 1920 年完成、1922 年发表的博士论文\cite{banach1922operations}中给出了完备赋范空间的公理化定义，这类空间后来以他的名字命名. 以这些空间为舞台研究线性映射的学科，称为\textbf{泛函分析}. 它可以看作把本书的线性代数推广到无穷维的结果.
@@ -5702,21 +6145,21 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	% =====================================================================
 	\paragraph*{本章地位}
 
-	第八章讨论了矩阵的对角化，第九章引入了正交. 本章把二者结合起来，证明实对称矩阵可以用正交矩阵对角化（谱定理），即存在一组由特征向量构成的标准正交基. 在此基础上，本章对任意矩阵建立奇异值分解，由此得到矩阵的最佳低秩逼近，并讨论主成分分析等应用. 谱定理也是第十一章用正交变换化二次型为标准形的依据.
+	第八章讨论了矩阵的对角化，第十章引入了正交. 本章把二者结合起来，证明实对称矩阵可以用正交矩阵对角化（谱定理），即存在一组由特征向量构成的标准正交基. 在此基础上，本章对任意矩阵建立奇异值分解，由此得到矩阵的最佳低秩逼近，并讨论主成分分析等应用. 谱定理也是第十三章用正交变换化二次型为标准形的依据.
 	
-	\chapterhours{3}{5}{6}
+	\chapterhours{3}{5}{7}
 	
 	\begin{introduction}[学习目标]
 		\item 说明实对称矩阵的特征值都是实数，属于不同特征值的特征向量互相正交
 		\item 用正交矩阵把实对称矩阵对角化，写出谱分解
-		\item 用 Rayleigh 商刻画实对称矩阵的最大与最小特征值（64 学时方案起）
-		\item 求矩阵的奇异值分解，说明它的几何意义（64 学时方案起）
-		\item 求矩阵的最佳低秩逼近，并用于主成分分析等问题（72 学时方案）
+		\item 用 Rayleigh 商刻画实对称矩阵的最大与最小特征值（72 学时方案起）
+		\item 求矩阵的奇异值分解，说明它的几何意义（72 学时方案起）
+		\item 求矩阵的最佳低秩逼近，并用于主成分分析等问题（96 学时方案）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
 	
-	第八章（特征值与对角化）；第九章（标准正交基与正交矩阵）.
+	第八章（特征值与对角化）；第十章（标准正交基与正交矩阵）.
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
@@ -5765,7 +6208,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		把这个证明与第九章正交变换的结构定理并排放：两者都是``找到一个小的不变子空间，再证明它的正交补也不变，然后归纳''. 正交变换靠的是``保持内积''，对称矩阵靠的是 $\langle\vv{Ax},\vv y\rangle=\langle\vv x,\vv{Ay}\rangle$（这样的变换称为\textbf{自伴的}\index{zi4ban4 bian4huan4@自伴变换}）. 不同之处只在于：对称矩阵的小块总是一维的（特征值是实数），正交变换的小块可以是二维的（特征值可以是 $\mathrm e^{\pm\mathrm i\theta}$）.
+		把这个证明与第十章正交变换的结构定理并排放：两者都是``找到一个小的不变子空间，再证明它的正交补也不变，然后归纳''. 正交变换靠的是``保持内积''，对称矩阵靠的是 $\langle\vv{Ax},\vv y\rangle=\langle\vv x,\vv{Ay}\rangle$（这样的变换称为\textbf{自伴的}\index{zi4ban4 bian4huan4@自伴变换}）. 不同之处只在于：对称矩阵的小块总是一维的（特征值是实数），正交变换的小块可以是二维的（特征值可以是 $\mathrm e^{\pm\mathrm i\theta}$）.
 	\end{motivebox}
 	
 	\paragraph*{正交对角化的步骤.} (1) 求出全部特征值；(2) 对每个特征值求特征子空间的基，并在\textbf{每个特征子空间内部}作 Gram–Schmidt 正交化、单位化；(3) 把所有这些向量排成 $\vv Q$. 不同特征子空间之间自动正交，无需再处理.
@@ -5776,7 +6219,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	把 $\vv Q=(\vv q_1,\ldots,\vv q_n)$ 按列展开，谱定理还可以写成
 	\[\vv A=\vv Q\vv D\vv Q^\trans=\lambda_1\vv q_1\vv q_1^\trans+\lambda_2\vv q_2\vv q_2^\trans+\cdots+\lambda_n\vv q_n\vv q_n^\trans,\]
-	称为\textbf{谱分解}\index{pu3 fen1jie3@谱分解}. 每个 $\vv q_i\vv q_i^\trans$ 是向 $\spn(\vv q_i)$ 的正交投影（第九章章末习题~\ref{ex:ip:A21}），所以：\textbf{对称矩阵就是若干个互相垂直方向上的投影，各自乘上一个伸缩倍数，再加起来.}
+	称为\textbf{谱分解}\index{pu3 fen1jie3@谱分解}. 每个 $\vv q_i\vv q_i^\trans$ 是向 $\spn(\vv q_i)$ 的正交投影（第十章章末习题~\ref{ex:ip:A21}），所以：\textbf{对称矩阵就是若干个互相垂直方向上的投影，各自乘上一个伸缩倍数，再加起来.}
 	
 	\subsection{\hB 特征值的极值刻画}
 	
@@ -5814,7 +6257,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		把 $\vv u_1,\ldots,\vv u_r$ 扩充为 $\mathbb{R}^m$ 的标准正交基 $\vv u_1,\ldots,\vv u_m$. 对 $i>r$，$\|\vv A\vv v_i\|^2=\lambda_i=0$，故 $\vv A\vv v_i=\zero$. 于是 $\vv A\vv v_i=\sigma_i\vv u_i$（$i\le r$），$\vv A\vv v_i=\zero$（$i>r$），即 $\vv{AV}=\vv U\vv\Sigma$. 右乘 $\vv V^\trans=\vv V^{-1}$ 即得.
 	\end{proof}
 	
-	\paragraph*{几何意义.} $\vv A\vv x=\vv U\vv\Sigma\vv V^\trans\vv x$ 分三步：先用 $\vv V^\trans$ 做一次正交变换（把 $\vv v_i$ 转到坐标轴上），再用 $\vv\Sigma$ 沿坐标轴伸缩（第 $i$ 个轴伸缩 $\sigma_i$ 倍，多余的维数被压扁或补零），最后用 $\vv U$ 再做一次正交变换（把坐标轴转到 $\vv u_i$ 上）. 单位球的像是以 $\sigma_i\vv u_i$ 为半轴的椭球. 由第九章的结构定理，每个正交变换又只是若干平面旋转与反射的组合——于是\textbf{任何}线性映射都可以拆成``转、伸、转''.
+	\paragraph*{几何意义.} $\vv A\vv x=\vv U\vv\Sigma\vv V^\trans\vv x$ 分三步：先用 $\vv V^\trans$ 做一次正交变换（把 $\vv v_i$ 转到坐标轴上），再用 $\vv\Sigma$ 沿坐标轴伸缩（第 $i$ 个轴伸缩 $\sigma_i$ 倍，多余的维数被压扁或补零），最后用 $\vv U$ 再做一次正交变换（把坐标轴转到 $\vv u_i$ 上）. 单位球的像是以 $\sigma_i\vv u_i$ 为半轴的椭球. 由第十章的结构定理，每个正交变换又只是若干平面旋转与反射的组合——于是\textbf{任何}线性映射都可以拆成``转、伸、转''.
 	\begin{figure}[htbp]
 		\centering
 		\begin{tikzpicture}[scale=0.8]
@@ -5882,7 +6325,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{theorem}[Eckart–Young]\label{thm:eckartyoung}\index{eckart young ding4li3@Eckart–Young 定理}
 		在所有秩不超过 $k$ 的 $m\times n$ 矩阵 $\vv B$ 中，$\vv A_k$ 离 $\vv A$ 最近：
 		\[\|\vv A-\vv A_k\|_F\le\|\vv A-\vv B\|_F,\qquad \|\vv A-\vv A_k\|_F=\sqrt{\sigma_{k+1}^2+\cdots+\sigma_r^2},\]
-		其中 $\|\vv M\|_F=\sqrt{\sum m_{ij}^2}$ 称为 \textbf{Frobenius 范数}\index{frobenius fan4shu4@Frobenius 范数}，它是第九章 $M_{m\times n}(\mathbb{R})$ 上的内积所对应的范数.
+		其中 $\|\vv M\|_F=\sqrt{\sum m_{ij}^2}$ 称为 \textbf{Frobenius 范数}\index{frobenius fan4shu4@Frobenius 范数}，它是第十章 $M_{m\times n}(\mathbb{R})$ 上的内积所对应的范数.
 	\end{theorem}
 	
 	后一个等式容易验证：$\vv A-\vv A_k=\sum_{i>k}\sigma_i\vv u_i\vv v_i^\trans$，而各 $\vv u_i\vv v_i^\trans$ 在这个内积下两两正交、长度为 $1$（习题），由勾股定理即得. 前一个不等式（``最近''）的证明需要更多技巧，这里从略.
@@ -5984,7 +6427,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	模型先把文本切分成\textbf{词元}\index{ci2yuan2@词元}(token)——字、词或词的一部分. 全体可能的词元构成词表，设其大小为 $N$，并给每个词元编号. 模型中有一个 $N\times d$ 矩阵 $\vv E$，第 $i$ 个词元对应 $\vv E$ 的第 $i$ 行，记为 $\vv e_i^\trans\vv E$，它是一个 $d$ 维向量，称为该词元的\textbf{嵌入}\index{qian4ru4@嵌入}(embedding). 实际模型中 $N$ 为数万到十几万，$d$ 为数千.
 	
-	$\vv E$ 的元素不是人为设定的，而是从数据中学出来的. 训练的结果是：在相近上下文中出现的词元，嵌入的方向也相近，可以用第九章的余弦相似度来度量. 这与本章潜在语义分析的想法一脉相承：在那里，SVD 把共现模式相似的词压到相近的方向上；在这里，同样的效果由训练得到，维数和数据规模大得多.
+	$\vv E$ 的元素不是人为设定的，而是从数据中学出来的. 训练的结果是：在相近上下文中出现的词元，嵌入的方向也相近，可以用第十章的余弦相似度来度量. 这与本章潜在语义分析的想法一脉相承：在那里，SVD 把共现模式相似的词压到相近的方向上；在这里，同样的效果由训练得到，维数和数据规模大得多.
 	
 	2013 年，米科洛夫（T.~Mikolov）等人观察到，这类嵌入中存在近似的线性关系\cite{mikolov2013linguistic}：
 	\[
@@ -6092,6 +6535,8 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\newpage
 	\ExDecomposition
 	
+	\input{chapters/unitary}
+	
 	% =====================================================================
 	\noteopenany
 	\chapter*{第二部分综合项目}
@@ -6138,7 +6583,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	此前，矩阵主要作为线性变换出现. 本章研究矩阵的另一种角色，即二次型：以向量为自变量、取值为各分量的二次齐次式的函数. 本章讨论如何通过可逆的变量替换把二次型化为只含平方项的标准形，证明标准形中正、负系数的个数与化法无关（惯性定理），并给出判别正定性的方法. 二次型出现在多元函数的极值、最小二乘法与投资组合风险等问题中.
 	
-	\chapterhours{5}{7}{7}
+	\chapterhours{5}{7}{8}
 	
 	\begin{introduction}[学习目标]
 		\item 写出二次型的矩阵，判断两个实对称矩阵是否合同
@@ -6146,12 +6591,12 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\item 求二次型的正、负惯性指数与规范形
 		\item 用特征值或顺序主子式判断二次型是否正定
 		\item 用 Hessian 矩阵判断多元函数驻点的类型
-		\item 把投资组合的方差写成二次型，求最小方差组合（64 学时方案起）
+		\item 把投资组合的方差写成二次型，求最小方差组合（72 学时方案起）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
 	
-	第五章（行列式与子式）；第十章（实对称矩阵的谱定理）；高等数学中多元函数的极值.
+	第五章（行列式与子式）；第十一章（实对称矩阵的谱定理）；高等数学中多元函数的极值.
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
@@ -6217,7 +6662,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	合同是等价关系（反身、对称、传递的验证与相似完全类似）. 由推论~\ref{cor:rankinvariant}，合同的矩阵秩相同，所以\textbf{二次型的秩不随可逆变量替换而改变}.
 	
 	\begin{pitfallbox}
-		合同 $\vv C^\trans\vv A\vv C$ 与相似 $\vv P^{-1}\vv A\vv P$ 是两回事. $\diag(1,4)$ 与 $\vv I_2$ 合同（取 $\vv C=\diag(1,\frac12)$），却不相似（特征值不同）. 二次型 $x^2+4y^2$ 换成 $y'=2y$ 后就是 $x^2+y'^2$——作为``数值''，它们只是同一个函数用不同的尺子量；而作为``变换''，``拉伸 $4$ 倍''与``不动''当然不同. 为什么同一个对称矩阵会有两种换基规则？第十二章会给出答案. 两者唯一重合的情形是 $\vv C$ 为正交矩阵：$\vv C^\trans=\vv C^{-1}$.
+		合同 $\vv C^\trans\vv A\vv C$ 与相似 $\vv P^{-1}\vv A\vv P$ 是两回事. $\diag(1,4)$ 与 $\vv I_2$ 合同（取 $\vv C=\diag(1,\frac12)$），却不相似（特征值不同）. 二次型 $x^2+4y^2$ 换成 $y'=2y$ 后就是 $x^2+y'^2$——作为``数值''，它们只是同一个函数用不同的尺子量；而作为``变换''，``拉伸 $4$ 倍''与``不动''当然不同. 为什么同一个对称矩阵会有两种换基规则？第十四章会给出答案. 两者唯一重合的情形是 $\vv C$ 为正交矩阵：$\vv C^\trans=\vv C^{-1}$.
 	\end{pitfallbox}
 	
 	\section{化二次型为标准形}
@@ -6405,7 +6850,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\end{itemize}
 	\end{definition}
 	
-	例如 $x_1^2+x_2^2$ 正定，$(x_1+x_2)^2$ 半正定但不正定，$x_1^2-x_2^2$ 不定. 第九章的内积公理中的``正定性''，说的正是 $\langle\vv\alpha,\vv\alpha\rangle$ 作为二次型是正定的.
+	例如 $x_1^2+x_2^2$ 正定，$(x_1+x_2)^2$ 半正定但不正定，$x_1^2-x_2^2$ 不定. 第十章的内积公理中的``正定性''，说的正是 $\langle\vv\alpha,\vv\alpha\rangle$ 作为二次型是正定的.
 	
 	\begin{theorem}\label{thm:posdef}
 		对 $n$ 阶实对称矩阵 $\vv A$，以下条件等价：
@@ -6420,7 +6865,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\end{enumerate}
 	\end{theorem}
 	\begin{proof}
-		(1)$\Leftrightarrow$(2)：由主轴定理，$f=\sum\lambda_iy_i^2$，$\vv y=\vv Q^\trans\vv x$，且 $\vv x\ne\zero\iff\vv y\ne\zero$. 若某个 $\lambda_i\le0$，取 $\vv y=\vv e_i$ 得 $f\le0$；若全为正，则 $\vv y\ne\zero$ 时 $f>0$. （这正是第十章章末习题~\ref{ex:dec:A21}.）
+		(1)$\Leftrightarrow$(2)：由主轴定理，$f=\sum\lambda_iy_i^2$，$\vv y=\vv Q^\trans\vv x$，且 $\vv x\ne\zero\iff\vv y\ne\zero$. 若某个 $\lambda_i\le0$，取 $\vv y=\vv e_i$ 得 $f\le0$；若全为正，则 $\vv y\ne\zero$ 时 $f>0$. （这正是第十一章章末习题~\ref{ex:dec:A21}.）
 		
 		(2)$\Leftrightarrow$(3)：推论~\ref{cor:inertiaeig}(1). (3)$\Leftrightarrow$(4)：$p=n$ 当且仅当规范形为 $z_1^2+\cdots+z_n^2$，即 $\vv A$ 合同于 $\vv I$；而 $\vv A=\vv C^\trans\vv I\vv C=\vv C^\trans\vv C$.
 		
@@ -6473,14 +6918,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		$\vv x^\trans\vv B^\trans\vv B\vv x=\|\vv B\vv x\|^2\ge0$，等号成立当且仅当 $\vv B\vv x=\zero$. 列满秩当且仅当 $\vv B\vv x=\zero$ 只有零解.
 	\end{proof}
 	
-	矩阵 $\vv B^\trans\vv B$ 的 $(i,j)$ 元是 $\vv B$ 第 $i$、$j$ 两列的内积，称为 \textbf{Gram 矩阵}\index{gram ju3zhen4@Gram 矩阵}. 它已经出现过三次：第九章的正规方程 $\vv A^\trans\vv A\hat{\vv x}=\vv A^\trans\vv y$，第十章奇异值分解中的 $\vv A^\trans\vv A$，以及主成分分析中的样本协方差矩阵 $\frac1{n-1}\vv X^\trans\vv X$. 由这个命题，\textbf{样本协方差矩阵总是半正定的}.
+	矩阵 $\vv B^\trans\vv B$ 的 $(i,j)$ 元是 $\vv B$ 第 $i$、$j$ 两列的内积，称为 \textbf{Gram 矩阵}\index{gram ju3zhen4@Gram 矩阵}. 它已经出现过三次：第十章的正规方程 $\vv A^\trans\vv A\hat{\vv x}=\vv A^\trans\vv y$，第十一章奇异值分解中的 $\vv A^\trans\vv A$，以及主成分分析中的样本协方差矩阵 $\frac1{n-1}\vv X^\trans\vv X$. 由这个命题，\textbf{样本协方差矩阵总是半正定的}.
 	
 	\begin{example}[（最小二乘：配方的观点）]
 		设 $\vv A$ 列满秩，$\vv G=\vv A^\trans\vv A$ 正定，$\hat{\vv x}=\vv G^{-1}\vv A^\trans\vv y$. 直接展开可以验证
 		\[
 		\|\vv y-\vv A\vv x\|^2=(\vv x-\hat{\vv x})^\trans\vv G(\vv x-\hat{\vv x})+\|\vv y-\vv A\hat{\vv x}\|^2.
 		\]
-		右边第一项是正定二次型，$\vv x\ne\hat{\vv x}$ 时严格为正，所以 $\hat{\vv x}$ 是唯一的最小值点. 这是第九章正规方程定理（定理~\ref{thm:normaleq}）的一个``纯代数''的证明：不画垂线，只配方. 若 $\vv A$ 不列满秩，$\vv G$ 只是半正定，最小值点就不唯一；统计学中的\textbf{岭回归}\index{ling3 hui2gui1@岭回归}在目标函数中加上 $\mu\|\vv x\|^2$（$\mu>0$），把 $\vv G$ 换成正定的 $\vv G+\mu\vv I$，人为地保证了唯一性.
+		右边第一项是正定二次型，$\vv x\ne\hat{\vv x}$ 时严格为正，所以 $\hat{\vv x}$ 是唯一的最小值点. 这是第十章正规方程定理（定理~\ref{thm:normaleq}）的一个``纯代数''的证明：不画垂线，只配方. 若 $\vv A$ 不列满秩，$\vv G$ 只是半正定，最小值点就不唯一；统计学中的\textbf{岭回归}\index{ling3 hui2gui1@岭回归}在目标函数中加上 $\mu\|\vv x\|^2$（$\mu>0$），把 $\vv G$ 换成正定的 $\vv G+\mu\vv I$，人为地保证了唯一性.
 	\end{example}
 	
 	\section{\hB 应用：投资组合的风险}
@@ -6563,7 +7008,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\textbf{样本协方差矩阵可能是奇异的.} 用 $T$ 期历史收益率估计 $n$ 种资产的协方差矩阵，样本协方差矩阵是 $\frac1{T-1}\vv X^\trans\vv X$，其中 $\vv X$ 是 $T\times n$ 的中心化数据矩阵. 中心化使 $\vv X$ 的各行之和为零，所以 $\rk\vv X\le T-1$，从而样本协方差矩阵的秩 $\le T-1$. 若 $T\le n$（例如用 $60$ 个月的数据估计 $100$ 只股票），它必然奇异：数据会``告诉''你存在零风险的组合，而这完全是样本太少造成的假象. 线性代数在这里给出了一个统计学上的警告.
 	\end{pitfallbox}
 	
-	\paragraph*{均值—方差模型的局限.} 模型对输入极其敏感：$\vv\Sigma^{-1}$ 会放大估计误差，尤其是 $\vv\Sigma$ 接近奇异（条件数大）时. 优化器会把大量资金押在``估计误差恰好看起来最有利''的资产上，因此有人戏称均值—方差优化是``误差最大化''. 实践中常用的补救包括：限制卖空，对协方差矩阵作``收缩''（向一个结构简单的正定矩阵拉近，与岭回归同一思路），或用第十章的主成分构造少数几个``因子''来描述协方差. 此外，方差把上涨和下跌一视同仁地当作``风险''，这对收益分布不对称的资产并不合适.
+	\paragraph*{均值—方差模型的局限.} 模型对输入极其敏感：$\vv\Sigma^{-1}$ 会放大估计误差，尤其是 $\vv\Sigma$ 接近奇异（条件数大）时. 优化器会把大量资金押在``估计误差恰好看起来最有利''的资产上，因此有人戏称均值—方差优化是``误差最大化''. 实践中常用的补救包括：限制卖空，对协方差矩阵作``收缩''（向一个结构简单的正定矩阵拉近，与岭回归同一思路），或用第十一章的主成分构造少数几个``因子''来描述协方差. 此外，方差把上涨和下跌一视同仁地当作``风险''，这对收益分布不对称的资产并不合适.
 	
 	\begin{historybox}{一篇十余页的论文}
 		1952 年，二十多岁的芝加哥大学研究生马科维茨在《金融杂志》上发表了十余页的论文《投资组合选择》\cite{markowitz1952portfolio}. 在此之前，人们挑选股票主要看单只股票的前景；马科维茨指出，一只股票该不该买，取决于它与已有组合的\textbf{协方差}. 据他本人回忆，在博士答辩上，答辩委员、后来的诺贝尔奖得主弗里德曼半开玩笑地说，这篇论文不是经济学\cite{markowitz1991foundations}. 1990 年，马科维茨因这项工作获得诺贝尔经济学奖.
@@ -6637,7 +7082,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\paragraph*{前置知识}
 	
-	第四章（线性映射）；第十一章（二次型与合同）.
+	第四章（线性映射）；第十三章（二次型与合同）.
 	
 	\paragraph*{学习提示}
 	\begin{itemize}
@@ -6652,7 +7097,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{quote}数学中的对偶不是一条定理，而是一种``原理''.\end{quote}
 	\begin{flushright}——迈克尔·阿蒂亚\footnotemark\end{flushright}
 	\end{tcolorbox}
-	\footnotetext{迈克尔·阿蒂亚（1929—2019），英国数学家，1966 年菲尔兹奖、2004 年阿贝尔奖得主. 引文出自其 2007 年在巴塞罗那所作讲演《数学与物理中的对偶》的开头. 本书其实早已多次遇到对偶的影子：第九章``行空间与解空间互为正交补''、第六章``能被确定的量恰是各行的线性组合''，都是同一个原理在不同场合的表现.}
+	\footnotetext{迈克尔·阿蒂亚（1929—2019），英国数学家，1966 年菲尔兹奖、2004 年阿贝尔奖得主. 引文出自其 2007 年在巴塞罗那所作讲演《数学与物理中的对偶》的开头. 本书其实早已多次遇到对偶的影子：第十章``行空间与解空间互为正交补''、第六章``能被确定的量恰是各行的线性组合''，都是同一个原理在不同场合的表现.}
 	
 	\section{对偶空间}
 	
@@ -6762,7 +7207,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{remark}
-		第一式说：$\vv{Ax}=\vv b$ 有解（$\vv b\in\imm\mathscr T$），当且仅当凡是满足 $g\circ\mathscr T=0$ 的线性函数 $g$ 都有 $g(\vv b)=0$. 这就是第九章的``相容性条件''，只是这里没有用到内积. 在内积空间中，每个线性函数都可以写成 $\langle\cdot,\vv\beta\rangle$ 的形式（本章章末习题~\ref{ex:bil:A15}），零化子于是变成了正交补，第九章的定理~\ref{thm:fourspaces} 就是本定理``穿上内积的外衣''.
+		第一式说：$\vv{Ax}=\vv b$ 有解（$\vv b\in\imm\mathscr T$），当且仅当凡是满足 $g\circ\mathscr T=0$ 的线性函数 $g$ 都有 $g(\vv b)=0$. 这就是第十章的``相容性条件''，只是这里没有用到内积. 在内积空间中，每个线性函数都可以写成 $\langle\cdot,\vv\beta\rangle$ 的形式（本章章末习题~\ref{ex:bil:A15}），零化子于是变成了正交补，第十章的定理~\ref{thm:fourspaces} 就是本定理``穿上内积的外衣''.
 	\end{remark}
 	
 	\section{双线性型}
@@ -6796,12 +7241,12 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		第十一章的悬案到此结案. \textbf{同一个方阵可以有两种身份}：
+		第十三章的悬案到此结案. \textbf{同一个方阵可以有两种身份}：
 		\begin{itemize}
 			\item 作为线性变换 $V\to V$ 的矩阵，换基时变为 $\vv P^{-1}\vv A\vv P$（相似）；
 			\item 作为双线性型 $V\times V\to\mathbb{F}$ 的度量矩阵，换基时变为 $\vv P^\trans\vv A\vv P$（合同）.
 		\end{itemize}
-		差别从哪里来？双线性型 $f$ 其实也是一个线性映射，只不过是从 $V$ 到 $V^*$ 的：$\vv\alpha\mapsto f(\vv\alpha,\cdot)$. 它的``出发地''是 $V$，``目的地''却是对偶空间，而对偶空间中的坐标按 $\vv P^\trans$ 而非 $\vv P^{-1}$ 变换（上一节的价格例子）. 所以只要看清一个矩阵描述的是 $V\to V$ 还是 $V\to V^*$，换基公式就不会记错. 在标准正交基之间换基时，$\vv P$ 是正交矩阵，$\vv P^\trans=\vv P^{-1}$，两种规则恰好重合——这就是为什么第十章的谱定理能\textbf{同时}把对称矩阵作为变换和作为二次型对角化. 也正因为欧几里得空间中二者重合，许多教材从不提醒读者它们本是两回事.
+		差别从哪里来？双线性型 $f$ 其实也是一个线性映射，只不过是从 $V$ 到 $V^*$ 的：$\vv\alpha\mapsto f(\vv\alpha,\cdot)$. 它的``出发地''是 $V$，``目的地''却是对偶空间，而对偶空间中的坐标按 $\vv P^\trans$ 而非 $\vv P^{-1}$ 变换（上一节的价格例子）. 所以只要看清一个矩阵描述的是 $V\to V$ 还是 $V\to V^*$，换基公式就不会记错. 在标准正交基之间换基时，$\vv P$ 是正交矩阵，$\vv P^\trans=\vv P^{-1}$，两种规则恰好重合——这就是为什么第十一章的谱定理能\textbf{同时}把对称矩阵作为变换和作为二次型对角化. 也正因为欧几里得空间中二者重合，许多教材从不提醒读者它们本是两回事.
 	\end{motivebox}
 	
 	\begin{definition}
@@ -6815,7 +7260,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		$f(\vv\alpha,\vv\beta)=\vv x^\trans\vv A\vv y$ 对一切 $\vv y$ 为零，当且仅当 $\vv x^\trans\vv A=\zero^\trans$，即 $\vv A^\trans\vv x=\zero$. 所以非退化 $\iff\vv A^\trans\vv x=\zero$ 只有零解 $\iff\vv A$ 可逆. 后一个等价是因为 $\dim V=\dim V^*$，单射即同构.
 	\end{proof}
 	
-	内积是非退化的（甚至是正定的）. 所以在内积空间中，$\vv\beta\mapsto\langle\cdot,\vv\beta\rangle$ 把 $V$ 与 $V^*$ 等同了起来——这就是为什么在第九章，我们从来不需要区分``向量''与``线性函数''.
+	内积是非退化的（甚至是正定的）. 所以在内积空间中，$\vv\beta\mapsto\langle\cdot,\vv\beta\rangle$ 把 $V$ 与 $V^*$ 等同了起来——这就是为什么在第十章，我们从来不需要区分``向量''与``线性函数''.
 	
 	\section{对称型与交错型}
 	
@@ -6831,7 +7276,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	对称双线性型 $f$ 确定一个二次型 $q(\vv\alpha)=f(\vv\alpha,\vv\alpha)$；反过来，由\textbf{极化恒等式}\index{ji2hua4 heng2deng3shi4@极化恒等式}
 	\[f(\vv\alpha,\vv\beta)=\tfrac12\big(q(\vv\alpha+\vv\beta)-q(\vv\alpha)-q(\vv\beta)\big),\]
-	二次型也唯一地确定对称双线性型. 第九章定理~\ref{thm:orthequiv} 的证明（``保持长度就保持内积''）用的正是这个恒等式. 所以``对称双线性型''与``二次型''是同一个对象的两种说法，第十一章的全部理论都可以用双线性型重述. 例如定理~\ref{thm:lagrangediag}（配方法）变为：
+	二次型也唯一地确定对称双线性型. 第十章定理~\ref{thm:orthequiv} 的证明（``保持长度就保持内积''）用的正是这个恒等式. 所以``对称双线性型''与``二次型''是同一个对象的两种说法，第十三章的全部理论都可以用双线性型重述. 例如定理~\ref{thm:lagrangediag}（配方法）变为：
 	
 	\begin{theorem}\label{thm:symdiag}
 		有限维空间上的对称双线性型 $f$ 总有一组基 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$，使 $f(\vv\varepsilon_i,\vv\varepsilon_j)=0$（$i\ne j$）. 这样的基称为 $f$ 的\textbf{正交基}.
@@ -6840,7 +7285,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		对 $n$ 归纳. 若 $f=0$，任何基都可以. 否则由极化恒等式，$q$ 不恒为零，取 $\vv\varepsilon_1$ 使 $q(\vv\varepsilon_1)\ne0$. 令 $U=\{\vv\beta\mid f(\vv\varepsilon_1,\vv\beta)=0\}$，它是线性函数 $f(\vv\varepsilon_1,\cdot)$ 的核，这个函数在 $\vv\varepsilon_1$ 处不为零，所以 $\dim U=n-1$，且 $\vv\varepsilon_1\notin U$，$V=\spn(\vv\varepsilon_1)\oplus U$. 对 $f|_U$ 用归纳假设得 $U$ 的正交基 $\vv\varepsilon_2,\ldots,\vv\varepsilon_n$，它们都与 $\vv\varepsilon_1$ 正交.
 	\end{proof}
 	
-	与第九章 Gram–Schmidt 的区别在于：一般的对称型可能有 $q(\vv\alpha)=0$ 而 $\vv\alpha\ne\zero$ 的\textbf{迷向向量}\index{mi2xiang4 xiang4liang4@迷向向量}(isotropic vector)，所以不能随便取第一个向量，必须挑一个 $q(\vv\varepsilon_1)\neq0$ 的——这对应于配方法的``情形二''.
+	与第十章 Gram–Schmidt 的区别在于：一般的对称型可能有 $q(\vv\alpha)=0$ 而 $\vv\alpha\ne\zero$ 的\textbf{迷向向量}\index{mi2xiang4 xiang4liang4@迷向向量}(isotropic vector)，所以不能随便取第一个向量，必须挑一个 $q(\vv\varepsilon_1)\neq0$ 的——这对应于配方法的``情形二''.
 	
 	\subsection{交错型}
 	
@@ -6860,7 +7305,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		对称型拆成\textbf{一维}的块（平方项），交错型却只能拆成\textbf{二维}的块 $\vv J$——因为单独一个向量与自己的 $f$ 值永远是零，交错型天生要``两两配对''才能有非零的值. 这又是一个``不可约的块至多二维''的现象，与第九章正交变换的结构定理遥相呼应.
+		对称型拆成\textbf{一维}的块（平方项），交错型却只能拆成\textbf{二维}的块 $\vv J$——因为单独一个向量与自己的 $f$ 值永远是零，交错型天生要``两两配对''才能有非零的值. 这又是一个``不可约的块至多二维''的现象，与第十章正交变换的结构定理遥相呼应.
 	\end{motivebox}
 	
 	\begin{corollary}\label{cor:pfaffian}
@@ -6986,7 +7431,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			\item \textbf{随机过程}会告诉你，如何描述一个随时间演变、每一步又都带着不确定性的系统。股价的涨跌、排队等候的顾客、在诉讼程序各阶段之间流转的案件，都是这样的系统。其中最基本的一类叫作马尔可夫链：把状态之间的转移概率排成一个矩阵，系统的长期命运就写在这个矩阵的幂里，写在属于特征值 $1$ 的那个特征向量里。
 			\item \textbf{图论与网络分析}会告诉你，如何研究由“关系”构成的世界。人际往来、企业之间的交叉持股、判决书之间的相互引用，都是网络，都可以写成一个邻接矩阵。“谁在这张网里最重要”这个问题的答案，往往又是某个特征向量。
 			\item \textbf{常微分方程与动力系统}会把你大一、大二所学连在一起。当一个量的变化速度线性地取决于当前的状态时，系统会增长、衰减还是振荡，很大程度上由一个矩阵的特征值决定。经济增长和市场价格调整的许多模型，都建立在这个想法之上。
-			\item \textbf{矩阵分析与数据科学}会告诉你，如何把一张庞大而杂乱的表格，拆解成少数几个“主要模式”。它的核心工具正是第十章介绍过的奇异值分解，那里只是一个开端。推荐系统、文本的主题挖掘、图像压缩，背后都是它。
+			\item \textbf{矩阵分析与数据科学}会告诉你，如何把一张庞大而杂乱的表格，拆解成少数几个“主要模式”。它的核心工具正是第十一章介绍过的奇异值分解，那里只是一个开端。推荐系统、文本的主题挖掘、图像压缩，背后都是它。
 			\item 如果你只是单纯地喜欢上了“从定义出发、一步步推出结论”的那种感觉，那么不妨读一读\textbf{近世代数}。这是一门极具魅力的学科，也是一门极具难度的学科。你会空前地感受到数学的“对称性”的优美所在。
 		\end{itemize}
 		

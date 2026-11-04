@@ -2,7 +2,7 @@
 %% answers.tex　附录：章末习题 A 组答案与 B 组提示
 %% 用法：在 document.tex 的 \appendix 之后 \input{answers}（须在 \input{exercises} 之后，
 %%      exercises.tex 中每道题都有标签 ex:<章键>:<组号>，本文件按标签引用题号）.
-%% 章键：elim vs mat lmap det sol poly eig ip dec quad bil（依次为第一至十二章）.
+%% 章键：elim vs mat lmap det sol poly eig ip dec quad bil（依次为第一至十四章）.
 %% =====================================================================
 
 \providecommand{\ans}[2]{\par\smallskip\noindent\textbf{\ref{#1}.}\ #2\par}
@@ -164,7 +164,7 @@
 \ans{ex:vs:B12}{$f(x)=\frac{f(x)+f(-x)}2+\frac{f(x)-f(-x)}2$；$\mathrm e^x=\cosh x+\sinh x$.}
 \ans{ex:vs:B13}{对 $k$ 归纳，反复使用维数公式：$\dim(U\cap W)\ge\dim U+\dim W-n$.}
 \ans{ex:vs:B14}{这 $n-1$ 个向量线性无关（用坐标验证），$\dim W=n-1$. 补空间可取 $\spn(\vv\alpha_n)$（需验证 $\vv\alpha_n\notin W$：$W$ 中向量的坐标交错和为零）.}
-\ans{ex:vs:B15}{$\vv x=x_1(1,\ldots,1)^\trans+(\vv x-x_1(1,\ldots,1)^\trans)$. 两种分解都是直和；与 $V_1$ 互补的子空间有无穷多个，第九章会说明例~\ref{eg:pricedecomp} 中的 $R$ 是其中``垂直''的那一个.}
+\ans{ex:vs:B15}{$\vv x=x_1(1,\ldots,1)^\trans+(\vv x-x_1(1,\ldots,1)^\trans)$. 两种分解都是直和；与 $V_1$ 互补的子空间有无穷多个，第十章会说明例~\ref{eg:pricedecomp} 中的 $R$ 是其中``垂直''的那一个.}
 \ans{ex:vs:B16}{每个矩阵唯一地拆成``对角线及以上''与``对角线以下''两部分. $\dim W_1=\frac{n(n+1)}2$.}
 \ans{ex:vs:B17}{(1) 设 $W$ 的基为 $\vv\varepsilon_1,\ldots,\vv\varepsilon_k$（$k<n$），扩充为 $\mathbb{R}^n$ 的基 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$. ``取 $\vv x$ 在这组基下的第 $n$ 个坐标''是 $x_1,\ldots,x_n$ 的一次齐次式（解一个线性方程组即可写出），它在 $W$ 上恒为零，又在 $\vv\varepsilon_n$ 处为 $1$，系数不全为零. (2) 条件是 $a_1+a_2t+\cdots+a_nt^{n-1}=0$，这是一个次数不超过 $n-1$ 的非零多项式，至多 $n-1$ 个根. (3) 例如 $t=2$：$\vv v(2)=(1,2,4)^\trans$ 不满足三个方程中的任何一个.}
 
@@ -575,7 +575,7 @@ $\vv A^n=\begin{pmatrix}2\cdot3^n-2^n&2^{n+1}-2\cdot3^n\\3^n-2^n&2^{n+1}-3^n\end
 	\begin{pmatrix}\vv I_m&\vv O\\ -\vv B&\lambda\vv I_n\end{pmatrix}\begin{pmatrix}\lambda\vv I_m&\vv A\\ \vv B&\vv I_n\end{pmatrix}=\begin{pmatrix}\lambda\vv I_m&\vv A\\ \vv O&\lambda\vv I_n-\vv{BA}\end{pmatrix}.\]
 	记中间矩阵的行列式为 $D$. 对两式取行列式（第五章章末习题~\ref{ex:det:A17}），得 $\lambda^nD=\lambda^n\det(\lambda\vv I_m-\vv{AB})$ 与 $\lambda^nD=\lambda^m\det(\lambda\vv I_n-\vv{BA})$，因此 $\lambda^n\det(\lambda\vv I_m-\vv{AB})=\lambda^m\det(\lambda\vv I_n-\vv{BA})$. 两边作为 $\lambda$ 的多项式相等，因子 $\lambda^n$、$\lambda^m$ 只影响根 $0$ 的重数，所以两个特征多项式的非零根（连同重数）相同.}
 
-\section{第九章　内积空间}
+\section{第十章　内积空间}
 
 \subsection*{A 组答案}
 
@@ -630,7 +630,7 @@ $\vv A^n=\begin{pmatrix}2\cdot3^n-2^n&2^{n+1}-2\cdot3^n\\3^n-2^n&2^{n+1}-3^n\end
 \ans{ex:ip:B3}{证明 $\vv x-\vv{Px}$ 与 $\imm\vv P$ 正交：$\langle\vv x-\vv{Px},\vv{Py}\rangle=\vv y^\trans\vv P^\trans(\vv I-\vv P)\vv x=0$. 只有幂等时是沿 $\ker\vv P$ 向 $\imm\vv P$ 的``斜投影''，例如 $\begin{pmatrix}1&1\\0&0\end{pmatrix}$.}
 \ans{ex:ip:B4}{目标函数是 $\|\vv y-\vv A\vv\beta\|_W^2$，其中 $\langle\vv x,\vv y\rangle_W=\vv x^\trans\vv W\vv y$ 是加权内积；残差在这个内积下与各列正交.}
 \ans{ex:ip:B5}{对 $\ln y=\ln c+kt$ 作最小二乘，约得 $k\approx0.30$，$c\approx2.0$. 它最小化的是对数残差的平方和，相当于对相对误差加权.}
-\ans{ex:ip:B6}{$\vv G=\vv A^\trans\vv A$（$\vv A$ 以 $\vv\alpha_i$ 为列），用第十一章命题~\ref{prop:gram} 或直接 $\vv x^\trans\vv G\vv x=\|\vv A\vv x\|^2$. $k=2$ 时 $\det\vv G=\|\vv\alpha\|^2\|\vv\beta\|^2\sin^2\theta$.}
+\ans{ex:ip:B6}{$\vv G=\vv A^\trans\vv A$（$\vv A$ 以 $\vv\alpha_i$ 为列），用第十三章命题~\ref{prop:gram} 或直接 $\vv x^\trans\vv G\vv x=\|\vv A\vv x\|^2$. $k=2$ 时 $\det\vv G=\|\vv\alpha\|^2\|\vv\beta\|^2\sin^2\theta$.}
 \ans{ex:ip:B7}{距离是 $\vv x_0-\vv x_1$（$\vv x_1$ 为超平面上任一点）在法向 $\vv a$ 上投影的长度.}
 \ans{ex:ip:B8}{设 $\vv{Qz}=\lambda\vv z$，考察 $\bar{\vv z}^\trans\vv Q^\trans\vv Q\vv z$.}
 \ans{ex:ip:B9}{用积化和差逐对计算积分. 投影为 $2\sin x-\sin2x$（偶函数的系数为零）.}
@@ -641,7 +641,7 @@ $\vv A^n=\begin{pmatrix}2\cdot3^n-2^n&2^{n+1}-2\cdot3^n\\3^n-2^n&2^{n+1}-3^n\end
 \ans{ex:ip:B14}{截距为第一组均值 $4$，虚拟变量系数为两组均值之差 $8-4=4$.}
 \ans{ex:ip:B15}{$\vv R(\alpha)\vv R(\beta)=\vv R(\alpha+\beta)$；$\vv F(\alpha)\vv F(\beta)=\vv R(\alpha-\beta)$；计算 $\vv R(\alpha)\vv F(\beta)$ 与 $\vv F(\beta)\vv R(\alpha)$ 比较.}
 
-\section{第十章　矩阵分解}
+\section{第十一章　矩阵分解}
 
 \subsection*{A 组答案}
 
@@ -701,7 +701,7 @@ $\vv A^n=\begin{pmatrix}2\cdot3^n-2^n&2^{n+1}-2\cdot3^n\\3^n-2^n&2^{n+1}-3^n\end
 \ans{ex:dec:B4}{$\|\vv{Ax}\|^2=\vv x^\trans\vv A^\trans\vv A\vv x\le\lambda_{\max}(\vv A^\trans\vv A)\|\vv x\|^2$，在 $\vv v_1$ 处取等.}
 \ans{ex:dec:B5}{$\vv{Ax}=\lambda\vv x$ 时 $|\lambda|\,\|\vv x\|=\|\vv{Ax}\|$，再用 B4 及其``最小值''版本.}
 \ans{ex:dec:B6}{$\vv A^\trans\vv A$ 的非零特征值为 $3,1$（$\vv A\vv A^\trans=\begin{pmatrix}2&1\\1&2\end{pmatrix}$ 更易算），$\sigma_1=\sqrt3$，$\sigma_2=1$. 先求 $\vv U$ 的列：$\frac1{\sqrt2}(1,1)^\trans$，$\frac1{\sqrt2}(1,-1)^\trans$，再用 $\vv v_i=\vv A^\trans\vv u_i/\sigma_i$，第三个 $\vv v_3=\frac1{\sqrt3}(1,1,-1)^\trans$.}
-\ans{ex:dec:B7}{$\vv A^+\vv b$ 满足正规方程（在 $\vv V$、$\vv U$ 的坐标下逐分量验证），且属于行空间 $\imm\vv A^\trans$，由第九章章末习题~\ref{ex:ip:B10} 它是范数最小的一个.}
+\ans{ex:dec:B7}{$\vv A^+\vv b$ 满足正规方程（在 $\vv V$、$\vv U$ 的坐标下逐分量验证），且属于行空间 $\imm\vv A^\trans$，由第十章章末习题~\ref{ex:ip:B10} 它是范数最小的一个.}
 \ans{ex:dec:B8}{$\vv J$ 的特征值为 $p,0,\ldots,0$，故矩阵的特征值为 $1+(p-1)\rho$ 与 $1-\rho$（$p-1$ 重）. 第一主成分 $\frac1{\sqrt p}(1,\ldots,1)^\trans$，比例 $\frac{1+(p-1)\rho}p$，$\rho\to1$ 时趋于 $1$，$\rho\to0$ 时趋于 $\frac1p$.}
 \ans{ex:dec:B9}{协方差矩阵的第一主成分几乎就是第一个指标的方向（方差 $100$ 远大于 $1$）；相关系数为 $0.6$，相关系数矩阵的第一主成分是 $\frac1{\sqrt2}(1,1)^\trans$. 量纲改变方差，从而改变主成分.}
 \ans{ex:dec:B10}{$\vv A-\vv A_k=\sum_{i>k}\sigma_i\vv u_i\vv v_i^\trans$，它的最大奇异值是 $\sigma_{k+1}$.}
@@ -711,7 +711,7 @@ $\vv A^n=\begin{pmatrix}2\cdot3^n-2^n&2^{n+1}-2\cdot3^n\\3^n-2^n&2^{n+1}-3^n\end
 \ans{ex:dec:B14}{$k=1$ 时每份文书只剩一个数，查询与四份文书中三份合同类文书的相似度都是 $1$，与第四份为 $0$——同 $k=2$ 时的结果，但``合同''内部的差别完全消失，信息损失更多.}
 \ans{ex:dec:B15}{$\vv x^\trans(\vv A-a\vv I)\vv x\ge0$ 对一切 $\vv x$ 成立当且仅当 $\vv A-a\vv I$ 的特征值 $\lambda_i-a\ge0$.}
 
-\section{第十一章　二次型}
+\section{第十三章　二次型}
 
 \subsection*{A 组答案}
 
@@ -757,14 +757,14 @@ $\vv A^n=\begin{pmatrix}2\cdot3^n-2^n&2^{n+1}-2\cdot3^n\\3^n-2^n&2^{n+1}-3^n\end
 
 \subsection*{B 组提示}
 
-\ans{ex:quad:B1}{可交换的对称矩阵可同时正交对角化（第十章章末习题~\ref{ex:dec:B1}），对角元对应相乘. 反例：$\vv A=\begin{pmatrix}2&1\\1&1\end{pmatrix}$，$\vv B=\diag(1,2)$.}
+\ans{ex:quad:B1}{可交换的对称矩阵可同时正交对角化（第十一章章末习题~\ref{ex:dec:B1}），对角元对应相乘. 反例：$\vv A=\begin{pmatrix}2&1\\1&1\end{pmatrix}$，$\vv B=\diag(1,2)$.}
 \ans{ex:quad:B2}{取 $\vv C$ 使 $\vv C^\trans\vv{AC}=\vv I$，$\vv C^\trans\vv{BC}=\diag(\mu_i)$，$\mu_i\ge0$，则 $\det(\vv A+\vv B)=\det\vv A\prod(1+\mu_i)$.}
 \ans{ex:quad:B3}{$\vv x^\trans(\vv A+t\vv B)\vv x\ge(\lambda_{\min}(\vv A)-|t|\max_i|\lambda_i(\vv B)|)\|\vv x\|^2$，用 B5.}
 \ans{ex:quad:B4}{第 $i,j$ 行列组成的二阶主子式为正.}
 \ans{ex:quad:B5}{由谱定理写成 $\sum\lambda_iy_i^2$，$\|\vv y\|=\|\vv x\|$.}
 \ans{ex:quad:B6}{特征值 $2,-1,-1$，$p=1$，$q=2$. 配方时先作 $x_1=y_1+y_2$，$x_2=y_1-y_2$.}
 \ans{ex:quad:B7}{$\Delta_1=\lambda$，$\Delta_2=\lambda^2-1$，$\Delta_3=(\lambda-2)(\lambda+1)^2$，故 $\lambda>2$.}
-\ans{ex:quad:B8}{驻点条件 $2\vv{Ax}=\mu\vv c$，代入约束定出 $\mu$. $\vv A$ 正定保证驻点是最小值点（第十一章最小二乘例题中的配方法同样适用）.}
+\ans{ex:quad:B8}{驻点条件 $2\vv{Ax}=\mu\vv c$，代入约束定出 $\mu$. $\vv A$ 正定保证驻点是最小值点（第十三章最小二乘例题中的配方法同样适用）.}
 \ans{ex:quad:B9}{驻点条件给出 $\vv w=a\vv 1+b\vv\mu$，由两个约束解出 $a,b$（关于 $m$ 线性），方差 $\sigma^2\|\vv w\|^2$ 是 $m$ 的二次函数.}
 \ans{ex:quad:B10}{解 $\det(\vv B-\lambda\vv A)=3\lambda^2-1=0$，得 $\lambda=\pm\frac1{\sqrt3}$；对每个 $\lambda$ 求 $(\vv B-\lambda\vv A)\vv x=\zero$ 的解并使 $\vv x^\trans\vv A\vv x=1$，以它们为列作 $\vv C$，则 $\vv C^\trans\vv{BC}=\diag(\frac1{\sqrt3},-\frac1{\sqrt3})$.}
 \ans{ex:quad:B11}{配方：$f=(\vv x+\frac12\vv A^{-1}\vv b)^\trans\vv A(\vv x+\frac12\vv A^{-1}\vv b)+c-\frac14\vv b^\trans\vv A^{-1}\vv b$. 半正定时不一定有最小值，例如 $\vv A=\vv O$，$\vv b\ne\zero$.}
@@ -774,7 +774,7 @@ $\vv A^n=\begin{pmatrix}2\cdot3^n-2^n&2^{n+1}-2\cdot3^n\\3^n-2^n&2^{n+1}-3^n\end
 \ans{ex:quad:B15}{$\vv x^\trans(\vv A^\trans\vv A+\mu\vv I)\vv x=\|\vv{Ax}\|^2+\mu\|\vv x\|^2$. 目标函数对 $\vv x$ 的驻点条件给出正规方程的``岭''版本.}
 \ans{ex:quad:B16}{用谱分解，$\vv B=\vv Q\diag(\sqrt{\lambda_i})\vv Q^\trans$；$\vv A^{-1}$ 的特征值为 $\frac1{\lambda_i}$.}
 
-\section{第十二章　*对偶空间与双线性型}
+\section{第十四章　*对偶空间与双线性型}
 
 \subsection*{A 组答案}
 

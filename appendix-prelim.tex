@@ -174,7 +174,7 @@
 
 当求和范围不是``长方形''时，要小心地写出范围. 例如对 $1\le i<j\le n$ 求和，表示表格对角线以上的部分：
 \[\sum_{1\le i<j\le n}a_{ij}=\sum_{i=1}^{n-1}\sum_{j=i+1}^na_{ij}=\sum_{j=2}^n\sum_{i=1}^{j-1}a_{ij}.\]
-第十一章的二次型 $\sum_{i,j}a_{ij}x_ix_j=\sum_ia_{ii}x_i^2+2\sum_{i<j}a_{ij}x_ix_j$（$a_{ij}=a_{ji}$），就是把这张表拆成对角线和上下两个三角形.
+第十三章的二次型 $\sum_{i,j}a_{ij}x_ix_j=\sum_ia_{ii}x_i^2+2\sum_{i<j}a_{ij}x_ix_j$（$a_{ij}=a_{ji}$），就是把这张表拆成对角线和上下两个三角形.
 
 \begin{example}
 	用双重求和证明矩阵乘法的结合律：设 $\vv A,\vv B,\vv C$ 分别为 $m\times n$、$n\times p$、$p\times q$ 矩阵. $(\vv{AB})\vv C$ 的 $(i,l)$ 元为
@@ -235,7 +235,7 @@
 	\end{enumerate}
 \end{pitfallbox}
 
-本书中用归纳法的地方很多：简化阶梯形的存在（第一章）、Gram–Schmidt 正交化（第九章）、谱定理（第十章）都是对维数或向量个数归纳. 读这些证明时，请先找出``对什么归纳''与``归纳假设用在了哪里''.
+本书中用归纳法的地方很多：简化阶梯形的存在（第一章）、Gram–Schmidt 正交化（第十章）、谱定理（第十一章）都是对维数或向量个数归纳. 读这些证明时，请先找出``对什么归纳''与``归纳假设用在了哪里''.
 
 \begin{exercise}\label{exo:prelim-ind}
 	\begin{enumerate}
@@ -268,7 +268,7 @@
 	\begin{enumerate}
 		\item $f:\mathbb{R}\to\mathbb{R}$，$x\mapsto x^2$ 既不单（$f(1)=f(-1)$）也不满（$-1$ 没有原像）. 把陪域改为 $[0,+\infty)$，它成为满射；再把定义域也改为 $[0,+\infty)$，它成为双射. 可见单、满与否依赖于定义域和陪域.
 		\item $\mathbb{R}^3\to\mathbb{R}^2$，$(x,y,z)^\trans\mapsto(x,y)^\trans$（向 $xy$ 平面投影）是满射，不是单射.
-		\item 第二章的坐标映射 $V\to\mathbb{F}^n$ 是双射.
+		\item 第四章的坐标映射 $V\to\mathbb{F}^n$ 是双射.
 	\end{enumerate}
 \end{example}
 
@@ -314,7 +314,7 @@ $z$ 是实数当且仅当 $z=\bar z$. 除法靠共轭``有理化''：$z\ne0$ 时
 
 \subsection{复平面与三角形式}
 
-把 $z=a+b\mathrm i$ 对应于平面上的点 $(a,b)$，平面就成了\textbf{复平面}\index{fu4ping2mian4@复平面}；第二章说明了这种对应是 $\mathbb{R}$ 上的同构 $\mathbb{C}\cong\mathbb{R}^2$. 用极坐标写 $a=r\cos\theta$，$b=r\sin\theta$，得到\textbf{三角形式}
+把 $z=a+b\mathrm i$ 对应于平面上的点 $(a,b)$，平面就成了\textbf{复平面}\index{fu4ping2mian4@复平面}；第四章说明了这种对应是 $\mathbb{R}$ 上的同构 $\mathbb{C}\cong\mathbb{R}^2$. 用极坐标写 $a=r\cos\theta$，$b=r\sin\theta$，得到\textbf{三角形式}
 \[z=r(\cos\theta+\mathrm i\sin\theta),\]
 其中 $r=|z|$. 对 $z\ne0$，满足上式的 $\theta$ 称为 $z$ 的一个\textbf{辐角}\index{fu2jiao3@辐角}. 由于正弦、余弦以 $2\pi$ 为周期，$z$ 的辐角有无穷多个，彼此相差 $2\pi$ 的整数倍，它们的全体记为 $\operatorname{Arg}z$. 其中落在 $(-\pi,\pi]$ 内的那一个是唯一的，称为辐角的\textbf{主值}\index{fu2jiao3 zhu3zhi2@辐角主值}，记为 $\arg z$. 于是
 \[\operatorname{Arg}z=\{\arg z+2k\pi\mid k\in\mathbb{Z}\}.\]

@@ -1,0 +1,419 @@
+% =====================================================================
+% chapters/lambda.tex　第九章　λ-矩阵
+% 由 document.tex 在第八章（特征值与特征向量）之后 \input.
+% =====================================================================
+	\chapter{\texorpdfstring{$\lambda$}{λ}-矩阵}\label{ch:lambda}
+	
+	\paragraph*{本章地位}
+	
+	第八章已经看到，不是每个方阵都能对角化. 那么，在相似的意义下，一个方阵最简单能化成什么样子？本章给出完整的回答. 方法是把相似问题转化为特征矩阵 $\lambda\vv I-\vv A$ 的等价问题：相似是关于数字矩阵的问题，等价是关于元素为多项式的矩阵的问题，而后者可以用第一章的消元法与第七章的辗转相除法来处理. 本章的中心结论是：两个方阵相似，当且仅当它们的特征矩阵有相同的不变因子. 由此得到复方阵的 Jordan 标准形.
+	
+	\chapterhours{—}{4}{6}
+	
+	\begin{introduction}[学习目标]
+		\item 对 $\lambda$-矩阵作初等变换，把它化为 Smith 标准形
+		\item 求 $\lambda$-矩阵的行列式因子、不变因子与初等因子，并在三者之间互相换算
+		\item 用特征矩阵的不变因子判断两个方阵是否相似
+		\item 由初等因子写出复方阵的 Jordan 标准形，判断方阵能否对角化
+		\item 说明``特征多项式是全部不变因子之积，最小多项式是最后一个不变因子''
+	\end{introduction}
+	
+	\paragraph*{前置知识}
+	
+	第三章（初等变换与初等矩阵）；第四章（基变换与相似矩阵）；第五章（伴随矩阵、子式）；第七章（整除、最大公因式、最小多项式）；第八章（特征多项式、相似对角化、Cayley–Hamilton 定理）.
+	
+	\paragraph*{学习提示}
+	\begin{itemize}
+		\item 本章的计算与第一章的消元法几乎一样，只有一处不同：倍乘只能乘非零常数. 理解这一限制的原因，就理解了本章的初等变换.
+		\item 行列式因子、不变因子、初等因子是同一组信息的三种写法：行列式因子便于从定义出发计算，不变因子便于叙述定理，初等因子便于写出 Jordan 标准形. 应熟练地在三者之间换算.
+		\item 本章最重要的定理是相似判定定理（定理~\ref{thm:similarity}），Jordan 标准形是它的推论. 阅读时应先弄清定理在说什么，再看证明.
+	\end{itemize}
+	
+	\newpage
+	
+	\begin{tcolorbox}[epigraph]
+		\begin{quote}事类相推，各有攸归，故枝条虽分而同本干知，发其一端而已.\end{quote}
+		\begin{flushright}——刘徽《九章算术注·序》\footnotemark\end{flushright}
+	\end{tcolorbox}
+	\footnotetext{刘徽，魏晋之际的数学家，于公元 263 年前后为《九章算术》作注. 这句话的意思是：同类的问题可以互相推求，各有归属，所以枝条虽然分开，却出自同一个根干，只要抓住其中一端就能通晓. 本章把千差万别的矩阵按相似分类，每一类由一组不变因子完全确定，正是``枝条虽分而同本干''.}
+	
+	\section{\hB 多项式矩阵}\label{sec:lambdamat}
+	
+	\begin{definition}
+		元素都是 $\mathbb{F}[\lambda]$ 中多项式的矩阵称为 \textbf{$\lambda$-矩阵}\index{lambda ju3zhen4@$\lambda$-矩阵}，也称\textbf{多项式矩阵}\index{duo1xiang4shi4 ju3zhen4@多项式矩阵}，记为 $\vv A(\lambda)$ 等. 元素都是数的矩阵（称为\textbf{数字矩阵}）是 $\lambda$-矩阵的特例.
+	\end{definition}
+	
+	$\lambda$-矩阵的加法、数乘与乘法照搬数字矩阵的定义. 方阵 $\vv A(\lambda)$ 的行列式也按第五章的公式定义，它是 $\lambda$ 的一个多项式. 第五章关于行列式的性质、按行展开、乘积公式 $\det(\vv A\vv B)=\det\vv A\det\vv B$ 以及伴随矩阵公式 $\vv A\operatorname{adj}\vv A=(\det\vv A)\vv I$，证明中只用到加法与乘法的运算律（包括乘法交换律），因此对 $\lambda$-矩阵同样成立. 与第五章一样，$\vv A(\lambda)$ 中不为零的子式的最高阶数称为它的\textbf{秩}.
+	
+	对 $n$ 阶数字方阵 $\vv A$，$\lambda$-矩阵 $\lambda\vv I-\vv A$ 称为 $\vv A$ 的\textbf{特征矩阵}\index{te4zheng1 ju3zhen4@特征矩阵}. 它的行列式就是第八章的特征多项式 $f_{\vv A}(\lambda)=\det(\lambda\vv I-\vv A)$，这是一个 $n$ 次首一多项式，所以特征矩阵的秩为 $n$. 本章的全部内容，都是在研究特征矩阵.
+	
+	\paragraph*{可逆的 $\lambda$-矩阵.} 若 $n$ 阶 $\lambda$-矩阵 $\vv A(\lambda)$ 存在 $\lambda$-矩阵 $\vv B(\lambda)$，使 $\vv A(\lambda)\vv B(\lambda)=\vv B(\lambda)\vv A(\lambda)=\vv I$，称 $\vv A(\lambda)$ \textbf{可逆}.
+	
+	\begin{theorem}\label{thm:lambdainv}
+		$\lambda$-矩阵 $\vv A(\lambda)$ 可逆，当且仅当 $\det\vv A(\lambda)$ 是非零常数.
+	\end{theorem}
+	\begin{proof}
+		若 $\vv A(\lambda)\vv B(\lambda)=\vv I$，取行列式得 $\det\vv A(\lambda)\cdot\det\vv B(\lambda)=1$. 两个多项式之积为 $1$，由命题~\ref{prop:degree}，二者次数之和为 $0$，都是非零常数.
+		
+		反之，若 $\det\vv A(\lambda)=c\ne0$ 是常数，令 $\vv B(\lambda)=\frac1c\operatorname{adj}\vv A(\lambda)$. 伴随矩阵的元素是 $\vv A(\lambda)$ 的余子式，都是多项式，所以 $\vv B(\lambda)$ 是 $\lambda$-矩阵；由伴随矩阵公式，$\vv A\vv B=\vv B\vv A=\vv I$.
+	\end{proof}
+	
+	\begin{pitfallbox}
+		对数字矩阵，``行列式不为零''就等于可逆. 对 $\lambda$-矩阵，行列式必须是不为零的\textbf{常数}. 例如 $\diag(1,\lambda)$ 的行列式 $\lambda$ 不是零多项式，但它不可逆：它的逆矩阵只能是 $\diag(1,\frac1\lambda)$，而 $\frac1\lambda$ 不是多项式. 原因在于：多项式中只有非零常数才有``倒数''.
+	\end{pitfallbox}
+	
+	\paragraph*{以矩阵为系数的多项式.} 把 $\lambda$-矩阵按 $\lambda$ 的幂次整理，可以写成
+	\[\vv M(\lambda)=\vv M_m\lambda^m+\vv M_{m-1}\lambda^{m-1}+\cdots+\vv M_1\lambda+\vv M_0,\]
+	其中 $\vv M_k$ 是数字矩阵. 例如
+	\[\begin{pmatrix}\lambda^2+1&\lambda\\2&\lambda^2-\lambda\end{pmatrix}=\begin{pmatrix}1&0\\0&1\end{pmatrix}\lambda^2+\begin{pmatrix}0&1\\0&-1\end{pmatrix}\lambda+\begin{pmatrix}1&0\\2&0\end{pmatrix}.\]
+	用这种写法，可以像多项式一样作带余除法. 下面只需要用特征矩阵作除式的情形.
+	
+	\begin{lemma}\label{lem:lambdadiv}
+		设 $\vv A$ 是 $n$ 阶数字矩阵，$\vv M(\lambda)$ 是 $n$ 阶 $\lambda$-矩阵. 则存在 $\lambda$-矩阵 $\vv Q(\lambda)$、$\vv Q'(\lambda)$ 与数字矩阵 $\vv R$、$\vv R'$，使
+		\[\vv M(\lambda)=(\lambda\vv I-\vv A)\vv Q(\lambda)+\vv R,\qquad \vv M(\lambda)=\vv Q'(\lambda)(\lambda\vv I-\vv A)+\vv R'.\]
+	\end{lemma}
+	\begin{proof}
+		只证前一式，后一式同理. 对 $\vv M(\lambda)$ 的次数 $m$ 归纳. $m=0$ 时 $\vv M$ 本身是数字矩阵，取 $\vv Q=\vv O$，$\vv R=\vv M$. 设 $m\ge1$，首项为 $\vv M_m\lambda^m$. 由于
+		\[(\lambda\vv I-\vv A)\,\vv M_m\lambda^{m-1}=\vv M_m\lambda^m-\vv A\vv M_m\lambda^{m-1},\]
+		$\vv M(\lambda)-(\lambda\vv I-\vv A)\vv M_m\lambda^{m-1}$ 的次数低于 $m$，对它用归纳假设即可.
+	\end{proof}
+	
+	这正是第七章带余除法的``逐次消去首项''，只是要注意矩阵乘法不可交换，所以除式写在左边与写在右边要分别处理. 第八章 Cayley–Hamilton 定理的证明（定理~\ref{thm:cayleyhamilton}）中，把伴随矩阵 $\vv B(\lambda)$ 按 $\lambda$ 的幂次展开，用的就是这里的写法.
+	
+	\section{\hB 多项式矩阵的初等变换}\label{sec:lambdaelem}
+	
+	\begin{definition}
+		以下三种操作称为 $\lambda$-矩阵的\textbf{初等变换}\index{chu1deng3 bian4huan4@初等变换（$\lambda$-矩阵的）}：
+		\begin{enumerate}
+			\item 交换两行（列）；
+			\item 某一行（列）乘以\textbf{非零常数} $c$；
+			\item 把某一行（列）的 $\varphi(\lambda)$ 倍加到另一行（列）上，其中 $\varphi(\lambda)$ 是\textbf{任意多项式}.
+		\end{enumerate}
+		对单位矩阵作一次初等变换得到的矩阵称为\textbf{初等 $\lambda$-矩阵}. 若 $\vv A(\lambda)$ 经过有限次初等变换化为 $\vv B(\lambda)$，称二者\textbf{等价}\index{deng3jia4@等价（$\lambda$-矩阵的）}，记为 $\vv A(\lambda)\simeq\vv B(\lambda)$.
+	\end{definition}
+	
+	与第三章一样，对 $\vv A(\lambda)$ 作一次初等行（列）变换，相当于左（右）乘一个相应的初等 $\lambda$-矩阵. 三种初等 $\lambda$-矩阵的行列式分别是 $-1$、$c$、$1$，都是非零常数，由定理~\ref{thm:lambdainv} 都可逆，而且逆矩阵仍是同类的初等 $\lambda$-矩阵. 所以每一次初等变换都可以撤销，等价是一个等价关系；并且 $\vv A(\lambda)\simeq\vv B(\lambda)$ 当且仅当存在若干初等 $\lambda$-矩阵之积 $\vv P(\lambda)$、$\vv Q(\lambda)$，使 $\vv B(\lambda)=\vv P(\lambda)\vv A(\lambda)\vv Q(\lambda)$.
+	
+	\begin{motivebox}
+		为什么倍乘只允许乘非零常数，而倍加却允许乘任意多项式？关键在于``可以撤销''. 第一章中，初等变换之所以不改变解集，是因为每一步都能用另一步还原. 倍加 $\varphi(\lambda)$ 倍可以用倍加 $-\varphi(\lambda)$ 倍还原，无论 $\varphi$ 是什么多项式都可以；而某一行乘以 $\lambda$ 之后，要还原就得乘以 $\frac1\lambda$，这已经不是多项式了. 所以本章的初等变换，正是``在多项式范围内可以撤销''的那些操作.
+	\end{motivebox}
+	
+	对数字矩阵，初等变换可以把任一非零元素化为 $1$，再用它消去同行同列的其他元素. 对 $\lambda$-矩阵这行不通：一个次数为正的多项式无法通过乘常数化为 $1$. 替代的办法是带余除法：
+	
+	\begin{lemma}\label{lem:smithstep}
+		设 $\vv A(\lambda)$ 不是零矩阵. 则 $\vv A(\lambda)$ 等价于一个左上角元素 $b_{11}(\lambda)\ne0$、并且 $b_{11}(\lambda)$ 整除其余所有元素的矩阵 $\vv B(\lambda)$.
+	\end{lemma}
+	\begin{proof}
+		在所有与 $\vv A(\lambda)$ 等价的矩阵中，左上角元素非零的总是存在（交换行列即可）. 取其中左上角元素次数最低的一个，仍记为 $\vv A(\lambda)=(a_{ij}(\lambda))$. 我们证明 $a_{11}$ 整除其余所有元素.
+		
+		若 $a_{11}\nmid a_{i1}$，作带余除法 $a_{i1}=qa_{11}+r$，$r\ne0$，$\deg r<\deg a_{11}$. 把第 $1$ 行的 $-q$ 倍加到第 $i$ 行，$(i,1)$ 位置变为 $r$；再交换第 $1$、$i$ 两行，就得到一个左上角元素次数更低的等价矩阵，与 $a_{11}$ 次数最低矛盾. 所以 $a_{11}$ 整除第一列各元素；同理，整除第一行各元素.
+		
+		于是可以用倍加把第一行、第一列的其余元素都化为零，左上角仍是 $a_{11}$. 若此时还有某个 $a_{ij}$（$i,j\ge2$）不被 $a_{11}$ 整除，把第 $i$ 行加到第 $1$ 行，第一行就出现了不被 $a_{11}$ 整除的元素 $a_{ij}$，重复上一段的论证，又得到矛盾.
+	\end{proof}
+	
+	证明中``取次数最低的''一步，在实际计算中就是：反复用带余除法降低左上角元素的次数，直到它能整除同行同列的元素为止. 这是第一章消元法与第七章辗转相除法的结合.
+	
+	\begin{example}\label{eg:smithcalc}
+		用初等变换化简
+		\[\vv A(\lambda)=\begin{pmatrix}1-\lambda&\lambda^2&\lambda\\\lambda&\lambda&-\lambda\\1+\lambda^2&\lambda^2&-\lambda^2\end{pmatrix}.\]
+	\end{example}
+	\begin{solution}
+		第三列加到第一列，第一列变为 $(1,0,1)^\trans$，左上角出现了常数 $1$：
+		\[\vv A(\lambda)\xrightarrow{c_1+c_3}\begin{pmatrix}1&\lambda^2&\lambda\\0&\lambda&-\lambda\\1&\lambda^2&-\lambda^2\end{pmatrix}
+		\xrightarrow{r_3-r_1}\begin{pmatrix}1&\lambda^2&\lambda\\0&\lambda&-\lambda\\0&0&-\lambda^2-\lambda\end{pmatrix}.\]
+		再用第一列消去第一行的其余元素（$c_2-\lambda^2c_1$，$c_3-\lambda c_1$），然后把第二列加到第三列，最后第三行乘以 $-1$：
+		\[\longrightarrow\begin{pmatrix}1&0&0\\0&\lambda&-\lambda\\0&0&-\lambda^2-\lambda\end{pmatrix}
+		\xrightarrow{c_3+c_2}\begin{pmatrix}1&0&0\\0&\lambda&0\\0&0&-\lambda^2-\lambda\end{pmatrix}
+		\xrightarrow{-r_3}\begin{pmatrix}1&0&0\\0&\lambda&0\\0&0&\lambda(\lambda+1)\end{pmatrix}.\]
+		所得对角矩阵的对角元依次整除：$1\mid\lambda\mid\lambda(\lambda+1)$.
+	\end{solution}
+	
+	\section{\hB 行列式因子}\label{sec:detfactor}
+	
+	上例的化简过程不唯一，换一种变换顺序，中间的矩阵会完全不同. 那么，最后得到的对角矩阵是否唯一？要回答这个问题，需要找到在初等变换下不变的量. 第五章用子式刻画了数字矩阵的秩，这里同样用子式.
+	
+	\begin{definition}
+		设 $\vv A(\lambda)$ 的秩为 $r$，$1\le k\le r$. $\vv A(\lambda)$ 的全部 $k$ 阶子式的首一最大公因式，称为它的 \textbf{$k$ 阶行列式因子}\index{hang2lie4shi4 yin1zi3@行列式因子}，记为 $D_k(\lambda)$.
+	\end{definition}
+	
+	\begin{theorem}\label{thm:detfactorinv}
+		初等变换不改变 $\lambda$-矩阵的秩与各阶行列式因子. 因此，等价的 $\lambda$-矩阵有相同的秩与相同的各阶行列式因子.
+	\end{theorem}
+	\begin{proof}
+		设 $\vv A(\lambda)$ 经一次初等行变换化为 $\vv B(\lambda)$，只需证明 $\vv A$ 的 $k$ 阶行列式因子 $D_k$ 整除 $\vv B$ 的每个 $k$ 阶子式：这样 $D_k$ 整除 $\vv B$ 的 $k$ 阶行列式因子；又因为变换可以撤销，反过来也整除；两者都首一，故相等. 秩的不变性也包含在其中：$\vv B$ 的 $k$ 阶子式全为零，当且仅当 $\vv A$ 的全为零.
+		
+		交换两行或某行乘以非零常数 $c$，$\vv B$ 的每个 $k$ 阶子式等于 $\vv A$ 的某个 $k$ 阶子式的 $\pm1$ 倍或 $c$ 倍. 设变换是把第 $j$ 行的 $\varphi(\lambda)$ 倍加到第 $i$ 行. $\vv B$ 的 $k$ 阶子式若不含第 $i$ 行，或者同时含第 $i$、$j$ 两行，则与 $\vv A$ 的相应子式相等（第五章：倍加不改变行列式）；若含第 $i$ 行而不含第 $j$ 行，按第 $i$ 行拆开，它等于 $\vv A$ 的相应子式加上 $\varphi(\lambda)$ 乘以 $\vv A$ 的另一个 $k$ 阶子式（把第 $i$ 行换成第 $j$ 行，至多差一个符号）. 无论哪种情形，$\vv B$ 的 $k$ 阶子式都是 $\vv A$ 的 $k$ 阶子式的多项式组合，被 $D_k$ 整除. 列变换同理.
+	\end{proof}
+	
+	\begin{proposition}\label{prop:detfactordiv}
+		$D_{k-1}(\lambda)\mid D_k(\lambda)$（$2\le k\le r$）.
+	\end{proposition}
+	\begin{proof}
+		把任一 $k$ 阶子式按第一行展开，它是若干 $k-1$ 阶子式的多项式组合，因而被 $D_{k-1}$ 整除.
+	\end{proof}
+	
+	\begin{example}\label{eg:detfactor}
+		比较 $\vv C=\diag(a,a,a)$ 与 $\vv J=\begin{pmatrix}a&1&0\\0&a&1\\0&0&a\end{pmatrix}$ 的特征矩阵. 两者的特征多项式都是 $(\lambda-a)^3$.
+		
+		$\lambda\vv I-\vv C=(\lambda-a)\vv I$ 的每个 $k$ 阶非零子式都是 $(\lambda-a)^k$，所以 $D_1=\lambda-a$，$D_2=(\lambda-a)^2$，$D_3=(\lambda-a)^3$.
+		
+		$\lambda\vv I-\vv J=\begin{pmatrix}\lambda-a&-1&0\\0&\lambda-a&-1\\0&0&\lambda-a\end{pmatrix}$ 含有常数元素 $-1$，故 $D_1=1$；划去第一列与最后一行，得到的二阶子式为 $\begin{vmatrix}-1&0\\\lambda-a&-1\end{vmatrix}=1$，故 $D_2=1$；而 $D_3=(\lambda-a)^3$.
+		
+		两个特征矩阵的行列式因子不同，由定理~\ref{thm:detfactorinv}，它们不等价. 下一节将说明，这意味着 $\vv C$ 与 $\vv J$ 不相似——这一点也可以直接看出：与 $a\vv I$ 相似的矩阵只有 $a\vv I$ 本身.
+	\end{example}
+	
+	\begin{motivebox}
+		行列式因子是一种``不必化简就能算出来''的不变量. 它与第五章用子式刻画秩的想法一脉相承：秩只记录``哪一阶子式开始全为零''，行列式因子则进一步记录了各阶子式的``公共部分''是什么. 同样是子式，多项式的元素让我们能读出更多的信息.
+	\end{motivebox}
+	
+	\section{\hB Smith 标准形}\label{sec:smith}
+	
+	\begin{theorem}[Smith 标准形]\label{thm:smith}\index{smith biao1zhun3xing2@Smith 标准形}
+		秩为 $r$ 的 $\lambda$-矩阵 $\vv A(\lambda)$ 等价于对角矩阵
+		\[\diag\big(d_1(\lambda),d_2(\lambda),\ldots,d_r(\lambda),0,\ldots,0\big),\]
+		其中 $d_1,\ldots,d_r$ 都是首一多项式，且 $d_1\mid d_2\mid\cdots\mid d_r$. 这个对角矩阵由 $\vv A(\lambda)$ 唯一确定：
+		\[d_k(\lambda)=\frac{D_k(\lambda)}{D_{k-1}(\lambda)}\qquad(k=1,\ldots,r，约定\ D_0=1).\]
+		它称为 $\vv A(\lambda)$ 的 \textbf{Smith 标准形}，$d_1(\lambda),\ldots,d_r(\lambda)$ 称为 $\vv A(\lambda)$ 的\textbf{不变因子}\index{bu4bian4 yin1zi3@不变因子}.
+	\end{theorem}
+	\begin{proof}
+		\textbf{存在性.} 由引理~\ref{lem:smithstep}，$\vv A(\lambda)$ 等价于左上角元素 $b_{11}$ 整除其余各元素的矩阵；用倍加消去第一行、第一列的其余元素，得到 $\diag\big(b_{11},\vv A_1(\lambda)\big)$，其中 $\vv A_1(\lambda)$ 的元素都被 $b_{11}$ 整除. 对 $\vv A_1(\lambda)$ 重复这一过程（对右下角的块作初等变换，不影响第一行、第一列），并注意：对 $\vv A_1$ 作初等变换，所得元素都是 $\vv A_1$ 中元素的多项式组合，仍被 $b_{11}$ 整除. 如此继续，得到对角矩阵，每个对角元整除后面的对角元. 最后各行乘以适当的常数，使对角元首一.
+		
+		\textbf{唯一性.} 对角矩阵 $\diag(d_1,\ldots,d_r,0,\ldots,0)$ 的非零 $k$ 阶子式只能取 $k$ 个不同的 $d_i$ 之积；由 $d_1\mid d_2\mid\cdots\mid d_r$，它们都被 $d_1d_2\cdots d_k$ 整除，而 $d_1\cdots d_k$ 本身就是其中之一. 所以这个对角矩阵的 $k$ 阶行列式因子是 $d_1\cdots d_k$. 由定理~\ref{thm:detfactorinv}，它等于 $\vv A(\lambda)$ 的 $D_k$，于是 $d_k=D_k/D_{k-1}$ 由 $\vv A(\lambda)$ 唯一确定.
+	\end{proof}
+	
+	例~\ref{eg:smithcalc} 中的矩阵，不变因子是 $1,\ \lambda,\ \lambda(\lambda+1)$. 用行列式因子验证：$\vv A(\lambda)$ 的第一列在化简前就含有元素 $\lambda$ 与 $1-\lambda$，二者互素，故 $D_1=1$；直接计算可得 $D_2=\lambda$，$D_3=\lambda^2(\lambda+1)$，于是 $d_2=\lambda$，$d_3=\lambda(\lambda+1)$，与化简的结果一致. 求不变因子的两种方法——初等变换与行列式因子——各有所长：前者适合元素简单的矩阵，后者适合子式容易计算的矩阵.
+	
+	\begin{corollary}\label{cor:lambdaequiv}
+		\begin{enumerate}
+			\item 两个同型 $\lambda$-矩阵等价，当且仅当它们有相同的各阶行列式因子，当且仅当它们有相同的不变因子.
+			\item 可逆的 $\lambda$-矩阵等价于单位矩阵，从而是若干初等 $\lambda$-矩阵之积. 因此 $\vv A(\lambda)\simeq\vv B(\lambda)$ 当且仅当存在可逆的 $\lambda$-矩阵 $\vv P(\lambda)$、$\vv Q(\lambda)$，使 $\vv B(\lambda)=\vv P(\lambda)\vv A(\lambda)\vv Q(\lambda)$.
+		\end{enumerate}
+	\end{corollary}
+	\begin{proof}
+		(1) 不变因子相同，则二者等价于同一个 Smith 标准形. 其余由定理~\ref{thm:smith} 与定理~\ref{thm:detfactorinv}.
+		
+		(2) 若 $\vv A(\lambda)$ 可逆，则 $D_n=\det\vv A(\lambda)$（化为首一）是 $1$，由命题~\ref{prop:detfactordiv}，各 $D_k$ 都是 $1$，不变因子全为 $1$，Smith 标准形是 $\vv I$. $\vv A(\lambda)$ 由 $\vv I$ 经初等变换得到，即 $\vv A(\lambda)=\vv P(\lambda)\vv I\vv Q(\lambda)$，$\vv P$、$\vv Q$ 是初等 $\lambda$-矩阵之积.
+	\end{proof}
+	
+	\begin{pitfallbox}
+		不变因子必须首一，并且依次整除. $\diag(\lambda,\lambda-1)$ 已经是对角矩阵，但\textbf{不是} Smith 标准形：$\lambda\nmid\lambda-1$. 它的行列式因子是 $D_1=\gcd(\lambda,\lambda-1)=1$，$D_2=\lambda(\lambda-1)$，所以 Smith 标准形是 $\diag\big(1,\lambda(\lambda-1)\big)$.
+	\end{pitfallbox}
+	
+	\begin{historybox}{从整数矩阵到多项式矩阵}
+		英国数学家史密斯（H.~J.~S.~Smith，1826—1883）在 1861 年研究整数系数的线性方程组时，证明了每个整数矩阵都可以通过``可撤销''的行列变换化为对角形，对角元依次整除. 他处理的是整数，用的工具是整数的带余除法和辗转相除法. 把整数换成多项式，同一个论证原封不动地成立，这就是本节的定理. 第七章开头的``整数与多项式的平行''，在矩阵的层面上又出现了一次.
+	\end{historybox}
+	
+	\section{\hB 不变因子、初等因子与矩阵的相似}\label{sec:similarity}
+	
+	现在回到数字矩阵. 对 $n$ 阶数字方阵 $\vv A$，特征矩阵 $\lambda\vv I-\vv A$ 的秩为 $n$，它有 $n$ 个不变因子 $d_1(\lambda)\mid\cdots\mid d_n(\lambda)$，称为 $\vv A$ 的\textbf{不变因子}. 由于 $D_n(\lambda)=\det(\lambda\vv I-\vv A)$，
+	\[d_1(\lambda)d_2(\lambda)\cdots d_n(\lambda)=D_n(\lambda)=f_{\vv A}(\lambda),\]
+	即全部不变因子之积等于特征多项式.
+	
+	\begin{definition}
+		设 $\mathbb{F}=\mathbb{C}$. 把 $\vv A$ 的每个次数为正的不变因子分解为一次因式的方幂之积，所得的全部方幂 $(\lambda-\lambda_0)^k$（$k\ge1$，出现在几个不变因子中就计几次）称为 $\vv A$ 的\textbf{初等因子}\index{chu1deng3 yin1zi3@初等因子}.
+	\end{definition}
+	
+	例如，若 $\vv A$ 的不变因子为 $1,\ \lambda-2,\ (\lambda-2)^2(\lambda-3)$，则初等因子为 $\lambda-2,\ (\lambda-2)^2,\ \lambda-3$. 反过来，已知阶数 $n$ 与全部初等因子，也能恢复不变因子：$d_n$ 是每个特征值的最高次方幂之积，$d_{n-1}$ 是每个特征值的次高次方幂之积，依此类推，不够时补 $1$. 由 $d_1\mid\cdots\mid d_n$，这样恢复是唯一的. 所以已知阶数时，不变因子与初等因子相互确定.
+	
+	\begin{remark}
+		在一般的数域上，可以把``一次因式的方幂''换成``不可约多项式的方幂''来定义初等因子，下面的结论同样成立. 为了写出 Jordan 标准形，本章只在 $\mathbb{C}$ 上讨论初等因子.
+	\end{remark}
+	
+	分块对角矩阵的初等因子可以分块计算. 这要用到下面的引理.
+	
+	\begin{lemma}\label{lem:coprimesplit}
+		若多项式 $f,g$ 互素，则 $\diag(f,g)\simeq\diag(1,fg)$.
+	\end{lemma}
+	\begin{proof}
+		由 Bézout 等式，有 $u,v$ 使 $uf+vg=1$. 依次作初等变换：
+		\[\begin{pmatrix}f&0\\0&g\end{pmatrix}\xrightarrow{c_2+uc_1}\begin{pmatrix}f&uf\\0&g\end{pmatrix}\xrightarrow{r_1+vr_2}\begin{pmatrix}f&1\\0&g\end{pmatrix}\xrightarrow{c_1\leftrightarrow c_2}\begin{pmatrix}1&f\\g&0\end{pmatrix}\xrightarrow[r_2-gr_1]{c_2-fc_1}\begin{pmatrix}1&0\\0&-fg\end{pmatrix},\]
+		最后第二行乘以 $-1$.
+	\end{proof}
+	
+	\begin{proposition}\label{prop:blockelemdiv}
+		设 $\lambda$-矩阵 $\vv A(\lambda)$ 等价于对角矩阵 $\diag\big(h_1(\lambda),\ldots,h_n(\lambda)\big)$，各 $h_i$ 首一. 则 $\vv A(\lambda)$ 的初等因子恰是各 $h_i$ 分解所得的全部一次因式方幂. 特别地，分块对角矩阵 $\diag(\vv A_1,\vv A_2)$ 的初等因子，是 $\vv A_1$ 与 $\vv A_2$ 的初等因子合在一起.
+	\end{proposition}
+	\begin{proof}
+		把每个 $h_i$ 写成不同特征值的方幂之积，这些方幂两两互素. 反复使用引理~\ref{lem:coprimesplit}（从右往左用），可以把每个 $h_i$ 拆开，使对角线上的每个元素都是一次因式的方幂或 $1$. 再把这些方幂重新组合：对每个特征值，把它的方幂按次数从高到低排好；把各特征值的最高次方幂相乘放在最后一个位置，次高次方幂相乘放在倒数第二个位置，依此类推. 不同特征值的方幂互素，组合时仍用引理~\ref{lem:coprimesplit}. 所得对角矩阵的对角元依次整除，是 Smith 标准形，它的初等因子正是原来的全部方幂.
+		
+		对分块对角矩阵，把 $\lambda\vv I-\vv A_1$ 与 $\lambda\vv I-\vv A_2$ 分别化为 Smith 标准形，整个特征矩阵就等价于由两组不变因子组成的对角矩阵，再用前一结论.
+	\end{proof}
+	
+	下面是本章的中心定理.
+	
+	\begin{theorem}[相似判定定理]\label{thm:similarity}\index{xiang1si4 pan4ding4 ding4li3@相似判定定理}
+		设 $\vv A$，$\vv B$ 是 $n$ 阶数字方阵. 以下条件等价：
+		\begin{enumerate}
+			\item $\vv A$ 与 $\vv B$ 相似；
+			\item $\lambda\vv I-\vv A\simeq\lambda\vv I-\vv B$；
+			\item $\vv A$ 与 $\vv B$ 有相同的不变因子.
+		\end{enumerate}
+		在 $\mathbb{F}=\mathbb{C}$ 时，它们还等价于：$\vv A$ 与 $\vv B$ 有相同的初等因子.
+	\end{theorem}
+	\begin{proof}
+		(2)$\Leftrightarrow$(3) 是推论~\ref{cor:lambdaequiv}；(3) 与初等因子相同的等价性上面已经说明.
+		
+		(1)$\Rightarrow$(2)：若 $\vv B=\vv P^{-1}\vv A\vv P$，则 $\lambda\vv I-\vv B=\vv P^{-1}(\lambda\vv I-\vv A)\vv P$. 可逆的数字矩阵 $\vv P$ 的行列式是非零常数，作为 $\lambda$-矩阵也可逆，由推论~\ref{cor:lambdaequiv}(2) 即得.
+		
+		(2)$\Rightarrow$(1)：由推论~\ref{cor:lambdaequiv}(2)，有可逆的 $\lambda$-矩阵 $\vv U(\lambda)$、$\vv V(\lambda)$ 使 $\lambda\vv I-\vv B=\vv U(\lambda)(\lambda\vv I-\vv A)\vv V(\lambda)$. 记 $\vv W(\lambda)=\vv V(\lambda)^{-1}$，则
+		\begin{equation}\label{eq:simUW}
+			\vv U(\lambda)(\lambda\vv I-\vv A)=(\lambda\vv I-\vv B)\vv W(\lambda).
+		\end{equation}
+		由引理~\ref{lem:lambdadiv}，可以写
+		\[\vv U(\lambda)=(\lambda\vv I-\vv B)\vv Q(\lambda)+\vv U_0,\qquad \vv W(\lambda)=\vv S(\lambda)(\lambda\vv I-\vv A)+\vv W_0,\]
+		其中 $\vv U_0$、$\vv W_0$ 是数字矩阵. 代入 \eqref{eq:simUW} 并整理，得
+		\[(\lambda\vv I-\vv B)\big(\vv Q(\lambda)-\vv S(\lambda)\big)(\lambda\vv I-\vv A)=(\lambda\vv I-\vv B)\vv W_0-\vv U_0(\lambda\vv I-\vv A).\]
+		右边的次数至多为 $1$. 若 $\vv Q-\vv S\ne\vv O$，设它的首项为 $\vv K\lambda^m$，则左边的首项为 $\vv K\lambda^{m+2}$，次数至少为 $2$，矛盾. 所以 $\vv Q=\vv S$，右边为零：$(\lambda\vv I-\vv B)\vv W_0=\vv U_0(\lambda\vv I-\vv A)$. 比较两边 $\lambda$ 的系数与常数项，得 $\vv W_0=\vv U_0$，$\vv B\vv U_0=\vv U_0\vv A$.
+		
+		最后证明 $\vv U_0$ 可逆. 设 $\vv T(\lambda)=\vv U(\lambda)^{-1}$，由引理~\ref{lem:lambdadiv} 写 $\vv T(\lambda)=(\lambda\vv I-\vv A)\vv R(\lambda)+\vv T_0$. 则
+		\[\vv I=\vv U\vv T=\vv U(\lambda\vv I-\vv A)\vv R+\vv U\vv T_0=(\lambda\vv I-\vv B)\vv W\vv R+(\lambda\vv I-\vv B)\vv Q\vv T_0+\vv U_0\vv T_0,\]
+		其中第三个等号用了 \eqref{eq:simUW} 与 $\vv U$ 的除法表示. 于是 $(\lambda\vv I-\vv B)(\vv W\vv R+\vv Q\vv T_0)=\vv I-\vv U_0\vv T_0$. 右边是数字矩阵，同样比较次数可知括号内为零，从而 $\vv U_0\vv T_0=\vv I$. 所以 $\vv B=\vv U_0\vv A\vv U_0^{-1}$，$\vv A$ 与 $\vv B$ 相似.
+	\end{proof}
+	
+	\begin{motivebox}
+		第四章说，相似的矩阵是同一个线性变换在不同基下的矩阵. 判断两个矩阵是否相似，就是判断它们是否``本质上是同一个变换''. 迹、行列式、秩、特征多项式都是相似不变量，但都不够——例~\ref{eg:detfactor} 中的两个矩阵特征多项式相同却不相似. 定理~\ref{thm:similarity} 说，不变因子是一组\textbf{完全}的相似不变量：它们相同，矩阵就一定相似. 这样，一个关于``是否存在可逆矩阵 $\vv P$''的问题，就变成了一个只需计算最大公因式的问题.
+	\end{motivebox}
+	
+	\begin{example}
+		判断 $\vv A=\diag(2,2,3)$ 与 $\vv B=\begin{pmatrix}2&1&0\\0&2&0\\0&0&3\end{pmatrix}$ 是否相似.
+	\end{example}
+	\begin{solution}
+		两者的特征多项式都是 $(\lambda-2)^2(\lambda-3)$，迹都是 $7$，行列式都是 $12$，秩都是 $3$. 计算不变因子：$\lambda\vv I-\vv A=\diag(\lambda-2,\lambda-2,\lambda-3)$，由命题~\ref{prop:blockelemdiv}，初等因子为 $\lambda-2,\ \lambda-2,\ \lambda-3$，不变因子为 $1,\ \lambda-2,\ (\lambda-2)(\lambda-3)$. 对 $\vv B$，左上角的二阶块与例~\ref{eg:detfactor} 中的 $\vv J$ 类似，它的特征矩阵含常数元素 $-1$，$D_1=1$，初等因子只有 $(\lambda-2)^2$；连同右下角的 $\lambda-3$，$\vv B$ 的初等因子为 $(\lambda-2)^2,\ \lambda-3$，不变因子为 $1,\ 1,\ (\lambda-2)^2(\lambda-3)$. 二者不同，所以 $\vv A$ 与 $\vv B$ 不相似.
+	\end{solution}
+	
+	\begin{pitfallbox}
+		特征多项式相同\textbf{不能}推出相似. 最简单的反例是二阶零矩阵与 $\begin{pmatrix}0&1\\0&0\end{pmatrix}$：特征多项式都是 $\lambda^2$，但与零矩阵相似的只有零矩阵本身. 用不变因子说，前者是 $\lambda,\ \lambda$，后者是 $1,\ \lambda^2$.
+	\end{pitfallbox}
+	
+	定理~\ref{thm:similarity} 有几个重要的推论.
+	
+	\begin{corollary}\label{cor:minpolyinvfactor}
+		方阵 $\vv A$ 的最小多项式等于它的最后一个不变因子 $d_n(\lambda)$.
+	\end{corollary}
+	\begin{proof}
+		设 $\operatorname{adj}(\lambda\vv I-\vv A)$ 的全部元素（即 $\lambda\vv I-\vv A$ 的全部 $n-1$ 阶子式，至多差符号）的首一最大公因式为 $D_{n-1}$，写 $\operatorname{adj}(\lambda\vv I-\vv A)=D_{n-1}(\lambda)\vv C(\lambda)$，其中 $\vv C(\lambda)$ 的全部元素互素. 由 $(\lambda\vv I-\vv A)\operatorname{adj}(\lambda\vv I-\vv A)=f_{\vv A}(\lambda)\vv I=D_{n-1}(\lambda)d_n(\lambda)\vv I$，约去 $D_{n-1}$ 得
+		\[(\lambda\vv I-\vv A)\vv C(\lambda)=d_n(\lambda)\vv I.\]
+		与 Cayley–Hamilton 定理的证明完全相同地比较系数，得 $d_n(\vv A)=\vv O$，所以 $m_{\vv A}\mid d_n$.
+		
+		反过来，记 $m=m_{\vv A}$. 由 $\lambda^k\vv I-\vv A^k=(\lambda\vv I-\vv A)(\lambda^{k-1}\vv I+\lambda^{k-2}\vv A+\cdots+\vv A^{k-1})$，得 $m(\lambda)\vv I=m(\lambda)\vv I-m(\vv A)=(\lambda\vv I-\vv A)\vv K(\lambda)$，其中 $\vv K(\lambda)$ 是某个 $\lambda$-矩阵. 两边左乘 $\operatorname{adj}(\lambda\vv I-\vv A)$，得 $m(\lambda)D_{n-1}\vv C=D_{n-1}d_n\vv K$，即 $m(\lambda)\vv C(\lambda)=d_n(\lambda)\vv K(\lambda)$. 作带余除法 $m=qd_n+r$，$\deg r<\deg d_n$，则 $r\vv C=d_n(\vv K-q\vv C)$，$d_n$ 整除 $r$ 乘以 $\vv C$ 的每个元素. $\vv C$ 的元素互素，Bézout 等式对多个多项式同样成立（证明与定理~\ref{thm:bezout} 相同，只需把集合 $\{uf+vg\}$ 换成 $\{\sum u_if_i\}$），所以它们的某个多项式组合等于 $1$，于是 $d_n\mid r$，只能 $r=0$. 所以 $d_n\mid m$. 两者都首一，故相等.
+	\end{proof}
+	
+	这样，第七章的最小多项式与第八章的特征多项式都可以从不变因子中读出：特征多项式是全部不变因子之积，最小多项式是最后一个不变因子. Cayley–Hamilton 定理（$m_{\vv A}\mid f_{\vv A}$）于是一目了然.
+	
+	\begin{corollary}\label{cor:simfield}
+		\begin{enumerate}
+			\item 设 $\vv A,\vv B$ 是实矩阵. 若它们在复数域上相似，则在实数域上也相似.
+			\item 任一方阵 $\vv A$ 与它的转置 $\vv A^\trans$ 相似.
+		\end{enumerate}
+	\end{corollary}
+	\begin{proof}
+		(1) 行列式因子是子式的最大公因式，而最大公因式不随数域的扩大而改变（第七章）. 所以 $\vv A,\vv B$ 的不变因子无论在 $\mathbb{R}$ 上还是在 $\mathbb{C}$ 上计算都一样，再用定理~\ref{thm:similarity}.
+		
+		(2) $\lambda\vv I-\vv A^\trans=(\lambda\vv I-\vv A)^\trans$，转置不改变子式的集合，所以二者的行列式因子相同.
+	\end{proof}
+	
+	\section{\hB Jordan 标准形}\label{sec:jordan}
+	
+	\begin{definition}
+		形如
+		\[\vv J_k(\lambda_0)=\begin{pmatrix}\lambda_0&1&&\\&\lambda_0&\ddots&\\&&\ddots&1\\&&&\lambda_0\end{pmatrix}_{k\times k}\]
+		的矩阵称为 $k$ 阶 \textbf{Jordan 块}\index{jordan kuai4@Jordan 块}（主对角线上为 $\lambda_0$，紧邻其上的一条斜线上为 $1$，其余为 $0$）. 由 Jordan 块组成的分块对角矩阵称为 \textbf{Jordan 矩阵}.
+	\end{definition}
+	
+	\begin{lemma}\label{lem:jordanblock}
+		$\vv J_k(\lambda_0)$ 的初等因子只有一个，即 $(\lambda-\lambda_0)^k$.
+	\end{lemma}
+	\begin{proof}
+		与例~\ref{eg:detfactor} 中三阶的情形一样：$\lambda\vv I-\vv J_k(\lambda_0)$ 划去第一列与最后一行，剩下一个对角线全为 $-1$ 的下三角矩阵，它的行列式为 $(-1)^{k-1}$，所以 $D_{k-1}=1$，从而 $D_1=\cdots=D_{k-1}=1$；而 $D_k=(\lambda-\lambda_0)^k$. 不变因子为 $1,\ldots,1,(\lambda-\lambda_0)^k$.
+	\end{proof}
+	
+	\begin{theorem}[Jordan 标准形]\label{thm:jordan}\index{jordan biao1zhun3xing2 ding4li3@Jordan 标准形定理}
+		每个复方阵 $\vv A$ 都相似于一个 Jordan 矩阵 $\vv J$，并且 $\vv J$ 除了各 Jordan 块的排列顺序外是唯一的，称为 $\vv A$ 的 \textbf{Jordan 标准形}\index{jordan biao1zhun3xing2@Jordan 标准形}. $\vv J$ 中的 Jordan 块与 $\vv A$ 的初等因子一一对应：初等因子 $(\lambda-\lambda_0)^k$ 对应 Jordan 块 $\vv J_k(\lambda_0)$.
+	\end{theorem}
+	\begin{proof}
+		设 $\vv A$ 的全部初等因子为 $(\lambda-\lambda_1)^{k_1},\ldots,(\lambda-\lambda_s)^{k_s}$（$\lambda_i$ 可以有相同的），令 $\vv J=\diag\big(\vv J_{k_1}(\lambda_1),\ldots,\vv J_{k_s}(\lambda_s)\big)$. 由引理~\ref{lem:jordanblock} 与命题~\ref{prop:blockelemdiv}，$\vv J$ 的初等因子恰好也是这些. $k_1+\cdots+k_s=\deg f_{\vv A}=n$，$\vv J$ 与 $\vv A$ 同阶，由定理~\ref{thm:similarity}，二者相似.
+		
+		唯一性：若 $\vv A$ 相似于两个 Jordan 矩阵，这两个 Jordan 矩阵彼此相似，有相同的初等因子，因而由同样的 Jordan 块组成.
+	\end{proof}
+	
+	由 Jordan 标准形可以读出第八章的各种重数. 设 $\lambda_0$ 是 $\vv A$ 的特征值：
+	\begin{itemize}
+		\item 以 $\lambda_0$ 为对角元的 Jordan 块的\textbf{阶数之和}，等于 $\lambda_0$ 的代数重数（它们的初等因子之积是特征多项式中 $(\lambda-\lambda_0)$ 的全部方幂）；
+		\item 这些块的\textbf{个数}，等于 $\lambda_0$ 的几何重数（$\vv J_k(\lambda_0)-\lambda_0\vv I$ 的秩为 $k-1$，而其他特征值的块减去 $\lambda_0\vv I$ 后可逆，所以 $\vv J-\lambda_0\vv I$ 的零空间维数等于以 $\lambda_0$ 为对角元的块数）；
+		\item 其中\textbf{最大的阶数}，等于 $\lambda_0$ 在最小多项式中的重数（由推论~\ref{cor:minpolyinvfactor}，最小多项式 $d_n$ 是各特征值最高次方幂之积）.
+	\end{itemize}
+	特别地，\textbf{复方阵可对角化，当且仅当它的初等因子全是一次的，当且仅当它的最小多项式没有重根}. 这与第八章的定理~\ref{thm:minpolydiag} 一致.
+	
+	\begin{example}\label{eg:jordan3}
+		求 $\vv A=\begin{pmatrix}-1&1&0\\-4&3&0\\1&0&2\end{pmatrix}$ 的 Jordan 标准形.
+	\end{example}
+	\begin{solution}
+		$\lambda\vv I-\vv A=\begin{pmatrix}\lambda+1&-1&0\\4&\lambda-3&0\\-1&0&\lambda-2\end{pmatrix}$. 它含有常数元素，$D_1=1$；取第一、三行与第一、二列，二阶子式为 $\begin{vmatrix}\lambda+1&-1\\-1&0\end{vmatrix}=-1$，故 $D_2=1$；按第三列展开，$D_3=(\lambda-2)\big[(\lambda+1)(\lambda-3)+4\big]=(\lambda-1)^2(\lambda-2)$. 所以不变因子为 $1,\ 1,\ (\lambda-1)^2(\lambda-2)$，初等因子为 $(\lambda-1)^2,\ \lambda-2$，Jordan 标准形为
+		\[\vv J=\begin{pmatrix}1&1&0\\0&1&0\\0&0&2\end{pmatrix}.\]
+		特征值 $1$ 的代数重数为 $2$，几何重数为 $1$，$\vv A$ 不可对角化.
+	\end{solution}
+	
+	\paragraph*{Jordan 块的幂.} 记 $\vv N=\vv J_k(0)$，它把标准基 $\vv e_k\mapsto\vv e_{k-1}\mapsto\cdots\mapsto\vv e_1\mapsto\zero$，所以 $\vv N^k=\vv O$. 由于 $\vv J_k(\lambda_0)=\lambda_0\vv I+\vv N$，且 $\lambda_0\vv I$ 与 $\vv N$ 可交换，可以用二项式定理：
+	\[\vv J_k(\lambda_0)^m=\sum_{j=0}^{k-1}\binom mj\lambda_0^{m-j}\vv N^j.\]
+	二阶时就是
+	\[\vv J_2(\lambda_0)^m=\begin{pmatrix}\lambda_0^m&m\lambda_0^{m-1}\\0&\lambda_0^m\end{pmatrix}.\]
+	这解释了一个中学就见过的现象：特征方程有重根 $\lambda_0$ 时，线性递推的通项中会出现 $m\lambda_0^m$ 这样的项.
+	
+	\subsection{\hC 求过渡矩阵}
+	
+	定理~\ref{thm:jordan} 只说 $\vv J$ 与 $\vv A$ 相似，没有给出 $\vv P$. 求 $\vv P$ 要用到第八章的特征向量. 设 $\vv P^{-1}\vv{AP}=\vv J$，按 $\vv J$ 的分块把 $\vv P$ 的列分组. 对一个 Jordan 块 $\vv J_k(\lambda_0)$，对应的 $k$ 列 $\vv v_1,\ldots,\vv v_k$ 满足
+	\[(\vv A-\lambda_0\vv I)\vv v_1=\zero,\qquad(\vv A-\lambda_0\vv I)\vv v_{j+1}=\vv v_j\quad(j=1,\ldots,k-1).\]
+	$\vv v_1$ 是特征向量，其余的称为\textbf{广义特征向量}\index{guang3yi4 te4zheng1 xiang4liang4@广义特征向量}，$\vv v_1,\ldots,\vv v_k$ 称为一条 \textbf{Jordan 链}. 实际计算时，常从链的末端出发：先取 $\vv v_k$ 满足 $(\vv A-\lambda_0\vv I)^k\vv v_k=\zero$ 但 $(\vv A-\lambda_0\vv I)^{k-1}\vv v_k\ne\zero$，再依次令 $\vv v_{j}=(\vv A-\lambda_0\vv I)\vv v_{j+1}$.
+	
+	\begin{example}
+		$\vv A=\begin{pmatrix}3&1\\-1&1\end{pmatrix}$ 的特征多项式为 $(\lambda-2)^2$，$\lambda\vv I-\vv A$ 含常数元素，不变因子为 $1,\ (\lambda-2)^2$，Jordan 标准形为 $\vv J_2(2)$. 取 $\vv v_2=(1,0)^\trans$，则 $\vv v_1=(\vv A-2\vv I)\vv v_2=(1,-1)^\trans\ne\zero$，且 $(\vv A-2\vv I)\vv v_1=\zero$. 令 $\vv P=(\vv v_1,\vv v_2)$，得 $\vv P^{-1}\vv{AP}=\begin{pmatrix}2&1\\0&2\end{pmatrix}$.
+	\end{example}
+	
+	\begin{remark}
+		Jordan 标准形依赖于特征多项式能在 $\mathbb{F}$ 上分解为一次因式之积，所以一般只在 $\mathbb{C}$ 上讨论. 在任意数域上，可以用不变因子的``友矩阵''拼成另一种标准形，称为\textbf{有理标准形}\index{you3li3 biao1zhun3xing2@有理标准形}（Frobenius 标准形），它不需要求特征值. 这里不展开.
+	\end{remark}
+	
+	\begin{modelbox}{案件审理的两阶段模型}
+		\mstep{问题} 某类案件立案后先经一审，再经二审，然后结案. 已知每个月一审中的案件有 $80\%$ 仍在一审、$20\%$ 进入二审；二审中的案件有 $80\%$ 仍在二审、$20\%$ 结案. 一件新立的案件，一年后仍未结案的概率是多少？
+		
+		\mstep{假设} 每个月的转移概率不变，且只与案件当前所处的阶段有关（马尔可夫性，见第八章）；结案后不再变化.
+		
+		\mstep{模型} 以``一审中、二审中、已结案''为三个状态，转移矩阵（各列和为 $1$）为
+		\[\vv P=\begin{pmatrix}0.8&0&0\\0.2&0.8&0\\0&0.2&1\end{pmatrix}.\]
+		特征多项式为 $(\lambda-0.8)^2(\lambda-1)$. $\vv P-0.8\vv I$ 的秩为 $2$，特征值 $0.8$ 的几何重数为 $1$，所以 $\vv P$ \textbf{不可对角化}，Jordan 标准形为 $\diag\big(\vv J_2(0.8),1\big)$.
+		
+		\mstep{求解} 由 Jordan 块的幂，$\vv P^m$ 中会出现 $0.8^m$ 与 $m\cdot0.8^{m-1}$ 两种项. 直接计算可得，从``一审中''出发，$m$ 个月后仍在一审的概率为 $0.8^m$，在二审中的概率为 $m\cdot0.2\cdot0.8^{m-1}$. 取 $m=12$：
+		\[0.8^{12}+12\times0.2\times0.8^{11}\approx0.069+0.206=0.275.\]
+		一年后仍未结案的概率约为 $27.5\%$.
+		
+		\mstep{解读}
+		\begin{itemize}
+			\item 若只看单个阶段，每月有 $20\%$ 的案件离开，未离开的比例按 $0.8^m$ 衰减. 两个阶段串联后，未结案概率中出现了 $m\cdot0.8^{m-1}$ 这一项，它在 $m=12$ 时占了大头. 这一项正来自 $2$ 阶 Jordan 块：两个阶段的``速度''相同，彼此``叠加''，衰减变慢.
+			\item 若两个阶段的离开概率不同（例如 $20\%$ 与 $30\%$），特征值互不相同，$\vv P$ 可对角化，$\vv P^m$ 中只有两个几何级数之和. Jordan 块恰好出现在``速度相同''的边界情形.
+		\end{itemize}
+		
+		\mstep{局限} 真实的审理时间并不``无记忆''：已经审了十个月的案件，下个月结案的可能性往往与刚立案时不同. 此外，上诉率、发回重审等也没有考虑. 模型的价值在于说明，多阶段流程的总时长会比各阶段单独看时更``拖尾''.
+	\end{modelbox}
+	
+	\begin{codebox}{Jordan 标准形的不稳定性}
+		\mstep{目标} 体会 Jordan 标准形在数值计算中的``脆弱''.
+		
+		\mstep{准备} \texttt{sympy} 中的 \texttt{Matrix.jordan\_form}；\texttt{numpy.linalg.eig}.
+		
+		\mstep{任务}
+		\begin{enumerate}
+			\item 用 \texttt{jordan\_form} 求例~\ref{eg:jordan3} 中矩阵的 Jordan 标准形与过渡矩阵，与正文对照.
+			\item 把 $\vv J_2(1)$ 的左下角元素改为 $\varepsilon$（取 $\varepsilon=10^{-2},10^{-6},10^{-10}$），分别求 Jordan 标准形与特征值.
+			\item 对任务 2 中的矩阵，用 \texttt{numpy.linalg.eig} 求特征向量矩阵，并计算它的条件数（\texttt{numpy.linalg.cond}）.
+		\end{enumerate}
+		
+		\mstep{检查点} $\varepsilon\ne0$ 时两个特征值 $1\pm\sqrt\varepsilon$ 互不相同，矩阵可对角化，Jordan 标准形是对角矩阵；$\varepsilon\to0$ 时特征向量矩阵的条件数趋于无穷.
+		
+		\mstep{思考} 一个元素改变 $10^{-10}$，Jordan 标准形就从``一个 $2$ 阶块''跳成了``两个 $1$ 阶块''. 在只能保留有限位小数的计算机上，``不可对角化''几乎无法判定. 这说明为什么数值计算中通常不求 Jordan 标准形，而改用第十一章的奇异值分解与第十二章的 Schur 分解.
+	\end{codebox}
+	
+	\begin{historybox}{初等因子与 Jordan 标准形}
+		1868 年，德国数学家魏尔斯特拉斯（K.~Weierstrass）在研究双线性型与二次型的分类时引入了初等因子，证明了两个``型''等价当且仅当它们的初等因子相同. 两年后，法国数学家若尔当（C.~Jordan）在《置换与代数方程论》（1870）中，在研究有限域上的线性变换时独立地得到了今天以他命名的标准形. 二人的工作一个从``不变量''出发，一个从``标准形''出发，殊途同归——这正是本章定理~\ref{thm:similarity} 与定理~\ref{thm:jordan} 的关系.
+	\end{historybox}
+	
+	\newpage
