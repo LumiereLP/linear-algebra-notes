@@ -2559,13 +2559,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		若 $W_1+\cdots+W_k$ 中每个向量都能唯一地写成 $\vv\alpha_1+\cdots+\vv\alpha_k$（$\vv\alpha_i\in W_i$），称之为直和，记为 $W_1\oplus\cdots\oplus W_k$.
 	\end{definition}
 	
-	\begin{theorem}
+	\begin{theorem}\label{thm:dsummulti}
 		以下条件等价：
 		\begin{enumerate}
 			\item $W_1+\cdots+W_k$ 是直和；
 			\item 零向量的分解唯一；
 			\item 对每个 $i$，$W_i\cap\sum_{j\ne i}W_j=\{\zero\}$；
-			\item $\dim(W_1+\cdots+W_k)=\dim W_1+\cdots+\dim W_k$.
+			\item $\dim(W_1+\cdots+W_k)=\dim W_1+\cdots+\dim W_k$；
+			\item 把各 $W_i$ 的一组基合在一起，是 $W_1+\cdots+W_k$ 的一组基.
 		\end{enumerate}
 	\end{theorem}
 	\begin{proof}
@@ -2575,7 +2576,11 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		
 		(3)$\Rightarrow$(2)：设 $\vv\alpha_1+\cdots+\vv\alpha_k=\zero$. 对每个 $i$，$\vv\alpha_i=-\sum_{j\ne i}\vv\alpha_j\in W_i\cap\sum_{j\ne i}W_j$，故 $\vv\alpha_i=\zero$.
 		
-		(1)$\Leftrightarrow$(4) 对 $k$ 用归纳法并结合维数公式，留作习题.
+		(2)$\Rightarrow$(5)：合起来的向量组显然生成和空间. 设它的某个线性组合为零，把其中属于 $W_i$ 的部分记为 $\vv\gamma_i$，则 $\vv\gamma_1+\cdots+\vv\gamma_k=\zero$，由 (2) 每个 $\vv\gamma_i=\zero$，再由各 $W_i$ 的基线性无关，系数全为零.
+		
+		(5)$\Rightarrow$(4)：数一数基中向量的个数.
+		
+		(4)$\Rightarrow$(2)：合起来的向量组生成 $W_1+\cdots+W_k$，所含向量个数等于它的维数，所以是一组基，从而线性无关. 若 $\vv\alpha_1+\cdots+\vv\alpha_k=\zero$（$\vv\alpha_i\in W_i$），把每个 $\vv\alpha_i$ 用 $W_i$ 的基表出，得到合起来的向量组的一个零组合，系数全为零，所以每个 $\vv\alpha_i=\zero$.
 	\end{proof}
 	
 	\begin{pitfallbox}
@@ -4553,7 +4558,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{proof}
 	
 	\begin{motivebox}
-		请记住这个结论的形状：\textbf{实数世界里，不可约的东西至多是``二维''的.} 一个实系数多项式，最多只能被拆到一次因式和二次因式为止，再也拆不动. 第十章的选读节会遇到它的一个``几何分身''：实空间上的正交变换，也总能被拆成一维块和二维块，二维块就是平面上的旋转. 那里的``$2$''，正是这里的``$2$''.
+		请记住这个结论的形状：\textbf{实数世界里，不可约的东西至多是``二维''的.} 一个实系数多项式，最多只能被拆到一次因式和二次因式为止，再也拆不动. 第十章``正交变换的结构''一小节（96 学时方案）会遇到它的一个``几何分身''：实空间上的正交变换，也总能被拆成一维块和二维块，二维块就是平面上的旋转. 那里的``$2$''，正是这里的``$2$''.
 	\end{motivebox}
 	
 	
@@ -4915,9 +4920,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		就是 $W_1\oplus\cdots\oplus W_s$ 的一组基；特别地，它的维数等于 $\dim W_1+\cdots+\dim W_s$.
 	\end{proposition}
 	\begin{proof}
-		若 $\sum\vv\alpha_i=\sum\vv\beta_i$，则 $\sum(\vv\alpha_i-\vv\beta_i)=\zero$，由此即得第一句.
-		合起来的向量组显然生成和空间. 设它的某个线性组合为零，把其中属于 $W_i$ 的部分记为 $\vv\gamma_i$，
-		则 $\vv\gamma_1+\cdots+\vv\gamma_s=\zero$，由第一句每个 $\vv\gamma_i=\zero$，再由各 $W_i$ 的基线性无关，系数全为零.
+		这是第四章定理~\ref{thm:dsummulti} 中 (1)$\Leftrightarrow$(2)$\Rightarrow$(5) 的部分.% tier-ok：直和在第八章重新定义，证明引用第四章
 	\end{proof}
 	
 	两个子空间时的判据 $W_1\cap W_2=\{\zero\}$、维数公式与补空间，见第~\ref{sec:directsum}~节（96 学时方案）.% tier-ok
@@ -5353,6 +5356,8 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\item 用 Gram–Schmidt 方法把线性无关组化为标准正交组
 		\item 判断矩阵是否为正交矩阵，说明正交变换保持长度与内积
 		\item 求向量在子空间上的正交投影，用正规方程求最小二乘解（72 学时方案起）
+		\item 求子空间的正交补，用矩阵的四个基本子空间说明方程组的相容条件（72 学时方案起）
+		\item 说明正交变换的结构：空间分解为不动、翻转与平面旋转三类不变子空间的正交直和（96 学时方案）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
@@ -5551,7 +5556,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\section{正交投影与最小二乘}\label{sec:projection}
 	
-	\subsection{正交投影与最佳逼近}
+	\subsection{正交投影与最佳近似}
 	
 	设 $W$ 是内积空间 $V$ 的有限维子空间，$\vv\alpha\in V$. 中学告诉我们，点到平面的最短距离是垂线段. 这一事实在任意内积空间中依然成立.
 	
@@ -5569,7 +5574,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		记右边为 $\vv p\in W$. 对每个 $j$，$\langle\vv\alpha-\vv p,\vv e_j\rangle=\langle\vv\alpha,\vv e_j\rangle-\langle\vv\alpha,\vv e_j\rangle=0$，所以 $\vv p$ 是正交投影. 若 $\vv p'$ 也是，则 $\vv p-\vv p'=(\vv\alpha-\vv p')-(\vv\alpha-\vv p)$ 既属于 $W$ 又与 $W$ 正交，与自己的内积为零，只能是零向量.
 	\end{proof}
 	
-	\begin{theorem}[最佳逼近]\label{thm:bestapprox}\index{zui4jia1 bi1jin4 ding4li3@最佳逼近定理}
+	\begin{theorem}[最佳近似]\label{thm:bestapprox}\index{zui4jia1 jin4si4 ding4li3@最佳近似定理}
 		对一切 $\vv\beta\in W$，$\|\vv\alpha-\vv\alpha_W\|\le\|\vv\alpha-\vv\beta\|$，等号成立当且仅当 $\vv\beta=\vv\alpha_W$.
 	\end{theorem}
 	\begin{proof}
@@ -5612,7 +5617,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		这个方程组总是有解的；当 $\vv A$ 列满秩时，$\vv A^\trans\vv A$ 可逆，最小二乘解唯一：$\hat{\vv x}=(\vv A^\trans\vv A)^{-1}\vv A^\trans\vv y$.
 	\end{theorem}
 	\begin{proof}
-		$\vv A\vv x$ 取遍列空间 $W=\imm\vv A$. 由最佳逼近定理，$\|\vv y-\vv A\hat{\vv x}\|$ 最小当且仅当 $\vv A\hat{\vv x}=\vv y_W$，即 $\vv y-\vv A\hat{\vv x}$ 与 $\vv A$ 的每一列正交，写成矩阵就是 $\vv A^\trans(\vv y-\vv A\hat{\vv x})=\zero$. 由于 $\vv y_W$ 存在且属于列空间，必有 $\hat{\vv x}$ 使 $\vv A\hat{\vv x}=\vv y_W$，所以正规方程总有解.
+		$\vv A\vv x$ 取遍列空间 $W=\imm\vv A$. 由最佳近似定理，$\|\vv y-\vv A\hat{\vv x}\|$ 最小当且仅当 $\vv A\hat{\vv x}=\vv y_W$，即 $\vv y-\vv A\hat{\vv x}$ 与 $\vv A$ 的每一列正交，写成矩阵就是 $\vv A^\trans(\vv y-\vv A\hat{\vv x})=\zero$. 由于 $\vv y_W$ 存在且属于列空间，必有 $\hat{\vv x}$ 使 $\vv A\hat{\vv x}=\vv y_W$，所以正规方程总有解.
 		
 		若 $\vv A$ 列满秩，设 $\vv A^\trans\vv{Ax}=\zero$，则 $\|\vv{Ax}\|^2=\vv x^\trans\vv A^\trans\vv{Ax}=0$，$\vv{Ax}=\zero$，由列满秩 $\vv x=\zero$. 故 $n$ 阶方阵 $\vv A^\trans\vv A$ 可逆.
 	\end{proof}
@@ -5742,12 +5747,12 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{figure}
 	正交矩阵还出现在换基中：两组标准正交基之间的过渡矩阵是正交矩阵（它的列是新基在旧基下的坐标）. 于是，在标准正交基之间换基时，相似变换 $\vv P^{-1}\vv{AP}$ 就成了 $\vv P^\trans\vv{AP}$，称为\textbf{正交相似}\index{zheng4jiao1 xiang1si4@正交相似}. 第十一章的主角正是它.
 	
-	\section{*正交补与正交分解（选读）}\label{sec:orthcomp}
+	\section{\hB 正交补与正交分解}\label{sec:orthcomp}
 	
-	本节假设已读第~\ref{sec:innerproduct}—\ref{sec:orthogonal}~节：$V$ 是 $n$ 维实内积空间，内积记为 $\langle\cdot,\cdot\rangle$，$\|\vv\alpha\|=\sqrt{\langle\vv\alpha,\vv\alpha\rangle}$，且任一子空间都有标准正交基（Gram–Schmidt）. 本节的最后一部分还要用到第七章的定理~\ref{thm:realfactor} 与第八章的 Cayley–Hamilton 定理.
+	本节假设已读第~\ref{sec:innerproduct}—\ref{sec:orthogonal}~节：$V$ 是 $n$ 维实内积空间，内积记为 $\langle\cdot,\cdot\rangle$，$\|\vv\alpha\|=\sqrt{\langle\vv\alpha,\vv\alpha\rangle}$，且任一子空间都有标准正交基（Gram–Schmidt）. 本节的最后一部分（正交变换的结构，96 学时方案）还要用到第七章的定理~\ref{thm:realfactor} 与第八章的 Cayley–Hamilton 定理.
 	
 	\begin{motivebox}
-		第~\ref{sec:directsum}~节告诉我们，子空间的补空间存在但不唯一：$x$ 轴的补空间可以是任何一条别的过原点直线. 没有``角度''时，这些补空间地位平等；一旦有了内积，其中一条与众不同——\textbf{与 $x$ 轴垂直的那条}. 内积为``拆分空间''提供了一个标准答案. 本节的结尾会用这个标准答案，把\textbf{每一个}正交变换都拆得干干净净.
+		第~\ref{sec:directsum}~节（96 学时方案）告诉我们，子空间的补空间存在但不唯一：$x$ 轴的补空间可以是任何一条别的过原点直线. 没有``角度''时，这些补空间地位平等；一旦有了内积，其中一条与众不同——\textbf{与 $x$ 轴垂直的那条}. 内积为``拆分空间''提供了一个标准答案. 本节的结尾会用这个标准答案，把\textbf{每一个}正交变换都拆得干干净净.% tier-ok：动机栏目中的回顾
 	\end{motivebox}
 	
 	\begin{definition}
@@ -5776,7 +5781,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\[
 		\vv\alpha\in W^\perp\iff\langle\vv\alpha,\vv e_i\rangle=0\ (i\le k)\iff\vv\alpha\in\spn(\vv e_{k+1},\ldots,\vv e_n).
 		\]
-		所以 $W^\perp=\spn(\vv e_{k+1},\ldots,\vv e_n)$，维数为 $n-k$. 两组基合起来是 $V$ 的基，由定理~\ref{thm:directsum2} 得 $V=W\oplus W^\perp$. 把同样的论证用于 $W^\perp$（它的标准正交基是 $\vv e_{k+1},\ldots,\vv e_n$），得 $(W^\perp)^\perp=\spn(\vv e_1,\ldots,\vv e_k)=W$.
+		所以 $W^\perp=\spn(\vv e_{k+1},\ldots,\vv e_n)$，维数为 $n-k$. 两组基合起来是 $V$ 的基，所以 $V=W+W^\perp$，且合起来的向量组线性无关，零向量只能分解为 $\zero+\zero$，由命题~\ref{prop:dsum} 得 $V=W\oplus W^\perp$. 把同样的论证用于 $W^\perp$（它的标准正交基是 $\vv e_{k+1},\ldots,\vv e_n$），得 $(W^\perp)^\perp=\spn(\vv e_1,\ldots,\vv e_k)=W$.
 	\end{proof}
 	
 	由定理~\ref{thm:projformula}，$\vv\alpha=\vv\alpha_W+(\vv\alpha-\vv\alpha_W)$ 正是 $\vv\alpha$ 按 $V=W\oplus W^\perp$ 的分解：正交投影就是``沿正交补的投影''.
@@ -5849,7 +5854,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\mstep{局限} ``与 $x$ 正交''是最小二乘法的\textbf{构造结果}，不是数据的性质. 若真实的误差与 $x$ 相关（例如遗漏了一个同时影响广告投入和销售额的变量），最小二乘仍会给出``正交''的残差，但估计出的 $b$ 是有偏的. 残差的正交性因此\textbf{不能}用来检验模型是否遗漏了变量. 这是计量经济学中``内生性''问题的起点.
 	\end{modelbox}
 	
-	\subsection{正交变换的结构}
+	\subsection{\hC 正交变换的结构}
 	
 	现在来看一个好玩的问题. 随手转动一个地球仪（球心固定），转完以后，球面上是否\textbf{总有}两个点回到了原处？1775 年欧拉证明：是的——三维空间中任何保持定向的正交变换都是绕某根轴的旋转. 那么，四维、五维乃至 $n$ 维空间中的正交变换又长什么样？
 	
@@ -6155,7 +6160,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	补上这些缺口，需要比 Riemann 积分更一般的 Lebesgue 积分，并把在``可以忽略的集合''（例如有限个点）上取值不同的函数视为同一个元素. 补全之后的空间记为 $L^p[a,b]$，称为 \textbf{$L^p$ 空间}\index{lp han2shu4 kong1jian1@$L^p$ 空间}. 一个空间若没有上述缺口，就称为\textbf{完备的}\index{wan2bei4@完备}. $\ell^p$ 与 $L^p$ 都是完备的赋范空间，$\ell^2$ 与 $L^2$ 都是 Hilbert 空间. 严格的构造属于实变函数与泛函分析课程.
 	
-	在 $L^2[-\pi,\pi]$ 中，函数组 $1,\cos x,\sin x,\cos2x,\sin2x,\ldots$ 两两正交（第十章章末习题~\ref{ex:ip:B9}）. 一个函数的 \textbf{Fourier 级数}，正是它在这组正交函数上的``坐标展开''，而部分和就是它在有限个函数张成的子空间上的正交投影. 本章的最佳逼近定理在这里的含义是：在次数不超过 $N$ 的三角多项式中，Fourier 级数的前 $N$ 阶部分和在 $\|\cdot\|_2$ 下离原函数最近. 信号处理中把 $\|f\|_2^2$ 称为信号的``能量''，Fourier 展开把能量分配到各个频率上，这是勾股定理在无穷维中的推广.
+	在 $L^2[-\pi,\pi]$ 中，函数组 $1,\cos x,\sin x,\cos2x,\sin2x,\ldots$ 两两正交（第十章章末习题~\ref{ex:ip:B9}）. 一个函数的 \textbf{Fourier 级数}，正是它在这组正交函数上的``坐标展开''，而部分和就是它在有限个函数张成的子空间上的正交投影. 本章的最佳近似定理在这里的含义是：在次数不超过 $N$ 的三角多项式中，Fourier 级数的前 $N$ 阶部分和在 $\|\cdot\|_2$ 下离原函数最近. 信号处理中把 $\|f\|_2^2$ 称为信号的``能量''，Fourier 展开把能量分配到各个频率上，这是勾股定理在无穷维中的推广.
 	
 	\begin{historybox}{从无穷多个未知数到泛函分析}
 		二十世纪初，希尔伯特在研究积分方程时，把问题转化为``无穷多个未知数的线性方程组''，其中的未知数数列满足平方和有限，也就是今天的 $\ell^2$. 1907 年，希尔伯特的学生施密特（E.~Schmidt）给出了把线性无关组正交化的方法，1908 年，他在论文\cite{schmidt1908aufloesung}中为$\ell^2$建立了系统的几何语言. 1910 年，匈牙利数学家里斯（F.~Riesz）引入了 $L^p$ 空间\cite{riesz1910untersuchungen}. 波兰数学家巴拿赫（S.~Banach）在在 1920 年完成、1922 年发表的博士论文\cite{banach1922operations}中给出了完备赋范空间的公理化定义，这类空间后来以他的名字命名. 以这些空间为舞台研究线性映射的学科，称为\textbf{泛函分析}. 它可以看作把本书的线性代数推广到无穷维的结果.
@@ -6198,7 +6203,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	% =====================================================================
 	\paragraph*{本章地位}
 
-	第八章讨论了矩阵的对角化，第十章引入了正交. 本章把二者结合起来，证明实对称矩阵可以用正交矩阵对角化（谱定理），即存在一组由特征向量构成的标准正交基. 在此基础上，本章对任意矩阵建立奇异值分解，由此得到矩阵的最佳低秩逼近，并讨论主成分分析等应用. 谱定理也是第十三章用正交变换化二次型为标准形的依据.
+	第八章讨论了矩阵的对角化，第十章引入了正交. 本章把二者结合起来，证明实对称矩阵可以用正交矩阵对角化（谱定理），即存在一组由特征向量构成的标准正交基. 在此基础上，本章对任意矩阵建立奇异值分解，由此得到矩阵的最佳低秩近似，并讨论主成分分析等应用. 谱定理也是第十三章用正交变换化二次型为标准形的依据.
 	
 	\chapterhours{3}{5}{7}
 	
@@ -6207,7 +6212,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\item 用正交矩阵把实对称矩阵对角化，写出谱分解
 		\item 用 Rayleigh 商刻画实对称矩阵的最大与最小特征值（72 学时方案起）
 		\item 求矩阵的奇异值分解，说明它的几何意义（72 学时方案起）
-		\item 求矩阵的最佳低秩逼近，并用于主成分分析等问题（96 学时方案）
+		\item 求矩阵的最佳低秩近似，并用于主成分分析等问题（96 学时方案）
 	\end{introduction}
 	
 	\paragraph*{前置知识}
@@ -6376,7 +6381,9 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\paragraph*{条件数.} 对可逆方阵，$\kappa(\vv A)=\sigma_1/\sigma_n$ 称为\textbf{条件数}：它是椭球最长轴与最短轴之比，衡量 $\vv A$ 把单位球``压扁''的程度. 第六章选读节的病态方程组，系数矩阵 $\begin{pmatrix}1&1\\1&1.0001\end{pmatrix}$ 的条件数约为 $4\times10^4$：右端的相对误差最多可能被放大四万倍. 行列式只反映体积，条件数才反映形状——这回答了第六章``常见误区''留下的问题.
 	
-	\section{\hC 低秩逼近}
+	\section{\hC 低秩近似及其应用}
+	
+	\subsection{最佳低秩近似}
 	
 	把 $\vv A=\vv U\vv\Sigma\vv V^\trans$ 按列展开，得
 	\[\vv A=\sigma_1\vv u_1\vv v_1^\trans+\sigma_2\vv u_2\vv v_2^\trans+\cdots+\sigma_r\vv u_r\vv v_r^\trans,\]
@@ -6395,7 +6402,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		这个定理是第四章``图像压缩中的换基''的终极版本. 那里我们换了一组固定的基（亮度与色度），让重要的信息集中到少数坐标上；这里，SVD 为\textbf{每一个具体的矩阵}量身定做一组基，并且保证：在所有``只用 $k$ 个方向''的近似中，它是最好的.
 	\end{motivebox}
 	
-	\section{\hC 应用：主成分分析与低秩近似}
+	下面的三个应用——主成分分析、潜在语义分析与图像压缩——做的都是同一件事：用前几个奇异值对应的方向近似一个矩阵，舍弃其余的部分.
 	
 	\subsection{主成分分析}\index{zhu3cheng2fen4 fen1xi1@主成分分析}
 	
@@ -6456,7 +6463,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\begin{historybox}{奇异值分解的百年}
 		\sidefig[0.2\linewidth]{image/pearson.jpg}{卡尔·皮尔逊}[fig:pearson]
-		1873 年与 1874 年，贝尔特拉米（E.~Beltrami）与若尔当（C.~Jordan）各自独立地得到了方阵的奇异值分解，当时是为了研究双线性型的化简\cite{beltrami1873funzioni,jordan1874memoire,stewart1993early}. 1901 年，统计学家皮尔逊（K.~Pearson）提出用``最贴近数据点的直线和平面''来概括数据\cite{pearson1901lines}，1933 年霍特林（H.~Hotelling）发展为主成分分析\cite{hotelling1933analysis}. 1936 年，心理测量学家埃卡特（C.~Eckart）与扬（G.~Young）证明了低秩逼近定理——他们关心的是如何从大量测验分数中提取少数几个``能力因子''\cite{eckart1936approximation}. 1960 年代，戈卢布（G.~Golub）等人给出了稳定高效的计算方法，SVD 才真正走进计算机\cite{golub1965calculating}.
+		1873 年与 1874 年，贝尔特拉米（E.~Beltrami）与若尔当（C.~Jordan）各自独立地得到了方阵的奇异值分解，当时是为了研究双线性型的化简\cite{beltrami1873funzioni,jordan1874memoire,stewart1993early}. 1901 年，统计学家皮尔逊（K.~Pearson）提出用``最贴近数据点的直线和平面''来概括数据\cite{pearson1901lines}，1933 年霍特林（H.~Hotelling）发展为主成分分析\cite{hotelling1933analysis}. 1936 年，心理测量学家埃卡特（C.~Eckart）与扬（G.~Young）证明了低秩近似定理——他们关心的是如何从大量测验分数中提取少数几个``能力因子''\cite{eckart1936approximation}. 1960 年代，戈卢布（G.~Golub）等人给出了稳定高效的计算方法，SVD 才真正走进计算机\cite{golub1965calculating}.
 	\end{historybox}
 	
 	\begin{codebox}{潜在语义分析的实现}
@@ -6551,7 +6558,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\]
 	由第三章，$\rk(\vv B\vv A)\le r$. 需要调整的数只有 $2dr$ 个. 当 $d=4096$，$r=8$ 时，直接修改要调整 $4096^2=16\,777\,216$ 个数，而低秩微调只要 $2\times4096\times8=65\,536$ 个，约为前者的 $0.39\%$.
 	
-	这种做法有效的前提是：适应新领域所需的修改，本身近似是低秩的. 反过来，任何秩不超过 $r$ 的 $d\times d$ 矩阵都能写成 $\vv B\vv A$ 的形式（由奇异值分解，秩为 $s\le r$ 的矩阵等于 $\sum_{i=1}^{s}\sigma_i\vv u_i\vv v_i^\trans$，取 $\vv B$ 的前 $s$ 列为 $\sigma_i\vv u_i$，$\vv A$ 的前 $s$ 行为 $\vv v_i^\trans$，其余补零）；而由 Eckart–Young 定理（定理~\ref{thm:eckartyoung}），若修改量的奇异值衰减得快，用秩 $r$ 的矩阵逼近它损失很小. 本章的图像压缩与这里是同一个原理.
+	这种做法有效的前提是：适应新领域所需的修改，本身近似是低秩的. 反过来，任何秩不超过 $r$ 的 $d\times d$ 矩阵都能写成 $\vv B\vv A$ 的形式（由奇异值分解，秩为 $s\le r$ 的矩阵等于 $\sum_{i=1}^{s}\sigma_i\vv u_i\vv v_i^\trans$，取 $\vv B$ 的前 $s$ 列为 $\sigma_i\vv u_i$，$\vv A$ 的前 $s$ 行为 $\vv v_i^\trans$，其余补零）；而由 Eckart–Young 定理（定理~\ref{thm:eckartyoung}），若修改量的奇异值衰减得快，用秩 $r$ 的矩阵近似它损失很小. 本章的图像压缩与这里是同一个原理.
 	
 	\begin{linkbox}{模型会``编造''}
 		大语言模型输出的是``在训练数据中看起来合理''的文本，而不是经过核实的事实. 它可能写出格式完整、却并不存在的判例、法条或文献. 2023 年，美国一家联邦法院在一起案件中处罚了提交由聊天机器人编造的判例引证的律师. 对法律工作而言，模型生成的每一条引证、每一个案号，都必须回到原始数据库中核对. 这与本书各章``局限''一节的要求相同：计算结果可以帮助思考，不能代替核实.
