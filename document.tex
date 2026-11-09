@@ -125,7 +125,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 % 模板在 \kaishu 定义之前已把 \citshape 设成 \itshape，解答、注、学习目标框里的数字和字母因此变成意大利体.
 % 这里改为只切换中文楷体，西文与数字保持直立.
 \renewcommand*{\citshape}{\kaishu}
-% 正文中的加粗强调（\textbf）：半粗非衬线体. 西文用 Source Sans Pro Semibold（TeX Live 自带），
+% 正文中的加粗强调（\textbf）：半粗非衬线体. 西文用 Source Sans Pro Semibold（字体文件随仓库提供，许可见 SourceSansPro-LICENSE.md），
 % 中文用与之同源的 Noto Sans CJK Medium（思源黑体没有 SemiBold 字重，Medium 最接近）.
 % 标题、定理标题与“证明”等标签用 \bfseries，不受影响.
 \newfontfamily\lnsemiboldlatin{SourceSansPro-Semibold.otf}
@@ -157,6 +157,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \newcommand{\vv}[1]{\boldsymbol{#1}}
 \newcommand{\zero}{\boldsymbol{0}}          % 零向量（全书统一，不再混用 \mathbf{0}）
 \newcommand{\trans}{\mathrm{T}}             % 转置：A^{\trans}
+\numberwithin{equation}{section}   % 公式按节编号：(2.4.1)
 \newcommand{\herm}{\mathrm{H}}              % 共轭转置：A^{\herm}（第十二章；A^* 已表示伴随矩阵）
 \newcommand{\spn}{\operatorname{span}}      % 张成：\spn(\vv\alpha_1,\ldots)
 \newcommand{\rk}{\operatorname{rank}}       % 秩
@@ -638,7 +639,11 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
 		\end{array}\right.
 	\end{equation}
-	的方程组称为 $m$ 个方程、$n$ 个未知量的\textbf{线性方程组}\index{xian4xing4 fang1cheng2zu3@线性方程组}，其中系数 $a_{ij}$ 与常数项 $b_i$ 都是给定的数. 若 $b_1=\cdots=b_m=0$，称之为\textbf{齐次}\index{qi2ci4 xian4xing4 fang1cheng2zu3@齐次线性方程组}线性方程组，否则称为\textbf{非齐次}\index{fei1qi2ci4 xian4xing4 fang1cheng2zu3@非齐次线性方程组}的. ``齐次''的意思是``次数整齐''：这时方程中的每一项 $a_{ij}x_j$ 都是关于未知量的一次项，次数完全一样；而非零的常数项 $b_i$ 是零次项，混在其中就``不齐''了. 一组数 $(c_1,\ldots,c_n)$ 若代入后使每个方程都成立，就称为方程组的一个\textbf{解}；全部解构成的集合称为\textbf{解集}\index{jie3ji2@解集}. 两个方程组若解集相同，则称它们\textbf{同解}\index{tong2jie3@同解}.
+	的方程组称为 $m$ 个方程、$n$ 个未知量的\textbf{线性方程组}\index{xian4xing4 fang1cheng2zu3@线性方程组}，其中系数 $a_{ij}$ 与常数项 $b_i$ 都是给定的数.
+	
+	若常数项全为零，称之为\textbf{齐次}\index{qi2ci4 xian4xing4 fang1cheng2zu3@齐次线性方程组}线性方程组，否则称为\textbf{非齐次}\index{fei1qi2ci4 xian4xing4 fang1cheng2zu3@非齐次线性方程组}的. ``齐次''的意思是``次数整齐''：这时方程中的每一项都是关于未知量的一次项，次数完全一样；而非零的常数项是零次项，混在其中就``不齐''了.
+	
+	一组数 $(c_1,\ldots,c_n)$ 若代入后使每个方程都成立，就称为方程组的一个\textbf{解}；全部解构成的集合称为\textbf{解集}\index{jie3ji2@解集}. 两个方程组若解集相同，则称它们\textbf{同解}\index{tong2jie3@同解}.
 	
 	线性方程组的解只取决于系数和常数项，与未知量用什么字母表示无关. 因此我们把它们``抽出来''排成一张表
 	\[
@@ -672,7 +677,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{proof}
 		只需对一次变换证明. 设变换前后的方程组分别为 (I) 与 (II). (I) 的任一解代入 (II) 的每个方程：对换和倍乘显然仍成立；倍加时新的第 $i$ 个方程是原第 $i$ 个方程与第 $j$ 个方程 $c$ 倍之和，两边仍相等. 故 (I) 的解都是 (II) 的解.
 		
-		反过来，每一种初等行变换都可以被同类变换``撤销''：$r_i\leftrightarrow r_j$ 再做一次即还原，$kr_i$ 用 $\frac1k r_i$ 还原，$r_i+cr_j$ 用 $r_i-cr_j$ 还原. 于是 (I) 也可由 (II) 经一次初等行变换得到，由刚才的论证，(II) 的解也都是 (I) 的解.
+		反过来，每一种初等行变换都可以被同类变换``撤销''：
+		\[
+		\begin{array}{c|ccc}
+			\text{变换} & r_i\leftrightarrow r_j & kr_i & r_i+cr_j\\ \hline
+			\text{撤销它的变换} & r_i\leftrightarrow r_j & \tfrac1k r_i & r_i-cr_j
+		\end{array}
+		\]
+		于是 (I) 也可由 (II) 经一次初等行变换得到. 由刚才的论证，(II) 的解也都是 (I) 的解.
 	\end{proof}
 	
 	\begin{motivebox}
@@ -730,7 +742,11 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			0 & 0 & 1 & 2
 		\end{pmatrix}.
 		\]
-		最后一个矩阵对应的方程组可以从下往上``回代''：$z=2$，$y=3-z=1$，$x=5-y-\frac12z=3$. 由定理~\ref{thm:sameSolution}，原方程组有唯一解 $(x,y,z)=(3,1,2)$.
+		最后一个矩阵对应的方程组可以从下往上``回代''：
+		\[
+		z=2,\qquad y=3-z=1,\qquad x=5-y-\tfrac12z=3.
+		\]
+		由定理~\ref{thm:sameSolution}，原方程组有唯一解 $(x,y,z)=(3,1,2)$.
 	\end{solution}
 	
 	\section{阶梯形矩阵}
@@ -872,7 +888,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		这类模型由列昂惕夫（W.~Leontief）系统发展，他因此获得 1973 年诺贝尔经济学奖. 真实的投入产出表有上百个部门，方程组的规模随之变大，但解法正是本章的消元法. 第三章我们会把它写成 $(\vv{I}-\vv{A})\vv{x}=\vv{d}$ 的矩阵形式.
 	\end{linkbox}
 	\begin{modelbox}{物流网络的流量平衡}
-		\mstep{问题} 某公司每天从仓库 $A$ 向门店 $D$ 运送 $50$ 吨货物，途经中转站 $B,C$. 可用线路为 $A\to B$，$A\to C$，$B\to C$，$B\to D$，$C\to D$，流量依次记为 $x_1,\ldots,x_5$. 流量应当怎样安排？
+		\mstep{问题} 某公司每天从仓库 $A$ 向门店 $D$ 运送 $50$ 吨货物，途经中转站 $B$ 与 $C$. 可用的五条线路如图~\ref{fig:logistics} 所示，每天的流量依次记为 $x_1,\ldots,x_5$. 流量应当怎样安排？
 		\begin{center}
 			\begin{tikzpicture}
 				\node[station] (A) at (0,0) {$A$};
@@ -893,20 +909,27 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\mstep{假设} 中转站不囤货（流入 $=$ 流出）；途中没有损耗.
 		
 		\mstep{模型} 对每个站点写``流出 $-$ 流入 $=$ 净供给''：
-		\[\left\{\begin{array}{rcl}
+		\begin{equation}\label{eq:logistics}
+		\left\{\begin{array}{rcl}
 			x_1+x_2&=&50 \quad (A),\\
 			-x_1+x_3+x_4&=&0 \quad (B),\\
 			-x_2-x_3+x_5&=&0 \quad (C),\\
 			-x_4-x_5&=&-50 \quad (D).
-		\end{array}\right.\]
+		\end{array}\right.
+		\end{equation}
 		
 		\mstep{求解} 消元后系数部分只有 $3$ 个主元：四个方程相加得 $0=0$，其中一个是多余的. 取 $x_3=s$，$x_4=t$ 为自由变量，得
-		\[x_1=s+t,\quad x_2=50-s-t,\quad x_3=s,\quad x_4=t,\quad x_5=50-t.\]
+		\[
+		\begin{aligned}
+			x_1&=s+t, & x_2&=50-s-t, & x_3&=s,\\
+			x_4&=t, & x_5&=50-t.
+		\end{aligned}
+		\]
 		
 		\mstep{解读}
 		\begin{itemize}
 			\item 多余的方程反映了一个守恒律：\textbf{总供给 $=$ 总需求}. 若把 $D$ 的需求改为 $40$，方程组立刻无解——定理~\ref{thm:solvability} 替我们发现了``账不平''.
-			\item 两个自由变量是调度员手中的两个``旋钮''：$s$ 每增加 $1$，就有 $1$ 吨货从``$A\to C$ 直达''改为``$A\to B\to C$ 绕行''；$t$ 每增加 $1$，就有 $1$ 吨货从``$A\to C\to D$''改走``$A\to B\to D$''.
+			\item 两个自由变量是调度员手中的两个``旋钮''. $s$ 每增加 $1$，就有 $1$ 吨货从仓库直达 $C$ 改为经 $B$ 绕行到 $C$；$t$ 每增加 $1$，就有 $1$ 吨货从经 $C$ 到达门店改为经 $B$ 到达门店.
 			\item 方程组只告诉我们\textbf{哪些方案可行}，不告诉我们\textbf{选哪个}. 选择需要额外的目标，比如运费最低.
 		\end{itemize}
 		
