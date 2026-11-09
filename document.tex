@@ -1027,7 +1027,9 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\vv{\alpha} + \vv{\beta} = \begin{pmatrix} a_1+ b_1 \\ \vdots \\ a_n+ b_n \end{pmatrix},\qquad
 	k \vv{\alpha} = \begin{pmatrix} ka_1 \\ \vdots \\ ka_n \end{pmatrix}.
 	\]
-	加法与数乘统称为\textbf{线性运算}\index{xian4xing4 yun4suan4@线性运算}. 分量全为 $0$ 的向量称为\textbf{零向量}\index{ling2 xiang4liang4@零向量}，记为 $\zero$；$-\vv\alpha=(-1)\vv\alpha$ 称为 $\vv\alpha$ 的\textbf{负向量}，并规定 $\vv\alpha-\vv\beta=\vv\alpha+(-\vv\beta)$. 容易逐个分量验证，对任意 $\vv\alpha,\vv\beta,\vv\gamma\in\mathbb{F}^n$ 与 $k,l\in\mathbb{F}$：
+	加法与数乘统称为\textbf{线性运算}\index{xian4xing4 yun4suan4@线性运算}.
+	
+	分量全为 $0$ 的向量称为\textbf{零向量}\index{ling2 xiang4liang4@零向量}，记为 $\zero$；$-\vv\alpha=(-1)\vv\alpha$ 称为 $\vv\alpha$ 的\textbf{负向量}，并规定 $\vv\alpha-\vv\beta=\vv\alpha+(-\vv\beta)$. 容易逐个分量验证，对任意 $\vv\alpha,\vv\beta,\vv\gamma\in\mathbb{F}^n$ 与 $k,l\in\mathbb{F}$：
 	\begin{enumerate}
 		\item $\vv{\alpha}+\vv{\beta} =\vv{\beta}+\vv{\alpha}$；
 		\item $(\vv{\alpha}+\vv{\beta})+\vv{\gamma} = \vv{\alpha}+(\vv{\beta}+\vv{\gamma})$；
@@ -1114,7 +1116,9 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\label{fig:lindep}
 	\end{figure}
 	\begin{example}
-		$\mathbb{F}^n$ 中的\textbf{标准单位向量}\index{biao1zhun3 dan1wei4 xiang4liang4@标准单位向量} $\vv{e}_1,\ldots,\vv{e}_n$（$\vv e_i$ 的第 $i$ 个分量为 $1$，其余为 $0$）线性无关：$k_1\vv e_1+\cdots+k_n\vv e_n=(k_1,\ldots,k_n)^\trans=\zero$ 迫使每个 $k_i=0$.
+		$\mathbb{F}^n$ 中的\textbf{标准单位向量}\index{biao1zhun3 dan1wei4 xiang4liang4@标准单位向量} $\vv{e}_1,\ldots,\vv{e}_n$（$\vv e_i$ 的第 $i$ 个分量为 $1$，其余为 $0$）线性无关. 事实上，
+		\[k_1\vv e_1+\cdots+k_n\vv e_n=(k_1,\ldots,k_n)^\trans,\]
+		它等于 $\zero$ 迫使每个 $k_i=0$.
 	\end{example}
 	
 	\begin{example}\label{exp:linrelav}
@@ -1132,7 +1136,8 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		设 $k_1\vv{\alpha}_1+\cdots+k_s\vv{\alpha}_s=\zero$，$k_i$ 不全为零. 不妨设 $k_1\ne0$（否则重新编号），则
 		\[\vv\alpha_1=-\frac{k_2}{k_1}\vv\alpha_2-\cdots-\frac{k_s}{k_1}\vv\alpha_s.\]
 		反之，若 $\vv{\alpha}_1=l_2\vv{\alpha}_2+\cdots+l_s\vv{\alpha}_s$（$l_j$ 可以是任意数），则
-		$(-1)\vv{\alpha}_1+l_2\vv{\alpha}_2+\cdots+l_s\vv{\alpha}_s=\zero$，其中第一个系数 $-1\ne0$，故线性相关.
+		\[(-1)\vv{\alpha}_1+l_2\vv{\alpha}_2+\cdots+l_s\vv{\alpha}_s=\zero,\]
+		其中第一个系数 $-1\ne0$，故线性相关.
 	\end{proof}
 	
 	\begin{theorem}
@@ -1140,7 +1145,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\end{theorem}
 	\begin{proof}
 		设 $k_1\vv{\alpha}_1+\cdots+k_r\vv{\alpha}_r=\zero$，$k_i$ 不全为零，则
-		$k_1\vv{\alpha}_1+\cdots+k_r\vv{\alpha}_r+0\vv\alpha_{r+1}+\cdots+0\vv{\alpha}_{s}=\zero$
+		\[k_1\vv{\alpha}_1+\cdots+k_r\vv{\alpha}_r+0\vv\alpha_{r+1}+\cdots+0\vv{\alpha}_{s}=\zero\]
 		也是系数不全为零的组合. 后一说法是前一说法的逆否命题.
 	\end{proof}
 	
@@ -1148,8 +1153,13 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		设 $\vv{\beta}$ 可由 $\vv{\alpha}_1,\ldots,\vv{\alpha}_s$ 线性表出，则表出方式唯一的充要条件是 $\vv{\alpha}_1,\ldots,\vv{\alpha}_s$ 线性无关.
 	\end{theorem}
 	\begin{proof}
-		若 $\vv{\beta}=\sum k_i\vv{\alpha}_i=\sum l_i\vv{\alpha}_i$，相减得 $\sum(k_i-l_i)\vv\alpha_i=\zero$. 线性无关时 $k_i=l_i$，表示唯一.
-		反之若线性相关，有不全为零的 $c_i$ 使 $\sum c_i\vv\alpha_i=\zero$，则 $\vv{\beta}=\sum (l_i+c_i)\vv{\alpha}_i$ 是另一种不同的表示.
+		设 $\vv\beta$ 有两种表示
+		\[\vv{\beta}=k_1\vv\alpha_1+\cdots+k_s\vv\alpha_s=l_1\vv\alpha_1+\cdots+l_s\vv\alpha_s.\]
+		相减得 $(k_1-l_1)\vv\alpha_1+\cdots+(k_s-l_s)\vv\alpha_s=\zero$. 线性无关时 $k_i=l_i$，表示唯一.
+		
+		反之，若线性相关，有不全为零的 $c_1,\ldots,c_s$ 使 $c_1\vv\alpha_1+\cdots+c_s\vv\alpha_s=\zero$. 把它加到上面的第二种表示上，得
+		\[\vv{\beta}=(l_1+c_1)\vv\alpha_1+\cdots+(l_s+c_s)\vv\alpha_s,\]
+		这是另一种不同的表示.
 	\end{proof}
 	
 	\begin{modelbox}{复制组合与完全市场}
@@ -1194,15 +1204,20 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		等价地：若线性无关组 $\vv{\alpha}_1,\ldots,\vv{\alpha}_r$ 可由 $\vv{\beta}_1,\ldots,\vv{\beta}_s$ 线性表出，则 $r\le s$.
 	\end{lemma}
 	\begin{proof}
-		设 $\vv\alpha_i=\sum_{j=1}^s b_{ji}\vv\beta_j$（$i=1,\ldots,r$）. 对待定的 $k_1,\ldots,k_r$，
+		设
+		\[\vv\alpha_i=\sum_{j=1}^s b_{ji}\vv\beta_j\qquad(i=1,\ldots,r).\]
+		对待定的 $k_1,\ldots,k_r$，
 		\[
-		\sum_{i=1}^r k_i\vv\alpha_i=\sum_{i=1}^r k_i\sum_{j=1}^s b_{ji}\vv\beta_j=\sum_{j=1}^s\Big(\sum_{i=1}^r b_{ji}k_i\Big)\vv\beta_j.
+		\begin{aligned}
+			\sum_{i=1}^r k_i\vv\alpha_i&=\sum_{i=1}^r k_i\sum_{j=1}^s b_{ji}\vv\beta_j\\
+			&=\sum_{j=1}^s\Big(\sum_{i=1}^r b_{ji}k_i\Big)\vv\beta_j.
+		\end{aligned}
 		\]
 		考虑以 $k_1,\ldots,k_r$ 为未知量的齐次方程组
 		\[
 		\sum_{i=1}^r b_{ji}k_i=0\qquad(j=1,\ldots,s).
 		\]
-		它有 $s$ 个方程、$r$ 个未知量，$r>s$，由推论~\ref{cor:homogeneous} 有非零解. 取这组非零解，则 $\sum k_i\vv\alpha_i=\zero$，即 $\vv\alpha_1,\ldots,\vv\alpha_r$ 线性相关.
+		它有 $s$ 个方程、$r$ 个未知量，$r>s$，由推论~\ref{cor:homogeneous} 有非零解. 取这组非零解，则 $k_1\vv\alpha_1+\cdots+k_r\vv\alpha_r=\zero$，即 $\vv\alpha_1,\ldots,\vv\alpha_r$ 线性相关.
 	\end{proof}
 	
 	\begin{motivebox}
@@ -1391,7 +1406,11 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\]
 	对应四个向量. 把一组反应向量依次作为列排成的 $S\times R$ 表格，称为这组反应的\textbf{化学计量矩阵}\index{hua4xue2 ji4liang4 ju3zhen4@化学计量矩阵}(stoichiometric matrix).
 	
-	这种记法下，向量的运算有直接的化学含义. 反应 $r_1$ 进行两次、再``倒着''进行一次 $r_2$，总的物质变化是 $2\vv r_1-\vv r_2=\vv r_3$；同样 $\vv r_4=\vv r_2-\vv r_1$. 所以 $r_3$ 与 $r_4$ 带来的物质变化，都可以由 $r_1$ 与 $r_2$ 组合得到. 向量组 $\vv r_1,\vv r_2,\vv r_3,\vv r_4$ 的一个极大无关组是 $\vv r_1,\vv r_2$，秩为 $2$.
+	这种记法下，向量的运算有直接的化学含义. 反应 $r_1$ 进行两次、再``倒着''进行一次 $r_2$，总的物质变化恰好是 $r_3$；类似地可以得到 $r_4$：
+	\[
+	\vv r_3=2\vv r_1-\vv r_2,\qquad \vv r_4=\vv r_2-\vv r_1.
+	\]
+	所以 $r_3$ 与 $r_4$ 带来的物质变化，都可以由 $r_1$ 与 $r_2$ 组合得到. 向量组 $\vv r_1,\vv r_2,\vv r_3,\vv r_4$ 的一个极大无关组是 $\vv r_1,\vv r_2$，秩为 $2$.
 	
 	\begin{definition}
 		一组反应的反应向量组的秩，称为这组反应的\textbf{独立反应数}\index{du2li4 fan3ying4 shu4@独立反应数}.
@@ -1406,8 +1425,8 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\begin{tabular}{c|cccc}
 			& $\mathrm{C}$ & $\mathrm{O_2}$ & $\mathrm{CO}$ & $\mathrm{CO_2}$ \\
 			\hline
-			碳 & $1$ & $0$ & $1$ & $1$ \\
-			氧 & $0$ & $2$ & $1$ & $2$
+			碳 & 1 & 0 & 1 & 1 \\
+			氧 & 0 & 2 & 1 & 2
 		\end{tabular}
 	\end{center}
 	每种元素给出一个守恒方程，$\vv\nu=(\nu_1,\nu_2,\nu_3,\nu_4)^\trans$ 必须满足
@@ -1419,7 +1438,10 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\]
 	这是一个齐次方程组，它的解空间 $W$ 是 $\mathbb{R}^4$ 的子空间，\textbf{一切满足原子守恒的反应都在 $W$ 中}. 用第一章的消元法，取 $\nu_3,\nu_4$ 为自由变量，通解为
 	\[
-	\vv\nu=\frac{\nu_3}{2}(-2,-1,2,0)^\trans+\nu_4(-1,-1,0,1)^\trans=\frac{\nu_3}{2}\vv r_2+\nu_4\vv r_1.
+	\begin{aligned}
+		\vv\nu&=\frac{\nu_3}{2}(-2,-1,2,0)^\trans+\nu_4(-1,-1,0,1)^\trans\\
+		&=\frac{\nu_3}{2}\vv r_2+\nu_4\vv r_1.
+	\end{aligned}
 	\]
 	$\vv r_1,\vv r_2$ 线性无关且生成 $W$，所以 $\dim W=2$.
 	
@@ -1433,7 +1455,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\[
 	a\vv r_1+b\vv r_2=(-a-2b,\,-a-b,\,2b,\,a)^\trans,\qquad a,b>0,
 	\]
-	每一对正数 $a,b$ 都给出一种配平：$a=b=1$ 得 $3\,\mathrm{C}+2\,\mathrm{O_2}\to2\,\mathrm{CO}+\mathrm{CO_2}$，$a=2$，$b=1$ 得 $4\,\mathrm{C}+3\,\mathrm{O_2}\to2\,\mathrm{CO}+2\,\mathrm{CO_2}$. 配平之所以不唯一，是因为 $\dim W=2$：这个``方程式''实际上是两个独立反应的叠加，两者的比例取决于氧气是否充足等实验条件，原子守恒本身无法确定. 而丙烷燃烧的四种物质受碳、氢、氧三个守恒方程约束，消元后只有一个自由变量，$\dim W=1$，所以配平在相差倍数的意义下唯一.
+	每一对正数 $a,b$ 都给出一种配平，例如
+	\[
+	\begin{array}{ll}
+		a=b=1\text{：} & 3\,\mathrm{C}+2\,\mathrm{O_2}\to2\,\mathrm{CO}+\mathrm{CO_2},\\
+		a=2,\ b=1\text{：} & 4\,\mathrm{C}+3\,\mathrm{O_2}\to2\,\mathrm{CO}+2\,\mathrm{CO_2}.
+	\end{array}
+	\]
+	配平之所以不唯一，是因为 $\dim W=2$：这个``方程式''实际上是两个独立反应的叠加，两者的比例取决于氧气是否充足等实验条件，原子守恒本身无法确定. 而丙烷燃烧的四种物质受碳、氢、氧三个守恒方程约束，消元后只有一个自由变量，$\dim W=1$，所以配平在相差倍数的意义下唯一.
 	
 	\subsection{守恒方程的个数与秩}
 	
@@ -1442,11 +1471,11 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\begin{tabular}{c|cccc}
 			& $\mathrm{NaCl}$ & $\mathrm{AgNO_3}$ & $\mathrm{AgCl}$ & $\mathrm{NaNO_3}$ \\
 			\hline
-			钠 & $1$ & $0$ & $0$ & $1$ \\
-			氯 & $1$ & $0$ & $1$ & $0$ \\
-			银 & $0$ & $1$ & $1$ & $0$ \\
-			氮 & $0$ & $1$ & $0$ & $1$ \\
-			氧 & $0$ & $3$ & $0$ & $3$
+			钠 & 1 & 0 & 0 & 1 \\
+			氯 & 1 & 0 & 1 & 0 \\
+			银 & 0 & 1 & 1 & 0 \\
+			氮 & 0 & 1 & 0 & 1 \\
+			氧 & 0 & 3 & 0 & 3
 		\end{tabular}
 	\end{center}
 	四个未知数、五个方程，似乎只有零解. 但把各行看作 $\mathbb{R}^4$ 中的向量，氧行是氮行的 $3$ 倍（硝酸根作为整体出现），并且钠行 $+$ 银行 $=$ 氯行 $+$ 氮行. 五个行向量的秩只有 $3$. 消元后有一个自由变量，$\dim W=1$，$W$ 由 $(-1,-1,1,1)^\trans$ 生成，即 $\mathrm{NaCl}+\mathrm{AgNO_3}\to\mathrm{AgCl}+\mathrm{NaNO_3}$.
