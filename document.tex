@@ -2236,7 +2236,10 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{proof}
 		和、差、积仍为 $a+b\sqrt2$ 型是直接验证的. 对于商，设 $c+d\sqrt{2}\ne 0$（$c,d\in\mathbb{Q}$）. 先说明 $c-d\sqrt2\neq 0$：否则 $c=d\sqrt2$，若 $d\ne0$ 则 $\sqrt2=c/d$ 是有理数，矛盾；若 $d=0$ 则 $c=0$，与 $c+d\sqrt2\ne0$ 矛盾. 于是可以分母有理化：
 		\[
-		\frac{a+b\sqrt{2}}{c+d\sqrt{2}}=\frac{(a+b\sqrt{2})(c-d\sqrt{2})}{c^2-2d^2}=\frac{ac-2bd}{c^2-2d^2}+\frac{bc-ad}{c^2-2d^2}\sqrt{2}\in\mathbb{Q}(\sqrt2).
+		\begin{aligned}
+			\frac{a+b\sqrt{2}}{c+d\sqrt{2}}&=\frac{(a+b\sqrt{2})(c-d\sqrt{2})}{c^2-2d^2}\\
+			&=\frac{ac-2bd}{c^2-2d^2}+\frac{bc-ad}{c^2-2d^2}\sqrt{2}\in\mathbb{Q}(\sqrt2).
+		\end{aligned}
 		\]
 	\end{proof}
 	
@@ -2537,8 +2540,11 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\[
 	\varphi: V\to\mathbb{F}^n,\qquad \vv\alpha\mapsto \vv\alpha\text{ 的坐标}.
 	\]
-	设 $\vv\alpha,\vv\beta$ 的坐标分别为 $\vv a,\vv b$，则
-	$\vv\alpha+\vv\beta=\sum(a_i+b_i)\vv\varepsilon_i$，$k\vv\alpha=\sum(ka_i)\vv\varepsilon_i$，即
+	设 $\vv\alpha,\vv\beta$ 的坐标分别为 $\vv a=(a_1,\ldots,a_n)^\trans$，$\vv b=(b_1,\ldots,b_n)^\trans$，则
+	\[
+	\vv\alpha+\vv\beta=\sum_{i=1}^n(a_i+b_i)\vv\varepsilon_i,\qquad k\vv\alpha=\sum_{i=1}^n(ka_i)\vv\varepsilon_i,
+	\]
+	即
 	\[
 	\varphi(\vv{\alpha}+\vv{\beta})=\varphi(\vv{\alpha})+\varphi(\vv{\beta}),\qquad\varphi(k\vv{\alpha})=k\varphi(\vv{\alpha}).
 	\]
@@ -2562,7 +2568,10 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{proof}
 		(1)—(3) 留给读者（提示：(2) 用 (1) 和 $\varphi$ 是单射；(3) 的对称性需要验证逆映射也保持运算）.
 		
-		(4) 若 $\varphi:V\to U$ 是同构，$\vv\varepsilon_1,\ldots,\vv\varepsilon_n$ 是 $V$ 的基. 由 (2)，$\varphi(\vv\varepsilon_1),\ldots,\varphi(\vv\varepsilon_n)$ 线性无关. 对任意 $\vv x\in U$，由于 $\varphi$ 是满射，有 $\vv\alpha=\sum k_i\vv\varepsilon_i$ 使 $\vv x=\varphi(\vv\alpha)=\sum k_i\varphi(\vv\varepsilon_i)$，故它们也生成 $U$，是 $U$ 的基. 所以 $\dim U=\dim V$.
+		(4) 若 $\varphi:V\to U$ 是同构，$\vv\varepsilon_1,\ldots,\vv\varepsilon_n$ 是 $V$ 的基. 由 (2)，$\varphi(\vv\varepsilon_1),\ldots,\varphi(\vv\varepsilon_n)$ 线性无关. 对任意 $\vv x\in U$，由于 $\varphi$ 是满射，有 $\vv\alpha=k_1\vv\varepsilon_1+\cdots+k_n\vv\varepsilon_n$ 使
+		\[\vv x=\varphi(\vv\alpha)=k_1\varphi(\vv\varepsilon_1)+\cdots+k_n\varphi(\vv\varepsilon_n),\]
+		故它们也生成 $U$，是 $U$ 的基. 所以 $\dim U=\dim V$.
+		
 		反之若 $\dim V=\dim U=n$，取坐标映射知 $V\cong\mathbb{F}^n\cong U$，由 (3) 的传递性得 $V\cong U$.
 	\end{proof}
 	
@@ -2607,8 +2616,10 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		取 $W_1\cap W_2$ 的基 $\vv\gamma_1,\ldots,\vv\gamma_k$，分别扩张为 $W_1$ 的基 $\vv\gamma_1,\ldots,\vv\gamma_k,\vv\alpha_1,\ldots,\vv\alpha_s$ 与 $W_2$ 的基 $\vv\gamma_1,\ldots,\vv\gamma_k,\vv\beta_1,\ldots,\vv\beta_t$. 下面证明 $\vv\gamma_1,\ldots,\vv\gamma_k,\vv\alpha_1,\ldots,\vv\alpha_s,\vv\beta_1,\ldots,\vv\beta_t$ 是 $W_1+W_2$ 的基，从而 $\dim(W_1+W_2)=k+s+t=(k+s)+(k+t)-k$.
 		
 		它们生成 $W_1+W_2$ 是显然的. 设
-		$\sum a_i\vv\gamma_i+\sum b_j\vv\alpha_j+\sum c_l\vv\beta_l=\zero$. 则
-		$\sum c_l\vv\beta_l=-\big(\sum a_i\vv\gamma_i+\sum b_j\vv\alpha_j\big)$. 左边属于 $W_2$，右边属于 $W_1$，所以它属于 $W_1\cap W_2$，可写成 $\sum d_i\vv\gamma_i$. 于是 $\sum c_l\vv\beta_l-\sum d_i\vv\gamma_i=\zero$，由 $W_2$ 的基线性无关得所有 $c_l=0$. 代回原式，再由 $W_1$ 的基线性无关得所有 $a_i=b_j=0$.
+		\[\sum_{i=1}^k a_i\vv\gamma_i+\sum_{j=1}^s b_j\vv\alpha_j+\sum_{l=1}^t c_l\vv\beta_l=\zero,\]
+		则
+		\[\sum_{l=1}^t c_l\vv\beta_l=-\Big(\sum_{i=1}^k a_i\vv\gamma_i+\sum_{j=1}^s b_j\vv\alpha_j\Big).\]
+		左边属于 $W_2$，右边属于 $W_1$，所以它属于 $W_1\cap W_2$，可以写成 $\vv\gamma_1,\ldots,\vv\gamma_k$ 的线性组合 $d_1\vv\gamma_1+\cdots+d_k\vv\gamma_k$. 移项后得到 $\vv\gamma_i$ 与 $\vv\beta_l$ 的一个零组合，由 $W_2$ 的基线性无关得所有 $c_l=0$. 代回原式，再由 $W_1$ 的基线性无关得所有 $a_i=b_j=0$.
 	\end{proof}
 	
 	\begin{remark}
@@ -2703,9 +2714,13 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{proof}
 		(1)$\Leftrightarrow$(2) 与两个子空间的情形相同.
 		
-		(2)$\Rightarrow$(3)：若 $\vv\gamma\in W_i\cap\sum_{j\neq i}W_j$，写 $\vv\gamma=\sum_{j\ne i}\vv\alpha_j$，则 $(-\vv\gamma)+\sum_{j\ne i}\vv\alpha_j=\zero$ 是零向量的分解，故 $\vv\gamma=\zero$.
+		(2)$\Rightarrow$(3)：若 $\vv\gamma$ 属于 $W_i$ 与其余子空间之和的交，写 $\vv\gamma=\sum_{j\ne i}\vv\alpha_j$（$\vv\alpha_j\in W_j$），则
+		\[(-\vv\gamma)+\sum_{j\ne i}\vv\alpha_j=\zero\]
+		是零向量的一个分解，其中属于 $W_i$ 的部分是 $-\vv\gamma$，故 $\vv\gamma=\zero$.
 		
-		(3)$\Rightarrow$(2)：设 $\vv\alpha_1+\cdots+\vv\alpha_k=\zero$. 对每个 $i$，$\vv\alpha_i=-\sum_{j\ne i}\vv\alpha_j\in W_i\cap\sum_{j\ne i}W_j$，故 $\vv\alpha_i=\zero$.
+		(3)$\Rightarrow$(2)：设 $\vv\alpha_1+\cdots+\vv\alpha_k=\zero$. 对每个 $i$，
+		\[\vv\alpha_i=-\sum_{j\ne i}\vv\alpha_j\in W_i\cap\sum_{j\ne i}W_j=\{\zero\},\]
+		故 $\vv\alpha_i=\zero$.
 		
 		(2)$\Rightarrow$(5)：合起来的向量组显然生成和空间. 设它的某个线性组合为零，把其中属于 $W_i$ 的部分记为 $\vv\gamma_i$，则 $\vv\gamma_1+\cdots+\vv\gamma_k=\zero$，由 (2) 每个 $\vv\gamma_i=\zero$，再由各 $W_i$ 的基线性无关，系数全为零.
 		
@@ -2841,7 +2856,9 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		设 $\vv\varepsilon_1,\ldots,\vv\varepsilon_n$ 是 $V$ 的基，$\vv\beta_1,\ldots,\vv\beta_n$ 是 $W$ 中任意 $n$ 个向量，则存在唯一的线性映射 $\mathscr T:V\to W$ 使 $\mathscr T(\vv\varepsilon_i)=\vv\beta_i$（$i=1,\ldots,n$）.
 	\end{theorem}
 	\begin{proof}
-		唯一性：若 $\mathscr T$ 存在，则对 $\vv\alpha=\sum a_i\vv\varepsilon_i$ 必有 $\mathscr T(\vv\alpha)=\sum a_i\vv\beta_i$. 存在性：就用这个式子定义 $\mathscr T$（坐标唯一，故定义合理），直接验证它是线性的.
+		唯一性：若 $\mathscr T$ 存在，则对 $\vv\alpha=a_1\vv\varepsilon_1+\cdots+a_n\vv\varepsilon_n$ 必有
+		\[\mathscr T(\vv\alpha)=a_1\vv\beta_1+\cdots+a_n\vv\beta_n.\]
+		存在性：就用这个式子定义 $\mathscr T$（坐标唯一，故定义合理），直接验证它是线性的.
 	\end{proof}
 	
 	\begin{motivebox}
@@ -2876,9 +2893,12 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{proof}
 		取 $\ker\mathscr T$ 的一组基 $\vv\alpha_1,\ldots,\vv\alpha_k$，用基扩张定理扩充为 $V$ 的基 $\vv\alpha_1,\ldots,\vv\alpha_k,\vv\beta_1,\ldots,\vv\beta_{m}$，$k+m=\dim V$. 只需证明 $\mathscr T(\vv\beta_1),\ldots,\mathscr T(\vv\beta_m)$ 是 $\imm\mathscr T$ 的基.
 		
-		生成：任意 $\vv\alpha=\sum a_i\vv\alpha_i+\sum b_j\vv\beta_j$，有 $\mathscr T(\vv\alpha)=\sum b_j\mathscr T(\vv\beta_j)$，因为 $\mathscr T(\vv\alpha_i)=\zero$.
+		生成：任取 $\vv\alpha\in V$，用这组基表出，由于 $\mathscr T(\vv\alpha_i)=\zero$，
+		\[\vv\alpha=\sum_{i=1}^k a_i\vv\alpha_i+\sum_{j=1}^m b_j\vv\beta_j\quad\Longrightarrow\quad\mathscr T(\vv\alpha)=\sum_{j=1}^m b_j\mathscr T(\vv\beta_j).\]
 		
-		线性无关：若 $\sum c_j\mathscr T(\vv\beta_j)=\zero$，则 $\mathscr T(\sum c_j\vv\beta_j)=\zero$，即 $\sum c_j\vv\beta_j\in\ker\mathscr T$，于是 $\sum c_j\vv\beta_j=\sum d_i\vv\alpha_i$. 由 $\vv\alpha_i,\vv\beta_j$ 合起来线性无关，得所有 $c_j=0$.
+		线性无关：若 $c_1\mathscr T(\vv\beta_1)+\cdots+c_m\mathscr T(\vv\beta_m)=\zero$，则
+		\[\mathscr T(c_1\vv\beta_1+\cdots+c_m\vv\beta_m)=\zero,\]
+		即 $c_1\vv\beta_1+\cdots+c_m\vv\beta_m\in\ker\mathscr T$，它可以写成 $\vv\alpha_1,\ldots,\vv\alpha_k$ 的线性组合. 由 $\vv\alpha_i,\vv\beta_j$ 合起来线性无关，得所有 $c_j=0$.
 	\end{proof}
 	
 	\begin{motivebox}
@@ -2938,7 +2958,13 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		设 $\vv\alpha\in V$ 的坐标为 $\vv x$，则 $\mathscr T(\vv\alpha)$ 的坐标为 $\vv{Ax}$.
 	\end{proposition}
 	\begin{proof}
-		$\mathscr T(\vv\alpha)=\sum_j x_j\mathscr T(\vv\varepsilon_j)=\sum_j x_j\sum_i a_{ij}\vv\eta_i=\sum_i\big(\sum_j a_{ij}x_j\big)\vv\eta_i$.
+		\[
+		\begin{aligned}
+			\mathscr T(\vv\alpha)&=\sum_{j=1}^n x_j\mathscr T(\vv\varepsilon_j)=\sum_{j=1}^n x_j\sum_{i=1}^m a_{ij}\vv\eta_i\\
+			&=\sum_{i=1}^m\Big(\sum_{j=1}^n a_{ij}x_j\Big)\vv\eta_i,
+		\end{aligned}
+		\]
+		括号中正是 $\vv{Ax}$ 的第 $i$ 个分量（式 \eqref{eq:matvec}）.
 	\end{proof}
 	
 	\begin{example}
@@ -2955,9 +2981,12 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{proof}
 		设 $U$ 的基为 $\vv\zeta_1,\ldots,\vv\zeta_p$. 则
 		\[
-		\mathscr S\mathscr T(\vv\varepsilon_j)=\mathscr S\Big(\sum_k a_{kj}\vv\eta_k\Big)=\sum_k a_{kj}\sum_i b_{ik}\vv\zeta_i=\sum_i\Big(\sum_k b_{ik}a_{kj}\Big)\vv\zeta_i,
+		\begin{aligned}
+			\mathscr S\mathscr T(\vv\varepsilon_j)&=\mathscr S\Big(\sum_k a_{kj}\vv\eta_k\Big)=\sum_k a_{kj}\sum_i b_{ik}\vv\zeta_i\\
+			&=\sum_i\Big(\sum_k b_{ik}a_{kj}\Big)\vv\zeta_i,
+		\end{aligned}
 		\]
-		括号中正是 $\vv{BA}$ 的 $(i,j)$ 元.
+		括号中正是 $\vv{BA}$ 的 $(i,j)$ 元（式 \eqref{eq:matmul}）.
 	\end{proof}
 	
 	\begin{motivebox}
