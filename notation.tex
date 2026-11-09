@@ -59,7 +59,7 @@
 \begin{itemize}
 	\item \textbf{48 学时方案}讲授各章不带标记的内容，依次覆盖：向量与矩阵运算、消元法；线性相关与秩；矩阵的运算与特殊矩阵；线性空间与线性映射；行列式；矩阵的秩；线性方程组的解；特征值与相似对角化；内积与欧氏空间；二次型. 
 	\item 48 学时方案不讲第七章. 第八章用到的代数基本定理与 Vieta 定理，以不加证明的形式收在附录~\ref{app:complex}，所需的复数知识也在那里. 不带标记的内容若引用了带标记小节中的结论，48 学时方案只要求了解结论.
-	\item \textbf{72 学时方案}讲授不带标记与带 \textdagger 的内容，大致相当于一学期、每周 4—5 学时. 第七章讲``一元多项式环''``带余除法''``根''``代数基本定理''与``最小多项式''；第八章不讲 Cayley–Hamilton 定理一节，因此对角化判据以定理~\ref{thm:diagcriterion} 为准；第九章 $\lambda$-矩阵整章讲授.
+	\item \textbf{72 学时方案}讲授不带标记与带 \textdagger 的内容，大致相当于一学期、每周 4—5 学时. 第七章讲``一元多项式环''``带余除法''``最大公因式''``根''``代数基本定理''与``最小多项式''；第八章不讲 Cayley–Hamilton 定理一节，因此对角化判据以定理~\ref{thm:diagcriterion} 为准；第九章 $\lambda$-矩阵整章讲授.
 	\item \textbf{96 学时方案}讲完全部无星号的内容，包括第十二章酉空间，适合两个学期、每学期 48 学时的课程. 第十四章与各章星号小节可作为讨论班或期末报告的选题.
 	\item 三个部分末尾的\textbf{综合项目}不占课内学时. 建议 48 学时方案选做第一部分的一个项目；72 学时方案在第一、二部分中各选一个；96 学时方案三个部分各选一个. 评分量规见``第一部分综合项目''.
 	\item 章末习题的 A 组覆盖各方案的核心内容（涉及 \textdagger、\textdaggerdbl 小节的题目，未讲授时可以跳过）. A 组的答案、B 组的提示见附录.
@@ -83,11 +83,20 @@
 \section*{三、编号与引用}
 \begin{itemize}
 	\item 定义、定理、引理、推论、命题、例题按节编号，例如``定理 2.4.3''是第二章第四节的第 3 个定理.
+	\item 带编号的公式也按节编号，例如 (1.1.1) 是第一章第一节的第 1 个带编号的公式.
 	\item 章末习题分为 A、B、C三组，每组各自编号. 正文中``第三章章末习题 B16''指第三章章末习题 B 组第 16 题. 正文各节中零星的``练习''按出现顺序编号，与章末习题不同.
 	\item 证明结束用 $\blacksquare$ 标出.
 \end{itemize}
 
-\section*{四、本书数学符号一览}
+\section*{四、术语分工}
+
+本书对两组常被混用的术语作如下区分.
+\begin{itemize}
+	\item \textbf{向量空间与线性空间.} 第二章的\textbf{向量空间}指 $\mathbb{F}^n$ 中对加法与数乘封闭的非空子集；第四章起，满足八条运算律的一般对象称为\textbf{线性空间}. 向量空间都是线性空间. 第四章之前只出现``向量空间''；第四章起，讨论一般的 $V$ 时说``线性空间''，只在 $\mathbb{F}^n$ 的子空间时才说``向量空间''.
+	\item \textbf{线性映射与线性变换.} $V\to W$ 的保持线性运算的映射称为\textbf{线性映射}；$W=V$ 时称为 $V$ 上的\textbf{线性变换}（第四章第六节）. 线性变换的矩阵是方阵.
+\end{itemize}
+
+\section*{五、本书数学符号一览}
 
 \textbf{数与集合}
 
@@ -111,6 +120,7 @@
 		$\deg f$ & 多项式 $f$ 的次数 \\
 		$g\mid f$ & 多项式（或整数）$g$ 整除 $f$ \\
 		$\gcd(f,g)$ & 首一的最大公因式 \\
+		$f\equiv g\pmod m$ & 多项式（或整数）$f$ 与 $g$ 模 $m$ 同余（第七章） \\
 		$f:A\to B$，$x\mapsto f(x)$ & 映射及其对应法则 \\
 		$g\circ f$ & 映射的复合，先 $f$ 后 $g$ \\
 		$\mathbb{F}[x]$，$\mathbb{F}[x]_n$ & $\mathbb{F}$ 上的一元多项式全体；次数小于 $n$ 的多项式（含零多项式）全体 \\
@@ -137,8 +147,9 @@
 		$M_{m\times n}(\mathbb{F})$，$M_n(\mathbb{F})$ & $m\times n$ 矩阵全体；$n$ 阶方阵全体 \\
 		$a_{ij}$，$(a_{ij})_{m\times n}$ & 矩阵的 $(i,j)$ 元；以 $a_{ij}$ 为元素的矩阵 \\
 		$\vv A^\trans$ & 转置 \\
+		$\vv A^{\herm}$ & 共轭转置 $\bar{\vv A}^\trans$（第十二章） \\
 		$\vv A^{-1}$ & 逆矩阵 \\
-		$\vv A^*$ & 伴随矩阵（第五章）；第十四章中 $\mathscr T^*$ 另指对偶映射 \\
+		$\vv A^*$ & 伴随矩阵（第五章）. 注意 $\mathscr T^*$ 在第十二章指伴随变换，在第十四章指对偶映射，都与伴随矩阵无关 \\
 		$(\vv A\mid\vv b)$ & 增广矩阵 \\
 		$\diag(\lambda_1,\ldots,\lambda_n)$ & 对角矩阵 \\
 		$r_i\leftrightarrow r_j$，$kr_i$，$r_i+cr_j$ & 三类初等行变换（列变换用 $c$ 代替 $r$） \\
@@ -149,7 +160,11 @@
 		$M_{ij}$，$A_{ij}$ & 余子式、代数余子式 \\
 		$\tau(i_1i_2\cdots i_n)$ & 排列的逆序数 \\
 		$f_{\vv A}(\lambda)$，$m_{\vv A}(\lambda)$ & 特征多项式 $\det(\lambda\vv I-\vv A)$，最小多项式 \\
-		$\vv J_k(\lambda)$ & $k$ 阶 Jordan 块 \\
+		$\vv A\binom{i_1\,\cdots\,i_k}{j_1\,\cdots\,j_k}$ & 位于第 $i_1,\ldots,i_k$ 行、第 $j_1,\ldots,j_k$ 列的 $k$ 阶子式（第五章） \\
+		$\vv A(\lambda)$ & $\lambda$-矩阵（第九章） \\
+		$\vv A(\lambda)\simeq\vv B(\lambda)$ & $\lambda$-矩阵等价 \\
+		$D_k(\lambda)$，$d_k(\lambda)$ & $k$ 阶行列式因子；第 $k$ 个不变因子 \\
+		$\vv J_k(\lambda_0)$ & 主对角元为 $\lambda_0$ 的 $k$ 阶 Jordan 块 \\
 		$\sigma_1\ge\sigma_2\ge\cdots$ & 奇异值 \\
 		$\kappa(\vv A)$ & 条件数 $\sigma_1/\sigma_n$ \\
 		$\|\vv A\|_F$ & Frobenius 范数 $\sqrt{\sum a_{ij}^2}$ \\
@@ -174,7 +189,7 @@
 		$\spn(\vv\alpha_1,\ldots,\vv\alpha_s)$ & 向量组张成的子空间 \\
 		$\dim V$，$\dim_{\mathbb{F}}V$ & 维数（需要强调数域时写出 $\mathbb{F}$） \\
 		$W_1+W_2$，$W_1\oplus W_2$ & 子空间的和、直和 \\
-		$V\times W$ & 向量空间的直积 \\
+		$V\times W$ & 线性空间的直积 \\
 		$V\cong U$ & 同构 \\
 		$\mathscr T,\ \mathscr S,\ \mathscr D$ & 线性映射与线性变换用花体字母；$\mathscr I$ 是恒等变换，$\mathscr O$ 是零变换 \\
 		$\ker\mathscr T$，$\imm\mathscr T$ & 核、像；对矩阵 $\vv A$，$\ker\vv A$、$\imm\vv A$ 指 $\vv x\mapsto\vv A\vv x$ 的核与像 \\
@@ -187,6 +202,7 @@
 		$W^\perp$ & 正交补 \\
 		$\vv\alpha_W$ & $\vv\alpha$ 在子空间 $W$ 上的正交投影 \\
 		$\vv x_0+W$ & 线性流形（仿射子空间） \\
+		$\mathscr T^*$ & 酉空间上线性变换 $\mathscr T$ 的伴随变换（第十二章） \\
 		$V^*$，$W^0$，$\mathscr T^*$ & 对偶空间、零化子、对偶映射（第十四章） \\
 		$\hat{\vv\alpha}$ & $\vv\alpha$ 在 $V^{**}$ 中的像：$f\mapsto f(\vv\alpha)$（第十四章） \\
 		$\vv x\ge\zero$ & 向量的每个分量都非负 \\
