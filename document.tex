@@ -125,6 +125,8 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 % 模板在 \kaishu 定义之前已把 \citshape 设成 \itshape，解答、注、学习目标框里的数字和字母因此变成意大利体.
 % 这里改为只切换中文楷体，西文与数字保持直立.
 \renewcommand*{\citshape}{\kaishu}
+% \paragraph 级小标题（“本章地位”“局限.”“用初等变换求逆.” 等）：非衬线粗体，与定理标题、“证明”等标签一致.
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\sffamily\bfseries}{\theparagraph}{1em}{}
 % 正文中的加粗强调（\textbf）：半粗非衬线体. 西文用 Source Sans Pro Semibold（字体文件随仓库提供，许可见 SourceSansPro-LICENSE.md），
 % 中文用与之同源的 Noto Sans CJK Medium（思源黑体没有 SemiBold 字重，Medium 最接近）.
 % 标题、定理标题与“证明”等标签用 \bfseries，不受影响.
