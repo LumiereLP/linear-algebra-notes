@@ -6,7 +6,7 @@
 	
 	\paragraph*{本章地位}
 	
-	第十章的内积只在实数域上定义. 但复数在第八章已经不可避免：实矩阵的特征值可以是复数，旋转矩阵就没有实特征向量. 本章把内积推广到复数域，得到酉空间，并把第十章的正交矩阵、第十一章的谱定理与奇异值分解推广到复矩阵. 核心结论有两个：每个复方阵都能用酉矩阵化为上三角矩阵（Schur 分解）；一个复方阵能用酉矩阵对角化，当且仅当它是正规矩阵. 推广之后，实数情形的许多``例外''消失了，结论反而更加整齐.
+	第十章的内积只在实数域上定义. 但复数在第八章已经不可避免：实矩阵的特征值可以是复数，旋转矩阵就没有实特征向量. 本章把内积推广到复数域，得到酉空间，并把第十章的正交矩阵、第十一章的谱定理与奇异值分解推广到复矩阵. 核心结论有两个：每个复方阵都能用酉矩阵化为上三角矩阵（Schur 分解）；一个复方阵能用酉矩阵对角化，当且仅当它是正规矩阵. 推广之后，实数情形的许多“例外”消失了，结论反而更加整齐.
 	
 	\chapterhours{—}{—}{6}
 	
@@ -37,15 +37,15 @@
 		\begin{quote}有人写道：实数领域中两个真理之间最短、最好的道路，往往要经过虚数领域.\end{quote}
 		\begin{flushright}——雅克·阿达马\footnotemark\end{flushright}
 	\end{tcolorbox}
-	\footnotetext{雅克·阿达马（1865—1963），法国数学家，1896 年证明了素数定理. 引文出自他的《数学领域中的发明心理学》（1945）. 本章的正规矩阵就是一个例子：一个实矩阵能否用``旋转''把它化简，答案要到复数域中去找.}
+	\footnotetext{雅克·阿达马（1865—1963），法国数学家，1896 年证明了素数定理. 引文出自他的《数学领域中的发明心理学》（1945）. 本章的正规矩阵就是一个例子：一个实矩阵能否用“旋转”把它化简，答案要到复数域中去找.}
 	
 	\section{\hC 复内积空间}\label{sec:complexip}
 	
 	先看照搬第十章的定义会出什么问题. 在 $\mathbb{C}^2$ 中取 $\vv x=(1,\mathrm i)^\trans$，若仍令 $\langle\vv x,\vv x\rangle=\vv x^\trans\vv x$，则
 	\[\vv x^\trans\vv x=1^2+\mathrm i^2=0.\]
-	一个非零向量的``长度''为零，长度就失去了意义. 补救的办法是取共轭：对复数 $z$，$z\bar z=|z|^2\ge0$，所以
+	一个非零向量的“长度”为零，长度就失去了意义. 补救的办法是取共轭：对复数 $z$，$z\bar z=|z|^2\ge0$，所以
 	\[x_1\bar x_1+x_2\bar x_2+\cdots+x_n\bar x_n=|x_1|^2+|x_2|^2+\cdots+|x_n|^2\]
-	是非负实数，且只在 $\vv x=\zero$ 时为零. 代价是对称性要改为``共轭对称''.
+	是非负实数，且只在 $\vv x=\zero$ 时为零. 代价是对称性要改为“共轭对称”.
 	
 	\begin{definition}\label{def:complexip}
 		设 $V$ 是复数域上的线性空间. 若对任意 $\vv\alpha,\vv\beta\in V$ 有一个复数 $\langle\vv\alpha,\vv\beta\rangle$ 与之对应，且满足：对一切 $\vv\alpha,\vv\beta,\vv\gamma\in V$，$k\in\mathbb{C}$，
@@ -57,7 +57,7 @@
 		则称 $\langle\cdot,\cdot\rangle$ 是 $V$ 上的一个\textbf{复内积}\index{fu4 nei4ji1@复内积}，配备了复内积的复线性空间称为\textbf{复内积空间}；有限维的复内积空间称为\textbf{酉空间}\index{you3 kong1jian1@酉空间}(unitary space).
 	\end{definition}
 	
-	由共轭对称性，$\langle\vv\alpha,\vv\alpha\rangle=\overline{\langle\vv\alpha,\vv\alpha\rangle}$ 总是实数，所以正定性中的``$\ge0$''是有意义的. 对第二个变量，内积是\textbf{共轭线性}的：
+	由共轭对称性，$\langle\vv\alpha,\vv\alpha\rangle=\overline{\langle\vv\alpha,\vv\alpha\rangle}$ 总是实数，所以正定性中的“$\ge0$”是有意义的. 对第二个变量，内积是\textbf{共轭线性}的：
 	\[\langle\vv\alpha,k\vv\beta\rangle=\overline{\langle k\vv\beta,\vv\alpha\rangle}=\overline{k\langle\vv\beta,\vv\alpha\rangle}=\bar k\langle\vv\alpha,\vv\beta\rangle.\]
 	
 	\begin{pitfallbox}
@@ -70,7 +70,7 @@
 			\[\langle\vv x,\vv y\rangle=x_1\bar y_1+x_2\bar y_2+\cdots+x_n\bar y_n.\]
 			本章提到 $\mathbb{C}^n$ 时，若不加说明，都配备这个内积. 当 $\vv x,\vv y$ 都是实向量时，它就是第十章的标准内积.
 			\item 闭区间 $[a,b]$ 上的全体复值连续函数（实部、虚部都连续）构成复线性空间，$\langle f,g\rangle=\int_a^bf(x)\overline{g(x)}\,\mathrm dx$ 是它上面的复内积.
-			\item 全体 $m\times n$ 复矩阵构成的线性空间上，$\langle\vv A,\vv B\rangle=\sum_{i,j}a_{ij}\bar b_{ij}$，即把矩阵``拉直''后的标准内积.
+			\item 全体 $m\times n$ 复矩阵构成的线性空间上，$\langle\vv A,\vv B\rangle=\sum_{i,j}a_{ij}\bar b_{ij}$，即把矩阵“拉直”后的标准内积.
 		\end{enumerate}
 	\end{example}
 	
@@ -86,7 +86,7 @@
 	\[(\vv A+\vv B)^\herm=\vv A^\herm+\vv B^\herm,\quad(k\vv A)^\herm=\bar k\vv A^\herm,\quad(\vv{AB})^\herm=\vv B^\herm\vv A^\herm,\quad(\vv A^\herm)^\herm=\vv A.\]
 	对实矩阵，$\vv A^\herm=\vv A^\trans$. 本书已经用 $\vv A^*$ 表示伴随矩阵（第五章），所以共轭转置记为 $\vv A^\herm$，不记为 $\vv A^*$.
 	
-	长度、单位向量与正交的定义与第十章相同：$\|\vv\alpha\|=\sqrt{\langle\vv\alpha,\vv\alpha\rangle}$；$\langle\vv\alpha,\vv\beta\rangle=0$ 时称 $\vv\alpha$ 与 $\vv\beta$ 正交. 由共轭对称性，$\langle\vv\alpha,\vv\beta\rangle=0$ 与 $\langle\vv\beta,\vv\alpha\rangle=0$ 等价，正交关系仍是对称的. 复内积空间中没有``夹角''：$\langle\vv\alpha,\vv\beta\rangle$ 是复数，不能等于一个余弦.
+	长度、单位向量与正交的定义与第十章相同：$\|\vv\alpha\|=\sqrt{\langle\vv\alpha,\vv\alpha\rangle}$；$\langle\vv\alpha,\vv\beta\rangle=0$ 时称 $\vv\alpha$ 与 $\vv\beta$ 正交. 由共轭对称性，$\langle\vv\alpha,\vv\beta\rangle=0$ 与 $\langle\vv\beta,\vv\alpha\rangle=0$ 等价，正交关系仍是对称的. 复内积空间中没有“夹角”：$\langle\vv\alpha,\vv\beta\rangle$ 是复数，不能等于一个余弦.
 	
 	\begin{theorem}[Cauchy–Schwarz 不等式]\label{thm:cscomplex}
 		在复内积空间中，对任意 $\vv\alpha,\vv\beta$，
@@ -94,7 +94,7 @@
 		等号成立当且仅当 $\vv\alpha,\vv\beta$ 线性相关.
 	\end{theorem}
 	\begin{proof}
-		$\vv\beta=\zero$ 时显然. 设 $\vv\beta\ne\zero$. 第十章的证明用到``实系数二次函数的判别式''，这里 $t$ 要取复数，不能照搬. 改为直接取 $t=\dfrac{\langle\vv\alpha,\vv\beta\rangle}{\|\vv\beta\|^2}$，展开
+		$\vv\beta=\zero$ 时显然. 设 $\vv\beta\ne\zero$. 第十章的证明用到“实系数二次函数的判别式”，这里 $t$ 要取复数，不能照搬. 改为直接取 $t=\dfrac{\langle\vv\alpha,\vv\beta\rangle}{\|\vv\beta\|^2}$，展开
 		\[0\le\langle\vv\alpha-t\vv\beta,\vv\alpha-t\vv\beta\rangle=\|\vv\alpha\|^2-\bar t\langle\vv\alpha,\vv\beta\rangle-t\langle\vv\beta,\vv\alpha\rangle+|t|^2\|\vv\beta\|^2.\]
 		后三项都等于 $\dfrac{|\langle\vv\alpha,\vv\beta\rangle|^2}{\|\vv\beta\|^2}$（注意 $\langle\vv\beta,\vv\alpha\rangle=\overline{\langle\vv\alpha,\vv\beta\rangle}$），所以右边等于 $\|\vv\alpha\|^2-\dfrac{|\langle\vv\alpha,\vv\beta\rangle|^2}{\|\vv\beta\|^2}$，即得不等式. 等号成立当且仅当 $\vv\alpha=t\vv\beta$.
 	\end{proof}
@@ -155,10 +155,10 @@
 	
 	向量 $\vv x\in\mathbb{C}^n$ 在这组基下的坐标是
 	\[c_k=\langle\vv x,\vv f_k\rangle=\frac1{\sqrt n}\sum_{m=0}^{n-1}x_m\,\mathrm e^{-2\pi\mathrm ikm/n}\qquad(k=0,\ldots,n-1),\]
-	这里把 $\vv x$ 的分量编号为 $x_0,\ldots,x_{n-1}$. $(c_0,\ldots,c_{n-1})$ 称为 $\vv x$ 的\textbf{离散 Fourier 变换}\index{li2san4 fourier bian4huan4@离散 Fourier 变换}. 由命题~\ref{prop:unitarycoord}，$\vv x=\sum c_k\vv f_k$，且 $\sum|x_m|^2=\sum|c_k|^2$. 直观地说，$\vv f_k$ 是``每 $n$ 个时刻转 $k$ 圈''的振动，坐标 $c_k$ 衡量 $\vv x$ 中这种振动的成分有多大.
+	这里把 $\vv x$ 的分量编号为 $x_0,\ldots,x_{n-1}$. $(c_0,\ldots,c_{n-1})$ 称为 $\vv x$ 的\textbf{离散 Fourier 变换}\index{li2san4 fourier bian4huan4@离散 Fourier 变换}. 由命题~\ref{prop:unitarycoord}，$\vv x=\sum c_k\vv f_k$，且 $\sum|x_m|^2=\sum|c_k|^2$. 直观地说，$\vv f_k$ 是“每 $n$ 个时刻转 $k$ 圈”的振动，坐标 $c_k$ 衡量 $\vv x$ 中这种振动的成分有多大.
 	
 	\begin{linkbox}{季节性与周期}
-		月度的零售额、用电量、客运量等经济数据，常常每 $12$ 个月重复一次相似的起伏，称为\textbf{季节性}. 把 $n$ 个月的数据看作 $\mathbb{C}^n$ 中的向量，在 Fourier 基下展开，季节性就集中在``每 $12$ 个月转一圈''的那几个频率上. 统计部门发布的``季节调整后''数据，基本想法就是从数据中去掉这些分量，让``比上月增长多少''这样的比较不再受春节、暑期等因素干扰. 本章末的建模实验会把这一想法做成一个简单的模型.
+		月度的零售额、用电量、客运量等经济数据，常常每 $12$ 个月重复一次相似的起伏，称为\textbf{季节性}. 把 $n$ 个月的数据看作 $\mathbb{C}^n$ 中的向量，在 Fourier 基下展开，季节性就集中在“每 $12$ 个月转一圈”的那几个频率上. 统计部门发布的“季节调整后”数据，基本想法就是从数据中去掉这些分量，让“比上月增长多少”这样的比较不再受春节、暑期等因素干扰. 本章末的建模实验会把这一想法做成一个简单的模型.
 	\end{linkbox}
 	
 	\begin{codebox}{Fourier 矩阵}
@@ -182,7 +182,7 @@
 	
 	第十一章谱定理的证明中，对称矩阵的关键性质是 $\langle\vv{Ax},\vv y\rangle=\langle\vv x,\vv{Ay}\rangle$. 在 $\mathbb{C}^n$ 中，对任意复方阵 $\vv A$，
 	\[\langle\vv{Ax},\vv y\rangle=\vv y^\herm\vv{Ax}=(\vv A^\herm\vv y)^\herm\vv x=\langle\vv x,\vv A^\herm\vv y\rangle.\]
-	即 $\vv A$ 从内积的第一个位置``挪到''第二个位置，就变成 $\vv A^\herm$. 把这件事推广到一般的线性变换：
+	即 $\vv A$ 从内积的第一个位置“挪到”第二个位置，就变成 $\vv A^\herm$. 把这件事推广到一般的线性变换：
 	
 	\begin{definition}
 		设 $\mathscr T$ 是酉空间 $V$ 上的线性变换. 若 $V$ 上的线性变换 $\mathscr T^*$ 满足
@@ -199,7 +199,7 @@
 		取标准正交基 $\vv e_1,\ldots,\vv e_n$，令 $\vv\gamma=\sum_i\overline{f(\vv e_i)}\,\vv e_i$. 对 $\vv\alpha=\sum x_i\vv e_i$，由命题~\ref{prop:unitarycoord}，$\langle\vv\alpha,\vv\gamma\rangle=\sum_ix_i\overline{\overline{f(\vv e_i)}}=\sum_ix_if(\vv e_i)=f(\vv\alpha)$. 唯一性：若 $\langle\vv\alpha,\vv\gamma\rangle=\langle\vv\alpha,\vv\gamma'\rangle$ 对一切 $\vv\alpha$ 成立，取 $\vv\alpha=\vv\gamma-\vv\gamma'$，得 $\|\vv\gamma-\vv\gamma'\|^2=0$.
 	\end{proof}
 	
-	这个引理说，在酉空间中，``线性函数''与``向量''可以一一对应起来. 第十四章会看到，没有内积时，线性函数构成另一个空间（对偶空间），不能与 $V$ 自然地等同.
+	这个引理说，在酉空间中，“线性函数”与“向量”可以一一对应起来. 第十四章会看到，没有内积时，线性函数构成另一个空间（对偶空间），不能与 $V$ 自然地等同.
 	
 	\begin{theorem}\label{thm:adjoint}
 		酉空间 $V$ 上的每个线性变换 $\mathscr T$ 都有唯一的伴随变换 $\mathscr T^*$. 若 $\mathscr T$ 在标准正交基 $\vv e_1,\ldots,\vv e_n$ 下的矩阵为 $\vv A$，则 $\mathscr T^*$ 在同一组基下的矩阵为 $\vv A^\herm$.
@@ -216,7 +216,7 @@
 	
 	\begin{pitfallbox}
 		\begin{enumerate}
-			\item ``伴随矩阵''$\vv A^*$（由代数余子式构成，第五章）与``伴随变换''$\mathscr T^*$（对应共轭转置）只是中文名相同，二者毫无关系. 本书用 $\vv A^\herm$ 表示共轭转置，以示区别.
+			\item “伴随矩阵”$\vv A^*$（由代数余子式构成，第五章）与“伴随变换”$\mathscr T^*$（对应共轭转置）只是中文名相同，二者毫无关系. 本书用 $\vv A^\herm$ 表示共轭转置，以示区别.
 			\item 只有在\textbf{标准正交基}下，伴随变换的矩阵才是共轭转置. 在一般的基下，内积不等于坐标的标准内积，结论不成立.
 		\end{enumerate}
 	\end{pitfallbox}
@@ -279,14 +279,14 @@
 	
 	\begin{example}
 		\begin{enumerate}
-			\item 对角矩阵 $\diag(\mathrm e^{\mathrm i\theta_1},\ldots,\mathrm e^{\mathrm i\theta_n})$ 是酉矩阵：它把每个坐标``转''一个角度.
+			\item 对角矩阵 $\diag(\mathrm e^{\mathrm i\theta_1},\ldots,\mathrm e^{\mathrm i\theta_n})$ 是酉矩阵：它把每个坐标“转”一个角度.
 			\item 置换矩阵与正交矩阵都是酉矩阵.
 			\item 以 Fourier 基 $\vv f_0,\ldots,\vv f_{n-1}$ 为列的矩阵 $\vv F$ 是酉矩阵（命题~\ref{prop:fourierbasis}）. 离散 Fourier 变换就是 $\vv x\mapsto\vv F^\herm\vv x$，它保持长度——这正是 Parseval 等式.
 		\end{enumerate}
 	\end{example}
 	
 	\begin{motivebox}
-		第十章（命题~\ref{prop:orthmatrix}）说，正交矩阵的实特征值只能是 $\pm1$；二维旋转的特征值则是一对共轭复数 $\mathrm e^{\pm\mathrm i\theta}$，第十章只能把它们``绕开''. 放到复数域里，正交矩阵是酉矩阵的特例，命题~\ref{prop:unitaryprop} 一次说清：所有特征值都在复平面的单位圆上，$\pm1$ 不过是单位圆与实轴的两个交点. 实数情形看起来零碎的结论，在复数情形是一个整体.
+		第十章（命题~\ref{prop:orthmatrix}）说，正交矩阵的实特征值只能是 $\pm1$；二维旋转的特征值则是一对共轭复数 $\mathrm e^{\pm\mathrm i\theta}$，第十章只能把它们“绕开”. 放到复数域里，正交矩阵是酉矩阵的特例，命题~\ref{prop:unitaryprop} 一次说清：所有特征值都在复平面的单位圆上，$\pm1$ 不过是单位圆与实轴的两个交点. 实数情形看起来零碎的结论，在复数情形是一个整体.
 	\end{motivebox}
 	
 	\section{\hC Hermite 矩阵}\label{sec:hermitian}
@@ -304,7 +304,7 @@
 		设 $\vv{Ax}=\lambda\vv x$，$\vv x\ne\zero$. 则 $\lambda\langle\vv x,\vv x\rangle=\langle\vv{Ax},\vv x\rangle=\langle\vv x,\vv{Ax}\rangle=\bar\lambda\langle\vv x,\vv x\rangle$，而 $\langle\vv x,\vv x\rangle>0$，故 $\lambda=\bar\lambda$. 再设 $\vv{Ay}=\mu\vv y$，$\mu\ne\lambda$，则 $\lambda\langle\vv x,\vv y\rangle=\langle\vv{Ax},\vv y\rangle=\langle\vv x,\vv{Ay}\rangle=\bar\mu\langle\vv x,\vv y\rangle=\mu\langle\vv x,\vv y\rangle$（$\mu$ 是实数），故 $\langle\vv x,\vv y\rangle=0$.
 	\end{proof}
 	
-	把这个证明与引理~\ref{lem:symreal} 比较：那里为了证明实对称矩阵的特征值是实数，临时引入了 $\bar{\vv x}^\trans\vv A\vv x$，现在看来，那正是 Hermite 二次型. 复数域才是这个证明的``自然环境''.
+	把这个证明与引理~\ref{lem:symreal} 比较：那里为了证明实对称矩阵的特征值是实数，临时引入了 $\bar{\vv x}^\trans\vv A\vv x$，现在看来，那正是 Hermite 二次型. 复数域才是这个证明的“自然环境”.
 	
 	\begin{example}\label{eg:hermitian2}
 		$\vv A=\begin{pmatrix}2&1-\mathrm i\\1+\mathrm i&3\end{pmatrix}$ 是 Hermite 矩阵. 特征多项式为 $\lambda^2-5\lambda+\big(6-|1-\mathrm i|^2\big)=\lambda^2-5\lambda+4$，特征值为 $1$ 与 $4$，都是实数. 对应的特征向量可取 $\vv x_1=(1-\mathrm i,\,-1)^\trans$ 与 $\vv x_2=(1-\mathrm i,\,2)^\trans$. 验证正交：$\langle\vv x_1,\vv x_2\rangle=(1-\mathrm i)\overline{(1-\mathrm i)}+(-1)\cdot2=2-2=0$.
@@ -324,9 +324,9 @@
 		(2) 存在性：令 $\vv H=\frac12(\vv A+\vv A^\herm)$，$\vv K=\frac12(\vv A-\vv A^\herm)$. 唯一性：若 $\vv A=\vv H'+\vv K'$ 是另一种写法，则 $\vv H-\vv H'=\vv K'-\vv K$ 既是 Hermite 矩阵又是反 Hermite 矩阵，只能为零.
 	\end{proof}
 	
-	(1) 中用到了 $\vv x=\vv e_j+\mathrm i\vv e_k$，这在实数情形是做不到的. 事实上实数情形的类似结论不成立：$\vv B=\begin{pmatrix}0&1\\-1&0\end{pmatrix}$ 不是零矩阵，但对一切实向量 $\vv x$ 都有 $\vv x^\trans\vv B\vv x=0$. 复数提供了``更多的试验向量''.
+	(1) 中用到了 $\vv x=\vv e_j+\mathrm i\vv e_k$，这在实数情形是做不到的. 事实上实数情形的类似结论不成立：$\vv B=\begin{pmatrix}0&1\\-1&0\end{pmatrix}$ 不是零矩阵，但对一切实向量 $\vv x$ 都有 $\vv x^\trans\vv B\vv x=0$. 复数提供了“更多的试验向量”.
 	
-	(2) 类似于复数的实部与虚部：$z=a+b\mathrm i$ 中，$a=\frac12(z+\bar z)$，$b\mathrm i=\frac12(z-\bar z)$. 反 Hermite 矩阵恰是 $\mathrm i$ 乘以 Hermite 矩阵，于是 $\vv A=\vv H_1+\mathrm i\vv H_2$，$\vv H_1,\vv H_2$ 都是 Hermite 矩阵. Hermite 矩阵扮演了``实数''的角色.
+	(2) 类似于复数的实部与虚部：$z=a+b\mathrm i$ 中，$a=\frac12(z+\bar z)$，$b\mathrm i=\frac12(z-\bar z)$. 反 Hermite 矩阵恰是 $\mathrm i$ 乘以 Hermite 矩阵，于是 $\vv A=\vv H_1+\mathrm i\vv H_2$，$\vv H_1,\vv H_2$ 都是 Hermite 矩阵. Hermite 矩阵扮演了“实数”的角色.
 	
 	\begin{pitfallbox}
 		实 Hermite 矩阵就是实对称矩阵；但\textbf{复对称矩阵}（$\vv A^\trans=\vv A$）一般不是 Hermite 矩阵，第十一章与本节的结论对它都不成立. 例如 $\vv A=\begin{pmatrix}1&\mathrm i\\\mathrm i&-1\end{pmatrix}$ 是复对称矩阵，但 $\vv A^2=\vv O$：它的特征值全为 $0$，而 $\vv A\ne\vv O$，所以它甚至不能对角化. 在复数域中，起作用的是共轭转置，不是转置.
@@ -338,7 +338,7 @@
 	
 	\begin{historybox}{从海森堡到冯·诺依曼}
 		\sidefig[0.3\linewidth]{image/helgoland.jpg}{黑尔戈兰岛}[fig:helgoland]
-		1855 年，法国数学家埃尔米特（C.~Hermite）在研究数论中的二次型时，考察了今天以他命名的``共轭对称''的型，并证明了相应的矩阵的特征值都是实数. 七十年后，这个结论在物理学中找到了归宿. 序言讲过，1925 年海森堡在北海的黑尔戈兰岛上写出了矩阵力学的雏形. 在随后由玻恩、约当和海森堡建立的理论中，位置、动量、能量这些\textbf{可观测量}都用矩阵表示，测量所得的数值是矩阵的特征值. 测量值必须是实数，所以这些矩阵必须是 Hermite 矩阵——定理~\ref{thm:hermitianeig} 成了物理理论的一条前提. 不同测量结果对应的状态互相正交，也是这个定理的一部分. 1932 年，冯·诺依曼（J.~von~Neumann）在《量子力学的数学基础》中，把量子力学建立在无穷维的复内积空间（Hilbert 空间）及其上的自伴算子之上，这一框架沿用至今.
+		1855 年，法国数学家埃尔米特（C.~Hermite）在研究数论中的二次型时，考察了今天以他命名的“共轭对称”的型，并证明了相应的矩阵的特征值都是实数. 七十年后，这个结论在物理学中找到了归宿. 序言讲过，1925 年海森堡在北海的黑尔戈兰岛上写出了矩阵力学的雏形. 在随后由玻恩、约当和海森堡建立的理论中，位置、动量、能量这些\textbf{可观测量}都用矩阵表示，测量所得的数值是矩阵的特征值. 测量值必须是实数，所以这些矩阵必须是 Hermite 矩阵——定理~\ref{thm:hermitianeig} 成了物理理论的一条前提. 不同测量结果对应的状态互相正交，也是这个定理的一部分. 1932 年，冯·诺依曼（J.~von~Neumann）在《量子力学的数学基础》中，把量子力学建立在无穷维的复内积空间（Hilbert 空间）及其上的自伴算子之上，这一框架沿用至今.
 	\end{historybox}
 	
 	\section{\hC 复矩阵的分解定理}\label{sec:complexdecomp}
@@ -359,13 +359,13 @@
 	这个证明与谱定理（定理~\ref{thm:spectral}）的证明几乎逐字相同. 区别在两处：第一，复方阵总有特征值，而实矩阵不一定有实特征值；第二，对称矩阵的右上块自动为零，一般矩阵则不然，所以只能得到上三角矩阵.
 	
 	\begin{motivebox}
-		为什么实数域上没有这样一般的结论？归纳的第一步需要一个特征向量. 实矩阵 $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$（旋转 $90^\circ$）没有实特征值，第一步就走不下去. 实数域上能得到的最好结果是``分块上三角''，对角线上是一阶或二阶的块——又是``实数世界里，不可约的东西至多是二维的''（第七章、第十章）. 复数域保证了特征值的存在，Schur 分解才能对一切方阵成立.
+		为什么实数域上没有这样一般的结论？归纳的第一步需要一个特征向量. 实矩阵 $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$（旋转 $90^\circ$）没有实特征值，第一步就走不下去. 实数域上能得到的最好结果是“分块上三角”，对角线上是一阶或二阶的块——又是“实数世界里，不可约的东西至多是二维的”（第七章、第十章）. 复数域保证了特征值的存在，Schur 分解才能对一切方阵成立.
 	\end{motivebox}
 	
 	\begin{example}
 		第九章的 $\vv A=\begin{pmatrix}3&1\\-1&1\end{pmatrix}$ 不能对角化，Jordan 标准形为 $\vv J_2(2)$. 求它的 Schur 分解：特征值 $2$ 对应的单位特征向量为 $\vv u_1=\frac1{\sqrt2}(1,-1)^\trans$，扩充为标准正交基，取 $\vv u_2=\frac1{\sqrt2}(1,1)^\trans$. 令 $\vv U=(\vv u_1,\vv u_2)$，计算得
 		\[\vv U^\herm\vv A\vv U=\begin{pmatrix}2&2\\0&2\end{pmatrix}.\]
-		与 Jordan 标准形相比，Schur 分解的上三角部分没有那么``干净''（右上角是 $2$ 而不是 $1$），但所用的 $\vv U$ 是酉矩阵. 酉矩阵保持长度，计算误差不会被放大；Jordan 标准形所需的过渡矩阵则可能非常``病态''（第九章的计算实践）. 这就是数值计算中用 Schur 分解代替 Jordan 标准形的原因.
+		与 Jordan 标准形相比，Schur 分解的上三角部分没有那么“干净”（右上角是 $2$ 而不是 $1$），但所用的 $\vv U$ 是酉矩阵. 酉矩阵保持长度，计算误差不会被放大；Jordan 标准形所需的过渡矩阵则可能非常“病态”（第九章的计算实践）. 这就是数值计算中用 Schur 分解代替 Jordan 标准形的原因.
 	\end{example}
 	
 	\subsection{正规矩阵的谱定理}
@@ -399,10 +399,10 @@
 	\begin{example}
 		实矩阵 $\vv A=\begin{pmatrix}1&-1\\1&1\end{pmatrix}$ 不是对称矩阵，第十一章的谱定理不适用，它也确实不能用正交矩阵对角化（它没有实特征值）. 但 $\vv A\vv A^\trans=\vv A^\trans\vv A=2\vv I$，它是正规矩阵. 特征值为 $1\pm\mathrm i$，对应的单位特征向量为
 		\[\vv u_1=\frac1{\sqrt2}(1,-\mathrm i)^\trans,\qquad\vv u_2=\frac1{\sqrt2}(1,\mathrm i)^\trans,\]
-		$\langle\vv u_1,\vv u_2\rangle=\frac12\big(1+(-\mathrm i)\cdot\overline{\mathrm i}\big)=\frac12(1+\mathrm i^2)=0$. 令 $\vv U=(\vv u_1,\vv u_2)$，得 $\vv U^\herm\vv A\vv U=\diag(1+\mathrm i,1-\mathrm i)$. 从几何上看，$\vv A=\sqrt2\begin{pmatrix}\cos45^\circ&-\sin45^\circ\\\sin45^\circ&\cos45^\circ\end{pmatrix}$ 是``旋转 $45^\circ$ 再放大 $\sqrt2$ 倍''，特征值 $1+\mathrm i=\sqrt2\,\mathrm e^{\mathrm i\pi/4}$ 恰好记录了旋转的角度与放大的倍数.
+		$\langle\vv u_1,\vv u_2\rangle=\frac12\big(1+(-\mathrm i)\cdot\overline{\mathrm i}\big)=\frac12(1+\mathrm i^2)=0$. 令 $\vv U=(\vv u_1,\vv u_2)$，得 $\vv U^\herm\vv A\vv U=\diag(1+\mathrm i,1-\mathrm i)$. 从几何上看，$\vv A=\sqrt2\begin{pmatrix}\cos45^\circ&-\sin45^\circ\\\sin45^\circ&\cos45^\circ\end{pmatrix}$ 是“旋转 $45^\circ$ 再放大 $\sqrt2$ 倍”，特征值 $1+\mathrm i=\sqrt2\,\mathrm e^{\mathrm i\pi/4}$ 恰好记录了旋转的角度与放大的倍数.
 	\end{example}
 	
-	由第九章的观点看，正规矩阵的 Jordan 标准形中每个 Jordan 块都是一阶的. 但``能对角化''与``能被酉矩阵对角化''是两回事：前者要求有 $n$ 个线性无关的特征向量，后者要求它们还能取成两两正交的.
+	由第九章的观点看，正规矩阵的 Jordan 标准形中每个 Jordan 块都是一阶的. 但“能对角化”与“能被酉矩阵对角化”是两回事：前者要求有 $n$ 个线性无关的特征向量，后者要求它们还能取成两两正交的.
 	
 	\begin{codebox}{Schur 分解}
 		\mstep{目标} 用库函数求 Schur 分解，观察正规矩阵与非正规矩阵的区别.
@@ -413,7 +413,7 @@
 		\begin{enumerate}
 			\item 对 $\vv A=\begin{pmatrix}3&1\\-1&1\end{pmatrix}$ 求 Schur 分解 $\vv A=\vv U\vv T\vv U^\herm$，验证 $\vv U^\herm\vv U=\vv I$ 与 $\vv T$ 是上三角矩阵，与正文的例子对照.
 			\item 随机生成一个 $5\times5$ 复矩阵 $\vv B$，令 $\vv H=\vv B+\vv B^\herm$. 分别求 $\vv B$ 与 $\vv H$ 的 Schur 分解，打印 $\vv T$ 的严格上三角部分的 Frobenius 范数.
-			\item 对 $\vv B$ 计算 $\|\vv B\vv B^\herm-\vv B^\herm\vv B\|$，作为``偏离正规''的程度，与任务 2 中的范数比较.
+			\item 对 $\vv B$ 计算 $\|\vv B\vv B^\herm-\vv B^\herm\vv B\|$，作为“偏离正规”的程度，与任务 2 中的范数比较.
 		\end{enumerate}
 		
 		\mstep{检查点} 任务 1 中 $|t_{12}|=2$（$\vv U$ 的列可以相差一个模为 $1$ 的因子，$t_{12}$ 的辐角可能不同）；任务 2 中 $\vv H$ 的严格上三角部分的范数在 $10^{-15}$ 量级，$\vv B$ 的则明显不为零.
@@ -431,7 +431,7 @@
 	
 	\paragraph*{*极分解.} 设 $\vv A$ 是 $n$ 阶复方阵，$\vv A=\vv U\vv\Sigma\vv V^\herm$. 在中间插入 $\vv V^\herm\vv V=\vv I$，
 	\[\vv A=(\vv U\vv V^\herm)(\vv V\vv\Sigma\vv V^\herm)=\vv W\vv P,\]
-	其中 $\vv W=\vv U\vv V^\herm$ 是酉矩阵，$\vv P=\vv V\vv\Sigma\vv V^\herm$ 是特征值非负的 Hermite 矩阵（半正定）. 这称为 $\vv A$ 的\textbf{极分解}\index{ji2 fen1jie3@极分解}，它类比于复数的极坐标表示 $z=\mathrm e^{\mathrm i\theta}r$：酉矩阵相当于``模为 $1$ 的复数''，半正定 Hermite 矩阵相当于``非负实数''. 几何上，每个线性变换都是先沿某组正交方向伸缩（$\vv P$），再作一个保持长度的变换（$\vv W$）.
+	其中 $\vv W=\vv U\vv V^\herm$ 是酉矩阵，$\vv P=\vv V\vv\Sigma\vv V^\herm$ 是特征值非负的 Hermite 矩阵（半正定）. 这称为 $\vv A$ 的\textbf{极分解}\index{ji2 fen1jie3@极分解}，它类比于复数的极坐标表示 $z=\mathrm e^{\mathrm i\theta}r$：酉矩阵相当于“模为 $1$ 的复数”，半正定 Hermite 矩阵相当于“非负实数”. 几何上，每个线性变换都是先沿某组正交方向伸缩（$\vv P$），再作一个保持长度的变换（$\vv W$）.
 	
 	\subsection{实数与复数的对照}
 	
@@ -445,7 +445,7 @@
 			标准内积 & $\vv y^\trans\vv x$ & $\vv y^\herm\vv x$ \\
 			保持内积的矩阵 & 正交矩阵 $\vv Q^\trans\vv Q=\vv I$ & 酉矩阵 $\vv U^\herm\vv U=\vv I$ \\
 			自伴的矩阵 & 实对称矩阵 & Hermite 矩阵 \\
-			能被``好的基''对角化 & 实对称矩阵（正交对角化） & 正规矩阵（酉对角化） \\
+			能被“好的基”对角化 & 实对称矩阵（正交对角化） & 正规矩阵（酉对角化） \\
 			任意方阵能化成 & ——（不一定有实特征值） & 上三角矩阵（Schur 分解） \\
 			奇异值分解 & $\vv U\vv\Sigma\vv V^\trans$ & $\vv U\vv\Sigma\vv V^\herm$ \\
 			\bottomrule
@@ -454,7 +454,7 @@
 		\label{tab:realcomplex}
 	\end{table}
 	
-	表中``实数域''一列的每一条，都是``复数域''一列的特例. 反过来，从实数域推广到复数域，所需的改动几乎只有一条：把转置换成共轭转置.
+	表中“实数域”一列的每一条，都是“复数域”一列的特例. 反过来，从实数域推广到复数域，所需的改动几乎只有一条：把转置换成共轭转置.
 	
 	\begin{modelbox}{用离散 Fourier 变换做季节调整}
 		\mstep{问题} 某地连续 $48$ 个月的月度用电量有明显的季节性：夏、冬两季高，春、秋两季低. 如何去掉季节性，看出用电量本身的变化？
@@ -463,19 +463,19 @@
 		
 		\mstep{模型} 把 $48$ 个月的数据记为 $\vv x=(x_0,\ldots,x_{47})^\trans\in\mathbb{C}^{48}$（数据是实数，看作复向量），在 Fourier 基 $\vv f_0,\ldots,\vv f_{47}$ 下展开，$\vv x=\sum c_k\vv f_k$. 设季节成分 $\vv s$ 满足 $s_{m+12}=s_m$. 把求和按年分成四段，它的 Fourier 坐标为
 		\[\langle\vv s,\vv f_k\rangle=\frac1{\sqrt{48}}\Big(\sum_{m=0}^{11}s_m\bar\omega^{km}\Big)\big(1+\bar\omega^{12k}+\bar\omega^{24k}+\bar\omega^{36k}\big),\qquad\omega=\mathrm e^{2\pi\mathrm i/48}.\]
-		$\bar\omega^{12k}=\mathrm e^{-\pi\mathrm ik/2}$，后一个括号是公比为 $\mathrm e^{-\pi\mathrm ik/2}$ 的等比数列之和：当 $4\mid k$ 时为 $4$，否则为 $0$. 再由``一年内平均为零''，$k=0$ 的坐标也为零. 所以\textbf{季节成分只出现在 $k=4,8,\ldots,44$ 这 $11$ 个频率上}.
+		$\bar\omega^{12k}=\mathrm e^{-\pi\mathrm ik/2}$，后一个括号是公比为 $\mathrm e^{-\pi\mathrm ik/2}$ 的等比数列之和：当 $4\mid k$ 时为 $4$，否则为 $0$. 再由“一年内平均为零”，$k=0$ 的坐标也为零. 所以\textbf{季节成分只出现在 $k=4,8,\ldots,44$ 这 $11$ 个频率上}.
 		
 		\mstep{求解} 计算 $\vv x$ 的离散 Fourier 变换，把 $k=4,8,\ldots,44$ 的坐标置为零，其余不变，再变换回去（$\vv x\mapsto\sum c_k\vv f_k$），得到的向量就是季节调整后的序列. 这一步就是把 $\vv x$ 正交投影到 $\spn\{\vv f_k\mid 4\nmid k\ \text{或}\ k=0\}$ 上.
 		
 		\mstep{解读}
 		\begin{itemize}
-			\item 季节调整是一次正交投影：去掉的部分与保留的部分正交，由勾股定理，$\|\vv x\|^2$ 恰好分成``季节部分''与``其余部分''两块，可以用二者之比衡量季节性的强弱.
+			\item 季节调整是一次正交投影：去掉的部分与保留的部分正交，由勾股定理，$\|\vv x\|^2$ 恰好分成“季节部分”与“其余部分”两块，可以用二者之比衡量季节性的强弱.
 			\item 调整后的序列适合作环比（与上个月比）；未调整的序列只适合作同比（与去年同月比）——同比本身就消去了以 $12$ 个月为周期的成分.
 		\end{itemize}
 		
 		\mstep{局限}
 		\begin{itemize}
-			\item 长期增长趋势不是周期的，它在 Fourier 基下的坐标会``泄漏''到所有频率上，包括 $k=4,8,\ldots$. 实际做法通常先估计并去掉趋势，再处理季节性.
+			\item 长期增长趋势不是周期的，它在 Fourier 基下的坐标会“泄漏”到所有频率上，包括 $k=4,8,\ldots$. 实际做法通常先估计并去掉趋势，再处理季节性.
 			\item 春节的日期在公历中逐年移动，它的影响不严格以 $12$ 个月为周期. 统计部门使用的方法（如 X-13）还要专门处理节假日、交易日和异常值.
 		\end{itemize}
 	\end{modelbox}
