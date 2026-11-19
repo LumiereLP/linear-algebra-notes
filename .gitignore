@@ -22,3 +22,5 @@ version.tex
 public/
 /build-tmp
 *.synctex(busy)
+build-tmp/check.pdf
+/build-tmp

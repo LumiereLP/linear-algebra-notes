@@ -298,15 +298,18 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 			 \ifx\lnboxicon\empty\else\lnicon{\lnboxicon}\hspace{0.4em}\fi\tcbtitletext\par}%
 			\nobreak\smallskip},
 	},
-	ln motive/.style={ln inline title=hint,
+	% 恢复框内正文的首行缩进（tcolorbox 默认把框内 \parindent 设为 0）；
+	% 计算实践、建模实验两个栏目不加，保持原来的齐头排版
+	ln indent/.style={fontupper={\normalfont\setlength{\parindent}{2\ccwd}}},
+	ln motive/.style={ln inline title=hint, ln indent,
 		frame hidden, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt},
-	ln pitfall/.style={ln inline title=pitfall,
+	ln pitfall/.style={ln inline title=pitfall, ln indent,
 		colback=white, boxrule=1.2pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt},
-	ln link/.style={ln inline title=link,
+	ln link/.style={ln inline title=link, ln indent,
 		frame hidden, interior hidden, sharp corners,
 		borderline north={0.6pt}{0pt}{linkframe}, borderline south={0.6pt}{0pt}{linkframe},
 		left=2pt, right=2pt, top=6pt, bottom=6pt},
-	ln history/.style={ln inline title=,
+	ln history/.style={ln inline title=, ln indent,
 		frame hidden, interior hidden, sharp corners,
 		borderline west={0.8pt}{0pt}{historyframe},
 		left=10pt, right=0pt, top=2pt, bottom=2pt},
