@@ -122,7 +122,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 \newcommand*{\heiti}{\CJKfamily{zhhei}}
 \newcommand*{\kaishu}{\CJKfamily{zhkai}}
 \newcommand*{\fangsong}{\CJKfamily{zhfs}}
-% 模板在 \kaishu 定义之前已把 \citshape 设成 \itshape，解答、注、学习目标框里的数字和字母因此变成意大利体.
+% 模板在 \kaishu 定义之前已把 \citshape 设成 \itshape，解答、注里的数字和字母因此变成意大利体.
 % 这里改为只切换中文楷体，西文与数字保持直立.
 \renewcommand*{\citshape}{\kaishu}
 % \paragraph 级小标题（“本章地位”“局限.”“用初等变换求逆.” 等）：非衬线粗体，与定理标题、“证明”等标签一致.
@@ -419,7 +419,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	{\fangsong
 		亲爱的同学们：
 		
-		你翻开这本讲义的现在，距离你进入大学已经过去了多久？距离你填报大学志愿又过去了多久？我想，坐在课堂上对着数学发愁的你，大概率是抱着和数学“老死不相往来”的决心填报的中国政法大学。这样的心情不难理解——从初中开始，数学就被应试的泥石流裹挟着，成为了最不该成为的样子。六年以来高强度的解题训练已经磨灭了绝大部分人对于数学最原初的求知欲望。我参加高考是在 2022 年，说起那一年的高考，大家想必都对于那一年的数学新高考一卷难度有所耳闻。作为这份试卷最直接的“受害者”，我在填报大学志愿时也和你们一样对于数学、物理等科目一躲再躲。
+		你翻开这本讲义的现在，距离你进入大学已经过去了多久？距离你填报大学志愿又过去了多久？我想，坐在课堂上对着数学发愁的你，大概率是抱着和数学“老死不相往来”的决心填报的中国政法大学。这样的心情不难理解——从初中开始，数学就被应试的泥石流裹挟着，成为了最不该成为的样子。六年以来高强度的解题训练已经磨灭了绝大部分人对于数学最原初的求知欲望。我参加高考是在 2022 年，想必各位都对于那一年的数学新高考一卷难度有所耳闻。作为这份试卷最直接的“受害者”，我在填报大学志愿时也和你们一样对于数学、物理等科目一躲再躲。
 
 		不过，既然我能以编者的身份站在这里，说明事情出现了转机。我已经讲不清自己现在对于数学的热情是因为什么具体的事件而产生了，但是这份热情能够维持至今并仍然熊熊燃烧的原因，我很清楚。
 
@@ -598,13 +598,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{3}{3}{3}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 写出线性方程组的增广矩阵，用初等行变换把矩阵化为阶梯形与简化阶梯形
 		\item 说明初等行变换为什么不改变方程组的解集
 		\item 从阶梯形判断方程组无解、有唯一解或有无穷多解
 		\item 方程组有无穷多解时，用自由变量写出全部解
 		\item 说明未知量多于方程的齐次方程组为什么必有非零解
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	
@@ -977,13 +978,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{5}{6}{7}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 判断向量组的线性相关性，把它归结为齐次方程组是否有非零解
 		\item 求向量组的秩与一个极大无关组
 		\item 说明极大无关组所含向量的个数为什么与选取方式无关
 		\item 判断 $\mathbb{F}^n$ 的子集是否为向量空间，求向量空间的基与维数
 		\item 说明向量组的秩等于它张成的向量空间的维数
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	
@@ -1508,14 +1510,15 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{6}{7}{8}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 进行矩阵的线性运算、乘法、转置与求迹，并能按列的线性组合理解矩阵乘向量
 		\item 举例说明矩阵乘法不满足交换律与消去律
 		\item 用初等矩阵表示初等行变换，用初等行变换求逆矩阵
 		\item 判断方阵是否可逆，说明可逆性的几个等价条件
 		\item 求矩阵的秩以及列向量组的极大无关组
 		\item 运用分块矩阵进行计算
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	
@@ -2181,7 +2184,8 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{5}{7}{9}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 验证一个集合关于给定的运算是否构成数域、线性空间或子空间
 		\item 求线性空间或子空间的基与维数，把线性无关组扩充为基
 		\item 求向量在给定基下的坐标，说明有限维线性空间与 $\mathbb{F}^n$ 同构
@@ -2191,7 +2195,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\item 求两组基之间的过渡矩阵，写出线性变换在新基下的矩阵（48 学时方案以此为限）
 		\item 在两组基之间换算向量的坐标
 		\item \hC 覆盖定理的叙述与证明；空间的直和与直和分解
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	
@@ -3107,13 +3111,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{4}{5}{6}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 计算排列的逆序数，按定义写出低阶行列式的展开式
 		\item 运用行列式的性质把行列式化为三角形计算，运用按行（列）展开与 Laplace 定理计算行列式
 		\item 运用乘积公式、Cauchy–Binet 公式以及“方阵可逆当且仅当行列式不为零”解决问题
 		\item 求伴随矩阵，用伴随矩阵求逆矩阵，用 Cramer 法则解方程组
 		\item 用子式判断矩阵的秩
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	
@@ -3627,13 +3632,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{4}{5}{7}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 用秩判断线性方程组是否有解、解是否唯一
 		\item 求齐次方程组的基础解系，写出非齐次方程组的通解
 		\item 说明非齐次方程组的解集与对应齐次方程组的解空间之间的关系
 		\item 在子空间的参数表示与方程表示之间相互转化（72 学时起），解矩阵方程，运用 Sylvester 不等式
 		\item 判断方程组能否唯一确定给定的量
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	
@@ -4476,14 +4482,15 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{—}{4}{6}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 进行多项式的带余除法，用余数定理判断根并讨论重根
 		\item 说明代数基本定理的含义，以及实系数多项式的不可约因式至多为二次
 		\item 把方阵代入多项式进行计算，求矩阵的最小多项式，并用它计算矩阵的高次幂与逆矩阵
 		\item 用辗转相除法求最大公因式，写出 Bézout 等式
 		\item 说明唯一分解定理的内容，在不同数域上分解多项式，判断多项式有无重因式（96 学时方案）
 		\item 用中国剩余定理与 Lagrange 插值构造满足给定余式的多项式（96 学时方案）
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	
@@ -4623,16 +4630,24 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	\begin{motivebox}
 		Bézout 等式的威力在于：它把“没有公因式”这样一个\textbf{否定性}的性质，变成了“能凑出 $1$”这样一个\textbf{构造性}的等式. 而 $1$ 是可以“拆开”的：$1=uf+vg$ 意味着任何东西都可以拆成“$f$ 管的一部分”加上“$g$ 管的一部分”. 第八章会用它把整个空间拆成几个不变子空间的直和——那时请回来看这一段.
 	\end{motivebox}
-	\begin{historybox}{诺特与“理想”}
-		\sidefig[0.35\linewidth]{image/noether.jpg}{埃米·诺特}[fig:noether]
-		回头看 Bézout 等式的证明：关键是集合 $I=\{uf+vg\}$. 它有两个性质——对加法封闭，乘以\textbf{任意}多项式后仍在其中. 这样的集合今天称为\textbf{理想}\index{li3xiang3@理想}. 证明实际上说的是：$\mathbb{F}[x]$ 的这个理想由它次数最低的元素“生成”. 把“整数”换成“多项式”，同一个论证给出整数的最大公因数——两者共享的不是某个公式，而是“每个理想都由一个元素生成”这一\textbf{结构}.
+    \begin{historybox}{诺特与“理想”}
+        \sidefig[0.3\linewidth]{image/noether.jpg}{埃米·诺特}[fig:noether]
+        再看 Bézout 等式的证明：关键是集合 $I=\{uf+vg\}$. 它有两个性质——对加法封闭，乘以任意多项式后仍在其中. 这样的集合今天称为\textbf{理想}\index{li3xiang3@理想}. 证明实际上说的是：$\mathbb{F}[x]$ 的这个理想由它次数最低的元素“生成”. 将整数的整除理论推广到多项式环，可以发现两者具有许多相似的性质. 后来发展的理想理论，正是从这种共同的代数结构出发的.
+        
+        将这种思想推广到一般代数结构，并使之成为系统理论的，是德国数学家埃米·诺特（Emmy Noether，1882—1935）. 她出生在埃尔朗根一个犹太人家庭，父亲马克斯·诺特是当地大学的数学教授，弟弟弗里茨后来也做了数学家. 
 		
-		把这种眼光变成一整套数学的，是德国数学家埃米·诺特（Emmy Noether，1882—1935）. 她出生于埃尔朗根，父亲马克斯·诺特也是数学家. 当时德国大学原则上不招收女生，她只能以旁听生身份听课，1907 年才在埃尔朗根大学获得博士学位，此后多年在那里无薪工作\cite{dick1981noether}. 1915 年，希尔伯特和克莱因请她到哥廷根，但教授会以“女性不能担任讲师”为由反对她取得授课资格. 据说希尔伯特在会上反驳：“候选人的性别不应成为反对的理由，我们这里毕竟是大学，不是澡堂. ”此后四年，她的课程只能挂在希尔伯特名下开设，直到 1919 年才取得授课资格\cite{reid1970hilbert}.
-		
-		1918 年，她证明了物理学中著名的\textbf{诺特定理}：每一种连续对称性都对应一个守恒量——时间平移对称对应能量守恒，空间平移对称对应动量守恒\cite{noether1918invariante}. 1921 年的论文《环中的理想理论》\cite{noether1921idealtheorie}则把注意力从具体的数和多项式转向它们共同遵守的公理，开创了今天所说的“抽象代数”. 她身边聚集了一批来自各国的年轻人，被称为“诺特的孩子们”. 其中的范德瓦尔登（B.~L.~van~der~Waerden）根据她和阿廷（第四章引文的作者）的讲课写成《近世代数》（1930—1931）\cite{vanderwaerden1930moderne}，这本书改变了此后近百年代数学的写法，本讲义的许多章节也是它的远房后代. 中国数学家曾炯之（1898—1940）也曾在哥廷根随她学习代数，1934 年获博士学位，他证明的一个关于函数域的定理至今以他的名字命名\cite{tsen1933divisionsalgebren}.
-		\sidefig[0.2\linewidth]{image/weyl.jpg}{赫尔曼·外尔}[fig:weyl]
-		1933 年，纳粹政府以她是犹太人为由解除了她的教职. 她移居美国，在布林莫尔学院任教，并在普林斯顿高等研究院讲学. 1935 年 4 月，她在一次手术后意外去世，年仅 53 岁. 爱因斯坦随即在《纽约时报》发表公开信，称她是自女性接受高等教育以来最具创造力的数学天才\cite{einstein1935noether}；数学家外尔（H.~Weyl）在追悼会上致辞\cite{weyl1935noether}. 她留下的不是某一个公式，而是一种看数学的方式——正如章首那句话所说，它已“不具名地”渗透在每一本代数教科书里，包括你手中的这一本.
-	\end{historybox}
+		诺特早年的求学经历充满坎坷. 1900 年，她通过国家考试，取得了英语和法语教师资格. 此后，她回到埃尔朗根，希望继续学习数学. 但当时德国大学对女性的入学仍有严格限制，她只能以旁听生的身份参加课程.  1903 年，她前往哥廷根继续学习数学，曾旁听希尔伯特的课程. 1904 年，埃尔朗根大学开始允许女性正式注册，她随即返回，三年后在戈丹（P.~Gordan）指导下取得博士学位\cite{dick1981noether}.
+        
+        此后几年她在埃尔朗根的研究所里帮忙，替父亲整理讲义、替人代课，那时的诺特既无法获得职位，也领不到薪水. 1915 年，希尔伯特和克莱因把她请到哥廷根，因为广义相对论里正缺一套处理不变量与守恒律的工具. 然而教授会以“女性不能担任讲师”为由反对她取得授课资格. 据说希尔伯特在会上反驳：“候选人的性别不应成为反对的理由，我们这里毕竟是大学，不是澡堂.” 此后四年，她的课程只能挂在希尔伯特名下开设. 直到 1919 年，她才正式取得大学授课资格\cite{reid1970hilbert}. 1922 年她得到“编外副教授”的头衔，没有正式薪俸，多年靠听课费和家里的接济生活.
+        
+        1918 年，诺特发表了《不变变分问题》，其中证明了后来以她的名字命名的\textbf{诺特定理}\cite{noether1918invariante}. 该定理揭示了连续对称性与守恒律之间的联系：例如，作用量在时间平移下不变，对应能量守恒；在空间平移下不变，则对应动量守恒. 这篇论文还包含第二个定理，讨论的是无穷小变换依赖于时空坐标的情形. 它与广义相对论中的能量—动量守恒问题密切相关，也为理解一般协变理论中的守恒律提供了重要工具.
+        
+        1921 年，诺特发表《环中的理想理论》，系统研究了交换环中的理想及其分解. 她将升链条件作为研究环的重要条件，并证明了满足这一条件的环中，每个真理想都可以表示为有限个准素理想的交\cite{noether1921idealtheorie}. 这项工作对后来交换代数和抽象代数的发展产生了深远影响.  20 年代后期，诺特还参与了非交换代数的研究，与布劳尔（R.~Brauer）、哈塞（H.~Hasse）等人的工作共同推动了中心单代数理论的发展. 其中，后来以 Albert、Brauer、Hasse 和 Noether 命名的定理，建立了数域上中心单代数的局部—整体理论. 1932 年苏黎世国际数学家大会上她作全会报告，同年与阿廷共获阿克曼—托伊布纳奖. 1928 年底她还应邀到莫斯科大学讲学，与亚历山德罗夫（P.~S.~Alexandrov）结下终身友谊；1933 年失掉教职时，她认真考虑过迁居苏联.
+        
+        诺特在哥廷根培养了一批年轻数学家，其中不少人来自国外，他们后来被称为“诺特的孩子们”. 诺特经常与学生讨论数学问题，这种讨论并不局限于课堂，有时也会在校园附近的树林中进行. 范德瓦尔登（B. L.~van~der~Waerden）吸收了诺特、阿廷（本讲义第四章引文的作者）等人的讲授内容与研究成果，编写了《近世代数》（1930—1931）\cite{vanderwaerden1930moderne}，这本书系统呈现了当时正在形成的现代代数体系，对后来代数学教材的编写产生了重要影响. 本讲义中的不少内容，也可以追溯到这一传统. 她的学生格雷特·赫尔曼（Grete Hermann）在博士论文中研究了多项式理想的准素分解及其有效计算问题. 这项工作也是后来计算交换代数的重要理论基础之一. 中国数学家曾炯之（1898—1940）也在哥廷根随她学习代数，1934 年获博士学位，他关于函数域上除环的研究产生了著名的曾定理（Tsen's theorem），这是函数域理论中的一个重要结果\cite{tsen1933divisionsalgebren}.
+        \sidefig[0.3\linewidth]{image/weyl.jpg}{赫尔曼·外尔}[fig:weyl]
+        1933 年春天，纳粹政府以她是犹太人为由解除了她的教职. 她起初留在哥廷根，在家里给学生上课，随后流亡美国，在布林莫尔学院任教，并在普林斯顿高等研究院讲学. 1935 年 4 月，一次手术后的并发症夺去了她的生命. 爱因斯坦随即在《纽约时报》发表公开信，称她是自女性接受高等教育以来最具创造力的数学天才\cite{einstein1935noether}；外尔（H.~Weyl）在追悼会上致辞\cite{weyl1935noether}. 诺特去世时年仅 53 岁. 她在理想理论、非交换代数等领域的工作，已经成为现代代数学的重要组成部分. 她在理想理论和非交换代数等领域的工作，已经成为现代代数学的重要组成部分.
+    \end{historybox}
 	
 	\begin{codebox}{辗转相除法}
 		\mstep{目标} 用系数列表表示多项式，实现带余除法和扩展的辗转相除法，自动写出 Bézout 等式.
@@ -5057,14 +5072,15 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{6}{7}{9}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 求方阵的特征多项式、特征值与特征子空间
 		\item 运用迹、行列式与特征值的关系检验计算结果
 		\item 区分特征值的代数重数与几何重数，判断方阵能否对角化
 		\item 对可对角化的方阵求出相似变换矩阵，计算方阵的幂，求解线性递推关系
 		\item 用马尔可夫链与 PageRank 说明特征向量在实际问题中的含义（72 学时方案起）
 		\item 说明 Cayley–Hamilton 定理，求最小多项式并用它判断可对角化（96 学时方案）
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	
@@ -5549,7 +5565,8 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{3}{6}{7}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 验证一个二元函数是否为内积，计算向量的长度、夹角与距离
 		\item 运用 Cauchy–Schwarz 不等式
 		\item 用 Gram–Schmidt 方法把线性无关组化为标准正交组
@@ -5557,7 +5574,7 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 		\item 求向量在子空间上的正交投影，用正规方程求最小二乘解（72 学时方案起）
 		\item 求子空间的正交补，用矩阵的四个基本子空间说明方程组的相容条件（72 学时方案起）
 		\item 说明正交变换的结构：空间分解为不动、翻转与平面旋转三类不变子空间的正交直和（96 学时方案）
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	
@@ -6406,13 +6423,14 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{3}{5}{7}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 说明实对称矩阵的特征值都是实数，属于不同特征值的特征向量互相正交
 		\item 用正交矩阵把实对称矩阵对角化，写出谱分解
 		\item 用 Rayleigh 商刻画实对称矩阵的最大与最小特征值（72 学时方案起）
 		\item 求矩阵的奇异值分解，说明它的几何意义（72 学时方案起）
 		\item 求矩阵的最佳低秩近似，并用于主成分分析等问题（96 学时方案）
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	
@@ -6878,14 +6896,15 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{5}{7}{8}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 写出二次型的矩阵，判断两个实对称矩阵是否合同
 		\item 用正交变换法与配方法把二次型化为标准形，判断二次曲线、二次曲面的类型
 		\item 求二次型的正、负惯性指数与规范形
 		\item 用特征值或顺序主子式判断二次型是否正定
 		\item 用 Hessian 矩阵判断多元函数驻点的类型
 		\item 把投资组合的方差写成二次型，求最小方差组合（72 学时方案起）
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	
@@ -7366,12 +7385,13 @@ twoside,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook}
 	
 	\chapterhours{—}{—}{—}
 	
-	\begin{introduction}[学习目标]
+	\paragraph*{学习目标}
+	\begin{itemize}
 		\item 求对偶基，用零化子与对偶映射说明行秩等于列秩
 		\item 写出双线性型的度量矩阵，推导它在换基下的变化规律
 		\item 说明对称双线性型与二次型之间的对应关系
 		\item 把交错双线性型化为标准形，说明反对称矩阵的秩为偶数
-	\end{introduction}
+	\end{itemize}
 	
 	\paragraph*{前置知识}
 	

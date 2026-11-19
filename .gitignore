@@ -20,3 +20,5 @@
 # CI 生成
 version.tex
 public/
+/build-tmp
+*.synctex(busy)
