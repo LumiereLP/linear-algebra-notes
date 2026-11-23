@@ -16,7 +16,7 @@
 *.lof
 *.lot
 *.synctex.gz
-
+*.latexmkrc
 # CI 生成
 version.tex
 public/
@@ -24,3 +24,4 @@ public/
 *.synctex(busy)
 build-tmp/check.pdf
 /build-tmp
+/.tex64
